@@ -1,0 +1,134 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: #010911;
+
+  // hamburger menu
+  aside {
+    height: 100vh;
+    width: 12vw;
+    background-color: #010911;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      color: white;
+      transform: rotate(-90deg);
+      width: 320px;
+      margin-bottom: 210px;
+      letter-spacing: 1px;
+      opacity: 0.9;
+      font-size: 17px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .hamburger-container {
+      margin-top: 25px;
+      align-items: center;
+      display:flex;
+      flex-direction: column;
+      height: 45px;
+      justify-content: space-evenly;
+      width: 23%;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+      .hamburger {
+        width: 33px;
+        background-color: whitesmoke;
+        opacity: 0.9;
+        height: 2px; 
+      }
+    }}
+
+  // constant navbar
+  .navbar {
+    height: 100vh;
+    background-color: #010911;
+    // background-color: red;
+    width: 0vw; 
+    justify-content: center;
+    
+    .items {
+      display: none;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 100vh;
+      text-align: start;
+      align-items: center;
+    
+      li {
+        font-size: 16px;
+        color: white;
+        opacity: 0.95;
+        list-style: none;
+        width: 370px;
+        font-family: 'Cormorant Garamond', serif;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      span {
+        font-size: 30px;
+        margin-left: 18px;
+        opacity: 0.95;
+        background: linear-gradient(#e99a6c,#e99a6c) left no-repeat whitesmoke;
+        background-size: 0% 100%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: 0.7s;
+        &:hover {
+          background-size:  100% 100%;
+        }
+      }}}
+
+  // title of homepage
+  main {
+    height: 100vh;
+    width: 88vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .title {
+      color:black;
+      height: 95vh;
+      background-color: white;
+      border-radius: 40px;
+      width: 84vw;
+      background-image: url('https://images.unsplash.com/photo-1514894780887-121968d00567?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1652&q=80');
+      background-position: center;
+      position: relative;
+
+      &::after {
+        content: '';
+        opacity: 0.2;
+        background: black;
+        width: 100%;
+        border-radius: 40px;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+  
+
+  
+}
+
+
+
