@@ -27,10 +27,10 @@ const cookSchema = new mongoose.Schema({
   cookTime: { type: String, required: true },
   serves: { type: String, required: true },
   rating: { type: Number, required: true },
-  category: 'Cook',
+  category: { type: String, required: true },
   mealtype: { type: String, required: true },
   dietary: { type: Array, required: true },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   comments: [ commentSchema ]
 })
 

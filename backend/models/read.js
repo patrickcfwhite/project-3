@@ -17,8 +17,8 @@ const readSchema = new mongoose.Schema({
   bookType: { type: String, required: true },
   image: { type: String, required: false },
   rating: { type: Number, required: true },
-  category: 'Read',
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  category: { type: String, required: true },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   comments: [ commentSchema ]
 })
 
