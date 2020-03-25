@@ -10,6 +10,7 @@ import './styles/style.scss'
 
 // libraries
 import { TweenMax, TimelineLite, Power1 } from 'gsap'
+import ReactPlayer from 'react-player'
 // import Panzoom from 'panzoom'
 
 // components
@@ -31,16 +32,35 @@ const App = () => (
 const Watch = () => {
   return (
     <main>
-      <div className="inner-wrapper">
 
-        <video
-          poster='https://terrigen-cdn-dev.marvel.com/content/prod/1x/avengersendgame_lob_mas_mob_01.jpg'
-          onMouseOver={e => e.target.play()}
-          onMouseOut={e => e.target.load()}
-          src='https://media.w3.org/2010/05/sintel/trailer_hd.mp4'
+      <div className="main-container">
+
+        <video className="jumbotron-video"
+          muted='muted'
+          onLoadedMetadata={e => e.target.play()}
+          src='https://movietrailers.apple.com/movies/wb/the-way-back/the-way-back-trailer-1_h1080p.mov#t=6'
         />
 
+        <div className="inner-wrapper">
+
+          <video id='video' className="box"
+            poster='https://terrigen-cdn-dev.marvel.com/content/prod/1x/avengersendgame_lob_mas_mob_01.jpg'
+            onMouseOver={(e) => {
+              e.target.setAttribute('src',
+                'https://movietrailers.apple.com/movies/paramount/sonic-the-hedgehog/sonic-the-hedgehog-trailer-1b_h1080p.mov#t=6,130')
+              e.target.play()
+            }}
+            onMouseOut={(e) => e.target.setAttribute('src', '')}
+            src=''
+          />
+
+
+
+
+        </div>
+
       </div>
+
 
 
     </main>
