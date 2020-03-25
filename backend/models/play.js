@@ -18,7 +18,7 @@ const playSchema = new mongoose.Schema({
   players: { type: String, required: true },
   format: { type: String, required: false },
   duration: { type: String, required: false },
-  category: 'Play',
+  category: { type: String, required: true },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   comments: [ commentSchema ]
 })
