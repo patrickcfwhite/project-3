@@ -135,34 +135,34 @@ mongoose.connect(
 
 
 
-      // .then(() => {
-      //   return Watch.create(
-      //     {
-      //       title: 'Spirited Away',
-      //       description: 'Spirited Away tells the story of Chihiro Ogino, a 10 year-old girl who, while moving to a new neighbourhood, enters the world of Kami (spirits) of Japanese Shinto folklore.',
-      //       genre: 'Animation, Fantasy, Adventure, Family',
-      //       duration: '125 minutes',
-      //       rating: 5,
-      //       certification: 'PG',
-      //       user: users[0],
-      //       category: 'Watch'
-      //     }
-      //   )
-      // })
-      // .then(films => console.log(`${'🎥'.repeat(films.length)} created!`))
-      // .then(() => {
-      //   return Play.create(
-      //     {
-      //       title: 'Sims 4',
-      //       description: 'The Sims 4 is a life simulation game, players create a Sim character and control their life to explore different personalities which change the way the game plays out.',
-      //       genre: 'Simulation',
-      //       rating: 5,
-      //       players: '1',
-      //       subcategory: 'Computer Game',
-      //       format: 'PC',
-      //       user: users[0],
-      //       category: 'Play'
-      //     }
-      //   )
-      // })
-      // .then(recipes => console.log(`${'🎥'.repeat(recipes.length)} created!`))
+// .then(() => {
+//   return Watch.create(
+//     {
+//       title: 'Spirited Away',
+//       description: 'Spirited Away tells the story of Chihiro Ogino, a 10 year-old girl who, while moving to a new neighbourhood, enters the world of Kami (spirits) of Japanese Shinto folklore.',
+//       genre: 'Animation, Fantasy, Adventure, Family',
+//       duration: '125 minutes',
+//       rating: 5,
+//       certification: 'PG',
+//       user: users[0],
+//       category: 'Watch'
+//     }
+//   )
+// })
+// .then(films => console.log(`${'🎥'.repeat(films.length)} created!`))
+// .then(() => {
+//   return Play.create(
+//     {
+//       title: 'Sims 4',
+//       description: 'The Sims 4 is a life simulation game, players create a Sim character and control their life to explore different personalities which change the way the game plays out.',
+//       genre: 'Simulation',
+//       rating: 5,
+//       players: '1',
+//       subcategory: 'Computer Game',
+//       format: 'PC',
+//       user: users[0],
+//       category: 'Play'
+//     }
+//   )
+// })
+// .then(recipes => console.log(`${'🎥'.repeat(recipes.length)} created!`))
