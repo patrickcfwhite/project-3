@@ -19,7 +19,7 @@ const watchSchema = new mongoose.Schema({
   seasons: { type: String, required: false },
   rating: { type: Number, required: true },
   certification: { type: String, required: true },
-  category: 'Watch',
+  category: { type: String, required: true },
   subcategory: { type: String, required: false },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   comments: [ commentSchema ]

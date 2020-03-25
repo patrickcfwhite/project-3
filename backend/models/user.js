@@ -13,7 +13,8 @@ const schema = new mongoose.Schema({
   interests: { type: Array, required: false, maxItems: 10 },
   uploads: { type: Array, required: true },
   savedItems: { type: Array, required: true },
-  following: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+  //following: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false }
+  following: { type: Array, required: true }
 
 })
 
