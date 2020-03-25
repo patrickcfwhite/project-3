@@ -8,30 +8,21 @@ const commentSchema = new mongoose.Schema({
   timestamps: true // provide a createdAt field and an updatedAt field
 })
 
-const cookSchema = new mongoose.Schema({
-<<<<<<< HEAD
-  name: { type: String, required: true, unique: true },
-=======
-  // put unique true back on name
-<<<<<<< HEAD
-  name: { type: String, required: true },
->>>>>>> development
-=======
+const watchSchema = new mongoose.Schema({
   title: { type: String, required: true, unique: true },
->>>>>>> development
-  ingredients: { type: Array, required: true },
   description: { type: String, required: true, maxlength: 1000 },
+  genre: { type: Array, required: true },
   image: { type: String, required: false },
-  method: { type: Array, required: true },
-  prepTime: { type: String, required: true },
-  cookTime: { type: String, required: true },
-  serves: { type: String, required: true },
+  trailer: { type: String, required: false },
+  director: { type: String, required: false },
+  duration: { type: String, required: false },
+  seasons: { type: String, required: false },
   rating: { type: Number, required: true },
-  category: 'Cook',
-  mealtype: { type: String, required: true },
-  dietary: { type: Array, required: true },
+  certification: { type: String, required: true },
+  category: 'Watch',
+  subcategory: { type: String, required: false },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   comments: [ commentSchema ]
 })
 
-module.exports = mongoose.model('Cook', cookSchema)
+module.exports = mongoose.model('Watch', watchSchema)
