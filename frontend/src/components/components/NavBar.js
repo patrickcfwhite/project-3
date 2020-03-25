@@ -60,8 +60,8 @@ const NavBar = () => {
             <li> 01. <span> COOK / </span> the recipes </li> 
           </Link>
 
-          <Link to='/games' style={linkStyle} onClick={HandleCloseFromLink}> 
-            <li> 02. <span> GAMES / </span> social in social distancing </li> 
+          <Link to='/game' style={linkStyle} onClick={HandleCloseFromLink}> 
+            <li> 02. <span> GAME / </span> social in social distancing </li> 
           </Link>
 
           <Link to='/read' style={linkStyle} onClick={HandleCloseFromLink}> 

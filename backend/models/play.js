@@ -18,9 +18,13 @@ const playSchema = new mongoose.Schema({
   players: { type: String, required: true },
   format: { type: String, required: false },
   duration: { type: String, required: false },
-  category: 'Play',
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  category: { type: String, required: true },
+  link: { type: String, required: false },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   comments: [ commentSchema ]
 })
+
+
+// playSchema.plugin(mongooseHidden,  { hidden: { password: true } })
 
 module.exports = mongoose.model('Play', playSchema)
