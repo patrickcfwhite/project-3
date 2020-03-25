@@ -9,16 +9,7 @@ const commentSchema = new mongoose.Schema({
 })
 
 const cookSchema = new mongoose.Schema({
-<<<<<<< HEAD
-  name: { type: String, required: true, unique: true },
-=======
-  // put unique true back on name
-<<<<<<< HEAD
-  name: { type: String, required: true },
->>>>>>> development
-=======
   title: { type: String, required: true, unique: true },
->>>>>>> development
   ingredients: { type: Array, required: true },
   description: { type: String, required: true, maxlength: 1000 },
   image: { type: String, required: false },
