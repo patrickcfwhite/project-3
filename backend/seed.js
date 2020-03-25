@@ -256,7 +256,231 @@ mongoose.connect(
             cookTime: '50-60 minutes',
             serves: '4',
             description: 'The secret to this shepherds pie is to choose big carrots so they dont lose their texture when cooked.'
+<<<<<<< HEAD
           }
+=======
+          },
+
+
+          // duplicates start here
+          {
+            name: 'Salmon & spinach with tartatre cream',
+            ingredients: [
+              '1 tsp sunflower or vegetable oil'
+              , '2 skinless salmon fillets'
+              , '250g bag spinach'
+              , '2 tbsp reduced-fat crème fraîche'
+              , 'juice ½ lemon'
+              , '1 tsp caper, drained'
+              , '2 tbsp flat-leaf parsley, chopped'
+              , 'lemon wedges, to serve'
+            ],
+            method: [
+              'Heat the oil in a pan, season the salmon on both sides, then fry for 4 mins each side until golden and the flesh flakes easily. Leave to rest on a plate while you cook the spinach.'
+              , 'Tip the leaves into the hot pan, season well, then cover and leave to wilt for 1 min, stirring once or twice. '
+              , 'Spoon the spinach onto plates, then top with the salmon. '
+              , 'Gently heat the crème fraîche in the pan with a squeeze of the lemon juice, the capers and parsley, then season to taste. Be careful not to let it boil. '
+              , 'Spoon the sauce over the fish, then serve with lemon wedges.'
+            ],
+            prepTime: '5 minutes',
+            cookTime: '10 minutes',
+            serves: '2',
+            description: 'Ever-versatile salmon is as popular on our shopping lists as chicken. Make the most of it with this impressive recipe.'
+          },
+          {
+            name: 'Salmon & spinach with tartatre cream',
+            ingredients: [
+              '1 tsp sunflower or vegetable oil'
+              , '2 skinless salmon fillets'
+              , '250g bag spinach'
+              , '2 tbsp reduced-fat crème fraîche'
+              , 'juice ½ lemon'
+              , '1 tsp caper, drained'
+              , '2 tbsp flat-leaf parsley, chopped'
+              , 'lemon wedges, to serve'
+            ],
+            method: [
+              'Heat the oil in a pan, season the salmon on both sides, then fry for 4 mins each side until golden and the flesh flakes easily. Leave to rest on a plate while you cook the spinach.'
+              , 'Tip the leaves into the hot pan, season well, then cover and leave to wilt for 1 min, stirring once or twice. '
+              , 'Spoon the spinach onto plates, then top with the salmon. '
+              , 'Gently heat the crème fraîche in the pan with a squeeze of the lemon juice, the capers and parsley, then season to taste. Be careful not to let it boil. '
+              , 'Spoon the sauce over the fish, then serve with lemon wedges.'
+            ],
+            prepTime: '5 minutes',
+            cookTime: '10 minutes',
+            serves: '2',
+            description: 'Ever-versatile salmon is as popular on our shopping lists as chicken. Make the most of it with this impressive recipe.'
+          },
+          {
+            name: 'Salmon & spinach with tartatre cream',
+            ingredients: [
+              '1 tsp sunflower or vegetable oil'
+              , '2 skinless salmon fillets'
+              , '250g bag spinach'
+              , '2 tbsp reduced-fat crème fraîche'
+              , 'juice ½ lemon'
+              , '1 tsp caper, drained'
+              , '2 tbsp flat-leaf parsley, chopped'
+              , 'lemon wedges, to serve'
+            ],
+            method: [
+              'Heat the oil in a pan, season the salmon on both sides, then fry for 4 mins each side until golden and the flesh flakes easily. Leave to rest on a plate while you cook the spinach.'
+              , 'Tip the leaves into the hot pan, season well, then cover and leave to wilt for 1 min, stirring once or twice. '
+              , 'Spoon the spinach onto plates, then top with the salmon. '
+              , 'Gently heat the crème fraîche in the pan with a squeeze of the lemon juice, the capers and parsley, then season to taste. Be careful not to let it boil. '
+              , 'Spoon the sauce over the fish, then serve with lemon wedges.'
+            ],
+            prepTime: '5 minutes',
+            cookTime: '10 minutes',
+            serves: '2',
+            description: 'Ever-versatile salmon is as popular on our shopping lists as chicken. Make the most of it with this impressive recipe.'
+          },
+          {
+            name: 'Salmon & spinach with tartatre cream',
+            ingredients: [
+              '1 tsp sunflower or vegetable oil'
+              , '2 skinless salmon fillets'
+              , '250g bag spinach'
+              , '2 tbsp reduced-fat crème fraîche'
+              , 'juice ½ lemon'
+              , '1 tsp caper, drained'
+              , '2 tbsp flat-leaf parsley, chopped'
+              , 'lemon wedges, to serve'
+            ],
+            method: [
+              'Heat the oil in a pan, season the salmon on both sides, then fry for 4 mins each side until golden and the flesh flakes easily. Leave to rest on a plate while you cook the spinach.'
+              , 'Tip the leaves into the hot pan, season well, then cover and leave to wilt for 1 min, stirring once or twice. '
+              , 'Spoon the spinach onto plates, then top with the salmon. '
+              , 'Gently heat the crème fraîche in the pan with a squeeze of the lemon juice, the capers and parsley, then season to taste. Be careful not to let it boil. '
+              , 'Spoon the sauce over the fish, then serve with lemon wedges.'
+            ],
+            prepTime: '5 minutes',
+            cookTime: '10 minutes',
+            serves: '2',
+            description: 'Ever-versatile salmon is as popular on our shopping lists as chicken. Make the most of it with this impressive recipe.'
+          },
+          {
+            name: 'Salmon & spinach with tartatre cream',
+            ingredients: [
+              '1 tsp sunflower or vegetable oil'
+              , '2 skinless salmon fillets'
+              , '250g bag spinach'
+              , '2 tbsp reduced-fat crème fraîche'
+              , 'juice ½ lemon'
+              , '1 tsp caper, drained'
+              , '2 tbsp flat-leaf parsley, chopped'
+              , 'lemon wedges, to serve'
+            ],
+            method: [
+              'Heat the oil in a pan, season the salmon on both sides, then fry for 4 mins each side until golden and the flesh flakes easily. Leave to rest on a plate while you cook the spinach.'
+              , 'Tip the leaves into the hot pan, season well, then cover and leave to wilt for 1 min, stirring once or twice. '
+              , 'Spoon the spinach onto plates, then top with the salmon. '
+              , 'Gently heat the crème fraîche in the pan with a squeeze of the lemon juice, the capers and parsley, then season to taste. Be careful not to let it boil. '
+              , 'Spoon the sauce over the fish, then serve with lemon wedges.'
+            ],
+            prepTime: '5 minutes',
+            cookTime: '10 minutes',
+            serves: '2',
+            description: 'Ever-versatile salmon is as popular on our shopping lists as chicken. Make the most of it with this impressive recipe.'
+          },
+          {
+            name: 'Salmon & spinach with tartatre cream',
+            ingredients: [
+              '1 tsp sunflower or vegetable oil'
+              , '2 skinless salmon fillets'
+              , '250g bag spinach'
+              , '2 tbsp reduced-fat crème fraîche'
+              , 'juice ½ lemon'
+              , '1 tsp caper, drained'
+              , '2 tbsp flat-leaf parsley, chopped'
+              , 'lemon wedges, to serve'
+            ],
+            method: [
+              'Heat the oil in a pan, season the salmon on both sides, then fry for 4 mins each side until golden and the flesh flakes easily. Leave to rest on a plate while you cook the spinach.'
+              , 'Tip the leaves into the hot pan, season well, then cover and leave to wilt for 1 min, stirring once or twice. '
+              , 'Spoon the spinach onto plates, then top with the salmon. '
+              , 'Gently heat the crème fraîche in the pan with a squeeze of the lemon juice, the capers and parsley, then season to taste. Be careful not to let it boil. '
+              , 'Spoon the sauce over the fish, then serve with lemon wedges.'
+            ],
+            prepTime: '5 minutes',
+            cookTime: '10 minutes',
+            serves: '2',
+            description: 'Ever-versatile salmon is as popular on our shopping lists as chicken. Make the most of it with this impressive recipe.'
+          },
+          {
+            name: 'Salmon & spinach with tartatre cream',
+            ingredients: [
+              '1 tsp sunflower or vegetable oil'
+              , '2 skinless salmon fillets'
+              , '250g bag spinach'
+              , '2 tbsp reduced-fat crème fraîche'
+              , 'juice ½ lemon'
+              , '1 tsp caper, drained'
+              , '2 tbsp flat-leaf parsley, chopped'
+              , 'lemon wedges, to serve'
+            ],
+            method: [
+              'Heat the oil in a pan, season the salmon on both sides, then fry for 4 mins each side until golden and the flesh flakes easily. Leave to rest on a plate while you cook the spinach.'
+              , 'Tip the leaves into the hot pan, season well, then cover and leave to wilt for 1 min, stirring once or twice. '
+              , 'Spoon the spinach onto plates, then top with the salmon. '
+              , 'Gently heat the crème fraîche in the pan with a squeeze of the lemon juice, the capers and parsley, then season to taste. Be careful not to let it boil. '
+              , 'Spoon the sauce over the fish, then serve with lemon wedges.'
+            ],
+            prepTime: '5 minutes',
+            cookTime: '10 minutes',
+            serves: '2',
+            description: 'Ever-versatile salmon is as popular on our shopping lists as chicken. Make the most of it with this impressive recipe.'
+          },
+          {
+            name: 'Salmon & spinach with tartatre cream',
+            ingredients: [
+              '1 tsp sunflower or vegetable oil'
+              , '2 skinless salmon fillets'
+              , '250g bag spinach'
+              , '2 tbsp reduced-fat crème fraîche'
+              , 'juice ½ lemon'
+              , '1 tsp caper, drained'
+              , '2 tbsp flat-leaf parsley, chopped'
+              , 'lemon wedges, to serve'
+            ],
+            method: [
+              'Heat the oil in a pan, season the salmon on both sides, then fry for 4 mins each side until golden and the flesh flakes easily. Leave to rest on a plate while you cook the spinach.'
+              , 'Tip the leaves into the hot pan, season well, then cover and leave to wilt for 1 min, stirring once or twice. '
+              , 'Spoon the spinach onto plates, then top with the salmon. '
+              , 'Gently heat the crème fraîche in the pan with a squeeze of the lemon juice, the capers and parsley, then season to taste. Be careful not to let it boil. '
+              , 'Spoon the sauce over the fish, then serve with lemon wedges.'
+            ],
+            prepTime: '5 minutes',
+            cookTime: '10 minutes',
+            serves: '2',
+            description: 'Ever-versatile salmon is as popular on our shopping lists as chicken. Make the most of it with this impressive recipe.'
+          },
+          {
+            name: 'Salmon & spinach with tartatre cream',
+            ingredients: [
+              '1 tsp sunflower or vegetable oil'
+              , '2 skinless salmon fillets'
+              , '250g bag spinach'
+              , '2 tbsp reduced-fat crème fraîche'
+              , 'juice ½ lemon'
+              , '1 tsp caper, drained'
+              , '2 tbsp flat-leaf parsley, chopped'
+              , 'lemon wedges, to serve'
+            ],
+            method: [
+              'Heat the oil in a pan, season the salmon on both sides, then fry for 4 mins each side until golden and the flesh flakes easily. Leave to rest on a plate while you cook the spinach.'
+              , 'Tip the leaves into the hot pan, season well, then cover and leave to wilt for 1 min, stirring once or twice. '
+              , 'Spoon the spinach onto plates, then top with the salmon. '
+              , 'Gently heat the crème fraîche in the pan with a squeeze of the lemon juice, the capers and parsley, then season to taste. Be careful not to let it boil. '
+              , 'Spoon the sauce over the fish, then serve with lemon wedges.'
+            ],
+            prepTime: '5 minutes',
+            cookTime: '10 minutes',
+            serves: '2',
+            description: 'Ever-versatile salmon is as popular on our shopping lists as chicken. Make the most of it with this impressive recipe.'
+          }
+
+>>>>>>> development
         ])
       })
       .then(recipes => console.log(`${'🍽'.repeat(recipes.length)} created!`))

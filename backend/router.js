@@ -12,4 +12,7 @@ router.route('/read/:name')
 router.route('/cook')
   .get(itemController.all)
 
+router.route('/cook/:name')
+  .get(itemController.singleItem)
+
 module.exports = router

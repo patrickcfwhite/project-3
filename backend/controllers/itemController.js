@@ -6,9 +6,11 @@ const mongoose = require('mongoose')
 
 // get all items in category
 function all(req, res) {
-  const url = req.headers.referer.split('/')[3]
+
+  const url = req.headers.referer.split('/')[3] 
   const modelNeeded = url[0].toUpperCase() + url.slice(1)
-  console.log(modelNeeded)
+  // console.log(modelNeeded)
+
   mongoose.model(modelNeeded)
     .find()
     .then(items => {
@@ -17,19 +19,12 @@ function all(req, res) {
     .catch()
 }
 
-// function allCook(req, res) {
-//   Cook
-//     .find()
-//     .then(items => {
-//       res.send(items)
-//     })
-// }
 
 // get one in a category
 function singleItem(req, res) {
   const name = req.params.name
-  const url = req.headers.referer.split('/')[4]
-  url
+  // const url = req.headers.referer.split('/')[4]
+  Cook
     .find({ 'name': name })
     .then(item => {
       res.send(item)
