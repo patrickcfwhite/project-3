@@ -103,7 +103,7 @@ body {
         font-size: 30px;
         margin-left: 18px;
         opacity: 0.95;
-        background: linear-gradient(#e99a6c,#e99a6c) left no-repeat whitesmoke;
+        background: linear-gradient(rgb(35, 174, 255),rgb(35, 174, 255)) left no-repeat whitesmoke;
         background-size: 0% 100%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -309,17 +309,89 @@ body {
        display: flex;
        width: 100%;
        height: 90%;
-      float: right;
+       align-items: center;
 
       .gamelist {
         color: white;
-        background-color: green;
+        // background-color: green;
         width: 40%;
+        height: 95%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: scroll;
+        scroll-snap-type: inline mandatory;
+        
+        &::-webkit-scrollbar {
+          display:none;
+        }
+
+        .game-row {
+          display: flex;
+          justify-content: space-between;
+          width: 85%;
+          opacity: 0.9;
+          padding: 18px 25px;
+          border-bottom: grey 1px solid;
+          font-family: 'Montserrat', sans-serif;
+          text-transform: uppercase;
+          scroll-snap-align: start;
+
+          &:hover {
+            border-bottom: rgb(35, 174, 255) 2px solid;
+            transform:scale(1.07);
+          }
+
+          &:first-of-type {
+            border-top: grey 1px solid;
+          }
+
+          h1 {
+            font-size: 24px;
+            margin: 5px 0;
+          }
+
+          p {
+            font-size: 11.5px;
+            color: pink;
+          }
+
+          button {
+            background-color: transparent;
+            text-transform: uppercase;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            color:white;
+            font-size: 15px;
+            font-weight: 500;
+            background: linear-gradient(rgb(35, 174, 255),rgb(35, 174, 255)) left no-repeat white;
+            background-size: 0% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: 0.6s;
+
+            &:hover {
+              cursor: pointer;
+              background-size:  100% 100%;
+            }
+            &:active {
+              transform:scale(0.97);
+              transition: 0.05s
+            }
+          }
+        }
       }
 
       .gameinfo {
         width: 60%;
-        background-color: red;
+        height: 100%;
+        // background-color: red;
+        display:flex;
+        color:white;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding: 30px 85px 30px 75px;
+        font-family: 'Montserrat', sans-serif;
       }
      }
 
