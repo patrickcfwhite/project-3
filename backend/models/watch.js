@@ -8,18 +8,21 @@ const commentSchema = new mongoose.Schema({
   timestamps: true // provide a createdAt field and an updatedAt field
 })
 
-
-const readSchema = new mongoose.Schema({
+const watchSchema = new mongoose.Schema({
   title: { type: String, required: true, unique: true },
-  author: { type: String, required: true },
-  description: { type: String, required: true, maxlength: 2000 },
+  description: { type: String, required: true, maxlength: 1000 },
   genre: { type: Array, required: true },
-  bookType: { type: String, required: true },
   image: { type: String, required: false },
+  trailer: { type: String, required: false },
+  director: { type: String, required: false },
+  duration: { type: String, required: false },
+  seasons: { type: String, required: false },
   rating: { type: Number, required: true },
-  category: 'Read',
+  certification: { type: String, required: true },
+  category: 'Watch',
+  subcategory: { type: String, required: false },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   comments: [ commentSchema ]
 })
 
-module.exports = mongoose.model('Read', readSchema)
+module.exports = mongoose.model('Watch', watchSchema)
