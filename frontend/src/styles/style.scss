@@ -2,14 +2,23 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  user-select: none;
+  outline: none;
+}
+
+body {
+  background-color: #010911;
 }
 
 #root {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   background-color: #010911;
+
+  // overflow: hidden;
+
 
   // hamburger menu
   aside {
@@ -20,6 +29,9 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    z-index: 2;
+    border-right: white;
+
 
     h3 {
       color: white;
@@ -57,9 +69,12 @@
   .navbar {
     height: 100vh;
     background-color: #010911;
+    z-index: 2;
     // background-color: red;
     width: 0vw; 
     justify-content: center;
+
+ 
     
     .items {
       display: none;
@@ -76,8 +91,10 @@
         list-style: none;
         width: 370px;
         font-family: 'Cormorant Garamond', serif;
+        text-decoration: none;
         &:hover {
           cursor: pointer;
+    
         }
       }
       span {
@@ -104,7 +121,7 @@
 
     .title {
       color:black;
-      height: 95vh;
+      height: 94vh;
       background-color: white;
       border-radius: 40px;
       width: 84vw;
@@ -127,8 +144,84 @@
   }
   
 
-  
-}
+  // cook page
 
+  .recipe-container {
+    width: 100vw;
+    height: 200vh;
+    z-index: 0;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .recipe-row {
+      display:flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      width: 100%;
+      // transition: ease-in-out 3s;
+  
+      .recipe-card {
+        margin: 2em 2em;
+        width: 220px;
+        height: 290px;
+        background-color: rgba(255, 255, 255, 0.35);
+        opacity: 0.4;
+        filter: grayscale(0.3);
+        transition: 0.7s;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        color:white;
+        justify-content: space-around;
+
+
+        img {
+          width: 90%;
+          height: 50%;
+        }
+
+        &:hover {
+          filter: grayscale(0);
+          transform: scale(1.30);
+          opacity: 0.83;
+        }
+      }}}
+
+
+      // watch
+
+      video {
+        width: 600px;
+        height: 500px;
+      }
+
+      //  .inner-wrapper {
+      //   width: 100vw;
+      //   height: 50%;
+      //   display: flex;
+      //   background-color: hotpink;
+      //   align-items: center;
+      //   overflow-x: scroll;
+      //   overflow-y: auto;
+      //   white-space: nowrap;
+      //   scroll-snap-type: inline mandatory;
+      //   // overflow-x: scroll;
+      //  }
+
+      //  .box {
+      //   background-color: green;
+      //   width: 200px;
+      //   height: 100px;
+      //   margin: 0 10px;
+      //   scroll-snap-align: center;
+      //  }
+      }
+      
+    
 
 
