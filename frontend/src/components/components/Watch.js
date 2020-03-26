@@ -43,7 +43,7 @@ const Watch = () => {
             poster='https://terrigen-cdn-dev.marvel.com/content/prod/1x/avengersendgame_lob_mas_mob_01.jpg'
             onMouseOver={(e) => {
               e.target.setAttribute('src',
-                'https://movietrailers.apple.com/movies/paramount/sonic-the-hedgehog/sonic-the-hedgehog-trailer-1b_h1080p.mov#t=6')
+                'https://movietrailers.apple.com/movies/marvel/black-widow/black-widow-trailer-3_i320.m4v#t=6')
               e.target.play()
             }}
             onMouseOut={(e) => e.target.setAttribute('src', '')}
