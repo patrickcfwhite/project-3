@@ -256,11 +256,7 @@ mongoose.connect(
             cookTime: '50-60 minutes',
             serves: '4',
             description: 'The secret to this shepherds pie is to choose big carrots so they dont lose their texture when cooked.'
-<<<<<<< HEAD
-          }
-=======
           },
-
 
           // duplicates start here
           {
@@ -480,7 +476,6 @@ mongoose.connect(
             description: 'Ever-versatile salmon is as popular on our shopping lists as chicken. Make the most of it with this impressive recipe.'
           }
 
->>>>>>> development
         ])
       })
       .then(recipes => console.log(`${'🍽'.repeat(recipes.length)} created!`))
