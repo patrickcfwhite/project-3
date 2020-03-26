@@ -21,6 +21,7 @@ class Cook extends React.Component {
     axios.get('/api/cook')
       .then(response => {
         this.setState({ recipes: response.data })
+        console.log(response.data)
       })
   }
 

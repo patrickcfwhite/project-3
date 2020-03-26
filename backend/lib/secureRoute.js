@@ -13,7 +13,7 @@ function secureRoute(req, res, next) {
     return res.status(401).send({ message: 'Unauthorized' })
 
   }
-  // At this point, we have the token, its not obviously wrng, but we need
+  // At this point, we have the token, its not obviously wrong, but we need
   // to get with jwt if its valid properly
   const token = authToken.replace('Bearer ', '')
   //Verify our token, it's asynchronous, payload will have our token data

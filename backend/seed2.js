@@ -112,6 +112,26 @@ mongoose.connect(
               uploads: [],
               savedItems: [],
               following: []
+            },
+            {
+              username: 'kenn',
+              email: 'kenn@kenn.com',
+              password: 'kenn',
+              passwordConfirmation: 'kenn',
+              firstname: 'Kenn',
+              uploads: [],
+              savedItems: [],
+              following: []
+            },
+            {
+              username: 'annie',
+              email: 'annie@annie.com',
+              password: 'annie',
+              passwordConfirmation: 'annie',
+              firstname: 'Annie',
+              uploads: [],
+              savedItems: [],
+              following: []
             }
           ])
       })
