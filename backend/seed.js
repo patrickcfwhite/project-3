@@ -258,7 +258,6 @@ mongoose.connect(
             description: 'The secret to this shepherds pie is to choose big carrots so they dont lose their texture when cooked.'
           },
 
-
           // duplicates start here
           {
             name: 'Salmon & spinach with tartatre cream',
