@@ -8,22 +8,22 @@ function createBooks(users) {
   return Read.create(
     [{
       title: '1984',
+      image: 'https://upload.wikimedia.org/wikipedia/en/c/c3/1984first.jpg',
       author: 'George Orwell',
       description: 'Winston Smith wrestles with oppression in Oceania, a place where the Party scrutinizes human actions with ever-watchful Big Brother. Defying a ban on individuality, Winston dares to express his thoughts in a diary and pursues a relationship with Julia. These criminal deeds bring Winston into the eye of the opposition, who then must reform the nonconformist',
       genre: ['Dystopian, Political fiction, Social Science'],
       bookType: 'Novel',
-      image: '',
       rating: 4,
       user: users[0],
       category: 'Read'
     },
     {
       title: 'Lord of the Flies',
+      image: 'https://upload.wikimedia.org/wikipedia/en/9/9b/LordOfTheFliesBookCover.jpg',
       author: 'William Golding',
       description: 'Lord of the Flies is an allegorical novel about a group of schoolboys stranded on a deserted island without any adult supervision. Free from the restraints of society, the boys form their own civilization, which quickly descends into chaos and violence.',
       genre: ['Allegory, Novel'],
       bookType: 'Novel',
-      image: '',
       rating: 3,
       user: users[0],
       category: 'Read'
@@ -34,7 +34,7 @@ function createBooks(users) {
       description: 'Christopher Boone, a 15 year old who suffers from Aspergers syndrome, finds the neighbours dog murdered and he sets out on a journey which will turn his whole life upside down.',
       genre: ['Novel, Mystery, Bildungsroman, Crime Fiction'],
       bookType: 'Novel',
-      image: '',
+      image: 'https://upload.wikimedia.org/wikipedia/en/0/03/Curiousincidentofdoginnighttime.jpg',
       rating: 4,
       user: users[2],
       category: 'Read'
@@ -45,7 +45,7 @@ function createBooks(users) {
       description: 'Stanley Yelnats, a boy who has bad luck due to a curse placed on his great- great-grandfather, is sent to Camp Green Lake, a juvenile detention camp, for a crime he did not commit. Stanley and the other boys at the camp are forced to dig large holes in the dirt every day.',
       genre: ['Adventure, Young adult fiction, Novel'],
       bookType: 'Novel',
-      image: '',
+      image: 'https://upload.wikimedia.org/wikipedia/en/c/c3/Sachar_-_Holes_Coverart.png',
       rating: 5,
       user: users[1],
       category: 'Read'
@@ -56,7 +56,7 @@ function createBooks(users) {
       description: 'Alex and his Droogs spend their nights getting high at the Korova Milkbar before getting up to no good. After being jailed for bludgeoning the Cat Lady to death, Alex submits to behaviour modification technique to earn his freedom and is conditioned to abhor violence. Returned to the world defenseless, Alex becomes the victim of his prior victims.',
       genre: ['Science fiction, Drama, Mystery, Crime'],
       bookType: 'Novel',
-      image: '',
+      image: 'https://upload.wikimedia.org/wikipedia/en/2/23/Clockwork_orange.jpg',
       rating: 5,
       user: users[0],
       category: 'Read'
@@ -67,7 +67,7 @@ function createBooks(users) {
       description: 'Pachinko follows one Korean family through the generations, beginning in the early 1900s Korea with Sunja, the prized daughter of a porr yet proud famile, whose unplanned pregnancy threatens to shame them all. Deserted by her lover, SUnja is saved when a young tubercular minister offers to marry and bring her to Japan.',
       genre: ['Novel, Historical fiction, Domestic Fiction'],
       bookType: 'Novel',
-      image: '',
+      image: 'https://upload.wikimedia.org/wikipedia/en/d/d5/Pachinko_paperback_cover.jpeg',
       rating: 2,
       user: users[2],
       category: 'Read'
@@ -78,7 +78,7 @@ function createBooks(users) {
       description: 'Nadia gets the 7.30 train every morning without fail. Well, except if she oversleeps or wakes up at her friend Emma’s after too much wine. Daniel really does get the 7.30 train every morning, which is easy because he hasn’t been able to sleep properly since his dad died. One morning, Nadia’s eye catches sight of a post in the daily paper: To the cute girl with the coffee stains on her dress. I’m the guy who’s always standing near the doors… Drink sometime? So begins a not-quite-romance of near-misses, true love, and the power of the written word.',
       genre: ['Romance, Women\'s Fiction, Contemporary, Fiction'],
       bookType: 'Novel',
-      image: '',
+      image: 'https://images-eu.ssl-images-amazon.com/images/I/511oXdcIRGL.jpg',
       rating: 4,
       user: users[1],
       category: 'Read'
@@ -89,7 +89,7 @@ function createBooks(users) {
       description: 'Army veteran Matthew Rose has been called back home to settle his father’s affairs after his death. He doesn’t remember much about his past; a traumatic brain injury sustained in Iraq wiped out much of his memory. On his first night back in town, he witnesses a house fire, and it turns out a young man was inside. The incident brings back memories of a different fire — and an important part of his past.',
       genre: ['Suspense & Thriller, Fiction'],
       bookType: 'Novel',
-      image: '',
+      image: 'https://images-na.ssl-images-amazon.com/images/I/41-ewThYnRL._SX329_BO1,204,203,200_.jpg',
       rating: 5,
       user: users[0],
       category: 'Read'
@@ -100,7 +100,7 @@ function createBooks(users) {
       description: 'an eerie ghost story about a railway signal-man who is haunted by foreboding, spectral visions.',
       genre: ['Horror, Mystery'],
       bookType: 'Short Story',
-      image: '',
+      image: 'https://images-eu.ssl-images-amazon.com/images/I/51GMRJesG0L.jpg',
       rating: 4,
       user: users[0],
       category: 'Read'
@@ -111,7 +111,7 @@ function createBooks(users) {
       description: 'The boy, the mole, the fox and the horse are four friends who share a deep, unshakable bond. Through a series of brief but profound conversations, Mackesy teases universal truths and rich wisdom from the mouths of his characters, celebrating warmth and empathy in all its myriad forms.',
       genre: ['Non-fiction, Illustration'],
       bookType: 'Non-fiction',
-      image: '',
+      image: 'https://images-na.ssl-images-amazon.com/images/I/41%2BZ8nhrsjL._SX389_BO1,204,203,200_.jpg',
       rating: 3,
       user: users[2],
       category: 'Read'
@@ -122,7 +122,7 @@ function createBooks(users) {
       description: 'Fleabag: The Scriptures includes new writing from Phoebe Waller-Bridge alongside the filming scripts and the never-before-seen stage directions from the Golden Globe, Emmy and BAFTA winning series.',
       genre: ['Script'],
       bookType: 'Non-fiction',
-      image: '',
+      image: 'data:image/jpeg;base64,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',
       rating: 2,
       user: users[2],
       category: 'Read'
@@ -133,7 +133,7 @@ function createBooks(users) {
       description: 'A masterful true crime account of the Golden State Killer - the elusive serial rapist turned murderer who terrorised California for over a decade - from Michelle McNamara, the gifted journalist who died tragically while investigating the case.',
       genre: ['Non-fiction, True Story, Crime'],
       bookType: 'Non-fiction',
-      image: '',
+      image: 'https://upload.wikimedia.org/wikipedia/en/e/e0/Ill_be_gone_in_the_dark.jpg',
       rating: 5,
       user: users[1],
       category: 'Read'
@@ -164,6 +164,7 @@ function createRecipes(users) {
         , 'Add 1 thinly sliced red pepper, 2 crushed garlic cloves, 75g sliced chorizo and 1 tbsp Cajun seasoning, and cook for 5 mins more.'
         , 'Stir the chicken back in with 250g long grain rice, add the 400g can of tomatoes and 350ml chicken stock. Cover and simmer for 20-25 mins until the rice is tender.'
       ],
+      image: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--1274503_8.jpg?itok=y2r-R0BV',
       prepTime: '10 minutes',
       cookTime: '45 minutes',
       serves: '4',
@@ -193,7 +194,6 @@ function createRecipes(users) {
         , 'plain boiled long grain rice'
         , 'soured cream'
       ],
-
       method: [
         'Prepare your vegetables. Chop 1 large onion into small dice, about 5mm square. The easiest way to do this is to cut the onion in half from root to tip, peel it and slice each half into thick matchsticks lengthways, not quite cutting all the way to the root end so they are still held together. Slice across the matchsticks into neat dice.'
         , 'Cut 1 red pepper in half lengthways, remove stalk and wash the seeds away, then chop. Peel and finely chop 2 garlic cloves.'
@@ -212,6 +212,7 @@ function createRecipes(users) {
         , 'Now replace the lid, turn off the heat and leave your chilli to stand for 10 minutes before serving. This is really important as it allows the flavours to mingle.'
         , 'Serve with soured cream and plain boiled long grain rice.'
       ],
+      image: 'https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/chilliconcarne_67875_16x9.jpg',
       prepTime: '10 minutes',
       cookTime: '60 minutes',
       serves: '4',
@@ -239,7 +240,6 @@ function createRecipes(users) {
         , '2 tbsp chopped flatleaf parsley'
         , 'green winter salad with a mustardy dressing, to serve'
       ],
-
       method: [
         'Heat the oil in a large casserole or very large sauté pan with a lid. '
         , 'Add the pancetta and sausages and sizzle for 10 minutes, turning the sausages occasionally until nicely browned and sticky. '
@@ -249,6 +249,7 @@ function createRecipes(users) {
         , 'Bring to the boil and simmer rapidly for 5 minutes, then lower the heat, cover and simmer for 45 minutes, stirring every so often until the lentils are tender. '
         , '(It can now be chilled and frozen for up to 1 month.) Check the seasoning, scatter over the parsley and serve from the pan with a winter leaf salad.'
       ],
+      image: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1403_11.jpg?itok=CwUM6dYf',
       prepTime: '0 minutes',
       cookTime: '85 minutes',
       serves: '6',
@@ -295,7 +296,7 @@ function createRecipes(users) {
         , 'When the bolognese is nearly finished, cook 400g spaghetti following the pack instructions.'
         , 'Drain the spaghetti and stir into the bolognese sauce. Serve with more grated parmesan, the remaining basil leaves and crusty bread, if you like.'
       ],
-
+      image: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/the-best-spaghetti-bolognese.jpg?itok=PH6AqY-g',
       prepTime: '25 minutes',
       cookTime: '110 minutes',
       serves: '6',
@@ -333,6 +334,7 @@ function createRecipes(users) {
         'Meanwhile, cook the sugar snap peas in boiling salted water for 2 minutes, drain and refresh in cold water.',
         'Remove the lemon grass and lime leaves from the curry and discard.Add the lime zest and juice, water chestnuts and sugar snap peas.Bring to the boil, then remove from the heat and serve with rice.'
       ],
+      image: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1035606_11.jpg?itok=3ny7oaux',
       prepTime: '5 minutes',
       cookTime: '10 minutes',
       serves: '2',
@@ -367,18 +369,23 @@ function createRecipes(users) {
         , 'Pile the lentil mixture into a pie dish, spoon the mash on top, then sprinkle over 85g grated vegetarian mature cheddar and the remaining thyme. The pie can now be covered and chilled for 2 days, or frozen for up to a month.'
         , 'Heat oven to 190C/170C fan/gas 5. Cook for 20 mins if cooking straightaway, or for 40 mins from chilled, until golden and hot all the way through. Serve with broccoli.'
       ],
+      image: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--560451_11.jpg?itok=ma2pok11',
       prepTime: '10 minutes',
       cookTime: '50-60 minutes',
       serves: '4',
       description: 'The secret to this shepherds pie is to choose big carrots so they dont lose their texture when cooked.',
       rating: 3,
       mealtype: 'Main meal',
-      dietary: 'none',
+      dietary: 'Vegetarian',
       user: users[1],
       category: 'Cook'
     },
     {
+<<<<<<< HEAD
       title: 'Salmon & spinach with tartatre cream ',
+=======
+      title: 'Salmon & spinach with tartar cream',
+>>>>>>> development
       ingredients: [
         '1 tsp sunflower or vegetable oil'
         , '2 skinless salmon fillets'
@@ -396,6 +403,7 @@ function createRecipes(users) {
         , 'Gently heat the crème fraîche in the pan with a squeeze of the lemon juice, the capers and parsley, then season to taste. Be careful not to let it boil. '
         , 'Spoon the sauce over the fish, then serve with lemon wedges.'
       ],
+      image: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--52867_12.jpg?itok=pnLXWqFK',
       prepTime: '5 minutes',
       cookTime: '10 minutes',
       serves: '2',
@@ -428,6 +436,7 @@ function createRecipes(users) {
         'Spoon the mixture into the baked mushrooms. Put the blue cheese on top and sprinkle breadcrumbs all over. Roast the mushrooms for a further 6 minutes, or until the top is golden and bubbling.',
         'Put the mushrooms on a serving plate, sprinkle over the chopped chives and serve.'
       ],
+      image: 'https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/stuffedportabellamus_85840_16x9.jpg',
       prepTime: '30 minutes or less',
       cookTime: '10-30 minutes',
       serves: '1',
@@ -461,6 +470,7 @@ function createRecipes(users) {
         'Stir in the gnocchi, broccoli, peas and tomatoes and bring to a gentle simmer, stirring.',
         'Sprinkle over the remaining cheese and bake in the oven for 12–15 minutes, or until golden-brown and bubbling. Carefully remove from the oven and serve.'
       ],
+      image: 'https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/gnocchi_pasta_bake_51351_16x9.jpg',
       prepTime: 'less than 30 minutes',
       cookTime: '10 minutes',
       serves: '4',
@@ -489,7 +499,11 @@ function createRecipes(users) {
         'Add the butter and set over a pan over simmering water. (Do not let the base of the bowl touch the water.)',
         'Cook for 15-20 minutes, stirring regularly, until the butter has melted and the mixture has thickened.',
         'Arrange the orange slices on the cooled tart and sprinkle over the demerara sugar.',
+<<<<<<< HEAD
         'Using a cook\'s blowtorch, heat the sugar until caramelised.',
+=======
+        'Using a cooks blowtorch, heat the sugar until caramelised.',
+>>>>>>> development
         'To serve, slice the tart and serve with double cream or custard.'
       ],
       image: 'https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/bloodorangetart_93766_16x9.jpg',
@@ -524,7 +538,7 @@ function createRecipes(users) {
         'For the black pudding, cut the black pudding into 3-4 slices and remove the skin. Place on the grill plate and cook for 1½-2 minutes each side until slightly crispy.',
         'For proper fried bread it\'s best to cook it in a separate pan. Ideally, use bread that is a couple of days old. Heat a frying pan to a medium heat and cover the base with oil. Add the bread and cook for 2-3 minutes each side until crispy and golden. If the pan becomes too dry, add a little more oil. For a richer flavour, add a knob of butter after you turn the slice.',
         'For the fried eggs, break the egg straight into the pan with the fried bread and leave for 30 seconds. Add a good knob of butter and lightly splash/baste the egg with the butter when melted. Cook to your preferred stage, season and gently remove with a fish slice.',
-        'Once all the ingredients are cooked, serve on warm plates and enjoy straight away with a good squeeze of tomato ketchup or brown sauce.',
+        'Once all the ingredients are cooked, serve on warm plates and enjoy straight away with a good squeeze of tomato ketchup or brown sauce.'
       ],
       prepTime: 'less than 30 minutes',
       cookTime: '10 - 30 minutes',
@@ -562,6 +576,7 @@ function createRecipes(users) {
       mealtype: 'Light Meal/Snack',
       dietary: 'Vegetarian',
       user: users[0],
+      rating: 4,
       category: 'Cook'
     },
     {
@@ -592,6 +607,7 @@ function createRecipes(users) {
       mealtype: 'Baking',
       dietary: 'Vegetarian',
       user: users[2],
+      rating: 3,
       category: 'Cook'
     },
     {
@@ -613,7 +629,7 @@ function createRecipes(users) {
         'Meanwhile, over a low heat, melt the chocolate in the milk in a small saucepan.      ',
         'Beat the egg yolks, icing sugar and ground ginger together in a large bowl until light and fluffy. Add the chocolate mixture and vanilla-infused cream, remove the vanilla pod and whisk together until well combined.      ',
         'Place the chopped ginger and a little ginger syrup into the bottom of the ramekins. Top with the chocolate mixture. Place the ramekins into a deep roasting tin and pour in enough hot water to come up to at least two-thirds up the side of the pots. Bake for 45-60 minutes, or until slightly puffed-up and spongy to the touch of a finger. The surface of the pot should form a little crust.        ',
-        'Remove the pots from the oven, allow to cool for a few moments and lift the pots from the water onto a clean tray. Chill in the fridge for at least six hours before serving. Serve straight from the fridge.',
+        'Remove the pots from the oven, allow to cool for a few moments and lift the pots from the water onto a clean tray. Chill in the fridge for at least six hours before serving. Serve straight from the fridge.'
       ],
       prepTime: '30 minutes to an hour',
       cookTime: '30 minutes to an hour',
@@ -623,6 +639,7 @@ function createRecipes(users) {
       mealtype: 'Dessert',
       dietary: 'Vegetarian',
       user: users[1],
+      rating: 4,
       category: 'Cook'
     },
     {
@@ -655,6 +672,7 @@ function createRecipes(users) {
       mealtype: 'Main Course',
       dietary: 'Vegan',
       user: users[0],
+      rating: 5,
       category: 'Cook'
     }
   ])
@@ -664,13 +682,171 @@ function createWatch(users) {
   return Watch.create([
     {
       title: 'Spirited Away',
+      image: 'https://m.media-amazon.com/images/M/MV5BNmU5OTQ0OWQtOTY0OS00Yjg4LWE1NDYtNDRhYWMxYWY4OTMwXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SY1000_CR0,0,704,1000_AL_.jpg',
       description: 'Spirited Away tells the story of Chihiro Ogino, a 10 year-old girl who, while moving to a new neighbourhood, enters the world of Kami (spirits) of Japanese Shinto folklore.',
       genre: 'Animation, Fantasy, Adventure, Family',
+      trailer: 'https://youtu.be/ByXuk9QqQkk',
       duration: '125 minutes',
+      director: 'Hayao Miyazaki',
       rating: 5,
       certification: 'PG',
+      user: users[2],
+      category: 'Watch',
+      subcategory: 'Film'
+    },
+    {
+      title: 'Parasite',
+      image: 'https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
+      genre: 'Thriller, Drama, Dark Comedy',
+      trailer: 'https://imdb-video.media-imdb.com/vi1015463705/1434659607842-pgv4ql-1570030026621.mp4?Expires=1585390367&Signature=rIRnGKTgRLDKGqjcC5QekqRtfYCieRPYKQNcTC8Phi5mCFCHujqEPZJ8wahdGPYgo6G-UqKcV8f0UjjZUK-DqMGEYGfTvULkJ4CYiOh3HdaVNHN36PYZuSHAa4h0x-fd--1BBfzhN~nsoYnHwfyNYtlOrb8hL5J67n-tlAd~k6Dg4t7S8BtnCvNh5PErQz3b4UT-sf4OFXKbQJ9pGmd6j5VTtZE1GHvhZvwjFZv2Ve-1i2~3QwWzMgMDbeqB~nSjHvB7baOrLdDwt~MFlRAXGOjPQ-tJuUz9c9eQwCdruCH4UBvoxaQA~PmGBqWICohVxZ~dyXk2mBIuL6o7cYoxjg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA',
+      description: 'A poor family, the Kims, con their way into becoming the servants of a rich family, the Parks. But their easy life gets complicated when their deception is threatened with exposure.',
+      duration: '132 minutes',
+      director: 'Bong Joon Ho',
+      rating: 4,
+      certification: '15',
+      user: users[2],
+      category: 'Watch',
+      subcategory: 'Film'
+    },
+    {
+      title: 'Mad Max: Fury Road',
+      image: 'https://m.media-amazon.com/images/M/MV5BN2EwM2I5OWMtMGQyMi00Zjg1LWJkNTctZTdjYTA4OGUwZjMyXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg',
+      genre: 'Action, Doomsday, Adventure, Science Fiction',
+      trailer: 'https://imdb-video.media-imdb.com/vi3047862297/1401497881123-xszl4z-1430608297815.mp4?Expires=1585390575&Signature=OPLQrN9X9bWgKFIQ1ZD4rHUetaio5BbmG4~NY6orKG8ZxcxGHhwJveTB0Rw9YinLU7AjD-a6xbmQcGRE~IPS3EAI4yXJJVDKfAHIiBji3rDuUGc2OW-a17M0N~Dfr5qnvYAaPFlBoXIS9Heps3gMHMCSj4hGDGgtUQTA0srbOj5om5hwqtzE5ExZOfPiLVq-0kFh6RZoVJbO25DMWc7H2S-RpK9ZctS5BvlV0lkrzpULHN0xLL3pLXJo5qKlWEgY9AlUaJAcpjOx8KQ7B1sSL8DNWSaf3P0CfwZZbuBM43G1uB4PpJ-fPXCIZmS8qwdu~OG81XReEMpYue~x-riboQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA',
+      description: 'Sets in apost-apocalyptic wasteland, a woman rebels against the tyrannical ruler in search of her homeland with the aid of a group of female prisoners, a psychotic worshiper, and a drifter named Max.',
+      duration: '120 minutes',
+      director: ' George Miller',
+      rating: 4,
+      certification: '15',
+      user: users[2],
+      category: 'Watch',
+      subcategory: 'Film'
+    },
+    {
+      title: 'Toy Story 3',
+      image: 'https://m.media-amazon.com/images/M/MV5BMTgxOTY4Mjc0MF5BMl5BanBnXkFtZTcwNTA4MDQyMw@@._V1_SY1000_CR0,0,707,1000_AL_.jpg',
+      genre: 'Animation, Family, Comedy, Fantasy',
+      trailer: 'https://imdb-video.media-imdb.com/vi3676898329/MV5BMmMxYzA0YTAtZGU5ZS00YzEzLThhYzQtNGFjZTk3OThiNTQ1XkExMV5BbXA0XkFpbWRiLWV0cy10cmFuc2NvZGU@.mp4?Expires=1585390962&Signature=P9lCdNEST3~uBgHQPG2IK~a8~CleoXFPnCs6rdESLCZNKy4tl-PBmz~SPCb6cWDLkRGr1WFx3droOZNrzI1zhIlAxy0VCpVC84VKojPGej4a5RUgrVIfxIc4z9AEejoTpDUuaiExnX5XoaGBPk-zY4qEfV7KTRF5U-kL2udPnit1N37aYZq0WICXz1VF-sWlbSuOQGsifGOJHc7IPXPlKdfhVa6pVjzt0PiMaFLff8c30SQN2qYs8UzWfoYFgspbFn3ym4pNInFm1OiBEuEK~yMC5v9gXcMAnvOLknrcDflJLO1ZvfOtRb8FxUzVV117aiLtCBoxW2uOONMDdOaEAg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA',
+      description: 'Plot focuses on Woody, Buzz Lightyear and the other remaining toys accidentally donated to a daycare center, while Andy, now 17 years old, preparing to leave for college, and their ensuing race to get home before Andy leaves.',
+      duration: '103 minutes',
+      director: 'Lee Unkrich',
+      rating: 4,
+      certification: 'PG',
+      user: users[1],
+      category: 'Watch',
+      subcategory: 'Film'
+    },
+    {
+      title: 'The Grand Budapest Hotel',
+      image: 'https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjEyMDM0MDE@._V1_SY1000_SX675_AL_.jpg',
+      genre: 'Comedy, Drama, Adventure, Crime film',
+      trailer: 'https://imdb-video.media-imdb.com/vi1157933593/MV5BMjM3MTY2MTYwOV5BMTFeQW1wNF5BbWU4MDI5MjQzMzEx.mp4?Expires=1585391128&Signature=LduGjCSEgnk9a~KnPX4L3HE3oW8B8-Y3ReKpqhB6wUqeuN80QpwSykcCWWL~BMVoN~bKSyoUR-pRbaO-9bwWu99uejzvK1Qx6GYVAgpFaa4FWxosuS9-yX1r9Mz85eews0zSHBB53oEdb1Kqzd0KFrbQcZiFk3b7mkdgRhq4EtbyjlACZ9-rguvJSgGHabEkRegAHliOmeex1AMbjR-cMAuqufojf0UViVSOO25HpL41sjJih3zFlkrK-ArEiSOXLAjplrICexxDtrXml9hjxQbXBY16yTbUNhLA3owEVAFpGaGVNFgdqKJ5wWVD03xs7on54vIfgRf2MzX12njACQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA',
+      description: 'A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotels glorious years under an exceptional concierge.',
+      duration: '100 minutes',
+      director: 'Wes Anderson',
+      rating: 4,
+      certification: '15',
       user: users[0],
-      category: 'Watch'
+      category: 'Watch',
+      subcategory: 'Film'
+    },
+    {
+      title: 'Birds of Prey',
+      image: 'https://www.imdb.com/title/tt7713068/mediaviewer/rm453936897?ref_=tt_ov_i',
+      genre: 'Action, Adventure, Crime',
+      trailer: 'https://imdb-video.media-imdb.com/vi292929305/1434659607842-pgv4ql-1578589226947.mp4?Expires=1585391727&Signature=nkKVQf~q8VeaItprLG76MDyYKYcSIziWjGd0i4rzXD7PZXycVbmdRHF1elRjVtYbgeWRFJC24FxNi0rvWYjtJvZ3v7RZFgE7Y9U29gL54Upd0wu3-EZEfAn9qsauD81tQgyjCeBG0oq0QWL681nDqs0gu9WltcJLnRubqPB0EEIG6GuWl3-KId2iqg7cLRd4ZvBKLoXgEuF4g0hg3q-v4WCelJCcV1TaJahaXZ-QkMucpaci1j3TRd5IECZA7MsajtIL6WMvDEPKyHFLtvIHEPitfIaNQVxbbV3IjbfQt-L0dHUGf6uqhjoRO-wplZfNHmkFX2vsIg9coLJdpGWG-A__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA',
+      description: 'After splitting with the Joker, Harley Quinn joins superheroes Black Canary, Huntress and Renee Montoya to save a young girl from an evil crime lord.',
+      duration: '109 minutes',
+      director: 'Cathy Yan',
+      rating: 3,
+      certification: '15',
+      user: users[1],
+      category: 'Watch',
+      subcategory: 'Film'
+    },
+    {
+      title: 'Crazy Rich Asians',
+      image: 'https://m.media-amazon.com/images/M/MV5BMTYxNDMyOTAxN15BMl5BanBnXkFtZTgwMDg1ODYzNTM@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
+      genre: 'Comedy, Drama, Romance',
+      trailer: 'https://imdb-video.media-imdb.com/vi1884338201/1434659607842-pgv4ql-1524490207015.mp4?Expires=1585391471&Signature=dNPz1mVtHP-zv5U5uCrdY5j~FS0RrPplYi1gmlbsy2MPkgUBRzeK-fy0EKx52ANbCfalxNZdC1rp~7Px06FawAOwgV28F15LndDGkQzi8s~wrxJJNlXh0bU6OYrfPHE4aCP~LloLGuAx6Zjb69g8x50CWFI6uGAT2waLxB3fLLbZ0mv8dmxHAJNJCURbfTzmrM8YtZfoql8szkaawXrDhqv3F193LFYI7vT8bWvIs5PioGsLtZcosoJn0HljyMZQnL6A-4TmjvjL1DYVO9x5ArHGmlf87TWK6hYlvOPcn884X9pyNe1AXK9H0puWg9~m7eLXvq~-CQ--PcEZ05-vSw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA',
+      description: 'This contemporary romantic comedy, based on a global bestseller, follows native New Yorker Rachel Chu to Singapore to meet her boyfriend\'s family.',
+      duration: '120 minutes',
+      director: 'Jon M. Chu',
+      rating: 3.5,
+      certification: '12A',
+      user: users[2],
+      category: 'Watch',
+      subcategory: 'Film'
+    },
+    {
+      title: 'Game of Thrones',
+      image: 'https://www.imdb.com/title/tt0944947/mediaviewer/rm4204167425?ref_=tt_ov_i',
+      genre: 'Action, Adventure, Drama',
+      trailer: 'https://imdb-video.media-imdb.com/vi2864422169/MV5BMTc0NzQ1NTA3Ml5BMTFeQW1wNF5BbWU3MDkyNjE1NjQ@.mp4?Expires=1585392736&Signature=RcThvEqDaXb-8nugL5COBspx63SYmlwBoRTDec9IEs6whTMZ-PiwU12nmPnS5v49ZySjIVBemaMWfC~nzyfLX-EFMkHMxH0WXlDU~TfL71rU-LQLtFTC3aisdgmQaEPSV2M6wdtTj9GOqYhbZh8eseFdTJvDULfD0ldP93kawU~8-HE0NZJe4P4nhEmYy-Wq3eDTDG-DBosE7vJT~l7Tc0aIO~pnlTCulFg8LbcMXMLPqPQPdRMxr-NC~Sk8ECQg4xr2hFSAEMzIWyoBV34eaJvjICK0737q3bb2iH6RlhY8Dg4Kg6u6qI~YJKxQbQeNlFCWDUwe0BZxLz6rouRubA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA',
+      description: 'Nine noble families fight for control over the mythical lands of Westeros, while an ancient enemy returns after being dormant for thousands of years.',
+      seasons: '8',
+      director: 'David Benioff, D.B. Weiss',
+      rating: 4.5,
+      certification: '18',
+      user: users[2],
+      category: 'Watch',
+      subcategory: 'TV Series'
+    },
+    {
+      title: 'Breaking Bad',
+      image: 'https://m.media-amazon.com/images/M/MV5BMjhiMzgxZTctNDc1Ni00OTIxLTlhMTYtZTA3ZWFkODRkNmE2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SY1000_CR0,0,718,1000_AL_.jpg',
+      genre: ' Crime, Drama, Thriller',
+      trailer: 'https://imdb-video.media-imdb.com/vi338798873/MV5BNWZlMmE2YWMtN2JiZi00ZDhkLTk2ZWUtZThhNmY4NTEyODYwXkExMV5BbXA0XkFpbWRiLWV0cy10cmFuc2NvZGU@.mp4?Expires=1585393207&Signature=mKSEKkaZRUG~eqfzNFB1L7CK5VLfu3xqzSo63C6Jq7S4B6ZAXSoMPO1IXuX4DWMOvC1blI2HoGOzK~LdseknDE7KSZB03BgVRShAzeC0DiEcersNiW842ZH9ZaQUq9t2yQDEeqmcfTx-CpALMQUmxeXN9bhlT7uP6SSnSSAq0uYUMfIN~3t6wf5D5PU1dVqUajMtbOnNzpBJIzqIVM6U5o0XNgqM~r8KrUsmqVrCnnRqxm25r~AicNgFQ1gj0aBPr1ruqxg5A9cT2YbsMnPEMCMoexm9mun0iOu73WB2bkL3u9EYmmSFVApSb~ijR2YYYA-Dez~k2fmkjeBsR9BsSw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA',
+      description: 'A high school chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine in order to secure his family\'s future.',
+      seasons: '5',
+      director: 'Vince Gilligan',
+      rating: 4.5,
+      certification: '15',
+      user: users[0],
+      category: 'Watch',
+      subcategory: 'TV Series'
+    },
+    {
+      title: 'The Witcher',
+      image: 'https://m.media-amazon.com/images/M/MV5BOGE4MmVjMDgtMzIzYy00NjEwLWJlODMtMDI1MGY2ZDlhMzE2XkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
+      genre: 'Action, Adventure, Drama ',
+      trailer: 'https://imdb-video.media-imdb.com/vi840285977/1434659607842-pgv4ql-1576190751450.mp4?Expires=1585393394&Signature=t3bP9ngHhiZ1EQlDYDvmzkVSDYhgGvmAUwNW8RlGstY9LDTOz9PoZtvitQoZL1-BTykA-wMR2czOvNu0ksi-j1TaHQonDWMi9cNq-CiHvLQWWsM3wvMhXm6MnstBCSWpNaNiPdu5uNSMiVPLDBmKw-5jyF-yp~LrPVvgtTQGzvtS3k-lSqTDYG5yLuLFZKdq88GwX7q8vlN6C~77YizoklI85OE1Nrfnxp-CxUFfbH26t~R40aq4UBI0Avy0N5UmStUEVc6NUZPTZ3uOSsiawz4yOWtzHy9KMvndpXnV5OuLS5E0ffG7TJO54rcc1X4rJzPiTLl6uGHe6g6~rYJdVw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA',
+      description: 'Geralt of Rivia, a solitary monster hunter, struggles to find his place in a world where people often prove more wicked than beasts.',
+      seasons: '1',
+      director: 'Lauren Schmidt',
+      rating: 3.5,
+      certification: '15',
+      user: users[1],
+      category: 'Watch',
+      subcategory: 'Tv Series'
+    },
+    {
+      title: 'Avatar: The Last Airbender',
+      image: 'https://m.media-amazon.com/images/M/MV5BODc5YTBhMTItMjhkNi00ZTIxLWI0YjAtNTZmOTY0YjRlZGQ0XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_.jpg',
+      genre: ' Animation, Action, Adventure ',
+      trailer: 'https://imdb-video.media-imdb.com/vi4010411801/1434659607842-pgv4ql-1563446653497.mp4?Expires=1585393650&Signature=HQfUMZK3f5Y4-t6SRH5Fox6mYGZNqKdYi~SNrNoi~~~cM037A~dIBCMy24gcH3HsJcOY-dawp2EwAqbizdpV3aWeJ6Xf~L6lWqio7JszqTbd6Imr9GPvOZMVal1WNWt~SZL4X25ccX4zZOYEM6Lncj4SRxNVnqf-FgERADJuSDsKU8U6rG8rN6xIs2odossHg0L6PIPSEc90vbvvbtO7EtZwKqMwGi8qlmCIvZ-omSov2ycppQDluh-RT06hcw9b4YphRVSEjwWhVHOON0I6-Rjm1qUgYnMVTNc86yODK9nR22Pe2IFv2pgJf8SV08B3~N27nzCCakFQLpHzQ~8GjA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA',
+      description: 'In a war-torn world of elemental magic, a young boy reawakens to undertake a dangerous mystic quest to fulfill his destiny as the Avatar, and bring peace to the world.',
+      seasons: '3',
+      director: 'Michael Dante DiMartino, Bryan Konietzko',
+      rating: 4,
+      certification: 'PG',
+      user: users[2],
+      category: 'Watch',
+      subcategory: 'TV Series'
+    },
+    {
+      title: 'Sherlock',
+      image: 'https://m.media-amazon.com/images/M/MV5BMWY3NTljMjEtYzRiMi00NWM2LTkzNjItZTVmZjE0MTdjMjJhL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTQ4NTc5OTU@._V1_.jpg',
+      genre: 'Comedy, Drama, Romance',
+      trailer: 'https://imdb-video.media-imdb.com/vi2412512793/1434659607842-pgv4ql-1563976556454.mp4?Expires=1585393902&Signature=cmjH1DcsX3l6HNu3ZrZ-RwTMEdzA69H80ICDVTTiL~XBLN5NHdv~aeXWEJdeiDpGkGxPvF06mHi0bD1opHQzwhFo8YE~zp8R6BmrYxuUB1a0iL4IO45iLozvoXIgwQHFJIzIliIhvIlRb~U24QcbcFfDUXuJJN38rplZwAn-sHjWFQ94u0A-s7Hh2h77cXl2Hw1za6W54Mey4B580LIyH79ltRGQQ-K3I0GxsNv9eXQm-mxd5oMKb0LrXIbI0Ny~KqfReDEzg1i9h3ahaZcY6hSt3WMwKV6hwgR28SbXYaB2Ir~~Q1UscGKwWLPl~Bgl-UDyHZ~BqXiM7miE0r1V5Q__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA',
+      description: 'A modern update finds the famous sleuth and his doctor partner solving crime in 21st century London.',
+      seasons: '4',
+      director: 'Mark Gatiss, Steven Moffat',
+      rating: 4,
+      certification: '15',
+      user: users[0],
+      category: 'Watch',
+      subcategory: 'TV Series'
     }
   ])
 }
@@ -679,12 +855,158 @@ function createPlay(users) {
   return Play.create([
     {
       title: 'Sims 4',
+      image: 'https://s3.gaming-cdn.com/images/products/272/271x377/the-sims-4-cover.jpg',
       description: 'The Sims 4 is a life simulation game, players create a Sim character and control their life to explore different personalities which change the way the game plays out.',
       genre: 'Simulation',
       rating: 5,
-      players: '1',
+      players: 'Single-Player',
       subcategory: 'Computer Game',
       format: 'PC',
+      duration: '2+ hours',
+      link: 'https://www.ea.com/en-gb/games/the-sims/play-with-life?utm_campaign=sims4_brd_uk_m6_srch_ggl_pwls&utm_source=google&utm_medium=search&cid=62725&ts=1583265723484',
+      user: users[0],
+      category: 'Play'
+    },
+    {
+      title: 'Monopoly Deal',
+      image: 'https://images-na.ssl-images-amazon.com/images/I/81I510mHHwL._AC_SX679_.jpg',
+      players: 'Multiplayer',
+      genre: 'Card, available as a video game',
+      subcategory: 'Card Game',
+      description: 'The Monopoly Brand Deal Card Game is all the fun of the Monopoly game in a quick-playing card game. It comes with 110 cards including Property Cards, Rent Cards, House and Hotel Cards, and Wild Property Cards. Action Cards let players do things such as charge rent and make tricky deals. House and Hotel Cards raise rent values. Wild Property Cards help players build Property sets. And, players pay their debts with Money Cards. Be the first player to collect 3 complete Property Card sets in different colours to win. This card game is a great way to play the Fast-Dealing Property Trading Game in as little as 15 minutes! The Hasbro Gaming, Parker Brothers, and Monopoly names and logos, the distinctive design of the gameboard, the four corner squares, the Mr. Monopoly name and character, as well as each of the distinctive elements of the board and playing pieces are trademarks of Hasbro for its property trading game and game equipment',
+      format: 'Card',
+      rating: '5',
+      category: 'Play',
+      duration: '15 minutes',
+      user: users[2]
+    },
+    {
+      title: 'Tetris',
+      image: 'https://img.theculturetrip.com/1440x807/smart/wp-content/uploads/2017/06/shutterstock_316193825.jpg',
+      players: 'Single-Player',
+      description: 'Tetris is a video game developed in the Soviet Union in 1984. The game has a simple goal of destroying lines of block before it reaches the top. The line is made up of a square block. Tetrominoes is the shape of the 4 connected blocks that falls vertically down.',
+      genre: 'Video Game',
+      rating: 5,
+      subcategory: 'Computer Game',
+      format: 'PC',
+      duration: '2+ hours',
+      link: 'https://patrickcfwhite.github.io/project-1/',
+      user: users[0],
+      category: 'Play'
+    },
+    {
+      title: 'Pacman',
+      image: 'https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.todayifoundout.com%2Findex.php%2F2013%2F08%2Fthe-history-of-pac-man%2F&psig=AOvVaw33Fw-2JzbYf-r-fTzSho_g&ust=1585395325670000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIi5hP3HuugCFQAAAAAdAAAAABAJ',
+      players: 'Single-Player',
+      description: 'Pac-Man is a maze chase video game. The player controls the titular character through an enclosed maze; the objective of the game is to eat all of the dots placed in the maze while avoiding four colored ghosts — Blinky (red), Pinky (pink), Inky (cyan), and Clyde (orange) — that pursue him. When all of the dots are eaten, the player advances to the next level. If Pac-Man makes contact with a ghost, he will lose a life; the game ends when all lives are lost. Each of the four ghosts have their own unique, distinct artificial intelligence (A.I.), or "personalities"; Blinky gives direct chase to Pac-Man, Pinky and Inky try to position themselves in front of Pac-Man, usually by cornering him, and Clyde will switch between chasing Pac-Man and fleeing from him.',
+      genre: 'Video Game',
+      rating: 5,
+      subcategory: 'Computer Game',
+      format: 'PC',
+      duration: '2+ hours',
+      link: 'https://seangpachareonsub.github.io/project-1/',
+      user: users[2],
+      category: 'Play'
+    },
+    {
+      title: 'Animal Crossing New Horizons',
+      image: 'https://en.wikipedia.org/wiki/File:Animal_Crossing_New_Horizons.jpg',
+      players: 'Multiplayer',
+      description: 'New Horizons is a nonlinear life simulation game played in real-time. The player assumes the role of a customizable character who moves to a deserted island after purchasing a vacation package from Tom Nook, a tanuki character who is a staple of the series.',
+      genre: 'Simulation Game',
+      rating: 5,
+      subcategory: 'Other',
+      format: 'Console',
+      duration: '2+ hours',
+      user: users[2],
+      category: 'Play'
+    },
+    {
+      title: 'Grand Theft Auto V',
+      image: 'https://en.wikipedia.org/wiki/File:Grand_Theft_Auto_V.png',
+      players: 'Single-Player',
+      description: 'Grand Theft Auto V is a 2013 action-adventure game developed by Rockstar North and published by Rockstar Games.',
+      genre: 'Video Game',
+      rating: 4,
+      subcategory: 'Computer Game, Video Game',
+      format: 'PC, Playstation 3, Xbox 260, Playstation 3, Xbox One',
+      duration: '2+ hours',
+      user: users[0],
+      category: 'Play'
+    },
+    {
+      title: 'Wii Sports',
+      image: 'https://upload.wikimedia.org/wikipedia/en/e/e0/Wii_Sports_Europe.jpg',
+      players: 'Multiplayer',
+      description: 'The game is a collection of five sports simulations, designed to demonstrate the motion-sensing capabilities of the Wii Remote. The five sports included are tennis, baseball, bowling, golf and boxing.',
+      genre: 'Video Game',
+      rating: 4,
+      subcategory: 'Video Game',
+      format: 'Wii',
+      duration: '2+ hours',
+      user: users[1],
+      category: 'Play'
+    },
+    {
+      title: 'The Witcher',
+      image: 'https://upload.wikimedia.org/wikipedia/en/b/b0/The_Witcher_EU_box.jpg',
+      players: 'Single-Player',
+      description: 'The Witcher is an action role-playing game based on the novel of the same title. The story follows Geralt of Rivia, one the last remaining monster hunters with special abilities primarily known as Witchers.',
+      genre: 'Action Role-Playing Game',
+      rating: 4,
+      subcategory: 'Computer Game',
+      format: 'PC',
+      duration: '2+ hours',
+      user: users[2],
+      category: 'Play'
+    },
+    {
+      title: 'Assassin\'s Creed Odyssey',
+      image: 'https://upload.wikimedia.org/wikipedia/en/9/99/ACOdysseyCoverArt.png',
+      players: 'Single-Player',
+      description: 'Assassin\'s Creed Odyssey is the 21st overall major installment in the Assassin\'s Creed series. The plot tells a fictional history of the Peloponnesian War between Athens and Sparta where the player is able to choose between siblings Alexios and Kassandra as to whom they use as the main character.',
+      genre: 'Action Role-Playing Game',
+      rating: 5,
+      subcategory: 'Computer Game, Video Game',
+      format: 'PC, Playstation 4, Xbox One',
+      duration: '2+ hours',
+      user: users[0],
+      category: 'Play'
+    },
+    {
+      title: 'Card\'s Against Humanity ',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Cards_Against_Humanity_logo.png/440px-Cards_Against_Humanity_logo.png',
+      players: 'Multiplayer',
+      description: 's a party game in which players complete fill-in-the-blank statements using words or phrases typically deemed as offensive, risqué or politically incorrect printed on playing cards.',
+      genre: 'Party Game',
+      rating: 5,
+      subcategory: 'Card Game',
+      duration: '2+ hours',
+      user: users[1],
+      category: 'Play'
+    },
+    {
+      title: 'League of Legends',
+      image: 'https://upload.wikimedia.org/wikipedia/en/thumb/b/b5/League_of_Legends_logo_2019.png/440px-League_of_Legends_logo_2019.png',
+      players: 'Multiplayer',
+      description: 'League of Legends (LoL) is a multiplayer online battle arena video game, players assume the role of a "champion" with unique abilities and battle against a team of other player- or computer-controlled champions. The goal is usually to destroy the opposing team\'s "Nexus", a structure that lies at the heart of a base protected by defensive structures, although other distinct game modes exist as well with varying objectives, rules, and maps',
+      genre: 'Video Game',
+      rating: 3,
+      subcategory: 'Computer Game',
+      format: 'PC',
+      duration: '2+ hours',
+      user: users[2],
+      category: 'Play'
+    },
+    {
+      title: 'UNO',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/UNO_Logo.svg/440px-UNO_Logo.svg.png',
+      players: 'Multiplayer',
+      description: 'The aim of the game is to be the first player to score 500 points, achieved by being the first to play all of one\'s own cards and scoring points for the cards still held by the other players.',
+      genre: 'Family Game',
+      rating: 4,
+      subcategory: 'Card Game',
+      duration: '2+ Hours',
       user: users[0],
       category: 'Play'
     }
