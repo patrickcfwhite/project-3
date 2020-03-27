@@ -495,7 +495,7 @@ function createRecipes(users) {
         'Add the butter and set over a pan over simmering water. (Do not let the base of the bowl touch the water.)',
         'Cook for 15-20 minutes, stirring regularly, until the butter has melted and the mixture has thickened.',
         'Arrange the orange slices on the cooled tart and sprinkle over the demerara sugar.',
-        'Using a cook\'s blowtorch, heat the sugar until caramelised.',
+        'Using a cooks blowtorch, heat the sugar until caramelised.',
         'To serve, slice the tart and serve with double cream or custard.'
       ],
       image: 'https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/bloodorangetart_93766_16x9.jpg',
@@ -530,7 +530,7 @@ function createRecipes(users) {
         'For the black pudding, cut the black pudding into 3-4 slices and remove the skin. Place on the grill plate and cook for 1½-2 minutes each side until slightly crispy.',
         'For proper fried bread it\'s best to cook it in a separate pan. Ideally, use bread that is a couple of days old. Heat a frying pan to a medium heat and cover the base with oil. Add the bread and cook for 2-3 minutes each side until crispy and golden. If the pan becomes too dry, add a little more oil. For a richer flavour, add a knob of butter after you turn the slice.',
         'For the fried eggs, break the egg straight into the pan with the fried bread and leave for 30 seconds. Add a good knob of butter and lightly splash/baste the egg with the butter when melted. Cook to your preferred stage, season and gently remove with a fish slice.',
-        'Once all the ingredients are cooked, serve on warm plates and enjoy straight away with a good squeeze of tomato ketchup or brown sauce.',
+        'Once all the ingredients are cooked, serve on warm plates and enjoy straight away with a good squeeze of tomato ketchup or brown sauce.'
       ],
       prepTime: 'less than 30 minutes',
       cookTime: '10 - 30 minutes',
@@ -619,7 +619,7 @@ function createRecipes(users) {
         'Meanwhile, over a low heat, melt the chocolate in the milk in a small saucepan.      ',
         'Beat the egg yolks, icing sugar and ground ginger together in a large bowl until light and fluffy. Add the chocolate mixture and vanilla-infused cream, remove the vanilla pod and whisk together until well combined.      ',
         'Place the chopped ginger and a little ginger syrup into the bottom of the ramekins. Top with the chocolate mixture. Place the ramekins into a deep roasting tin and pour in enough hot water to come up to at least two-thirds up the side of the pots. Bake for 45-60 minutes, or until slightly puffed-up and spongy to the touch of a finger. The surface of the pot should form a little crust.        ',
-        'Remove the pots from the oven, allow to cool for a few moments and lift the pots from the water onto a clean tray. Chill in the fridge for at least six hours before serving. Serve straight from the fridge.',
+        'Remove the pots from the oven, allow to cool for a few moments and lift the pots from the water onto a clean tray. Chill in the fridge for at least six hours before serving. Serve straight from the fridge.'
       ],
       prepTime: '30 minutes to an hour',
       cookTime: '30 minutes to an hour',
