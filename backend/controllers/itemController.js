@@ -84,7 +84,11 @@ function deleteActivity(req, res) {
 function addNewComment(req, res) {
   const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
   const id = req.params.id 
+
+  req.body.user = req.currentUser
+
   mongoose.model(category)
+    
     .findById(id)
     .then(item => {
       item.comments.push(req.body)

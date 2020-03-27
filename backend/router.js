@@ -27,7 +27,7 @@ router.route('/:category/:id')
   .delete(itemController.deleteActivity)
 
 router.route('/:category/:id/comments')
-  .post(itemController.addNewComment)
+  .post(secureRoute,itemController.addNewComment)
 
 router.route('/:category/:id/comments/:commentid')
   .put(itemController.editComment)
