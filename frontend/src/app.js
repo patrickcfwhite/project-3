@@ -53,7 +53,7 @@ class Game extends React.Component {
     const id = e.target.id
     axios.get(`/api/play/${id}`)
       .then(response => {
-        console.log(response.data.comments[0].user)
+        // console.log(response.data.comments[0].user)
         this.setState({ singleGame: response.data, singleGameComments: response.data.comments })
       })
   }
@@ -94,7 +94,7 @@ class Game extends React.Component {
 
         {/* <object style={{ height: '90vh', width: '75vw' }} type="text/html" data="https://patrickcfwhite.github.io/project-1/"></object> */}
 
-        <main>
+        <main style={{ position: 'relative' }}>
           <div className="game-container">
 
 

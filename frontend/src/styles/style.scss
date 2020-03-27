@@ -143,6 +143,7 @@ body {
         position: absolute;
         left: 0;
         top: 0;
+        // transform-origin: bo;
       }
     }
   }
@@ -151,14 +152,16 @@ body {
   // cook page
 
   .recipe-container {
-    width: 100vw;
-    height: 200vh;
-    z-index: 0;
-    position: relative;
-    overflow: hidden;
-
-    &:hover {
-      cursor: pointer;
+    width: 82vw;
+    height: 85vh;
+    padding-top: 70vh;
+    overflow: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    &::-webkit-scrollbar {
+      display:none;
     }
 
     .recipe-row {
@@ -166,23 +169,65 @@ body {
       justify-content: space-around;
       flex-wrap: wrap;
       width: 100%;
-      // transition: ease-in-out 3s;
+
+      .single {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 83.4vh;
+        width: 77.77vw;
+        background-color: rgba(173, 161, 161, 0.822);
+        position: absolute;
+        top:8.3vh;
+        // display: none;
+
+        .single-left {
+          width: 50%;
+          height: 100%;
+          background-color: green;
+
+        li {
+          list-style: none;
+        }
+        }
+        
+        .single-middle {
+          width: 50%;
+          height: 100%;
+          background-color:red;
+          padding: 10px 50px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          overflow: scroll;
+          li {
+            margin: 40px 0px;
+          }
+        }
+      }
+    
   
-      .recipe-card {
-        margin: 2em 2em;
-        width: 220px;
-        height: 290px;
-        background-color: rgba(255, 255, 255, 0.35);
-        opacity: 0.4;
-        filter: grayscale(0.3);
-        transition: 0.7s;
+      #recipe-card {
+        margin: 2em 0.5em;
+        width: 20vw;
+        height: 24vh;
+        background-color: rgba(173, 161, 161, 0.822);
+        opacity: 0.7;
+        // filter: grayscale(0.3);
+        position: relative;
         display: flex;
         flex-direction: column;
         text-align: center;
         align-items: center;
         color:white;
         justify-content: space-around;
+        li {
+          list-style: none;
+        }
 
+        &:hover {
+          cursor: pointer;
+        }
 
         img {
           width: 90%;
@@ -190,9 +235,14 @@ body {
         }
 
         &:hover {
-          filter: grayscale(0);
-          transform: scale(1.30);
-          opacity: 0.83;
+
+          cursor: default;
+        }
+
+        button {
+          &:hover {
+            cursor: pointer;
+          }
         }
       }}}
 
@@ -299,7 +349,6 @@ body {
         height: 150px;
         margin: 0 10px;
         scroll-snap-align: center;
-
         &:hover {
           cursor: pointer;
           transform:scale(1.5);
