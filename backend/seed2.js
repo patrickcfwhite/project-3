@@ -42,9 +42,9 @@ mongoose.connect(
             {
               username: 'kenn',
               email: 'kenn@kenn.com',
-              password: 'ken',
-              passwordConfirmation: 'ken',
-              firstname: 'Ken',
+              password: 'kenn',
+              passwordConfirmation: 'kenn',
+              firstname: 'Kenn',
               uploads: [],
               savedItems: [],
               following: []

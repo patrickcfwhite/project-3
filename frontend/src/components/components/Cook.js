@@ -2,6 +2,7 @@ import React from 'react'
 // import Panzoom from 'panzoom'
 import axios from 'axios'
 import { TimelineLite, Power4 } from 'gsap'
+import moment from 'moment'
 
 class Cook extends React.Component {
 
@@ -10,8 +11,9 @@ class Cook extends React.Component {
     // this.myRef = React.createRef()
     this.state = {
       recipes: [],
-      isRecipeActive: false,
-      singleRecipe: []
+      singleRecipe: [],
+      singleRecipeComments: [],
+      isCommentsActive: false
     }
   }
 
@@ -26,21 +28,19 @@ class Cook extends React.Component {
 
   HandleExpansion(e) {
 
+    const i = e.target
     let query = ''
     const others = []
     let id = ''
 
-    if (e.target.tagName === 'BUTTON') {
-      id = e.target.parentNode
-    } else if (e.target.tagName === 'H1') {
-      id = e.target.parentNode
-    } else if (e.target.className === 'recipe-info') {
-      id = e.target.parentNode
-    } else if (e.target.tagName === 'DIV') {
-      id = e.target
-    }
-
-    console.log(id.key)
+    if (i.parentNode.id === 'recipe-card') {
+      return
+    } else if (i.parentNode.className === 'card-image' || i.parentNode.className === 'card-info') {
+      id = e.target.parentNode.parentNode
+    } else if (i.parentNode.className === 'card-info-bottom' || i.tagName === 'LI' ) {
+      id = e.target.parentNode.parentNode.parentNode
+    } 
+    console.log(id)
 
     this.state.recipes.map(other => {
       if (other.title.replace(/\W/g, '') !== id.className) {
@@ -53,26 +53,22 @@ class Cook extends React.Component {
     // get the single item clicked
     axios.get(`/api/cook/${query}`)
       .then(response => {
-        this.setState({ singleRecipe: response.data })
+        this.setState({ singleRecipe: response.data, singleRecipeComments: response.data.comments })
       })
 
     const t1 = new TimelineLite
     t1
-      .to('.recipe-items', 0.5, { opacity: 0 })
+      .to('.card-image, .card-info', 0.5, { opacity: 0 })
       .to(others, 0.2, { opacity: 0 }, '-=0.3')
       .to(id, 0.2, { opacity: 0 }, '-=0.3')
       .to(others, 0.4, { display: 'none' }, '+=0.1')
       .to('.recipe-container', 0.1, { paddingTop: 0 })
       .to(id, 0.4, { opacity: 1 }, '+=0.1')
-      .to(id, 0.2, { height: '83.3vh' }, '+=0.3')
-      .to(id, 0.4, { width: '95%' }, '+=0.3')
-    // .to('.single', 0.1, { display: 'flex' }, '-=0')
-
-
-    setTimeout(() => {
-      this.setState({ isRecipeActive: true })
-    }, 2600)
-
+      .to(id, 0.2, { height: '83vh' }, '+=0.3')
+      .to(id, 0.4, { width: '100%' }, '+=0.3')
+      .to(id, 0.3, { display: 'none' }, '+=0.3')
+      .to('.single', 0.1, { display: 'flex' })
+      .to('.single-left, .single-middle', 1, { opacity: 1, stagger: 0.3 })
   }
 
   HandleCollapse(e) {
@@ -80,43 +76,92 @@ class Cook extends React.Component {
     let id = ''
 
     if (e.target.tagName === 'BUTTON') {
-      id = e.target.parentNode
-    } else if (e.target.tagName === 'H1') {
+      return
+    } else if (e.target.parentNode.className === 'single-left') {
       id = e.target.parentNode.parentNode
-    } else if (e.target.tagName === 'DIV') {
-      id = e.target
+    } else if (e.target.parentNode.parentNode.className === 'single-left') {
+      id = e.target.parentNode.parentNode.parentNode
+    } else if (e.target.parentNode.parentNode.parentNode.className === 'single-left') {
+      id = e.target.parentNode.parentNode.parentNode.parentNode
+    } else {
+      id = e.target.parentNode.parentNode
     }
 
+    console.log(id)
+
     this.state.recipes.map(other => {
-      if (other.title.replace(/\W/g, '') !== id.className) {
+      if (other.title.replace(/\W/g, '') !== id.id.replace(/\W/g, '')) {
         others.push('.' + other.title.replace(/\W/g, ''))
       }
     })
 
+    if (others.length === 14) {
 
+      id = '.' + id.id.replace(/\W/g, '')
+
+      console.log(id)
+
+      const t1 = new TimelineLite
+      t1
+        .to('.methods', 0.1, { color: 'black', textDecoration: 'none' })
+        .to('.single-left, .single-middle', 1, { opacity: 0 })
+        .to('.single', 0.2, { display: 'none' }, '+=0.5')
+        .to(id, 0.1, { display: 'flex' })
+        .to(id, 0.4, { width: '15.8vw' }, '+=0.2')
+        .to(id, 0.2, { height: '36vh' }, '+=0.5')
+        .to(id, 0.2, { opacity: 0 }, '+=0.4')
+        .to('.recipe-container', 0.1, { paddingTop: '86vh' }, '+=0.5')
+        .to(others, 0.4, { display: 'flex' }, '+=0.4')
+        .to(id, 0.2, { opacity: 1 }, '-=0.3')
+        .to(others, 0.2, { opacity: 1 }, '-=0.3')
+        .to('.card-image, .card-info', 0.5, { opacity: 1 })
+
+    }
+  }
+
+  HandleOpenRecipeComments() {
     const t1 = new TimelineLite
     t1
-      .to('.recipe-items', 0.1, { opacity: 0 })
-      .to(id, 0.4, { width: '20vw' }, '+=0.5')
-      .to(id, 0.2, { height: '24vh' }, '+=0.3')
-      .to(id, 0.3, { opacity: 0 }, '+=0.1')
-      .to('.recipe-container', 0.1, { paddingTop: '70vh' })
-      .to(others, 0.4, { display: 'flex' }, '+=0.1')
-      .to(id, 0.2, { opacity: 0.7 }, '-=0.3')
-      .to(others, 0.2, { opacity: 0.7 }, '-=0.3')
-      .to('.recipe-items', 0.5, { opacity: 1 })
+      .to('.to-hide, .recipe-mid-section', 0.5, { opacity: 0 })
+      .to('.to-hide, .recipe-mid-section', 0.2, { display: 'none' })
+      .to('.recipe-comments', 1, { height: '87%' })
+      .to('.previous-recipe-comments', 0.1, { display: 'block' })
+      .to('.recipe-comment-row', 0.2, { opacity: 1, stagger: 0.1 })
+      .to('.user-recipe-comment', 0.1, { display: 'block' }, '-=0.65')
+    this.setState({ isCommentsActive: true })
+  }
 
-    setTimeout(() => {
-      this.setState({ isRecipeActive: false })
-    }, 2500)
+  HandleCloseRecipeComments() {
+    const t1 = new TimelineLite
+    t1
+
+      .to('.recipe-comment-row', 0.2, { opacity: 0, stagger: 0.1 })
+      .to('.user-recipe-comment', 0.1, { display: 'none' }, '-=0.65')
+      .to('.previous-recipe-comments', 0.1, { display: 'none' })
+      .to('.recipe-comments', 1, { height: '5%' })
+      .to('.recipe-mid-section', 0.1, { display: 'flex' })
+      .to('.to-hide', 0.1, { display: 'block' })
+      .to('.to-hide, .recipe-mid-section', 0.5, { opacity: 1 })
+    this.setState({ isCommentsActive: false })
+  }
+
+  HandleCross(e) {
+    console.log(e.target.style.textDecoration)
+
+    if (e.target.style.textDecoration === 'line-through') {
+      e.target.style.textDecoration = ''
+      e.target.style.color = 'black'
+    } else {
+      e.target.style.textDecoration = 'line-through'
+      e.target.style.color = 'brown'
+    }
 
   }
 
 
-
   render() {
 
-    const { singleRecipe } = this.state
+    const { singleRecipe, singleRecipeComments, isCommentsActive } = this.state
 
     return (
 
@@ -125,42 +170,108 @@ class Cook extends React.Component {
           <div className="recipe-row">
             {this.state.recipes.map(dish => {
               return (
-                <div onClick={(e) => !this.state.isRecipeActive ? this.HandleExpansion(e) : this.HandleCollapse(e)}
+                <div onClick={(e) => this.HandleExpansion(e)}
                   className={dish.title.replace(/\W/g, '')} key={dish._id} id="recipe-card">
-                  <h1 className='recipe-items'> {dish.title} </h1>
-                  <h5> Serves: {dish.serves} </h5>
 
-                  <ul>
-                    {dish.dietary.map((diet, i) => {
-                      return <li key={i}> {diet !== 'none' ? diet : null} </li>
-                    })}
-                  </ul>
+                  <div className="card-image">
+                    <img src={dish.image} />
+                    <ul>
+                      {dish.dietary.map((diet, i) => {
+                        return <li className='recipe-items' key={i}> {diet !== 'none' ? diet : null} </li>
+                      })}
+                    </ul>
+                  </div>
+
+                  <div className="card-info">
+                    {dish.title.length < 45 ?
+                      <h1> {dish.title} </h1> :
+                      <h3> {dish.title} </h3>
+                    }
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }} className="card-info-bottom">
+                      <h5 className='recipe-items'> Serves: {dish.serves} </h5>
+                      <small> 🗓{moment(dish.createdAt).startOf('seconds').fromNow()} </small>
+                    </div>
+
+                  </div>
+
+
 
                 </div>
               )
             })}
 
             {/* single recipe */}
-            <div className="single">
+            <div id={this.state.singleRecipe.title} className="single" onClick={(e) => this.HandleCollapse(e)} >
 
               <div className="single-left">
-                <h1> {singleRecipe.title} </h1>
-                <h6> {singleRecipe.description} </h6>
-                <p> Prep Time: {singleRecipe.prepTime}, Cook Time: {singleRecipe.cookTime} </p>
 
-                {singleRecipe.length === 0 ? null : <ul>
-                  {singleRecipe.ingredients.map((el, i) => {
-                    return <li key={i}> {el} </li>
-                  })}
-                </ul>}
+                <div className='recipe-top-section'>
+                  <h1 style={{ textTransform: 'capitalize' }}> {singleRecipe.title} </h1>
+                  <h3 style={{ marginBottom: '10px', color: 'brown' }} className='to-hide'> {singleRecipe.description} </h3>
+                  <p className='to-hide'> Serves: {singleRecipe.serves}  <span> Prep: {singleRecipe.prepTime} </span>  Cook: {singleRecipe.cookTime}</p>
+                </div>
 
+                <h5 className='to-hide'> INGREDIENTS: </h5>
+
+
+                <div className="recipe-mid-section">
+
+                  {singleRecipe.length === 0 ? null : <ul className='to-hide'>
+                    {singleRecipe.ingredients.map((el, i) => {
+                      return <li key={i}> - {'\u00A0'} {el} </li>
+                    })}
+                  </ul>}
+
+                  <div className="food-pic">
+                    <img src={singleRecipe.image}></img>
+                  </div>
+
+                  <h5> SCROLL, THERE COULD BE MORE! </h5>
+                </div>
+
+                <div className="recipe-comments">
+                  <button onClick={() => isCommentsActive ? this.HandleCloseRecipeComments() : this.HandleOpenRecipeComments()}> {singleRecipe.comments ? singleRecipeComments.length : '0'} COMMENTS </button>
+                  <div className="previous-recipe-comments">
+                    {!this.state.singleRecipe.comments ? null :
+
+                      singleRecipeComments.map((comment => {
+                        return (
+                          <div key={comment.user} className="recipe-comment-row">
+
+                            <section>
+                              <h3> {comment.user} </h3>
+                              <h5 className='recipe-rating'> Rating: {comment.rating} </h5>
+                            </section>
+
+                            <p> {comment.text} </p>
+
+                            <h5> Posted {moment(comment.createdAt).startOf('second').fromNow()} </h5>
+
+                          </div>
+                        )
+                      }))
+
+                    }
+                  </div>
+
+                  <div className="user-recipe-comment">
+                    <h6> COMMENT </h6>
+
+                    <div className="recipe-comment-input">
+                      <input placeholder='Write here...'></input>
+
+                      <button style={{ marginBottom: '1px' }}> POST </button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="single-middle">
                 {singleRecipe.length === 0 ? null :
                   <ol>
+                    METHOD:
                     {singleRecipe.method.map((el, i) => {
-                      return <li key={i}> {el} </li>
+                      return <li className='methods' onClick={(e) => this.HandleCross(e)} key={i}> {el} </li>
                     })}
                   </ol>}
               </div>

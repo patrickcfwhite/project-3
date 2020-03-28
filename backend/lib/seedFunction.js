@@ -224,7 +224,7 @@ function createRecipes(users) {
       category: 'Cook'
     },
     {
-      title: 'Licolnshire sausage & lentil simmer',
+      title: 'Lincolnshire sausage & lentil simmer',
       ingredients: [
         '1 tbsp vegetable oil'
         , '130g packet cubed pancetta or dried bacon'
@@ -381,11 +381,7 @@ function createRecipes(users) {
       category: 'Cook'
     },
     {
-<<<<<<< HEAD
-      title: 'Salmon & spinach with tartatre cream ',
-=======
       title: 'Salmon & spinach with tartar cream',
->>>>>>> development
       ingredients: [
         '1 tsp sunflower or vegetable oil'
         , '2 skinless salmon fillets'
@@ -572,7 +568,6 @@ function createRecipes(users) {
       mealtype: 'Light Meal/Snack',
       dietary: 'Vegetarian',
       user: users[0],
-      rating: 4,
       category: 'Cook'
     },
     {
@@ -603,7 +598,6 @@ function createRecipes(users) {
       mealtype: 'Baking',
       dietary: 'Vegetarian',
       user: users[2],
-      rating: 3,
       category: 'Cook'
     },
     {
@@ -635,7 +629,6 @@ function createRecipes(users) {
       mealtype: 'Dessert',
       dietary: 'Vegetarian',
       user: users[1],
-      rating: 4,
       category: 'Cook'
     },
     {
@@ -668,7 +661,6 @@ function createRecipes(users) {
       mealtype: 'Main Course',
       dietary: 'Vegan',
       user: users[0],
-      rating: 5,
       category: 'Cook'
     }
   ])
@@ -681,7 +673,7 @@ function createWatch(users) {
       image: 'https://m.media-amazon.com/images/M/MV5BNmU5OTQ0OWQtOTY0OS00Yjg4LWE1NDYtNDRhYWMxYWY4OTMwXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SY1000_CR0,0,704,1000_AL_.jpg',
       description: 'Spirited Away tells the story of Chihiro Ogino, a 10 year-old girl who, while moving to a new neighbourhood, enters the world of Kami (spirits) of Japanese Shinto folklore.',
       genre: 'Animation, Fantasy, Adventure, Family',
-      trailer: 'https://youtu.be/ByXuk9QqQkk',
+      trailer: 'https://imdb-video.media-imdb.com/vi3619684633/1434659607842-pgv4ql-1564585734687.mp4?Expires=1585389682&Signature=ozlb9MGHvSeRYRhWbsijp~x7uiOsXwgqNeT8Z1KA~pm~PaNNy3jsLrWRi2RbtiEaG9QEhTV7920p-fP95Xmyd-EtAp5Q6kcEeYdwhohtF6g4At2Rmc6qQZkis5ii-h~~CI0WUxXFv0AXHvjFaTS~6xOzP-304zzYBeUwPWZEu9fBPsQ0Fh3L4u42s5oxSVPGo2KGMGjzfOant4JyY9Cdkxv0j2byLBTqk3gwTaAnTjrN-RJqWwDMeyOuFys1U3H3TSlUcIQvehRdJyLKytiVmKZzwaef9XVcA9tD0Srtjvla6iZ38qr9JZ6rN7j078MrZTmGn11j9Hao3lMKHBuIQw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA',
       duration: '125 minutes',
       director: 'Hayao Miyazaki',
       rating: 5,
@@ -748,7 +740,7 @@ function createWatch(users) {
     },
     {
       title: 'Birds of Prey',
-      image: 'https://www.imdb.com/title/tt7713068/mediaviewer/rm453936897?ref_=tt_ov_i',
+      image: 'https://m.media-amazon.com/images/M/MV5BMzQ3NTQxMjItODBjYi00YzUzLWE1NzQtZTBlY2Y2NjZlNzkyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg',
       genre: 'Action, Adventure, Crime',
       trailer: 'https://imdb-video.media-imdb.com/vi292929305/1434659607842-pgv4ql-1578589226947.mp4?Expires=1585391727&Signature=nkKVQf~q8VeaItprLG76MDyYKYcSIziWjGd0i4rzXD7PZXycVbmdRHF1elRjVtYbgeWRFJC24FxNi0rvWYjtJvZ3v7RZFgE7Y9U29gL54Upd0wu3-EZEfAn9qsauD81tQgyjCeBG0oq0QWL681nDqs0gu9WltcJLnRubqPB0EEIG6GuWl3-KId2iqg7cLRd4ZvBKLoXgEuF4g0hg3q-v4WCelJCcV1TaJahaXZ-QkMucpaci1j3TRd5IECZA7MsajtIL6WMvDEPKyHFLtvIHEPitfIaNQVxbbV3IjbfQt-L0dHUGf6uqhjoRO-wplZfNHmkFX2vsIg9coLJdpGWG-A__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA',
       description: 'After splitting with the Joker, Harley Quinn joins superheroes Black Canary, Huntress and Renee Montoya to save a young girl from an evil crime lord.',
@@ -776,7 +768,7 @@ function createWatch(users) {
     },
     {
       title: 'Game of Thrones',
-      image: 'https://www.imdb.com/title/tt0944947/mediaviewer/rm4204167425?ref_=tt_ov_i',
+      image: 'https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_SY1000_CR0,0,734,1000_AL_.jpg',
       genre: 'Action, Adventure, Drama',
       trailer: 'https://imdb-video.media-imdb.com/vi2864422169/MV5BMTc0NzQ1NTA3Ml5BMTFeQW1wNF5BbWU3MDkyNjE1NjQ@.mp4?Expires=1585392736&Signature=RcThvEqDaXb-8nugL5COBspx63SYmlwBoRTDec9IEs6whTMZ-PiwU12nmPnS5v49ZySjIVBemaMWfC~nzyfLX-EFMkHMxH0WXlDU~TfL71rU-LQLtFTC3aisdgmQaEPSV2M6wdtTj9GOqYhbZh8eseFdTJvDULfD0ldP93kawU~8-HE0NZJe4P4nhEmYy-Wq3eDTDG-DBosE7vJT~l7Tc0aIO~pnlTCulFg8LbcMXMLPqPQPdRMxr-NC~Sk8ECQg4xr2hFSAEMzIWyoBV34eaJvjICK0737q3bb2iH6RlhY8Dg4Kg6u6qI~YJKxQbQeNlFCWDUwe0BZxLz6rouRubA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA',
       description: 'Nine noble families fight for control over the mythical lands of Westeros, while an ancient enemy returns after being dormant for thousands of years.',

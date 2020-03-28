@@ -65,7 +65,7 @@ class Game extends React.Component {
     const t1 = new TimelineLite()
     t1
       // (selector, duration, {css properties}, animationDelay) 
-      .to('.game-row', 0.1, { display: 'none', ease: Power2.easeOut, stagger: 0.1 })
+      .to('.game-row', 0.1, { display: 'none', ease: Power2.easeOut })
       .to('.gamelist', 1, { width: 0, ease: Power2.easeOut })
       .to('.gameinfo', 0.4, { width: '100%', ease: Power2.easeOut })
       .to('.game-comments', 0.5, { width: '55%', ease: Power2.easeOut }, '-=0.3')
@@ -128,25 +128,27 @@ class Game extends React.Component {
 
               <div className="game-comments">
                 <button onClick={() => this.state.isCommentsActive ? this.HandleClose() : this.HandleOpen()}>
-                  {this.state.singleGameComments.length} COMMENTS </button>
+                  {this.state.singleGame.comments ? this.state.singleGameComments.length : '0'} COMMENTS </button>
 
                 <div className="previous-comments">
-                  {this.state.singleGameComments.map((comment) => {
-                    return (
-                      <div key={comment._id} className="comment-row">
+                  {this.state.singleGame.comments ?
+                    this.state.singleGameComments.map((comment) => {
+                      return (
+                        <div key={comment._id} className="comment-row">
 
-                        <section>
-                          <h3> {comment.user} </h3>
-                          <h5 className='rating'> Rating: {comment.rating} </h5>
-                        </section>
+                          <section>
+                            <h3> {comment.user} </h3>
+                            <h5 className='rating'> Rating: {comment.rating} </h5>
+                          </section>
 
-                        <p> {comment.text} </p>
+                          <p> {comment.text} </p>
 
-                        <h5> Posted {moment(comment.createdAt).startOf('minute').fromNow()} </h5>
+                          <h5> Posted {moment(comment.createdAt).startOf('second').fromNow()} </h5>
 
-                      </div>
-                    )
-                  })}
+                        </div>
+                      )
+                    })
+                    : null}
                 </div>
 
 
