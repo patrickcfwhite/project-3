@@ -57,6 +57,7 @@ function singleUserId(req, res) {
   User
     .findById(id)
     .then(user => {
+      console.log(user)
       res.send(user)
     })
     .catch(error => console.log(error))
@@ -66,6 +67,14 @@ function deleteUser(req, res) {
   const id = req.params.id
   User
     .findById(id)
+    .then(user => {
+      for (const follower of user.following) {
+        const folder = 'followedBy'
+        console.log('iterating ', follower)
+        deleteFromFolder(req, follower, folder)
+      }
+      return user
+    })
     .then(user => {
       return user.remove()
     })
@@ -77,7 +86,7 @@ function deleteUser(req, res) {
 
 function addToFolder(req, res, item, folder) {
 
-  const info = [item._id, item.category]
+  const info = folder === 'uploads' || folder === 'savedItems' ? [item._id, item.category] : [item._id]
   const userId = req.currentUser._id
   User
     .findById(userId)
@@ -92,6 +101,34 @@ function addToFolder(req, res, item, folder) {
       res.send({ user: user, item: item })
     })
 }
+
+function followUser(req, res) {
+
+  const userId = req.params.id
+  const currentUser = req.currentUser._id
+  if (userId.toString() === currentUser.toString()) return
+  User
+    .findById(userId)
+    .then(user => {
+      addToFolder(req, res, user, 'following')
+      user.followedBy.push([req.currentUser._id])
+    })
+    .catch(error => console.log(error))
+}
+
+// function unfollowUser(req, res) {
+
+//   const userId = req.params.id
+//   const currentUser = req.currentUser._id
+//   if (userId.toString() === currentUser.toString()) return
+//   User
+//     .findById(userId)
+//     .then(user => {
+//       deleteFromFolder(req, res, user, 'following')
+//       user.followedBy.push([req.currentUser._id])
+//     })
+//     .catch(error => console.log(error))
+// }
 
 // function deleteFromUploads(req) {
 //   const userId = req.currentUser._id
@@ -118,7 +155,7 @@ function addToFolder(req, res, item, folder) {
 function deleteFromFolder(req, user, folder) {
   //console.log(user, folder)
   const userId = user
-  const idToDelete = req.params.activityId
+  const idToDelete = req.params.activityId ? req.params.activityId : req.params.id
   User
     .findById(userId)
     .then(user => {
@@ -153,5 +190,6 @@ module.exports = {
   deleteUser,
   addToFolder,
   // deleteFromUploads,
-  deleteFromFolder
+  deleteFromFolder,
+  followUser
 }

@@ -17,6 +17,7 @@ import NavBar from './components/components/NavBar'
 import Cook from './components/components/Cook'
 import Watch from './components/components/Watch'
 import Register from './components/components/Login'
+import Profile from './components/components/Profile'
 
 
 const App = () => (
@@ -28,6 +29,7 @@ const App = () => (
       <Route exact path='/watch' component={Watch}></Route>
       <Route exact path='/game' component={Game}></Route>
       <Route exact path='/register' component={Register}></Route>
+      <Route path='/user/:id' component={Profile}></Route>
     </Switch>
   </Router>
 )

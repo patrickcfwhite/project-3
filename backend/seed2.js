@@ -27,7 +27,8 @@ mongoose.connect(
               firstname: 'Patrick',
               uploads: [],
               savedItems: [],
-              following: []
+              following: [],
+              followedBy: []
             },
             {
               username: 'annie',
@@ -37,7 +38,8 @@ mongoose.connect(
               firstname: 'Annie',
               uploads: [],
               savedItems: [],
-              following: []
+              following: [],
+              followedBy: []
             },
             {
               username: 'kenn',
@@ -47,7 +49,8 @@ mongoose.connect(
               firstname: 'Kenn',
               uploads: [],
               savedItems: [],
-              following: []
+              following: [],
+              followedBy: []
             }
           ])
       })
