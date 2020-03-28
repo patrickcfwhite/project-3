@@ -5,6 +5,7 @@ const Watch = require('./models/watch')
 const Play = require('./models/play')
 const User = require('./models/user')
 const dbURI = 'mongodb://localhost/activity-db'
+const userController = require('./controllers/userController')
 
 function createBooks(users) {
 
@@ -109,6 +110,26 @@ mongoose.connect(
               password: 'patrick',
               passwordConfirmation: 'patrick',
               firstname: 'Patrick',
+              uploads: [],
+              savedItems: [],
+              following: []
+            },
+            {
+              username: 'kenn',
+              email: 'kenn@kenn.com',
+              password: 'kenn',
+              passwordConfirmation: 'kenn',
+              firstname: 'Kenn',
+              uploads: [],
+              savedItems: [],
+              following: []
+            },
+            {
+              username: 'annie',
+              email: 'annie@annie.com',
+              password: 'annie',
+              passwordConfirmation: 'annie',
+              firstname: 'Annie',
               uploads: [],
               savedItems: [],
               following: []

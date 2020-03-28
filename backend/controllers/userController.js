@@ -1,6 +1,8 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
+const mongoose = require('mongoose')
+
 
 
 function registerUser(req, res) {
@@ -73,18 +75,75 @@ function deleteUser(req, res) {
     .catch(error => console.log(error))
 }
 
-function addToUploads(req, res, item) {
+function addToFolder(req, res, item, folder) {
+
+  const info = [item._id, item.category]
   const userId = req.currentUser._id
   User
     .findById(userId)
     .then(user => {
-      user.uploads.push(item)
+      user[folder].some(x => x['_id'] === item._id) ? user[folder] : user[folder].push(info)
+      // for (const existing of user[folder]) {
+      //   if (!item['_id'] === existing['_id']) {
+      //     user[folder].push(item)
       return user.save()
     })
     .then(user => {
-      res.send({ user: user, upload: item })
+      res.send({ user: user, item: item })
     })
 }
+
+// function deleteFromUploads(req) {
+//   const userId = req.currentUser._id
+//   const idToDelete = req.params.id
+//   User
+//     .findById(userId)
+//     .then(user => {
+//       console.log(user.uploads)
+//       console.log(userId)
+//       console.log(idToDelete)
+//       let index
+//       for (const upload of user.uploads) {
+//         if (upload['_id'] === idToDelete) {
+//           index = user.uploads.indexOf(upload)
+//         }
+//         user.uploads.splice(index, 1)
+//       }
+//       return user.save()
+//       // activityToDelete.remove()
+//       // return user.save()
+//     })
+// }
+
+function deleteFromFolder(req, user, folder) {
+  //console.log(user, folder)
+  const userId = user
+  const idToDelete = req.params.activityId
+  User
+    .findById(userId)
+    .then(user => {
+      console.log(user)
+      // let index
+      for (const item of user[folder]) {
+        console.log(item[0], idToDelete)
+        if (item[0].toString() === idToDelete.toString()) {
+          user[folder].pull(item)
+          // index = user[folder].indexOf(item)
+        }
+        // console.log(folder, 'index = ', index)
+        // console.log(folder, user[folder])
+        // user[folder].splice(index, 1)
+        console.log(folder, user[folder])
+        return user.save()
+      }
+      
+    })
+    .catch(error => console.log(error))
+}
+
+// function editUpload(req, res) {
+
+// }
 
 module.exports = {
   registerUser,
@@ -92,5 +151,7 @@ module.exports = {
   displayUsers,
   singleUserId,
   deleteUser,
-  addToUploads
+  addToFolder,
+  // deleteFromUploads,
+  deleteFromFolder
 }

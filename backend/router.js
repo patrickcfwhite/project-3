@@ -13,25 +13,30 @@ router.route('/user')
   .get(userController.displayUsers)
 
 router.route('/user/:id')
-  .delete(userController.deleteUser)
+  .delete(secureRoute, userController.deleteUser)
+
+router.route('/user/:id/:folder/:category/:activityId')
+  .delete(secureRoute, itemController.deleteActivity2)
+
+router.route('/:category/:id')
+  .get(itemController.singleItemId)
+  .put(secureRoute, itemController.editActivity)
+  .post(secureRoute, itemController.addActivity)
+  .delete(secureRoute, itemController.deleteActivity)
+
 
 router.route('/:category')
   // get all books, add new book
   .get(itemController.all)
-  .post(secureRoute, itemController.addNewActivity)
+  .post(secureRoute, itemController.addActivity)
 
-
-router.route('/:category/:id')
-  .get(itemController.singleItemId)
-  .put(itemController.editActivity)
-  .delete(itemController.deleteActivity)
 
 router.route('/:category/:id/comments')
-  .post(itemController.addNewComment)
+  .post(secureRoute, itemController.addNewComment)
 
 router.route('/:category/:id/comments/:commentid')
-  .put(itemController.editComment)
-  .delete(itemController.deleteComment)
+  .put(secureRoute, itemController.editComment)
+  .delete(secureRoute, itemController.deleteComment)
 
 
 
@@ -51,3 +56,7 @@ router.route('/:category/:id/comments/:commentid')
 //   .get(itemController.singleItem)
 
 module.exports = router
+
+
+
+// http://localhost:8001/api/user/5e7e1c8eae9cb347da6be033/savedItems/read/5e7e1c8eae9cb347da6be034
