@@ -21,18 +21,6 @@ function all(req, res) {
     .catch()
 }
 
-function singleItemName(req, res) {
-  const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
-  const title = req.params.title
-
-  mongoose.model(category)
-    .find({ 'title': title })
-    .then(item => {
-      res.send(item)
-    })
-    .catch(error => console.log(error))
-}
-
 function singleItemId(req, res) {
   console.log(req.params)
   const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
@@ -196,6 +184,7 @@ function addNewComment(req, res) {
   req.body.username = req.body.user.username
   console.log(req.body)
   mongoose.model(category)
+    
     .findById(id)
     .then(item => {
       item.comments.push(req.body)
@@ -240,7 +229,6 @@ function deleteComment(req, res) {
 
 module.exports = {
   all,
-  singleItemName,
   singleItemId,
   addNewActivity,
   editActivity,

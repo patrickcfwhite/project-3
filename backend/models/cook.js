@@ -9,7 +9,6 @@ const commentSchema = new mongoose.Schema({
 })
 
 const cookSchema = new mongoose.Schema({
-  // put unique true back on name
   title: { type: String, required: true, unique: true },
   ingredients: { type: Array, required: true },
   description: { type: String, required: true, maxlength: 1000 },
