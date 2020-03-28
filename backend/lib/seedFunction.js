@@ -381,7 +381,11 @@ function createRecipes(users) {
       category: 'Cook'
     },
     {
+<<<<<<< HEAD
+      title: 'Salmon & spinach with tartatre cream ',
+=======
       title: 'Salmon & spinach with tartar cream',
+>>>>>>> development
       ingredients: [
         '1 tsp sunflower or vegetable oil'
         , '2 skinless salmon fillets'
@@ -495,7 +499,11 @@ function createRecipes(users) {
         'Add the butter and set over a pan over simmering water. (Do not let the base of the bowl touch the water.)',
         'Cook for 15-20 minutes, stirring regularly, until the butter has melted and the mixture has thickened.',
         'Arrange the orange slices on the cooled tart and sprinkle over the demerara sugar.',
+<<<<<<< HEAD
+        'Using a cook\'s blowtorch, heat the sugar until caramelised.',
+=======
         'Using a cooks blowtorch, heat the sugar until caramelised.',
+>>>>>>> development
         'To serve, slice the tart and serve with double cream or custard.'
       ],
       image: 'https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/bloodorangetart_93766_16x9.jpg',
@@ -563,6 +571,7 @@ function createRecipes(users) {
       prepTime: 'less than 30 minutes',
       cookTime: 'No cooking required',
       serves: '1',
+      rating: 5,
       description: 'This tasty lunch is a really easy way to work more vegetables into your daily diet. If you’re taking it to work you might want to take the avocado whole and cut just before eating.',
       mealtype: 'Light Meal/Snack',
       dietary: 'Vegetarian',
@@ -593,6 +602,7 @@ function createRecipes(users) {
       prepTime: 'Less than 30 minutes',
       cookTime: '30 minutes to 1 hour',
       serves: '1 Loaf',
+      rating: 5,
       description: 'Soda bread is perhaps the easiest bread to make by hand - with little kneading and no waiting around for it to rise. Treacle gives it an earthy taste, darkens the crumb and crisps up the crust.',
       mealtype: 'Baking',
       dietary: 'Vegetarian',
@@ -624,6 +634,7 @@ function createRecipes(users) {
       prepTime: '30 minutes to an hour',
       cookTime: '30 minutes to an hour',
       serves: '6',
+      rating: 5,
       description: 'This easy chocolate recipe made with stem ginger is a perfect dinner party dessert.',
       mealtype: 'Dessert',
       dietary: 'Vegetarian',
@@ -656,6 +667,7 @@ function createRecipes(users) {
       prepTime: 'less than 30 minutes',
       cookTime: '30 minutes to an 1 hour',
       serves: '2',
+      rating: 5,
       description: 'Jackfruit is a great vegan alternative to pork and works perfectly with jerk seasoning. You can use fresh or tinned for this recipe. Make your own homemade vegan mayonnaise in seconds and save money.',
       mealtype: 'Main Course',
       dietary: 'Vegan',
