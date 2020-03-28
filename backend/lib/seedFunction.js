@@ -499,11 +499,7 @@ function createRecipes(users) {
         'Add the butter and set over a pan over simmering water. (Do not let the base of the bowl touch the water.)',
         'Cook for 15-20 minutes, stirring regularly, until the butter has melted and the mixture has thickened.',
         'Arrange the orange slices on the cooled tart and sprinkle over the demerara sugar.',
-<<<<<<< HEAD
-        'Using a cook\'s blowtorch, heat the sugar until caramelised.',
-=======
         'Using a cooks blowtorch, heat the sugar until caramelised.',
->>>>>>> development
         'To serve, slice the tart and serve with double cream or custard.'
       ],
       image: 'https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/bloodorangetart_93766_16x9.jpg',
