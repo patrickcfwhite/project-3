@@ -23,6 +23,7 @@ import Profile from './components/components/Profile'
 import Game from './components/components/Game'
 import SingleFilm from './components/components/SingleFilm'
 import AddItem from './components/components/AddItem'
+// import LoginModal from './components/components/Login'
 
 
 const App = () => (
@@ -34,6 +35,7 @@ const App = () => (
       <Route exact path='/watch' component={Watch}></Route>
       <Route exact path='/game' component={Game}></Route>
       <Route exact path='/register' component={Register}></Route>
+      {/* <Route exact path='/login' component={LoginModal}></Route> */}
       <Route path='/user/:id' component={Profile}></Route>
       <Route exact path='/add' component={AddItem}></Route>
       <Route exact path='/watch/:id' component={SingleFilm}></Route>
