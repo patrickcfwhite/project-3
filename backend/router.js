@@ -14,6 +14,7 @@ router.route('/user')
 
 router.route('/user/:id')
   .delete(secureRoute, userController.deleteUser)
+  .get(userController.singleUserId)
 
 router.route('/user/:id/:folder/:category/:activityId')
   .delete(secureRoute, itemController.deleteActivity2)
