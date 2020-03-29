@@ -973,6 +973,7 @@ body {
       flex-direction: column;
       height: 85%;
       align-items: center;
+      transform: translate(-5%,0);
 
       .category-select {
         height: 25%;
@@ -984,7 +985,7 @@ body {
         color:white;
         text-transform: capitalize;
         // background-color: green;
-        transform: translate(0, 130%);
+        transform: translate(0, 150%);
         z-index: 4;
 
         h1 {
@@ -1050,740 +1051,71 @@ body {
           }
          }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+         .add-form {
+          width: 100%;
+          // opacity: 0;
+          height: 85%;
+          // display: none;
+          // background-color: red;
+          transform: translate(0, -20px);
+  
+          form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: space-evenly;
+            opacity: 0;
+  
+            .short-inputs {
+              // background-color: rgb(35, 174, 255);
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              align-items: center;
+              height: 40%;
+              input {
+                margin: 0 5%;
+                width: 30%;
+                height: 15%;
+                &::placeholder {
+                  color:rgba(212, 209, 209, 0.6);
+                }
+              }
+            }
+  
+            button {
+              background-color: transparent;
+              color:white;
+              font-size: 15px;
+              margin-top: 10px;
+              margin-bottom: -10px;
+              border: none;
+              transition: 0.3s;
+              &:hover {
+                color:rgb(35, 174, 255);
+                cursor: pointer;
+              }
+            }
+          }
+              input {
+                margin: 8px 0 ;
+                width: 70%;
+                height: 7%;
+                border: none;
+                border-bottom: 1px whitesmoke solid;
+                background-color: transparent;
+                font-size: 14.5px;
+                color:white;
+                &::placeholder {
+                  color:rgba(212, 209, 209, 0.6);
+                }
+              }
+            }
+          }
+        
+  
 
 
 
@@ -1916,57 +1248,11 @@ form {
          }
        }
       }
-      .add-form {
-        width: 100%;
-        // opacity: 0;
-        height: 85%;
-        // display: none;
-        // background-color: red;
-        transform: translate(0, -20px);
-
-        form {
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-          height: 100%;
-          align-items: center;
-          justify-content: space-evenly;
-          opacity: 0;
-
-          button {
-            background-color: transparent;
-            color:white;
-            font-size: 15px;
-            margin-top: 10px;
-            margin-bottom: -10px;
-            border: none;
-            transition: 0.3s;
-            &:hover {
-              color:rgb(35, 174, 255);
-              cursor: pointer;
-            }
-          }
-        }
-            input {
-              margin: 8px 0 ;
-              width: 70%;
-              height: 7%;
-              border: none;
-              border-bottom: 1px whitesmoke solid;
-              background-color: transparent;
-              font-size: 14.5px;
-              color:white;
-              &::placeholder {
-                color:rgb(212, 209, 209);
-              }
-            }
-          }
-        }
-      
-
+     
       
     
 
       .Profile {
         color: white
       }
+        
