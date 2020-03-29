@@ -18,16 +18,13 @@ import NavBar from './components/components/NavBar'
 import Cook from './components/components/Cook'
 import Watch from './components/components/Watch'
 import Register from './components/components/Login'
-<<<<<<< HEAD
 import Profile from './components/components/Profile'
-=======
 import Game from './components/components/Game'
 import SingleFilm from './components/components/SingleFilm'
 
 import WatchForm from './components/components/forms/WatchForm'
 
 
->>>>>>> development
 
 
 const App = () => (
@@ -39,12 +36,9 @@ const App = () => (
       <Route exact path='/watch' component={Watch}></Route>
       <Route exact path='/game' component={Game}></Route>
       <Route exact path='/register' component={Register}></Route>
-<<<<<<< HEAD
       <Route path='/user/:id' component={Profile}></Route>
-=======
       <Route exact path='/add' component={AddItem}></Route>
       <Route exact path='/watch/:id' component={SingleFilm}></Route>
->>>>>>> development
     </Switch>
   </Router>
 )
