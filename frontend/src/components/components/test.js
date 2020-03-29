@@ -18,18 +18,13 @@ class test extends React.Component {
   }
 
   test(e) {
-
     this.props.history.currentGame = e.target.id
-    
-
     this.props.history.push('/game')
-
   }
 
   render() {
     return (
-        <h1 onClick={(e) => this.test(e)} id={this.state.response._id}> { this.state.response.title } </h1>
-
+      <h1 onClick={(e) => this.test(e)} id={this.state.response._id}> { this.state.response.title } </h1>
     )
 
   }
