@@ -1,10 +1,10 @@
 import React from 'react'
 import { TimelineLite } from 'gsap'
 
-import WatchForm from '../components/forms/ReadForm'
+import ReadForm from '../components/forms/ReadForm'
 import CookForm from '../components/forms/CookForm'
 import GameForm from '../components/forms/GameForm'
-import ReadForm from '../components/forms/ReadForm'
+import WatchForm from '../components/forms/WatchForm'
 
 class AddItem extends React.Component {
   constructor() {
@@ -56,8 +56,9 @@ class AddItem extends React.Component {
 
 
   render() {
-    console.log(this.state.submitObject)
     const { current } = this.myRef
+
+    console.log(current)
 
     return (
       <main>
