@@ -3,14 +3,15 @@ import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import auth from '../../../../backend/lib/auth'
 
-const LoginModal = ({ ToggleModal, HandleCloseFromLink }) => {
+const LoginModal = ({ ToggleModal, HandleCloseFromLink, props }) => {
+
+
   const [login, setLogin] = useState({ email: '', password: '' })
 
   function handleChange(event) {
     const { name, value } = event.target
-    const data = { ...login, [name]: value }
+    const data = { ...login , [name]: value }
     setLogin({ ...data })
-    console.log(this.props)
   }
 
   function handleSubmit(event) {
@@ -19,16 +20,17 @@ const LoginModal = ({ ToggleModal, HandleCloseFromLink }) => {
       .then(res => {
         const token = res.data.token
         auth.setToken(token)
-        console.log(this.props)
+        CloseNavBarandModal()
+        props.history.push(`/user/${auth.getUserId()}`)
       })
-      // .catch(error => console.log(error))
+      .catch(error => console.log(error))
   }
+
 
   function CloseNavBarandModal() {
     ToggleModal()
     HandleCloseFromLink()
   }
-
 
   return <div className='modal is-active'>
     <div className='modal-background' onClick={ToggleModal}></div>
