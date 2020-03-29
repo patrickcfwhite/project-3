@@ -1,34 +1,36 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
+import auth from '../../../../backend/lib/auth'
 
-const LoginModal = ({ ToggleModal, props, HandleCloseFromLink }) => {
+const LoginModal = ({ ToggleModal, HandleCloseFromLink, props }) => {
+
 
   const [login, setLogin] = useState({ email: '', password: '' })
 
   function handleChange(event) {
     const { name, value } = event.target
-    const login = { ...login, [name]: value }
-    setLogin({ login })
+    const data = { ...login , [name]: value }
+    setLogin({ ...data })
   }
 
   function handleSubmit(event) {
     event.preventDefault()
     axios.post('/api/login', login)
-      .then(() => props.history.push('/cook'))
-      // .then(response => {
-      //   console.log(response)
-      // })
+      .then(res => {
+        const token = res.data.token
+        auth.setToken(token)
+        CloseNavBarandModal()
+        props.history.push(`/user/${auth.getUserId()}`)
+      })
       .catch(error => console.log(error))
   }
+
 
   function CloseNavBarandModal() {
     ToggleModal()
     HandleCloseFromLink()
   }
-
-
-  console.log(setLogin)
 
   return <div className='modal is-active'>
     <div className='modal-background' onClick={ToggleModal}></div>
@@ -60,4 +62,4 @@ const LoginModal = ({ ToggleModal, props, HandleCloseFromLink }) => {
 
 
 
-export default LoginModal
+export default withRouter(LoginModal)

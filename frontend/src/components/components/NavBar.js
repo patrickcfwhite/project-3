@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { TimelineLite, Power1 } from 'gsap'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import LoginModal from './Login'
 
-const NavBar = () => {
+const NavBar = (props) => {
   // useState hook, array takes 2 args [stateName, setState]
   const [isOpen, setState] = useState(false)
   const [modalOpen, setModal] = useState(false)
@@ -12,6 +12,7 @@ const NavBar = () => {
   // throw { paused: true } stops animation from happening on page refresh
   const t1 = new TimelineLite()
 
+  // console.log(props)
   const HandleOpen = () => {
     t1
       // (selector, duration, {css properties}, animationDelay) 
@@ -54,7 +55,6 @@ const NavBar = () => {
     setModal(!modalOpen) 
   }
 
-  console.log(modalOpen)
   return (
     <>
       <aside className="aside">
@@ -85,17 +85,18 @@ const NavBar = () => {
             <li> 04. <span> WATCH / </span> on screen entertainment </li> 
           </Link>
 
-          <Link className='options' to='/login' style={linkStyle} onClick={ToggleModal}> 
+          <div className='options' style={linkStyle} onClick={ToggleModal}> 
             <li> 05. <span> LOGIN / </span> register </li> 
-          </Link>
+          </div>
 
         </ul>
       </div>
       {modalOpen ? <LoginModal 
         ToggleModal = {ToggleModal}
+        props = {props}
         HandleCloseFromLink = {HandleCloseFromLink} /> : null}
     </>
   )
 }
 
-export default NavBar
+export default withRouter(NavBar)
