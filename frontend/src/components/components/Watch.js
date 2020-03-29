@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 class Watch extends React.Component {
 
@@ -35,65 +36,83 @@ class Watch extends React.Component {
               src='https://movietrailers.apple.com/movies/wb/the-way-back/the-way-back-trailer-1_h1080p.mov#t=6,120'
             />
 
-            <h1 style={{ letterSpacing: '1px', margin: '20px 5px' }}> THE WAY BACK <span style={{ fontSize: '15px' }}> 2020 </span></h1>
-            <p> A troubled man with a formerly promising career in basketball struggles with alcoholism while coaching the basketball team at his old high school.</p>
+            <div className="jumbotron-title">
+              <h1 style={{ fontSize: '40px', letterSpacing: '1px', margin: '20px 5px' }}> THE WAY BACK <span style={{ fontSize: '15px' }}> 2020 </span></h1>
+              <p> A troubled man with a formerly promising career in basketball struggles with alcoholism while coaching the basketball team at his old high school.</p>
+            </div>
+
           </div>
 
 
 
-          <h3 style={{ margin: ' 15px 5px' }}> TOP 3 RECOMMENDATIONS </h3>
-          <div className="top-films-container">
-
-            {this.state.films.map((film, i) => {
-              if (i < 5) {
-                return (
-                  <video key={top._id} className="top-films"
-                    poster={film.image}
-                    onMouseOver={(e) => {
-                      e.target.setAttribute('src', film.trailer + '#t=11')
-                      e.target.play()
-                    }}
-                    onMouseOut={(e) => e.target.setAttribute('src', '')}
-                    src=''>
-                  </video>
-                )
-              }
-            })}
-          </div>
 
 
-          {/* this is the horizontal scroll movie section  */}
-
-          <h3 style={{ margin: ' 15px 5px' }}> TRENDING NOW </h3>
 
 
+          <h3 style={{ margin: ' 15px 5px' }}> TOP FILM RECOMMENDATIONS </h3>
 
           <div className="inner-wrapper">
 
-            {this.state.films.map((film, i) => {
-              if (i >= 5) {
+            {this.state.films.map(film => {
+              if (film.subcategory.toLowerCase() === 'film') {
                 return (
-                  <video id='video' className="box"
-                    poster={film.image}
-                    onMouseOver={(e) => {
-                      e.target.setAttribute('src', film.trailer + '#t=6')
-                      e.target.play()
-                    }}
-                    onMouseOut={(e) => e.target.setAttribute('src', '')}
-                    src=''
-                  />
+                  <div className="video-container">
+                    <video id='video' className="box"
+                      poster={film.image}
+                      onMouseOver={(e) => {
+                        e.target.setAttribute('src', film.trailer + '#t=6')
+                        e.target.play()
+                      }}
+                      onMouseOut={(e) => e.target.setAttribute('src', '')}
+                      src=''
+                    />
+
+                    <div className="video-info">
+                      <h3> {film.title} </h3>
+                     
+                      <Link to={`./watch/${film._id}`} > <button> MORE INFO </button> </Link>
+                    </div>
+                  </div>
+
                 )
 
               }
 
             })}
 
+          </div>
+
+          {/* this is the horizontal scroll movie section  */}
+
+          <h3 style={{ margin: ' 15px 5px' }}> TRENDING TV SERIES </h3>
+
+          <div className="inner-wrapper">
+
+            {this.state.films.map(film => {
+              if (film.subcategory.toLowerCase() === 'tv series') {
+                return (
+                  <div className="video-container">
+                    <video id='video' className="box"
+                      poster={film.image}
+                      onMouseOver={(e) => {
+                        e.target.setAttribute('src', film.trailer + '#t=10')
+                        e.target.play()
+                      }}
+                      onMouseOut={(e) => e.target.setAttribute('src', '')}
+                      src=''
+                    />
+                    <div className="video-info">
+                      <h3> {film.title} </h3>
+                      <Link to={`./watch/${film._id}`} > <button> MORE INFO </button> </Link>
+                    </div>
+                  </div>
 
 
+                )
 
+              }
 
-
-
+            })}
 
           </div>
 
