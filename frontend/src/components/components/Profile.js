@@ -12,20 +12,25 @@ class Profile extends React.Component {
       uploads: [],
       savedItems: [],
       following: [],
-      followedBy: []
+      followedBy: [],
+      follow: false
     }
   }
 
   populateArray(arr, name) {
     for (const i of arr) {
-     const path = name === 'following' || name === 'followedBy' ? 'user' : i[1]
+      const path = name === 'following' || name === 'followedBy' ? 'user' : i[1]
       axios.get(`/api/${path}/${i[0]}`)
         .then(resp => {
-          console.log(resp.data)
+          // console.log(resp.data)
           const data = this.state[name].push(resp.data)
           this.setState({ name: data })
         })
     }
+  }
+
+  isProfile() {
+    return auth.getUserId() === this.state.user._id
   }
 
   componentDidMount() {
@@ -40,22 +45,60 @@ class Profile extends React.Component {
         this.populateArray(savedItems, 'savedItems')
         this.populateArray(following, 'following')
         this.populateArray(followedBy, 'followedBy')
+        this.toggleFollow()
       })
   }
 
+  toggleFollow() {
+    const userId = auth.getUserId()
+    this.state.user.followedBy.some(x => x.toString() === userId.toString()) ? this.setState({ follow: true }) : this.setState({ follow: false })
+  }
+
+  followUser() {
+    if (this.isProfile()) return
+    const token = auth.getToken()
+    const path = (this.props.location.pathname)
+
+    axios.post(`/api/${path}`, {}, { headers: { authorization: `Bearer ${token}` } })
+      .then(res => {
+        console.log(res.data)
+        window.location.reload()
+      })
+      .catch(error => console.log(error))
+  }
+
+  unfollowUser() {
+    if (this.isProfile()) return
+    const token = auth.getToken()
+    const path = this.props.location.pathname
+    const user = auth.getUserId()
+
+    axios.delete(`/api/user/${user}/following${path}`, { headers: { authorization: `Bearer ${token}` } })
+      .then(res => {
+        console.log(res.data)
+        window.location.reload()
+      })
+      .catch(error => console.log(error))
+  }
+
   render() {
+    // console.log(this.props)
+    console.log(this.state.follow)
     const { username, firstname, createdAt } = this.state.user
+    const { follow, followedBy, following, savedItems, uploads } = this.state
+    const isProfile = this.isProfile()
     const joined = new Date(createdAt)
     if (!this.state) return <h1>Loading!</h1>
     return (
 
       <div className="Profile">
-        <p>Welcome back {firstname}!</p>
+        {isProfile && <p>Welcome back {firstname}!</p>}
         <h1>My Profile</h1>
         <h2></h2>
         <p>joined {moment(joined).fromNow()}</p>
         <h2>{username}</h2>
-        <h2>Uploads:</h2>
+        <h2>Uploads: {uploads.length}</h2>
+        
         {this.state.uploads.map(upload => {
           return (
             <div key={upload._id}>
@@ -65,7 +108,7 @@ class Profile extends React.Component {
             </div>
           )
         })}
-        <h2>Saved Items:</h2>
+        <h2>Saved Items: {savedItems.length}</h2>
         {this.state.savedItems.map(saved => {
           return (
             <div key={saved._id}>
@@ -75,7 +118,7 @@ class Profile extends React.Component {
             </div>
           )
         })}
-        <h2>Following:</h2>
+        <h2>Following: {following.length}</h2>
         {this.state.following.map(follow => {
           return (
             <div key={follow._id}>
@@ -88,7 +131,8 @@ class Profile extends React.Component {
             </div>
           )
         })}
-        <h2>Followers:</h2>
+        <h2>Followers: {followedBy.length}</h2>
+
         {this.state.followedBy.map(follow => {
           return (
             <div key={follow._id}>
@@ -101,6 +145,8 @@ class Profile extends React.Component {
             </div>
           )
         })}
+        {!isProfile && !follow && <button onClick={() => this.followUser()}>Follow here</button>}
+        {!isProfile && follow && <button onClick={() => this.unfollowUser()}>Unfollow here</button>}
       </div>
     )
   }
