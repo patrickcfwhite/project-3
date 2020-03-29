@@ -14,7 +14,8 @@ const schema = new mongoose.Schema({
   uploads: { type: Array, required: true },
   savedItems: { type: Array, required: true },
   //following: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false }
-  following: { type: Array, required: true }
+  following: { type: Array, required: true },
+  image: { type: String , required: false }
 
 })
 

@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import 'bulma'
 import './styles/style.scss'
 import axios from 'axios'
 
@@ -16,7 +17,7 @@ import HomePage from './components/components/HomePage'
 import NavBar from './components/components/NavBar'
 import Cook from './components/components/Cook'
 import Watch from './components/components/Watch'
-import Register from './components/components/Login'
+import Register from './components/components/Register'
 
 
 const App = () => (
@@ -28,6 +29,7 @@ const App = () => (
       <Route exact path='/watch' component={Watch}></Route>
       <Route exact path='/game' component={Game}></Route>
       <Route exact path='/register' component={Register}></Route>
+
     </Switch>
   </Router>
 )

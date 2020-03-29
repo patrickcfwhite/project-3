@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { TimelineLite, Power1 } from 'gsap'
 import { Link } from 'react-router-dom'
+import LoginModal from './Login'
 
 const NavBar = () => {
   // useState hook, array takes 2 args [stateName, setState]
   const [isOpen, setState] = useState(false)
+  const [modalOpen, setModal] = useState(false)
 
   // from defines starting position to what we currently have rendered on the page, as its final position
   // throw { paused: true } stops animation from happening on page refresh
@@ -12,7 +14,7 @@ const NavBar = () => {
 
   const HandleOpen = () => {
     t1
-    // (selector, duration, {css properties}, animationDelay) 
+      // (selector, duration, {css properties}, animationDelay) 
       .to('main', 1.5, { width: '52vw', ease: Power1.easeOut })
       .to('.navbar', 1.5, { width: '36vw', ease: Power1.easeOut }, '-=1.5')
       .to('.game-description, .rating', 0.1, { opacity: 0, ease: Power1.easeOut }, '-=1.5')
@@ -20,7 +22,7 @@ const NavBar = () => {
         { display: 'flex', opacity: 1, x: 0 })
       .fromTo('.options', { opacity: 0, x: -50, ease: Power1.easeOut },
         { opacity: 1, x: 0, stagger: 0.25, ease: Power1.easeIn }, '-=0.5')
-      
+
     setState(true)
   }
 
@@ -48,6 +50,11 @@ const NavBar = () => {
     textDecoration: 'none'
   }
 
+  const ToggleModal = () => {
+    setModal(!modalOpen) 
+  }
+
+  console.log(modalOpen)
   return (
     <>
       <aside className="aside">
@@ -60,30 +67,33 @@ const NavBar = () => {
         <h3> - bringing together ideas and opinions - </h3>
       </aside>
 
-      <div  className="navbar">
+      <div className="navbar">
         <ul className='items'>
-          <Link className='options'to='/cook' style={linkStyle} onClick={HandleCloseFromLink}> 
-            <li> 01. <span> COOK / </span> the recipes </li> 
+          <Link className='options' to='/cook' style={linkStyle} onClick={HandleCloseFromLink}>
+            <li> 01. <span> COOK / </span> the recipes </li>
           </Link>
 
-          <Link className='options' to='/game' style={linkStyle} onClick={HandleCloseFromLink}> 
-            <li> 02. <span> GAME / </span> social in social distancing </li> 
+          <Link className='options' to='/game' style={linkStyle} onClick={HandleCloseFromLink}>
+            <li> 02. <span> GAME / </span> social in social distancing </li>
           </Link>
 
-          <Link className='options' to='/read' style={linkStyle} onClick={HandleCloseFromLink}> 
-            <li> 03. <span> READ / </span> be inspired </li> 
+          <Link className='options' to='/read' style={linkStyle} onClick={HandleCloseFromLink}>
+            <li> 03. <span> READ / </span> be inspired </li>
           </Link>
 
-          <Link className='options' to='/watch' style={linkStyle} onClick={HandleCloseFromLink}> 
-            <li> 04. <span> WATCH/ </span> on screen entertainment </li> 
+          <Link className='options' to='/watch' style={linkStyle} onClick={HandleCloseFromLink}>
+            <li> 04. <span> WATCH/ </span> on screen entertainment </li>
           </Link>
 
-          <Link className='options' to='/login' style={linkStyle} onClick={HandleCloseFromLink}> 
-            <li> 05. <span> LOGIN/ </span> register </li> 
-          </Link>
+          <div className='options' style={linkStyle} onClick={ToggleModal}>
+            <li> 05. <span> LOGIN/ </span> register </li>
+          </div>
 
         </ul>
       </div>
+      {modalOpen ? <LoginModal 
+        ToggleModal = {ToggleModal}
+        HandleCloseFromLink = {HandleCloseFromLink} /> : null}
     </>
   )
 }

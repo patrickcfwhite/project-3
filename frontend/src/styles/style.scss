@@ -757,6 +757,866 @@ body {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     // Registeration Page
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+.register-title {
+  align-content: space-between;
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+  width: 80%;
+  margin-top: 60px;
+  h1 {
+    font-size: 3em;
+  }
+  .already-registered {
+    margin: 40px;
+    letter-spacing: 5px;
+  a {
+    color: white;
+    text-decoration: none;
+    &:hover {
+      color: lightgrey;
+    }
+  }
+
+  }
+}
+.form-container {
+  height: 100%;
+  width: 80%;
+  display: flex;
+  padding: 10px;
+  border-radius: 20px;
+  align-self: center;
+  justify-content: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  .field {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    .btn {
+      padding: 5px;
+      font-family: 'Raleway', sans-serif;
+      padding-left: 20px;
+      height: 40px;
+      width: 400px;
+      border-bottom: 1px solid lightgrey;
+      color: white;
+      opacity: 0.7;
+      background-color: transparent;
+      font-size: 20px;
+      &:hover {
+        color:  #010911;
+        font-weight: bolder;
+      }
+    }
+    input[type=file]  {
+      font-size: 100px;
+      opacity: 0;
+      border: 1px solid white;
+    }
+  }
+  input {
+    background-color: transparent;
+    height: 40px;
+    width: 400px;
+    font-size: 20px;
+    padding: 20px;
+    color: white;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    &::placeholder { 
+      color: white;
+      opacity: 0.7;
+      font-family: 'Raleway', sans-serif;
+    }
+  } 
+  .submit {
+    align-items: center;
+    button {
+      width: 100%;
+      justify-self: center;
+      background-color: transparent;
+      color: white;
+      font-size: large;
+      padding: 20px 30px;
+      font-family: 'Raleway', sans-serif;
+      border-radius: 5px;
+      &:hover {
+        background-color: white;
+        color:  #010911;
+        font-weight: bolder;
+      }
+      &:active {
+        background-color: whitesmoke;
+        color:  #010911;
+        font-weight: bolder;
+      }
+    }
+  }
+    }
+
+    // Modal
+
+  .modal-content {
+    height: 60vh;
+    }
+
       }
       
     

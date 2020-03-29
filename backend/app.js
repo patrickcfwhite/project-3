@@ -16,6 +16,7 @@ mongoose.connect(
 
 expressServer.use(bodyParser.json())
 
+
 expressServer.use((req, res, next) => {
   console.log(`Incoming ${req.method} to ${req.url}`)
   next()
