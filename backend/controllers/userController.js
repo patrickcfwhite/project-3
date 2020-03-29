@@ -39,8 +39,9 @@ function login(req, res) {
       // expiresIn says how long the token will be valid for
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
       res.status(202).send({ message: `Welcome back ${user.username}`, token })
+      
     })
-
+    .catch(error => console.log(error))
 }
 
 function displayUsers(req, res) {

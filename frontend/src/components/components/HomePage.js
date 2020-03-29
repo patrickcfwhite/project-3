@@ -1,4 +1,6 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
+
 
 const HomePage = () => {
 
@@ -20,4 +22,4 @@ const HomePage = () => {
 
 }
 
-export default HomePage
+export default withRouter(HomePage)

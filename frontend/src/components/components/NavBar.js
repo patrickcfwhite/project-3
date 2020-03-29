@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { TimelineLite, Power1 } from 'gsap'
-import { Link } from 'react-router-dom'
+import { Link, withRouter  } from 'react-router-dom'
 import LoginModal from './Login'
 
 const NavBar = () => {
@@ -53,7 +53,6 @@ const NavBar = () => {
   const ToggleModal = () => {
     setModal(!modalOpen) 
   }
-
   console.log(modalOpen)
   return (
     <>
@@ -98,4 +97,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default withRouter(NavBar)

@@ -1,23 +1,27 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
+import auth from '../../../../backend/lib/auth'
 
-const LoginModal = ({ ToggleModal, props, HandleCloseFromLink }) => {
-
+const LoginModal = ({ ToggleModal, HandleCloseFromLink }) => {
   const [login, setLogin] = useState({ email: '', password: '' })
 
   function handleChange(event) {
     const { name, value } = event.target
     const data = { ...login, [name]: value }
-    setLogin({ data })
+    setLogin({ ...data })
+    console.log(this.props)
   }
 
   function handleSubmit(event) {
     event.preventDefault()
-    axios.post('/api/login',
-      login)
-      .then(() => props.history.push('/'))
-      .catch(error => console.log(error))
+    axios.post('/api/login', login)
+      .then(res => {
+        const token = res.data.token
+        auth.setToken(token)
+        console.log(this.props)
+      })
+      // .catch(error => console.log(error))
   }
 
   function CloseNavBarandModal() {
@@ -56,4 +60,4 @@ const LoginModal = ({ ToggleModal, props, HandleCloseFromLink }) => {
 
 
 
-export default LoginModal
+export default withRouter(LoginModal)
