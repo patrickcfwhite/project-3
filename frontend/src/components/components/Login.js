@@ -8,8 +8,8 @@ const LoginModal = ({ ToggleModal, props, HandleCloseFromLink }) => {
 
   function handleChange(event) {
     const { name, value } = event.target
-    const login = { ...login, [name]: value }
-    setLogin({ login })
+    const data = { ...login, [name]: value }
+    setLogin({ data })
   }
 
   function handleSubmit(event) {
@@ -26,7 +26,6 @@ const LoginModal = ({ ToggleModal, props, HandleCloseFromLink }) => {
   }
 
 
-  console.log(ToggleModal)
   return <div className='modal is-active'>
     <div className='modal-background' onClick={ToggleModal}></div>
     <div className="modal-content">
