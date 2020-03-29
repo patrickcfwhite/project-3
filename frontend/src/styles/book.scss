@@ -1,0 +1,16 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  user-select: none;
+  outline: none;
+}
+
+.book-container {
+  width: 80vw;
+  display: flex;
+  flex-wrap: wrap;
+  img {
+    height: 40%;
+  }
+}
