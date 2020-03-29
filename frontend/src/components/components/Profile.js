@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
 import auth from '../../../../backend/lib/auth'
 
 class Profile extends React.Component {
@@ -16,20 +17,19 @@ class Profile extends React.Component {
   }
 
   populateArray(arr, name) {
-    console.log(arr, name)
     for (const i of arr) {
-      axios.get(`/api/user/${i}`)
+     const path = name === 'following' || name === 'followedBy' ? 'user' : i[1]
+      axios.get(`/api/${path}/${i[0]}`)
         .then(resp => {
-          console.log('data equals oh yeah!!!', resp.data)
-          const egg = this.state[name].push(resp.data)
-          console.log(egg)
-          this.setState({ name: egg })
+          console.log(resp.data)
+          const data = this.state[name].push(resp.data)
+          this.setState({ name: data })
         })
     }
   }
 
   componentDidMount() {
-    
+
     const id = this.props.match.params.id
     console.log(this.props)
     axios.get(`/api/user/${id}`)
@@ -45,10 +45,7 @@ class Profile extends React.Component {
 
   render() {
     const { username, firstname, createdAt } = this.state.user
-    console.log(createdAt)
-    let joined = new Date(createdAt)
-    console.log(joined)
-    // console.log(this.state)
+    const joined = new Date(createdAt)
     if (!this.state) return <h1>Loading!</h1>
     return (
 
@@ -56,23 +53,51 @@ class Profile extends React.Component {
         <p>Welcome back {firstname}!</p>
         <h1>My Profile</h1>
         <h2></h2>
-    <p>joined {moment(joined).fromNow()}</p>
-        <h2>{this.state.user.firstname}</h2>
-        <h2>Following:</h2>
-        {this.state.following.map(follow=> {
+        <p>joined {moment(joined).fromNow()}</p>
+        <h2>{username}</h2>
+        <h2>Uploads:</h2>
+        {this.state.uploads.map(upload => {
           return (
-            <div key={follow._id}>
-              <h3>Username: {follow.username}</h3>
-              <h3>Name: {follow.firstname}</h3>
+            <div key={upload._id}>
+              <img src={upload.image} />
+              <h3>{upload.title}</h3>
+              <h3>{upload.category}</h3>
             </div>
           )
         })}
-        <h2>Uploads:</h2>
-        {this.state.uploads.map(upload=> {
+        <h2>Saved Items:</h2>
+        {this.state.savedItems.map(saved => {
           return (
-            <div key={upload._id}>
-              <h3>{upload.title}</h3>
-              <h3>{upload.category}</h3>
+            <div key={saved._id}>
+              <img src={saved.image} />
+              <h3>{saved.title}</h3>
+              <h3>{saved.category}</h3>
+            </div>
+          )
+        })}
+        <h2>Following:</h2>
+        {this.state.following.map(follow => {
+          return (
+            <div key={follow._id}>
+              <a href={`/user/${follow._id}`}>
+                <img src={follow.image} />
+                <h3>Username: {follow.username}</h3>
+                <h3>Name: {follow.firstname}</h3>
+              </a>
+
+            </div>
+          )
+        })}
+        <h2>Followers:</h2>
+        {this.state.followedBy.map(follow => {
+          return (
+            <div key={follow._id}>
+              <a href={`/user/${follow._id}`}>
+                <img src={follow.image} />
+                <h3>Username: {follow.username}</h3>
+                <h3>Name: {follow.firstname}</h3>
+              </a>
+
             </div>
           )
         })}
