@@ -85,7 +85,7 @@ const NavBar = () => {
             <li> 04. <span> WATCH / </span> on screen entertainment </li> 
           </Link>
 
-          <Link className='options' to='/login' style={linkStyle} onClick={HandleCloseFromLink}> 
+          <Link className='options' to='/login' style={linkStyle} onClick={ToggleModal}> 
             <li> 05. <span> LOGIN / </span> register </li> 
           </Link>
 
