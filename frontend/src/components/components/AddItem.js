@@ -42,7 +42,7 @@ class AddItem extends React.Component {
     const t1 = new TimelineLite
     t1
       .to('.subcat', 0.1, { display: 'none' })
-      .to('.category-select', 0.7, { transform: 'translate(0, 0)' }, '+=0.5')
+      .to('.category-select', 0.7, { transform: 'translate(0, -10%)' }, '+=0.5')
       .to('.add-form', 0.1, { display: 'block' })
       .to('.add-form', 0.4, { opacity: 1 })
       .to('form', 0.3, { opacity: 1 })
