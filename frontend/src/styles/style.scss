@@ -973,6 +973,7 @@ body {
       flex-direction: column;
       height: 85%;
       align-items: center;
+      transform: translate(-5%,0);
 
       .category-select {
         height: 25%;
@@ -984,7 +985,7 @@ body {
         color:white;
         text-transform: capitalize;
         // background-color: green;
-        transform: translate(0, 130%);
+        transform: translate(0, 150%);
         z-index: 4;
 
         h1 {
@@ -1049,10 +1050,6 @@ body {
             }
           }
          }
-
-
-
-           
          }
        }
       }
@@ -1072,6 +1069,23 @@ body {
           align-items: center;
           justify-content: space-evenly;
           opacity: 0;
+
+          .short-inputs {
+            // background-color: rgb(35, 174, 255);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            height: 40%;
+            input {
+              margin: 0 5%;
+              width: 30%;
+              height: 15%;
+              &::placeholder {
+                color:rgba(212, 209, 209, 0.6);
+              }
+            }
+          }
 
           button {
             background-color: transparent;
@@ -1097,14 +1111,8 @@ body {
               font-size: 14.5px;
               color:white;
               &::placeholder {
-                color:rgb(212, 209, 209);
+                color:rgba(212, 209, 209, 0.6);
               }
             }
           }
         }
-      
-
-      
-    
-
-
