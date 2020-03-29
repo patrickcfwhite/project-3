@@ -72,7 +72,8 @@ class AddItem extends React.Component {
                 <li onClick={(e) => this.HandleOptions(e)} id='Game'> Game </li>
                 <li onClick={(e) => this.HandleOptions(e)} id='Read'> Read </li>
 
-                <li onClick={(e) => this.HandleOpen(e)} className="watch"> Watch
+                <li onClick={(e) => this.HandleOpen(e)} className="watch"> Watch 
+                  <ion-icon style={{ animation: 'none', fontSize: '16px', transform: 'translate(-4px, -6px)' }} name="add-outline"></ion-icon>
                   <li className='subcat' onClick={(e) => this.HandleOptions(e)} id='Film'>Film</li>
                   <li className='subcat' onClick={(e) => this.HandleOptions(e)} id='TV Series'> TV Series</li>
                 </li>

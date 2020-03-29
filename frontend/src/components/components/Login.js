@@ -14,9 +14,11 @@ const LoginModal = ({ ToggleModal, props, HandleCloseFromLink }) => {
 
   function handleSubmit(event) {
     event.preventDefault()
-    axios.post('/api/login',
-      login)
-      .then(() => props.history.push('/'))
+    axios.post('/api/login', login)
+      .then(() => props.history.push('/cook'))
+      // .then(response => {
+      //   console.log(response)
+      // })
       .catch(error => console.log(error))
   }
 
@@ -26,7 +28,8 @@ const LoginModal = ({ ToggleModal, props, HandleCloseFromLink }) => {
   }
 
 
-  console.log(ToggleModal)
+  console.log(setLogin)
+
   return <div className='modal is-active'>
     <div className='modal-background' onClick={ToggleModal}></div>
     <div className="modal-content">
