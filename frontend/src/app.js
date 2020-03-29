@@ -61,18 +61,40 @@ class Read extends React.Component {
       })
   }
 
+  handleBookTitle(e) {
+    const t1 = new TimelineLite
+    let id
+    e.target.tagName === 'IMG' ? id = '.' + e.target.previousSibling.className : null
+    t1
+      .to(e.target, 0.2, { display: 'none' })
+      .to(id, 0.5, { display: 'block', opacity: 1 })
+    console.log(id)
+  }
+
+  handleBookTitleOut(e) {
+    const t1 = new TimelineLite
+    let id 
+    e.target.tagName === 'IMG' ? id = '.' + e.target.nextSibling.className : null
+    t1 
+      .to(id, 0.5, { display: 'none', opacity: 0 })
+      .to(e.target, 0.2, { display: 'block' })
+   
+  }
+
+
+
   render() {
-    return <div>
+    return <main>
       <div className="book-container">
         {this.state.books.map(book => {
-          return <div key={book._id} className='book'>
+          return <div key={book._id} className='book' onMouseEnter={(e) => this.handleBookTitle(e)} onMouseOut={(e) => this.handleBookTitleOut(e)} >
+            <div id='overlay' className={book.description.replace(/\W/g, '')}><h2>{book.title}</h2></div>
             <img src={book.image} />
-            <h2>{book.title}</h2>
           </div>
         })}
 
       </div>
-    </div>
+    </main>
   }
 }
 
