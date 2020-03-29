@@ -12,14 +12,13 @@ const NavBar = () => {
 
   const HandleOpen = () => {
     t1
-    // (selector, duration, {css properties}, animationDelay) 
       .to('main', 1.5, { width: '52vw', ease: Power1.easeOut })
-      .to('.navbar', 1.5, { width: '36vw', ease: Power1.easeOut }, '-=1.5')
+      .to('.navbar', 1.5, { width: '34vw', ease: Power1.easeOut }, '-=1.5')
       .to('.game-description, .rating', 0.1, { opacity: 0, ease: Power1.easeOut }, '-=1.5')
       .fromTo('.items', 0.7, { display: 'none', opacity: 0, x: -50, ease: Power1.easeOut },
         { display: 'flex', opacity: 1, x: 0 })
-      .fromTo('.options', { opacity: 0, x: -50, ease: Power1.easeOut },
-        { opacity: 1, x: 0, stagger: 0.25, ease: Power1.easeIn }, '-=0.5')
+      .fromTo('.options', { opacity: 0, x: -30, ease: Power1.easeOut },
+        { opacity: 1, x: 0, stagger: 0.1,ease: Power1.easeIn }, '-=0.5')
       
     setState(true)
   }
@@ -75,11 +74,11 @@ const NavBar = () => {
           </Link>
 
           <Link className='options' to='/watch' style={linkStyle} onClick={HandleCloseFromLink}> 
-            <li> 04. <span> WATCH/ </span> on screen entertainment </li> 
+            <li> 04. <span> WATCH / </span> on screen entertainment </li> 
           </Link>
 
           <Link className='options' to='/login' style={linkStyle} onClick={HandleCloseFromLink}> 
-            <li> 05. <span> LOGIN/ </span> register </li> 
+            <li> 05. <span> LOGIN / </span> register </li> 
           </Link>
 
         </ul>
