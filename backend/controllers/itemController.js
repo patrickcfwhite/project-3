@@ -51,8 +51,8 @@ function addNewActivity(req, res) {
 function addActivity(req, res) {
   const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
   req.body.user = req.currentUser
-  const folder = req.params.id ? 'savedItems' : 'uploads'
-  console.log(req.params)
+  const folder = !req.params.id ? 'uploads' : req.params.category !== 'user' ? 'savedItems' : 'following'
+  console.log(req.params, folder)
   if (folder === 'uploads') {
     mongoose.model(category)
       .create(req.body)
@@ -63,8 +63,10 @@ function addActivity(req, res) {
   } else {
     mongoose.model(category).findById(req.params.id)
       .then(item => {
+        console.log('hello, ', item)
+        const target = folder === 'savedItems' ? 'savedBy' : 'followedBy'
         userController.addToFolder(req, res, item, folder)
-        item.savedBy.push([req.currentUser._id])
+        item[target].push([req.currentUser._id])
         return item.save()
       })
       .catch(error => console.log(error))
@@ -137,17 +139,6 @@ function deleteActivity2(req, res) {
         return item
       })
       .then(item => item.remove())
-      // .then(() => {
-      //   console.log('uploads ', folder)
-        
-      // })
-      // .then(() => {
-      //   folder = 'savedItems'
-      //   for (const user of savedBy) {
-      //     console.log('iterating ', savedBy)
-      //     userController.deleteFromFolder(req, user, folder)
-      //   }
-      // })
       .then(() => res.send({ message: 'Item removed from database' }))
       .catch(error => console.log(error))
   } else if (folder === 'savedItems') {
@@ -167,6 +158,24 @@ function deleteActivity2(req, res) {
         userController.deleteFromFolder(req, req.currentUser._id, 'savedItems')
       })
       .then(() => res.send({ message: 'Item removed from savedItems' }))
+      .catch(error => console.log(error))
+  } else if (folder === 'following') {
+    mongoose.model(category)
+      .findById(activityId)
+      .then(item => {
+        for (const userId of item.followedBy) {
+          let index
+          if (userId === req.currentUser._id) {
+            index = item.followedBy.indexOf(userId)
+          }
+          item.followedBy.splice(index, 1)
+        }
+        return item.save()
+      })
+      .then(() => {
+        userController.deleteFromFolder(req, req.currentUser._id, 'following')
+      })
+      .then(() => res.send({ message: 'user removed from following' }))
       .catch(error => console.log(error))
   } else {
     console.log('error')

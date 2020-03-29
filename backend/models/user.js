@@ -15,12 +15,18 @@ const schema = new mongoose.Schema({
   savedItems: { type: Array, required: true },
   //following: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false }
   following: { type: Array, required: true },
+<<<<<<< HEAD
   image: { type: String , required: false }
 
+=======
+  followedBy: { type: Array, required: true }
+}, {
+  timestamps: true // provide a createdAt field and an updatedAt field
+>>>>>>> development
 })
 
 schema.plugin(require('mongoose-unique-validator'))
-schema.plugin(mongooseHidden,  { hidden: { password: true } })
+schema.plugin(mongooseHidden, { hidden: { password: true }, defaultHidden: { _id: false } })
 // Remove certain fields from our user response
 // userSchema.set('toJSON', {
 //   transform(doc, json)
