@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
+
 class Watch extends React.Component {
 
   constructor() {
@@ -25,7 +26,7 @@ class Watch extends React.Component {
 
 
     return (
-      <main>
+      <main className='watch-main'>
 
         <div className="main-container">
 

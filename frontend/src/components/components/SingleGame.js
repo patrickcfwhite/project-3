@@ -34,7 +34,7 @@ const SingleGame = ({ RenderComments, singleGame, singleGameComments, isComments
 
     setTimeout(() => {
       RenderComments()
-    }, 2000)
+    }, 1000)
    
   }
 

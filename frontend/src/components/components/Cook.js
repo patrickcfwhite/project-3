@@ -3,6 +3,7 @@ import React from 'react'
 import axios from 'axios'
 import { TimelineLite, Power4 } from 'gsap'
 import moment from 'moment'
+import auth from '../../../../backend/lib/auth'
 
 class Cook extends React.Component {
 
@@ -37,9 +38,9 @@ class Cook extends React.Component {
       return
     } else if (i.parentNode.className === 'card-image' || i.parentNode.className === 'card-info') {
       id = e.target.parentNode.parentNode
-    } else if (i.parentNode.className === 'card-info-bottom' || i.tagName === 'LI' ) {
+    } else if (i.parentNode.className === 'card-info-bottom' || i.tagName === 'LI') {
       id = e.target.parentNode.parentNode.parentNode
-    } 
+    }
     console.log(id)
 
     this.state.recipes.map(other => {
@@ -63,6 +64,7 @@ class Cook extends React.Component {
       .to(id, 0.2, { opacity: 0 }, '-=0.3')
       .to(others, 0.4, { display: 'none' }, '+=0.1')
       .to('.recipe-container', 0.1, { paddingTop: 0 })
+      .to(id, 0.1, { backgroundColor: 'rgba(173, 161, 161, 0.822)' }, '+=0.1')
       .to(id, 0.4, { opacity: 1 }, '+=0.1')
       .to(id, 0.2, { height: '83vh' }, '+=0.3')
       .to(id, 0.4, { width: '100%' }, '+=0.3')
@@ -73,34 +75,14 @@ class Cook extends React.Component {
 
   HandleCollapse(e) {
     const others = []
-    let id = ''
-
-    if (e.target.tagName === 'BUTTON') {
-      return
-    } else if (e.target.parentNode.className === 'single-left') {
-      id = e.target.parentNode.parentNode
-    } else if (e.target.parentNode.parentNode.className === 'single-left') {
-      id = e.target.parentNode.parentNode.parentNode
-    } else if (e.target.parentNode.parentNode.parentNode.className === 'single-left') {
-      id = e.target.parentNode.parentNode.parentNode.parentNode
-    } else {
-      id = e.target.parentNode.parentNode
-    }
-
-    console.log(id)
+    let id = e.target.parentNode
 
     this.state.recipes.map(other => {
-      if (other.title.replace(/\W/g, '') !== id.id.replace(/\W/g, '')) {
-        others.push('.' + other.title.replace(/\W/g, ''))
-      }
+      other.title.replace(/\W/g, '') !== id.id.replace(/\W/g, '') ? others.push('.' + other.title.replace(/\W/g, '')) : null
     })
 
     if (others.length === 14) {
-
       id = '.' + id.id.replace(/\W/g, '')
-
-      console.log(id)
-
       const t1 = new TimelineLite
       t1
         .to('.methods', 0.1, { color: 'black', textDecoration: 'none' })
@@ -111,20 +93,21 @@ class Cook extends React.Component {
         .to(id, 0.2, { height: '36vh' }, '+=0.5')
         .to(id, 0.2, { opacity: 0 }, '+=0.4')
         .to('.recipe-container', 0.1, { paddingTop: '86vh' }, '+=0.5')
+        .to(id, 0.1, { backgroundColor: '#010911' }, '+=0.1')
         .to(others, 0.4, { display: 'flex' }, '+=0.4')
         .to(id, 0.2, { opacity: 1 }, '-=0.3')
         .to(others, 0.2, { opacity: 1 }, '-=0.3')
         .to('.card-image, .card-info', 0.5, { opacity: 1 })
-
     }
   }
 
-  HandleOpenRecipeComments() {
+  HandleOpenRecipeComments(e) {
+    console.log(e.target.childNode)
     const t1 = new TimelineLite
     t1
       .to('.to-hide, .recipe-mid-section', 0.5, { opacity: 0 })
       .to('.to-hide, .recipe-mid-section', 0.2, { display: 'none' })
-      .to('.recipe-comments', 1, { height: '87%' })
+      .to('.recipe-comments', 1, { height: '100%' })
       .to('.previous-recipe-comments', 0.1, { display: 'block' })
       .to('.recipe-comment-row', 0.2, { opacity: 1, stagger: 0.1 })
       .to('.user-recipe-comment', 0.1, { display: 'block' }, '-=0.65')
@@ -146,8 +129,6 @@ class Cook extends React.Component {
   }
 
   HandleCross(e) {
-    console.log(e.target.style.textDecoration)
-
     if (e.target.style.textDecoration === 'line-through') {
       e.target.style.textDecoration = ''
       e.target.style.color = 'black'
@@ -155,7 +136,46 @@ class Cook extends React.Component {
       e.target.style.textDecoration = 'line-through'
       e.target.style.color = 'brown'
     }
+  }
 
+  Rotate(e) {
+    console.log(e.target.name)
+    this.state.isCommentsActive ?
+      e.target.name = 'arrow-up-circle-outline' : e.target.name = 'arrow-down-circle-outline'
+  }
+
+  HandleStar(e) {
+    const style = e.target.style
+    style.color = 'gold'
+  }
+
+  HandleCommentSubmit(e) {
+    e.preventDefault()
+    const id = this.state.singleRecipe._id
+    let rating = 0
+    const stars = Array.from(e.target.parentNode.previousSibling.lastChild.childNodes)
+
+    stars.map(el => el.style.color === 'gold' ? rating = rating + 1 : null )
+
+    stars.map(el => el.style.color = 'black')
+
+    const reqBody = {
+      text: e.target.firstChild.value,
+      rating: rating
+    }
+
+    axios.post(`/api/cook/${id}/comments`,
+      reqBody, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+
+    e.target.firstChild.value = ''
+
+    setTimeout(() => {
+      axios.get(`/api/cook/${id}`)
+        .then(response => {
+          this.setState({ singleRecipe: response.data, singleRecipeComments: response.data.comments })
+          // console.log(response.data)
+        })
+    }, 1000)
   }
 
 
@@ -188,21 +208,18 @@ class Cook extends React.Component {
                       <h3> {dish.title} </h3>
                     }
                     <div style={{ display: 'flex', justifyContent: 'space-between' }} className="card-info-bottom">
-                      <h5 className='recipe-items'> Serves: {dish.serves} </h5>
-                      <small> 🗓{moment(dish.createdAt).startOf('seconds').fromNow()} </small>
+                      <h5 className='recipe-items'> <ion-icon name="people-sharp"></ion-icon> {dish.serves} </h5>
+                      <small> <ion-icon name="color-fill-sharp"></ion-icon> {dish.cookTime} </small>
                     </div>
-
                   </div>
-
-
-
                 </div>
               )
             })}
 
             {/* single recipe */}
-            <div id={this.state.singleRecipe.title} className="single" onClick={(e) => this.HandleCollapse(e)} >
-
+            <div id={this.state.singleRecipe.title} className="single" >
+              <ion-icon name="close-circle-sharp" onClick={(e) => this.HandleCollapse(e)}
+                style={{ animation: 'none', color: 'white', position: 'absolute', right: '-20px', top: '-20px' }}></ion-icon>
               <div className="single-left">
 
                 <div className='recipe-top-section'>
@@ -211,7 +228,7 @@ class Cook extends React.Component {
                   <p className='to-hide'> Serves: {singleRecipe.serves}  <span> Prep: {singleRecipe.prepTime} </span>  Cook: {singleRecipe.cookTime}</p>
                 </div>
 
-                <h5 className='to-hide'> INGREDIENTS: </h5>
+                <h5 className='to-hide'> {singleRecipe.length === 0 ? null : singleRecipe.ingredients.length} Ingredients: </h5>
 
 
                 <div className="recipe-mid-section">
@@ -226,11 +243,11 @@ class Cook extends React.Component {
                     <img src={singleRecipe.image}></img>
                   </div>
 
-                  <h5> SCROLL, THERE COULD BE MORE! </h5>
                 </div>
 
                 <div className="recipe-comments">
-                  <button onClick={() => isCommentsActive ? this.HandleCloseRecipeComments() : this.HandleOpenRecipeComments()}> {singleRecipe.comments ? singleRecipeComments.length : '0'} COMMENTS </button>
+                  <button onClick={(e) => isCommentsActive ? this.HandleCloseRecipeComments(e) : this.HandleOpenRecipeComments(e)}>
+                    {singleRecipe.comments ? singleRecipeComments.length : '0'} COMMENTS <ion-icon onClick={(e) => this.Rotate(e)} name="arrow-up-circle-outline"></ion-icon> </button>
                   <div className="previous-recipe-comments">
                     {!this.state.singleRecipe.comments ? null :
 
@@ -240,12 +257,14 @@ class Cook extends React.Component {
 
                             <section>
                               <h3> {comment.user} </h3>
-                              <h5 className='recipe-rating'> Rating: {comment.rating} </h5>
+                              <h6 className='recipe-rating'> Rating: {comment.rating} 
+                                <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)'}} name="star-sharp"></ion-icon>
+                              </h6>
                             </section>
 
                             <p> {comment.text} </p>
 
-                            <h5> Posted {moment(comment.createdAt).startOf('second').fromNow()} </h5>
+                            <h6> Posted {moment(comment.createdAt).startOf('second').fromNow()} </h6>
 
                           </div>
                         )
@@ -255,13 +274,25 @@ class Cook extends React.Component {
                   </div>
 
                   <div className="user-recipe-comment">
-                    <h6> COMMENT </h6>
-
-                    <div className="recipe-comment-input">
-                      <input placeholder='Write here...'></input>
-
-                      <button style={{ marginBottom: '1px' }}> POST </button>
+                    <div className='star' style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <h6> {auth.isLoggedIn() ? 'COMMENT' : 'PLEASE LOGIN/REGISTER TO COMMENT'} </h6>
+                      <div className="star-icons" style={{ transform: 'translate(-85px, -11.7px)' }}>
+                        <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                        <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                        <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                        <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                        <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                      </div>
                     </div>
+
+                    {!auth.isLoggedIn() ? null :
+                      <div className="recipe-comment-input">
+                        <form onSubmit={(e) => this.HandleCommentSubmit(e)} style={{ height: '80%', width: '90%' }} action="">
+                          <input style={{ height: '100%' }} placeholder='Write here...'></input>
+                          <button style={{ marginBottom: '1px' }}> POST </button>
+                        </form>
+                      </div>
+                    }
                   </div>
                 </div>
               </div>
@@ -269,7 +300,7 @@ class Cook extends React.Component {
               <div className="single-middle">
                 {singleRecipe.length === 0 ? null :
                   <ol>
-                    METHOD:
+                    <h3> METHOD: </h3>
                     {singleRecipe.method.map((el, i) => {
                       return <li className='methods' onClick={(e) => this.HandleCross(e)} key={i}> {el} </li>
                     })}
