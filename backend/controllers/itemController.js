@@ -149,7 +149,7 @@ function deleteActivity2(req, res) {
       .then(item => {
         for (const userId of item.savedBy) {
           let index
-          if (userId === req.currentUser._id) {
+          if (userId.toString() === req.currentUser._id.toString()) {
             index = item.savedBy.indexOf(userId)
           }
           item.savedBy.splice(index, 1)
