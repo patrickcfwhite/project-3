@@ -93,9 +93,6 @@ function addToFolder(req, res, item, folder) {
     .findById(userId)
     .then(user => {
       user[folder].some(x => x[0].toString() === item._id.toString()) ? console.log('already added to your folder') : user[folder].push(info)
-      // for (const existing of user[folder]) {
-      //   if (!item['_id'] === existing['_id']) {
-      //     user[folder].push(item)
       return user.save()
     })
     .then(user => {

@@ -29,6 +29,22 @@ class Profile extends React.Component {
     }
   }
 
+  iconChoice(cat, subcat) {
+    let icon
+    console.log(cat, subcat)
+    if (cat === 'Watch') {
+      icon = subcat === 'Film' ? <ion-icon name="film-sharp"></ion-icon> : <ion-icon name="tv-sharp"></ion-icon>
+    } else if (cat === 'Cook') {
+      icon = <ion-icon name="fast-food-sharp"></ion-icon>
+    } else if (cat === 'Read') {
+      icon = <ion-icon name="book-sharp"></ion-icon>
+    } else if (cat === 'Play') {
+      icon = <ion-icon name="game-controller-sharp"></ion-icon>
+    }
+    console.log(icon)
+    return icon
+  }
+
   isProfile() {
     return auth.getUserId() === this.state.user._id
   }
@@ -100,21 +116,31 @@ class Profile extends React.Component {
         <h2>Uploads: {uploads.length}</h2>
         
         {this.state.uploads.map(upload => {
+          const userId = auth.getUserId()
           return (
             <div key={upload._id}>
-              <img src={upload.image} />
+              {/* <img src={upload.image} /> */}
+              <a href={`/${upload.category.toLowerCase()}/${upload._id}`}>
               <h3>{upload.title}</h3>
-              <h3>{upload.category}</h3>
+              </a>
+              {/* <h3>{upload.category}</h3> */}
+              {this.iconChoice(upload.category, upload.subcategory)}
+              {isProfile && <Link to={`/user/${userId}/uploads/${upload.category}/${upload._id}`}>Edit</Link>}
             </div>
           )
         })}
         <h2>Saved Items: {savedItems.length}</h2>
         {this.state.savedItems.map(saved => {
           return (
+  
             <div key={saved._id}>
-              <img src={saved.image} />
+              {/* <img src={upload.image} /> */}
+              <a href={`/${saved.category}/${saved._id}`}>
               <h3>{saved.title}</h3>
-              <h3>{saved.category}</h3>
+              </a>
+              {/* <h3>{saved.category}</h3> */}
+              {this.iconChoice(saved.category, saved.subcategory)}
+              
             </div>
           )
         })}

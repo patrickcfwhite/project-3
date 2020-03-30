@@ -15,6 +15,7 @@ function all(req, res) {
 
   mongoose.model(category)
     .find()
+    .populate('comments')
     .then(items => {
       res.send(items)
     })
@@ -73,8 +74,6 @@ function addActivity(req, res) {
       })
       .catch(error => console.log(error))
   }
-
-
 }
 
 function editActivity(req, res) {
