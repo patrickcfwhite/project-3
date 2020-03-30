@@ -34,9 +34,11 @@ const LoginModal = ({ ToggleModal, HandleCloseFromLink, props }) => {
 
   return <div className='modal is-active'>
     <div className='modal-background' onClick={ToggleModal}></div>
+
     <div className="modal-content">
-      <h1>Login!</h1>
-      <Link to='/register' onClick={CloseNavBarandModal}>Create a New Account</Link>
+
+      <h1>LOG INTO YOUR ACCOUNT</h1>
+    
       <form onSubmit={handleSubmit}>
         <input
           onChange={handleChange}
@@ -51,11 +53,13 @@ const LoginModal = ({ ToggleModal, HandleCloseFromLink, props }) => {
           name='password'>
         </input>
         <div className='submit'>
-          <button>
-            Login</button>
+          <button> LOGIN </button>
         </div>
       </form>
+      <Link to='/register' onClick={CloseNavBarandModal}> <p> Register for an account </p></Link>
     </div>
+
+
   </div>
 }
 

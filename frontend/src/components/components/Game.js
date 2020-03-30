@@ -4,6 +4,7 @@ import { TimelineLite, Power2 } from 'gsap'
 import moment from 'moment'
 import SingleGame from './SingleGame'
 
+
 class Game extends React.Component {
   constructor() {
     super()
@@ -31,9 +32,19 @@ class Game extends React.Component {
       })
   }
 
+  RenderComments() {
+    const id = this.props.history.currentGame
+    axios.get(`/api/play/${id}`)
+      .then(response => {
+        // console.log(response.data.comments[0].user)
+        this.setState({ singleGame: response.data, singleGameComments: response.data.comments })
+      })
+  }
+
   HandleGameInfo(e) {
 
     const id = e.target.id
+    this.props.history.currentGame = id
 
     axios.get(`/api/play/${id}`)
       .then(response => {
@@ -112,9 +123,11 @@ class Game extends React.Component {
               singleGame={this.state.singleGame}
               singleGameComments={this.state.singleGameComments}
               isCommentsActive={this.state.isCommentsActive}
+              RenderComments={() => this.RenderComments()}
               HandleClose={() => this.HandleClose()}
               HandleOpen={() => this.HandleOpen()}
               Rotate={() => this.Rotate(event)}
+              props={this.props}
             />
 
           </div>
