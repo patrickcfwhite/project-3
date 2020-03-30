@@ -25,12 +25,7 @@ import Profile from './components/components/Profile'
 import Game from './components/components/Game'
 import SingleFilm from './components/components/SingleFilm'
 import AddItem from './components/components/AddItem'
-<<<<<<< HEAD
-import axios from 'axios'
 import test from './components/components/test'
-=======
-// import LoginModal from './components/components/Login'
->>>>>>> development
 
 
 const App = () => (
@@ -54,86 +49,23 @@ const App = () => (
   </Router>
 )
 
-<<<<<<< HEAD
 class SingleRecipe extends React.Component {
   constructor() {
     super()
     this.state = {
       recipe: []
-=======
+    }
+  }
+}
 class Read extends React.Component {
   constructor() {
     super()
     this.state = {
       books: []
->>>>>>> development
     }
   }
 
   componentDidMount() {
-<<<<<<< HEAD
-    const id = this.props.match.params.id
-    axios.get(`/api/cook/${id}`)
-      .then(response => {
-        this.setState({ recipe: response.data })
-
-      })
-  }
-
-  render() {
-    const { recipe } = this.state
-    console.log(recipe.ingredients)
-    return (
-      <main>
-        <div className="single-rec-container">
-          <div className="single-rec-left">
-
-            <div className="left-top">
-              <h1> {recipe.title} </h1>
-              <h5> {recipe.description} </h5>
-              <p> Serves: {recipe.serves} <span> Prep: {recipe.prepTime} </span> Cook: {recipe.cookTime} </p>
-            </div>
-            <div className="rec-media">
-              <h4> INGREDIENTS </h4>
-              <div className="media-left">
-
-                {recipe.length === 0 ? null : <ul className='to-hide'>
-                  {recipe.ingredients.map((el, i) => {
-                    return <li key={i}> - {'\u00A0'} {el} </li>
-                  })}
-                </ul>}
-
-
-              </div>
-              <div className="media-right">
-                <img src={recipe.image} />
-              </div>
-            </div>
-
-          </div>
-
-          <div className="single-rec-right">
-            {recipe.length === 0 ? null :
-              <ol>
-                METHOD:
-                {recipe.method.map((el, i) => {
-                  return (
-                    <li key={i}> {el} </li>
-                  )
-                })}
-              </ol>}
-          </div>
-
-        </div>
-
-      </main>
-    )
-  }
-}
-
-
-
-=======
     axios.get('/api/read')
       .then(res => {
         this.setState({ books: res.data })
@@ -178,7 +110,6 @@ class Read extends React.Component {
   }
 }
 
->>>>>>> development
 ReactDOM.render(
   <App />,
   document.getElementById('root')
