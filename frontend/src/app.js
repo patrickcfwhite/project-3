@@ -53,7 +53,6 @@ const App = () => (
   </Router>
 )
 
-
 class Read extends React.Component {
   constructor() {
     super()
@@ -62,7 +61,6 @@ class Read extends React.Component {
     }
   }
   componentDidMount() {
-
     axios.get('/api/read')
       .then(res => {
         this.setState({ books: res.data })
