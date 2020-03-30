@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import 'bulma'
 import './styles/style.scss'
-import axios from 'axios'
+// import axios from 'axios'
 import './styles/book.scss'
 
 // libraries
@@ -24,8 +24,12 @@ import Login from './components/components/Login'
 import Profile from './components/components/Profile'
 import Game from './components/components/Game'
 import SingleFilm from './components/components/SingleFilm'
+import SingleRecipe from './components/components/SingleRecipe'
 import AddItem from './components/components/AddItem'
+
+import axios from 'axios'
 import test from './components/components/test'
+// import LoginModal from './components/components/Login'
 
 
 const App = () => (
@@ -49,14 +53,6 @@ const App = () => (
   </Router>
 )
 
-class SingleRecipe extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      recipe: []
-    }
-  }
-}
 class Read extends React.Component {
   constructor() {
     super()
@@ -64,7 +60,6 @@ class Read extends React.Component {
       books: []
     }
   }
-
   componentDidMount() {
     axios.get('/api/read')
       .then(res => {
@@ -85,12 +80,12 @@ class Read extends React.Component {
 
   handleBookTitleOut(e) {
     const t1 = new TimelineLite
-    let id 
+    let id
     e.target.tagName === 'IMG' ? id = '.' + e.target.nextSibling.className : null
-    t1 
+    t1
       .to(id, 0.5, { display: 'none', opacity: 0 })
       .to(e.target, 0.2, { display: 'block' })
-   
+
   }
 
 
