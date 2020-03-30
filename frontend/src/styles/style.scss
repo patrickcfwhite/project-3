@@ -8,6 +8,7 @@
 
 body {
   background-color: #010911;
+  overflow:scroll;
 }
 
 #root {
@@ -15,6 +16,7 @@ body {
   height: 100vh;
   display: flex;
   align-items: center;
+  overflow: scroll;
   background-color: #010911;
   // background-color: white;
 
@@ -203,10 +205,11 @@ body {
 
   .recipe-container {
     width: 82vw;
-    height: 85vh;
-    padding-top: 90vh;
+    height: 90vh;
+    padding-top: 85vh;
     overflow: scroll;
     display: flex;
+    // flex-direction: column;
     align-items: center;
     justify-content: center;
     list-style: none;
@@ -229,9 +232,18 @@ body {
         background-color: rgba(173, 161, 161, 0.822);
         position: absolute;
         top: 8.3vh;
-        font-family: "Cormorant Garamond", serif;
-        font-weight: bold;
-        display: none;
+        font-family: 'Montserrat';
+        color:black;
+        font-size: smaller;
+        // display: none;
+
+        ion-icon {
+          font-size: 30px;
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+      }
 
         .single-left {
           width: 60%;
@@ -245,36 +257,34 @@ body {
 
           .recipe-top-section {
             // background-color: red;
-            height: 25%;
+            height: 30%;
             width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             margin-bottom: -10px;
+            h1 {
+              font-size: 28px;
+            }
+            h3 {
+              font-size: 15px;
+            }
           }
 
           h5 {
-            font-weight: bolder;
             font-size: 15px;
-            margin-bottom: -10px;
-            text-decoration: underline;
+            // background-color: green;
+            transform: translate(0, 20px);
           }
 
           .recipe-mid-section {
             // background-color: green;
+            margin-top: -20px;
             display: flex;
+            transform: translate(0, 20px);
             width: 100%;
             height: 50%;
             position: relative;
-
-            h5 {
-              position: absolute;
-              bottom: -10px;
-              left: 10px;
-              color: brown;
-              text-decoration: none;
-              font-size: 14px;
-            }
 
             ul {
               height: 95%;
@@ -290,6 +300,7 @@ body {
                 list-style: none;
                 line-height: 24px;
                 margin: 13px 0px;
+                font-size: 13px;
 
                 &:first-of-type {
                   margin: 0 0 13px 0px;
@@ -300,15 +311,15 @@ body {
             .food-pic {
               height: 93%;
               width: 48%;
-              opacity: 0.8;
+              opacity: 0.9;
               object-fit: contain;
 
               img {
                 height: 95%;
                 width: 100%;
                 border: none;
-                border-radius: 20px;
-                box-shadow: 1.5px 1.5px 1px 1px rgba(0, 0, 0, 0.616);
+                object-fit: cover;
+                box-shadow: 1px 1px 1px 1px rgba(128, 128, 128, 0.76);
               }
             }
           }
@@ -320,6 +331,10 @@ body {
           .recipe-comments {
             margin-left: 5px;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
             // animate to 75
             height: 5%;
             // background-color: blue;
@@ -328,7 +343,13 @@ body {
               background-color: transparent;
               border: none;
               font-weight: bolder;
-              margin-bottom: 10px;
+              margin-bottom: 13px;
+              font-size: 13px;
+
+              ion-icon{
+                transform: translate(0, -4px);
+                color:black;
+              }
 
               &:hover {
                 cursor: pointer;
@@ -337,7 +358,7 @@ body {
 
             .previous-recipe-comments {
               // background-color: red;
-              width: 100%;
+              width: 87%;
               height: 72%;
               margin-bottom: 3%;
               overflow: scroll;
@@ -350,22 +371,30 @@ body {
               .recipe-comment-row {
                 // background-color: rgb(35, 174, 255);
                 border-bottom: 1px solid black;
-                height: 31%;
+                height: 26%;
                 margin-top: 10px;
-                padding: 10px 20px 0 0;
                 opacity: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                // background-color: green;
 
                 h5 {
-                  text-decoration: none;
+                  text-decoration: none;   
+                }
 
-                  &:last-of-type {
-                    margin-bottom: -10px;
-                  }
+                h3 {
+                  font-size: larger;
+                }
+
+                h6 {
+                  font-size: 12px;
                 }
 
                 section {
                   display: flex;
-                  vertical-align: middle;
+                  // background-color: greenyellow;
+                  align-items: center;
                   justify-content: space-between;
                 }
               }
@@ -376,6 +405,15 @@ body {
               width: 100%;
               height: 20%;
               display: none;
+              ion-icon {
+                animation: 0;
+                font-size: 18px;
+                transform: translate(-120px, 7px);
+              }
+              form {
+                display: flex;
+                justify-content: space-between;
+              }
 
               h6 {
                 font-size: 13px;
@@ -400,6 +438,7 @@ body {
                 input {
                   height: 65%;
                   width: 80%;
+                  font-size: 14px;
                   background-color: transparent;
                   border: none;
                   color: black;
@@ -443,51 +482,66 @@ body {
         margin: 2em 1em;
         width: 15.8vw;
         height: 36vh;
-        background-color: rgba(173, 161, 161, 0.822);
+        // background-color:white;
         opacity: 0.9;
-        // filter: grayscale(0.3);
         position: relative;
         display: flex;
         flex-direction: column;
         color: whitesmoke;
         transition: 0.6s;
 
+        ion-icon {
+          color: pink;
+          opacity: 0.90;
+          animation: none;
+          font-size: 25px;
+          margin: 3px 6px -5px 0 ;
+        }
+
         &:hover {
           cursor: pointer;
           transform: scale(1.12);
+          color: pink;
         }
 
         .card-info {
           height: 40%;
           width: 100%;
-          padding: 5px 10px;
+          padding: 0px 2px;
           display: flex;
           flex-direction: column;
           justify-content: space-around;
-          font-family: "Cormorant Garamond", serif;
+          font-family: 'Montserrat';
+          .card-info-bottom {
+            display: flex;
+            flex-direction: column;
+            height: 50%;
+            // background-color: red;
+      
+          }
           h1 {
-            font-size: 21px;
+            font-size: 17px;
             text-transform: capitalize;
           }
-          x h3 {
-            font-size: 18px;
+          h3 {
+            font-size: 17px;
           }
           h5 {
-            font-size: 17px;
+            font-size: 14px;
           }
         }
 
         .card-image {
-          background-color: rgb(35, 174, 255);
           width: 100%;
           height: 60%;
           position: relative;
-          object-fit: cover;
+          margin-bottom: 10px;
 
           img {
             height: 100%;
             width: 100%;
-            opacity: 0.95;
+            object-fit: cover;
+            box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(255, 254, 254, 0.452) ;
           }
         }
 
@@ -502,7 +556,8 @@ body {
         li {
           list-style: none;
           color: black;
-          font-family: "Cormorant Garamond", serif;
+          font-size: 13px;
+          font-family: 'Montserrat'
         }
       }
     }
@@ -512,11 +567,12 @@ body {
 
   .main-container {
     width: 80vw;
-    margin-top: 100vh;
+    margin-top: 95vh;
     display: flex;
     text-align: start;
     flex-direction: column;
     opacity: 0.85;
+    overflow: hidden;
     color: white;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 
@@ -540,7 +596,7 @@ body {
           font-family: Georgia, "Times New Roman", Times, serif;
         }
         &:hover {
-          height: 33%;
+          height: 38%;
         }
       }
     }
@@ -554,7 +610,7 @@ body {
       width: 80vw;
       height: 50%;
       display: flex;
-      margin-bottom: 10vh;
+      margin-bottom: 6vh;
       align-items: center;
       overflow-x: scroll;
       overflow-y: auto;
@@ -614,6 +670,8 @@ body {
       height: 30vh;
       margin: 0 10px;
       scroll-snap-align: center;
+      background-color: #010911;
+      box-shadow: none;
       &:hover {
         min-width: 45vh;
         cursor: pointer;
@@ -622,8 +680,8 @@ body {
   }
 
   .single-film-container {
-    width: 95%;
-    height: 85%;
+    width: 90%;
+    height: 90%;
     display: flex;
     align-items: center;
 
@@ -645,14 +703,17 @@ body {
         .previous-film-comments {
           // background-color: rebeccapurple
           height: 72%;
-          margin: 6% 0px;
+          margin: 5% 0px 6% 0;
           overflow: scroll;
+          &::-webkit-scrollbar {
+            display: none;
+          }
 
           .film-comment-row {
             margin: 15px 0px;
-            height: 21%;
+            height: 23%;
             border-bottom: 1px solid grey;
-            padding: 0px 0 10px 0px;
+            padding: 0px 0 5px 0px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -666,7 +727,13 @@ body {
             display: flex;
             vertical-align: middle;
             width: 100%;
-            justify-content: space-between;
+            h3 {
+              margin-right: 29%;
+            }
+            h5 {
+              transform: translate(4px, -2px);
+            }
+            // justify-content: space-between;
           }
         }
 
@@ -717,6 +784,7 @@ body {
         justify-content: space-around;
         height: 40%;
         opacity: 0.85;
+        transform: translate(0, 20px);
         color: white;
         font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 
@@ -728,6 +796,7 @@ body {
         h3 {
           letter-spacing: 0.5px;
           line-height: 23px;
+          font-size: 19px;
           width: 90%;
         }
 
@@ -747,11 +816,12 @@ body {
       align-items: center;
 
       img {
-        height: 76%;
+        height: 69.6%;
         z-index: 0;
+        margin-right: 2%;
       }
       video {
-        min-height: 70%;
+        min-height: 71%;
         max-width: 71.5%;
         z-index: 0;
       }

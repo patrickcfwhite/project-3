@@ -19,4 +19,4 @@ const HomePage = () => {
 
 }
 
-export default withRouter(HomePage)
+export default HomePage
