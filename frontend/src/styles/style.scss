@@ -153,21 +153,23 @@ body {
       color: black;
       height: 88%;
       width: 100%;
-      padding-right: 5%;
-      text-align: end;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
 
       .title-text {
-        position: absolute;
         font-family: "Montserrat";
         background-color: rgba(212, 209, 209, 0.801);
-        text-align: start;
-        height: 30%;
-        top: 26%;
-        left: 15%;
+        text-align: center;
+        height: 25%;
+        width: 80%;
         padding: 0 50px 0 30px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
+        position: absolute;
+        bottom: 0;
         h1 {
           font-weight: lighter;
           font-size: 36px;
@@ -181,9 +183,11 @@ body {
 
       img {
         height: 100%;
-        width: 70%;
+        width: 80%;
         opacity: 0.8;
         object-fit: cover;
+        align-self: center;
+        
       }
     }
   }

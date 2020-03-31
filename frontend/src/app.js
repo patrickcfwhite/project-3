@@ -14,6 +14,7 @@ import auth from '../../backend/lib/auth'
 // import Panzoom from 'panzoom'
 import { TweenMax, TimelineLite, Power2 } from 'gsap'
 import moment from 'moment'
+import { OverflowDetector } from 'react-overflow'
 
 
 // components
@@ -55,7 +56,6 @@ const App = () => (
     </Switch>
   </Router>
 )
-
 
 
 ReactDOM.render(
