@@ -197,6 +197,7 @@ function addNewComment(req, res) {
     
     .findById(id)
     .then(item => {
+      item.populate('comments.user')
       item.comments.push(req.body)
       return item.save()
     })

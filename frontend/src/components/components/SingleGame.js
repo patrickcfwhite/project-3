@@ -64,7 +64,7 @@ const SingleGame = ({ RenderComments, singleGame, singleGameComments, isComments
                 <div key={comment._id} className="comment-row">
 
                   <section>
-                    <h3> {comment.user} </h3>
+                    <h3> {comment.user.username} </h3>
                     <h5 className='rating'> Rating: {comment.rating} 
                       <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)'}} name="star-sharp"></ion-icon> </h5>
                   </section>
