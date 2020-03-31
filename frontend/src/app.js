@@ -63,55 +63,32 @@ class Read extends React.Component {
     this.state = {
       books: [],
       singlebook: {},
-      comments: []
+      singleBookComments: []
     }
   }
   componentDidMount() {
+    const id = this.props.history.currentBook
     axios.get('/api/read')
-      .then(res => {
-        this.setState({
-          books: res.data,
-          comments: res.data.map(book => {
-            return book.comments
-          })
-        })
+      .then(response => {
+        this.setState({ books: response.data })
+      })
+    axios.get(`/api/read/${id}`)
+      .then(response => {
+        this.setState({ singlebook: response.data, singleBookComments: response.data.comments })
       })
   }
-
-  handleBookTitle(e) {
-    const t1 = new TimelineLite
-    let id
-    e.target.tagName === 'IMG' ? id = '#' + e.target.nextSibling.id : null
-    // console.log(e.target)
-    // console.log(e.target.nextSibling)
-    t1
-      .to(id, 0.1, { display: 'block' })
-
-
-  }
-
-  handleBookTitleOut(e) {
-    const t1 = new TimelineLite
-    let id
-    e.target.tagName === 'IMG' ? id = '#' + e.target.nextSibling.id : null
-    t1
-      .to(id, 0.1, { display: 'none' })
-  }
-
 
   // single book information
-  getSingleBook(e) {
-    const id = e.target.id
-    axios.get(`/api/read/${id}`)
-      .then(res => {
-        this.setState({ singlebook: res.data })
-        const t1 = new TimelineLite
-        t1
-          .to('ion-icon', 0.1, { opacity: 1 })
-          .to('small', 0.1, { opacity: 1 })
-        console.log(this.state.singlebook)
+  HandleSingleBook(e) {
+    let { currentBook } = this.props.history
+    let id
+    e.target.tagName === 'IMG' ?
+      id = e.target.parentNode.id : id = e.target.id
+    currentBook = id
+    axios.get(`/api/read/${currentBook}`)
+      .then(response => {
+        this.setState({ singlebook: response.data, singleBookComments: response.data.comments })
       })
-
   }
 
   // post new comment
@@ -132,105 +109,115 @@ class Read extends React.Component {
     }, 2000)
   }
 
+  HandleFavourite(e) {
+    const id = this.state.singlebook._id
+    const t1 = new TimelineLite
+    if (e.target.style.color === 'white') {
+      e.target.style.color = 'red'
+      t1
+        .to('.book-heart', 0.2, { opacity: 0.95 })
+        .to('.book-heart', 0.5, { opacity: 0 }, '+=1')
+      axios.post(`api/read/${id}`, {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    } else {
+      e.target.style.color = 'white'
+      axios.delete(`/api/user/${auth.getUserId()}/savedItems/read/${id}`
+        , { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    }
+  }
+
 
   render() {
+    const { singleBookComments, singlebook } = this.state
+    // console.log(singlebook)
 
-    return <main>
-      <div className='book-pageContainer'>
-        <div className="book-slider">
-          {this.state.books.map(book => {
-            return <div className='book-item' key={book._id}>
-              <div
-                className='book'
-                onMouseEnter={(e) => this.handleBookTitle(e)}
-                onMouseOut={(e) => this.handleBookTitleOut(e)}>
-                <img src={book.image} />
-                <div className='book-title' id={book.description.replace(/\W/g, '')}>
-                  <h2>Author: {book.author}</h2>
+    return (
+      <main>
+        <div className='book-pageContainer'>
+          <div className="book-slider">
+            {this.state.books.map(book => {
+              return <div className='book-item' key={book._id}>
+                <div id={book._id} onMouseEnter={(e) => this.HandleSingleBook(e)} className='book'>
+                  <img src={book.image} />
+                  <h4>{book.author}</h4>
                 </div>
               </div>
-              <div className='book-link'>
-                <div id={`${book._id}`} onClick={(e) => this.getSingleBook(e)}>More Info</div>
-              </div>
-            </div>
-          })}
-        </div>
-        <div className='book-info'>
-          <div className="book-information">
-            <div className="book-header">
-              <div className='singlebook-information'>
-                <h1>{this.state.singlebook.title}</h1>
-                <div className="book-rating">
-                  <p>{this.state.singlebook.rating}</p>
-                  <ion-icon style={{ animation: 'none', opacity: 0 }}></ion-icon>
-                </div>
-              </div>
-              <h2>{this.state.singlebook.genre}</h2>
-              <h3>{this.state.singlebook.bookType}</h3>
-            </div>
-            <div className='book-plot'>
-              <small style={{ opacity: 0 }}> Plot: {this.state.singlebook.description}</small>
-            </div>
-            <small className='book-uploader'> {this.state.singlebook.user}</small>
+            })}
           </div>
 
-          <div className='all-book-comments'>
 
-
-            {/* previous comments */}
-            <div className="previous-book-comments">
-              {this.state.singlebook.comments ? this.state.singlebook.comments.map(comment => {
-                return <div key={comment._id} className="comment-row">
-
-                  <section>
-                    <h3> {comment.username} </h3>
-                    <h5 className='rating'> Rating: {comment.rating} </h5>
-                  </section>
-
-                  <p> {comment.text} </p>
-
-                  <h5> Posted {moment(comment.createdAt).startOf('second').fromNow()} </h5>
-
-                </div>
-
-              })
-                : null}
+          {/* single book */}
+          <div className='single-book-container'>
+            <div className="book-information">
+              <h1>{this.state.singlebook.title}</h1>
+              <ion-icon onClick={(e) => this.HandleFavourite(e)} name="heart-sharp"></ion-icon>
+              <div className="book-heart"> <p>FAVOURITED!</p> </div>
+              <section>
+                <h2> Rating: {'\u00A0'} {this.state.singlebook.rating}</h2>
+                <h3> Book Type:{'\u00A0'} {this.state.singlebook.bookType}</h3>
+              </section>
+              <h2> Genre: {'\u00A0'}  {this.state.singlebook.genre}</h2>
+              <p> <span>Plot: </span> <br /> {this.state.singlebook.description}</p>
             </div>
 
 
-            {/* new comment */}
-            <div className="new-comment">
-              <div className='star' style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
+
+            {/* comments */}
+            <div className='book-comments'>
+              <div className="previous-book-comments">
+                {this.state.singlebook.comments ? this.state.singlebook.comments.map(comment => {
+                  return <div key={comment._id} className="comment-row">
+
+                    <section>
+                      <h3> {comment.username} </h3>
+                      <h5 className='rating'> Rating: {comment.rating} </h5>
+                    </section>
+
+                    <p> {comment.text} </p>
+
+                    <h5> Posted {moment(comment.createdAt).startOf('second').fromNow()} </h5>
+                  </div>
+
+                })
+                  : null}
+              </div>
+
+
+              {/* new comment */}
+              <div className="new-comment">
+                <div className='star' style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
+                  {auth.isLoggedIn() ?
+                    <div className='comment-section'>
+                      <h6>COMMENT</h6>
+                    </div> : <h6>PLEASE LOGIN/REGISTER TO COMMENT</h6>}
+
+
+                  <div className="star-icons" style={{ transform: 'translate(-65%, -20%)' }}>
+                    <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
+                    <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
+                    <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
+                    <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
+                    <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
+
+                  </div>
+                </div>
                 {auth.isLoggedIn() ?
-                  <div className='comment-section'>
-                    <h6>COMMENT</h6>
-                  </div> : <h6>PLEASE LOGIN/REGISTER TO COMMENT</h6>}
-
-
-                <div className="star-icons" style={{ transform: 'translate(-65%, -20%)' }}>
-                  <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
-                  <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
-                  <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
-                  <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
-                  <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
-
-                </div>
+                  <div className="book-comment-input">
+                    <form action="">
+                      <input placeholder='Write here...'></input>
+                      <button style={{ marginBottom: '1px' }}> POST </button>
+                    </form>
+                  </div> : null}
               </div>
-              {auth.isLoggedIn() ?
-                <div className="book-comment-input">
-                  <form action="">
-                    <input placeholder='Write here...'></input>
-                    <button style={{ marginBottom: '1px' }}> POST </button>
-                  </form>
-                </div> : null}
+
+
+
             </div>
-
-
-
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    )
+
+
   }
 }
 
