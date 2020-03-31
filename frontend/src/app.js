@@ -55,7 +55,6 @@ const App = () => (
     </Switch>
   </Router>
 )
-<<<<<<< HEAD
 
 class Read extends React.Component {
   constructor() {
@@ -236,5 +235,3 @@ ReactDOM.render(
 
 
 
-=======
->>>>>>> development
