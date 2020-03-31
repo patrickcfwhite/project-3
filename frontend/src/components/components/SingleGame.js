@@ -78,13 +78,24 @@ const SingleGame = ({ savedItems, RenderComments, singleGame, singleGameComments
         <div className="previous-comments">
           {singleGame.comments ?
             singleGameComments.map((comment) => {
+              console.log(comment)
               return (
                 <div key={comment._id} className="comment-row">
 
                   <section>
+<<<<<<< HEAD
+                    <h3> {comment.user.username} </h3>
+                    <h5 className='rating'> Rating: {comment.rating} 
+<<<<<<< HEAD
+                      <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)' }} name="star-sharp"></ion-icon> </h5>
+=======
+                      <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)'}} name="star-sharp"></ion-icon> </h5>
+=======
                     <h3> {comment.user} </h3>
                     <h5 className='rating'> Rating: {comment.rating}
                       <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)' }} name="star-sharp"></ion-icon> </h5>
+>>>>>>> e497e6ccfb8a713c1b9648e1d19e165ab4e7153f
+>>>>>>> development
                   </section>
 
                   <p> {comment.text} </p>
