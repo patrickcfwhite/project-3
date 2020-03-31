@@ -60,13 +60,14 @@ const SingleGame = ({ RenderComments, singleGame, singleGameComments, isComments
         <div className="previous-comments">
           {singleGame.comments ?
             singleGameComments.map((comment) => {
+              console.log(comment)
               return (
                 <div key={comment._id} className="comment-row">
 
                   <section>
                     <h3> {comment.user.username} </h3>
                     <h5 className='rating'> Rating: {comment.rating} 
-                      <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)'}} name="star-sharp"></ion-icon> </h5>
+                      <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)' }} name="star-sharp"></ion-icon> </h5>
                   </section>
 
                   <p> {comment.text} </p>
@@ -81,9 +82,9 @@ const SingleGame = ({ RenderComments, singleGame, singleGameComments, isComments
 
 
         <div className="user-comment">
-          <div className='star' style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between'}}>
+          <div className='star' style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
             <h6> {auth.isLoggedIn() ? 'COMMENT' : 'PLEASE LOGIN/REGISTER TO COMMENT'} </h6>
-            <div className="star-icons" style={{transform: 'translate(-85px, -11.7px)'}}>
+            <div className="star-icons" style={{ transform: 'translate(-85px, -11.7px)' }}>
               <ion-icon onClick={(e) => HandleStar(e)} name="star-sharp"></ion-icon>
               <ion-icon onClick={(e) => HandleStar(e)} name="star-sharp"></ion-icon>
               <ion-icon onClick={(e) => HandleStar(e)} name="star-sharp"></ion-icon>

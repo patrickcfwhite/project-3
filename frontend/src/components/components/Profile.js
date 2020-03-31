@@ -121,7 +121,7 @@ class Profile extends React.Component {
             <div key={upload._id}>
               {/* <img src={upload.image} /> */}
               <a href={`/${upload.category.toLowerCase()}/${upload._id}`}>
-              <h3>{upload.title}</h3>
+                <h3>{upload.title}</h3>
               </a>
               {/* <h3>{upload.category}</h3> */}
               {this.iconChoice(upload.category, upload.subcategory)}
@@ -136,7 +136,7 @@ class Profile extends React.Component {
             <div key={saved._id}>
               {/* <img src={upload.image} /> */}
               <a href={`/${saved.category}/${saved._id}`}>
-              <h3>{saved.title}</h3>
+                <h3>{saved.title}</h3>
               </a>
               {/* <h3>{saved.category}</h3> */}
               {this.iconChoice(saved.category, saved.subcategory)}

@@ -15,7 +15,6 @@ function all(req, res) {
 
   mongoose.model(category)
     .find()
-    .populate('comments')
     .then(items => {
       res.send(items)
     })
@@ -29,6 +28,7 @@ function singleItemId(req, res) {
 
   mongoose.model(category)
     .findById(id)
+    .populate('comments.user')
     .then(item => {
       console.log(item)
       res.send(item)
@@ -191,13 +191,11 @@ function addNewComment(req, res) {
   const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
   const id = req.params.id
   req.body.user = req.currentUser
-  req.body.username = req.body.user.username
   console.log(req.body)
-  mongoose.model(category)
-    
+  mongoose.model(category) 
     .findById(id)
+    .populate('comments.user')
     .then(item => {
-      item.populate('comments.user')
       item.comments.push(req.body)
       return item.save()
     })

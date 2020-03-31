@@ -39,7 +39,7 @@ class EditCookForm extends React.Component {
     console.log(cat, subcat)
     if (cat === 'Watch') {
       if (subcat === 'film') {
-        const {title, description, director, duration, rating, certification, image, subcategory } = this.state
+        const { title, description, director, duration, rating, certification, image, subcategory } = this.state.data
         form = <>
       <input placeholder='Name' name='title' type="text" value={title}/>
       <input placeholder='Description' name='description' type="text" value={description} />
@@ -53,7 +53,7 @@ class EditCookForm extends React.Component {
       <input placeholder='Poster Link' name='poster' type="text" value={image}/>
     </>
       } else {
-        const {title, description, director, seasons, rating, certification, image, subcategory } = this.state
+        const { title, description, director, seasons, rating, certification, image, subcategory } = this.state.data
         form = <>
           <input placeholder='Name' name='name' type="text" value={title}/>
           <input placeholder='Description' name='description' type="text" value={description} />
@@ -102,7 +102,7 @@ class EditCookForm extends React.Component {
       <input placeholder='Image (Link)' name='link' type="text" value={image} />
       </>
     } else if (cat === 'Play') {
-      const = { title, description, genre, subcategory, format, players, duration, rating, link } = this.state.data
+      const { title, description, genre, subcategory, format, players, duration, rating, link } = this.state.data
       form = <>
       <input placeholder='Title' name='title' type="text" value={title} />
       <input placeholder='Description' name='description' type="text" value={description} />
@@ -124,12 +124,12 @@ class EditCookForm extends React.Component {
 
 
   render() {
-    const { category, subcategory } = this.state
-    if (!this.state) return null
+    const { category, subcategory } = this.state.data
+    if (!this.state.data) return null
     return (
       <div className="add-form">
         <form onSubmit={(event) => this.handleSubmit(event)} onChange={(event) => this.handleChange(event)}>
-          {this.formChooser(this.state.category)}
+          {this.formChooser(category, subcategory)}
           <button>submit</button>
         </form>
       </div>

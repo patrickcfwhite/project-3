@@ -169,9 +169,9 @@ function deleteFromFolder(req, user, folder) {
         // console.log(folder, user[folder])
         // user[folder].splice(index, 1)
         console.log(folder, user[folder])
-        return user.save()
+        
       }
-      
+      return user.save()
     })
     .catch(error => console.log(error))
 }
