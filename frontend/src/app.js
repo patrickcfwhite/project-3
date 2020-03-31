@@ -63,11 +63,13 @@ class Read extends React.Component {
     this.state = {
       books: [],
       singlebook: {},
-      singleBookComments: []
+      singleBookComments: [],
+      savedItems: []
     }
   }
   componentDidMount() {
     const id = this.props.history.currentBook
+    const savedItems = []
     axios.get('/api/read')
       .then(response => {
         this.setState({ books: response.data })
@@ -75,6 +77,13 @@ class Read extends React.Component {
     axios.get(`/api/read/${id}`)
       .then(response => {
         this.setState({ singlebook: response.data, singleBookComments: response.data.comments })
+      })
+    axios.get(`/api/user/${auth.getUserId()}`)
+      .then(response => {
+        response.data.savedItems.map(el => {
+          savedItems.push(el[0])
+        })
+        this.setState({ savedItems })
       })
   }
 
@@ -127,7 +136,7 @@ class Read extends React.Component {
 
 
   render() {
-    const { singleBookComments, singlebook } = this.state
+    const { singleBookComments, singlebook, savedItems } = this.state
     // console.log(singlebook)
 
     return (
@@ -149,7 +158,9 @@ class Read extends React.Component {
           <div className='single-book-container'>
             <div className="book-information">
               <h1>{this.state.singlebook.title}</h1>
-              <ion-icon onClick={(e) => this.HandleFavourite(e)} name="heart-sharp"></ion-icon>
+              <ion-icon onClick={(e) => this.HandleFavourite(e)}
+                style={savedItems.includes(singlebook._id) ? { color: 'red' } : { color: 'white' }}
+                name="heart-sharp"></ion-icon>
               <div className="book-heart"> <p>FAVOURITED!</p> </div>
               <section>
                 <h2> Rating: {'\u00A0'} {this.state.singlebook.rating}</h2>
@@ -208,9 +219,6 @@ class Read extends React.Component {
                     </form>
                   </div> : null}
               </div>
-
-
-
             </div>
           </div>
         </div>
