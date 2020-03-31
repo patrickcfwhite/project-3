@@ -55,3 +55,10 @@ const App = () => (
     </Switch>
   </Router>
 )
+
+
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+)
