@@ -153,11 +153,11 @@ function createBooks(users) {
       category: 'Read'
     }]
   )
-  .then(output => {
-    for (const item of output) {
-      updateUpload(item)
-    }
-  })
+    .then(output => {
+      for (const item of output) {
+        updateUpload(item)
+      }
+    })
 }
 
 function createRecipes(users) {
@@ -683,11 +683,11 @@ function createRecipes(users) {
       category: 'Cook'
     }
   ])
-  .then(output => {
-    for (const item of output) {
-      updateUpload(item)
-    }
-  })
+    .then(output => {
+      for (const item of output) {
+        updateUpload(item)
+      }
+    })
 }
 
 function createWatch(users) {
@@ -777,11 +777,11 @@ function createWatch(users) {
       subcategory: 'TV Series'
     }
   ])
-  .then(output => {
-    for (const item of output) {
-      updateUpload(item)
-    }
-  })
+    .then(output => {
+      for (const item of output) {
+        updateUpload(item)
+      }
+    })
 }
 
 function createPlay(users) {
@@ -944,11 +944,11 @@ function createPlay(users) {
       category: 'Play'
     }
   ])
-  .then(output => {
-    for (const item of output) {
-      updateUpload(item)
-    }
-  })
+    .then(output => {
+      for (const item of output) {
+        updateUpload(item)
+      }
+    })
 }
 
 module.exports = {

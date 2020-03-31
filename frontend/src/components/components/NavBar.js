@@ -112,6 +112,11 @@ const NavBar = (props) => {
             <li> 04. <span> WATCH / </span> on screen entertainment </li>
           </Link>
 
+          {/* <div className='options' style={linkStyle} onClick={CloseNavBarandModal}> 
+            <li> 05. <span> LOGIN / </span> register </li> 
+          </div> */}
+
+
           {!auth.isLoggedIn() ?
             <div className='options' onClick={ToggleModal}>
               <li> 05. <span> LOGIN / </span> register </li>
@@ -119,10 +124,9 @@ const NavBar = (props) => {
             <div className='options' onClick={() => HandleLogout()} >
               <li> 05. <span> LOGOUT </span>  </li>
             </div>}
-
-
         </ul>
       </div>
+            
       {modalOpen ? <LoginModal
         ToggleModal={ToggleModal}
         props={props}

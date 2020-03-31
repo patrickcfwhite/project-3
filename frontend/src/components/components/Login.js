@@ -3,6 +3,8 @@ import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import auth from '../../../../backend/lib/auth'
 
+// being pased down from navbar
+
 const LoginModal = ({ ToggleModal, HandleCloseFromLink, props }) => {
 
 
@@ -10,7 +12,7 @@ const LoginModal = ({ ToggleModal, HandleCloseFromLink, props }) => {
 
   function handleChange(event) {
     const { name, value } = event.target
-    const data = { ...login , [name]: value }
+    const data = { ...login, [name]: value }
     setLogin({ ...data })
   }
 
@@ -26,11 +28,12 @@ const LoginModal = ({ ToggleModal, HandleCloseFromLink, props }) => {
       .catch(error => console.log(error))
   }
 
-
   function CloseNavBarandModal() {
     ToggleModal()
     HandleCloseFromLink()
   }
+
+
 
   return <div className='modal is-active'>
     <div className='modal-background' onClick={ToggleModal}></div>
