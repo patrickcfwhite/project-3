@@ -3,6 +3,7 @@ import axios from 'axios'
 import { TimelineLite, Power2 } from 'gsap'
 import moment from 'moment'
 import SingleGame from './SingleGame'
+import auth from '../../../../backend/lib/auth'
 
 
 class Game extends React.Component {
@@ -12,12 +13,15 @@ class Game extends React.Component {
       games: [],
       singleGame: [],
       singleGameComments: [],
-      isCommentsActive: false
+      isCommentsActive: false,
+      savedItems: []
     }
   }
 
   componentDidMount() {
     const id = this.props.history.currentGame
+    const userId = auth.getUserId()
+    const savedItems = []
 
     axios.get(`/api/play/${id}`)
       .then(response => {
@@ -30,29 +34,46 @@ class Game extends React.Component {
         this.setState({ games: response.data })
         // console.log(response.data)
       })
+    axios.get(`/api/user/${userId}`)
+      .then(response => {
+        response.data.savedItems.map(el => {
+          savedItems.push(el[0])
+        })
+        this.setState({ savedItems })
+      })
   }
 
   RenderComments() {
     const id = this.props.history.currentGame
+    const savedItems = []
+    const userId = auth.getUserId()
     axios.get(`/api/play/${id}`)
       .then(response => {
         // console.log(response.data.comments[0].user)
         this.setState({ singleGame: response.data, singleGameComments: response.data.comments })
+      })
+    axios.get(`/api/user/${userId}`)
+      .then(response => {
+        response.data.savedItems.map(el => {
+          savedItems.push(el[0])
+        })
+        this.setState({ savedItems })
       })
   }
 
   HandleGameInfo(e) {
 
     const id = e.target.id
+  
     this.props.history.currentGame = id
 
     axios.get(`/api/play/${id}`)
       .then(response => {
         // console.log(response.data.comments[0].user)
         this.setState({ singleGame: response.data, singleGameComments: response.data.comments })
+        
       })
   }
-
 
   HandleOpen() {
     const t1 = new TimelineLite()
@@ -92,7 +113,6 @@ class Game extends React.Component {
   }
 
   render() {
-
     return (
       <>
 
@@ -112,7 +132,7 @@ class Game extends React.Component {
                       <h1> {game.title} </h1>
                       <p> {game.subcategory} </p>
                     </div>
-                    {game.link ?  <a href={game.link} target='blank_target'> <button> Play Now </button> </a>  : null}
+                    {game.link ? <a href={game.link} target='blank_target'> <button> Play Now </button> </a> : null}
                   </div>
                 )
               })}
@@ -123,6 +143,7 @@ class Game extends React.Component {
               singleGame={this.state.singleGame}
               singleGameComments={this.state.singleGameComments}
               isCommentsActive={this.state.isCommentsActive}
+              savedItems={this.state.savedItems}
               RenderComments={() => this.RenderComments()}
               HandleClose={() => this.HandleClose()}
               HandleOpen={() => this.HandleOpen()}

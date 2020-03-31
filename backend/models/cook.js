@@ -24,6 +24,7 @@ const cookSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   savedBy: { type: Array, required: true },
   comments: [ commentSchema ]
+  
 })
 
 module.exports = mongoose.model('Cook', cookSchema)

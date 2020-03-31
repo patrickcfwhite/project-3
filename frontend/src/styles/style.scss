@@ -8,7 +8,7 @@
 
 body {
   background-color: #010911;
-  overflow:scroll;
+  overflow: scroll;
 }
 
 #root {
@@ -62,7 +62,7 @@ body {
 
       ion-icon {
         animation: none;
-        color:white;
+        color: white;
         font-size: 34px;
         opacity: 0.85;
         &:hover {
@@ -70,7 +70,6 @@ body {
           color: rgb(245, 153, 169);
         }
       }
-
     }
 
     h3 {
@@ -205,7 +204,7 @@ body {
 
   .recipe-container {
     width: 82vw;
-    height: 90vh;
+    height: 100vh;
     padding-top: 85vh;
     overflow: scroll;
     display: flex;
@@ -232,18 +231,18 @@ body {
         background-color: rgba(173, 161, 161, 0.822);
         position: absolute;
         top: 8.3vh;
-        font-family: 'Montserrat';
-        color:black;
+        font-family: "Montserrat";
+        color: black;
         font-size: smaller;
-        // display: none;
+        display: none;
 
         ion-icon {
           font-size: 30px;
           &:hover {
             cursor: pointer;
             transform: scale(1.1);
+          }
         }
-      }
 
         .single-left {
           width: 60%;
@@ -346,9 +345,9 @@ body {
               margin-bottom: 13px;
               font-size: 13px;
 
-              ion-icon{
+              ion-icon {
                 transform: translate(0, -4px);
-                color:black;
+                color: black;
               }
 
               &:hover {
@@ -371,16 +370,16 @@ body {
               .recipe-comment-row {
                 // background-color: rgb(35, 174, 255);
                 border-bottom: 1px solid black;
-                height: 26%;
-                margin-top: 10px;
-                opacity: 0;
+                height: 25.2%;
+                margin-top: 12px;
+                padding-bottom: 5px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 // background-color: green;
 
                 h5 {
-                  text-decoration: none;   
+                  text-decoration: none;
                 }
 
                 h3 {
@@ -492,10 +491,10 @@ body {
 
         ion-icon {
           color: pink;
-          opacity: 0.90;
+          opacity: 0.9;
           animation: none;
           font-size: 25px;
-          margin: 3px 6px -5px 0 ;
+          margin: 3px 6px -5px 0;
         }
 
         &:hover {
@@ -511,13 +510,12 @@ body {
           display: flex;
           flex-direction: column;
           justify-content: space-around;
-          font-family: 'Montserrat';
+          font-family: "Montserrat";
           .card-info-bottom {
             display: flex;
             flex-direction: column;
             height: 50%;
             // background-color: red;
-      
           }
           h1 {
             font-size: 17px;
@@ -540,8 +538,8 @@ body {
           img {
             height: 100%;
             width: 100%;
+            opacity: 0.9;
             object-fit: cover;
-            box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(255, 254, 254, 0.452) ;
           }
         }
 
@@ -557,7 +555,7 @@ body {
           list-style: none;
           color: black;
           font-size: 13px;
-          font-family: 'Montserrat'
+          font-family: "Montserrat";
         }
       }
     }
@@ -694,7 +692,7 @@ body {
       align-items: center;
       .film-comments {
         // background-color: red;
-        height: 95%;
+        height: 90%;
         width: 90%;
         color: white;
         font-family: "Montserrat";
@@ -710,13 +708,14 @@ body {
           }
 
           .film-comment-row {
-            margin: 15px 0px;
-            height: 23%;
+            margin: 18px 0px;
+            height: 25%;
             border-bottom: 1px solid grey;
-            padding: 0px 0 5px 0px;
+            padding: 0px 0 9px 0px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            // word-wrap: break-word;
 
             p {
               margin: 10px 0;
@@ -731,7 +730,8 @@ body {
               margin-right: 29%;
             }
             h5 {
-              transform: translate(4px, -2px);
+              transform: translate(0px, -2px);
+              width: 18%;
             }
             // justify-content: space-between;
           }
@@ -787,6 +787,22 @@ body {
         transform: translate(0, 20px);
         color: white;
         font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
+        .film-heart-message {
+          clip-path: polygon(0 24%, 100% 24%, 100% 75%, 75% 75%, 69% 99%, 50% 75%, 0% 75%);
+          background-color: whitesmoke;
+          width: 90px;
+          height: 50px;
+          color: red;
+          position: absolute;
+          right: 35%;
+          opacity: 0;
+          font-size: 12px;
+          transform: translate(185px, -46px);
+          p {
+            transform: translate(7px, 16px);
+          }
+        }
 
         h1 {
           text-transform: capitalize;
@@ -920,6 +936,35 @@ body {
       position: relative;
       overflow: hidden;
 
+      .game-favourite {
+        height: 10%;
+        width: 85%;
+        display: flex;
+        // background-color: yellow;
+
+        align-items: center;
+        .heart-message {
+          clip-path: polygon(0 24%, 100% 24%, 100% 75%, 75% 75%, 69% 99%, 50% 75%, 0% 75%);
+          background-color: whitesmoke;
+          width: 90px;
+          height: 50px;
+          color: red;
+          opacity: 0;
+          font-size: 12px;
+          transform: translate(45%, -88%);
+          p {
+            transform: translate(0.7%, 88%);
+          }
+        }
+        h1 {
+          margin-right: 100px;
+        }
+        ion-icon {
+          animation: none;
+          transform: translate(0, -7px);
+        }
+      }
+
       button {
         background-color: transparent;
         color: white;
@@ -946,7 +991,12 @@ body {
         padding: 30px 85px 30px 75px;
 
         p {
-          width: 34vw;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 7;
+          -webkit-box-orient: vertical;
+          width: 35vw;
         }
       }
 
@@ -1021,7 +1071,7 @@ body {
 
           form {
             display: flex;
-          justify-content: space-between;
+            justify-content: space-between;
             height: 100%;
             width: 100%;
           }
@@ -1053,7 +1103,6 @@ body {
       }
     }
   }
-
 
   // add item page
   .add-container {
@@ -1116,7 +1165,9 @@ body {
             width: 100%;
             font-weight: lighter;
             transition: 0.3s;
-            &:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3) {
+            &:nth-of-type(1),
+            &:nth-of-type(2),
+            &:nth-of-type(3) {
               &:hover {
                 color: rgb(35, 174, 255);
               }
@@ -1201,8 +1252,6 @@ body {
       }
     }
   }
-
-
 
   // registeration Page
   .register-container {
@@ -1318,7 +1367,6 @@ body {
   // Modal
   .modal-background {
     backdrop-filter: blur(4px);
-    
   }
   .modal-content {
     height: 400px;
@@ -1330,12 +1378,12 @@ body {
     align-items: center;
 
     h1 {
-      color:white;
+      color: white;
       font-size: 18px;
     }
 
     p {
-      color:white;
+      color: white;
       font-size: smaller;
       transform: translate(0, 10px);
       &:hover {
@@ -1350,7 +1398,7 @@ body {
       height: 60%;
       align-items: center;
       justify-content: space-evenly;
-      font-family: 'Montserrat';
+      font-family: "Montserrat";
 
       button {
         background-color: transparent;
@@ -1382,8 +1430,7 @@ body {
     }
   }
 
-
-  // user profile 
+  // user profile
   .Profile {
     color: white;
   }

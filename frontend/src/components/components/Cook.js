@@ -85,6 +85,14 @@ class Cook extends React.Component {
       id = '.' + id.id.replace(/\W/g, '')
       const t1 = new TimelineLite
       t1
+        .to('.recipe-comment-row', 0.2, { opacity: 0, stagger: 0.1 })
+        .to('.user-recipe-comment', 0.1, { display: 'none' }, '-=0.65')
+        .to('.previous-recipe-comments', 0.1, { display: 'none' })
+        .to('.recipe-comments', 0.5, { height: '5%' })
+        .to('.recipe-top-section', 0.1, { height: '30%' })
+        .to('.recipe-mid-section', 0.1, { display: 'flex' })
+        .to('.to-hide', 0.1, { display: 'block' })
+        .to('.to-hide, .recipe-mid-section', 0.5, { opacity: 1 })
         .to('.methods', 0.1, { color: 'black', textDecoration: 'none' })
         .to('.single-left, .single-middle', 1, { opacity: 0 })
         .to('.single', 0.2, { display: 'none' }, '+=0.5')
@@ -98,6 +106,7 @@ class Cook extends React.Component {
         .to(id, 0.2, { opacity: 1 }, '-=0.3')
         .to(others, 0.2, { opacity: 1 }, '-=0.3')
         .to('.card-image, .card-info', 0.5, { opacity: 1 })
+      this.setState({ isCommentsActive: false })
     }
   }
 
@@ -107,9 +116,9 @@ class Cook extends React.Component {
     t1
       .to('.to-hide, .recipe-mid-section', 0.5, { opacity: 0 })
       .to('.to-hide, .recipe-mid-section', 0.2, { display: 'none' })
-      .to('.recipe-comments', 1, { height: '100%' })
+      .to('.recipe-top-section', 0.1, { height: '10%' })
+      .to('.recipe-comments', 1, { height: '85%' })
       .to('.previous-recipe-comments', 0.1, { display: 'block' })
-      .to('.recipe-comment-row', 0.2, { opacity: 1, stagger: 0.1 })
       .to('.user-recipe-comment', 0.1, { display: 'block' }, '-=0.65')
     this.setState({ isCommentsActive: true })
   }
@@ -117,11 +126,10 @@ class Cook extends React.Component {
   HandleCloseRecipeComments() {
     const t1 = new TimelineLite
     t1
-
-      .to('.recipe-comment-row', 0.2, { opacity: 0, stagger: 0.1 })
       .to('.user-recipe-comment', 0.1, { display: 'none' }, '-=0.65')
       .to('.previous-recipe-comments', 0.1, { display: 'none' })
       .to('.recipe-comments', 1, { height: '5%' })
+      .to('.recipe-top-section', 0.1, { height: '30%' })
       .to('.recipe-mid-section', 0.1, { display: 'flex' })
       .to('.to-hide', 0.1, { display: 'block' })
       .to('.to-hide, .recipe-mid-section', 0.5, { opacity: 1 })
@@ -155,7 +163,7 @@ class Cook extends React.Component {
     let rating = 0
     const stars = Array.from(e.target.parentNode.previousSibling.lastChild.childNodes)
 
-    stars.map(el => el.style.color === 'gold' ? rating = rating + 1 : null )
+    stars.map(el => el.style.color === 'gold' ? rating = rating + 1 : null)
 
     stars.map(el => el.style.color = 'black')
 
@@ -257,8 +265,8 @@ class Cook extends React.Component {
 
                             <section>
                               <h3> {comment.user} </h3>
-                              <h6 className='recipe-rating'> Rating: {comment.rating} 
-                                <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)'}} name="star-sharp"></ion-icon>
+                              <h6 className='recipe-rating'> Rating: {comment.rating}
+                                <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)' }} name="star-sharp"></ion-icon>
                               </h6>
                             </section>
 

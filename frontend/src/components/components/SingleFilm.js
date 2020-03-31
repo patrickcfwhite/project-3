@@ -2,21 +2,31 @@ import React from 'react'
 import moment from 'moment'
 import axios from 'axios'
 import auth from '../../../../backend/lib/auth'
+import { TimelineLite } from 'gsap'
 
 
 class SingleFilm extends React.Component {
   constructor() {
     super()
     this.state = {
-      film: []
+      film: [],
+      savedItems: []
     }
   }
 
   componentDidMount() {
+    const savedItems = []
     const id = this.props.match.params.id
     axios.get(`/api/watch/${id}`)
       .then(response => {
         this.setState({ film: response.data })
+      })
+    axios.get(`/api/user/${auth.getUserId()}`)
+      .then(response => {
+        response.data.savedItems.map(el => {
+          savedItems.push(el[0])
+        })
+        this.setState({ savedItems })
       })
   }
 
@@ -63,11 +73,22 @@ class SingleFilm extends React.Component {
     style.color = 'gold'
   }
 
+  HandleFavourite(e) {
+    e.target.style.color = 'red'
+    const id = this.props.match.params.id
+    const t1 = new TimelineLite
+    t1
+      .to('.film-heart-message', 0.2, { opacity: 0.9 })
+      .to('.film-heart-message', 0.5, { opacity: 0 }, '+=1')
+
+    axios.post(`/api/watch/${id}`, {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+  }
 
 
   render() {
-    // console.log(this.state.comment)
-    const { film } = this.state
+    console.log(this.state.savedItems)
+    const { id } = this.props.match.params
+    const { film, savedItems } = this.state
     const starStyle = {
       color: 'white',
       animation: 'none',
@@ -76,13 +97,27 @@ class SingleFilm extends React.Component {
       transform: 'translate(0, 6px)'
     }
 
+    const titletop = {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+
     return (
       <main className='single-film'>
         <div className="single-film-container">
 
           <div className="single-film-left">
             <div className="single-film-title">
-              <h1> {film.title} </h1>
+              <div style={titletop} className="film-title-top">
+                <h1> {film.title} </h1>
+                <div className="film-heart-message"> <p>FAVOURITED!</p> </div>
+                {auth.isLoggedIn() ? <ion-icon 
+                  style={savedItems.includes(id) ? { color: 'red',animation: 'none',transform: 'translate(-50px, -5px)' }
+                    : { color: 'white',animation: 'none',transform: 'translate(-50px, -5px)' }}
+                  onClick={(e) => this.HandleFavourite(e)} name="heart-sharp"></ion-icon> : null}
+              </div>
+
               <h3>{film.description}</h3>
               <p> Certificate: {film.certification} <span> Director: {film.director} </span> Duration: {film.duration} </p>
             </div>
@@ -106,7 +141,7 @@ class SingleFilm extends React.Component {
                           <section>
                             <h3> {comment.user} </h3>
                             <h5 className='rating'> Rating: {comment.rating} </h5>
-                            <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -2px)'}} name="star-sharp"></ion-icon> 
+                            <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -2px)' }} name="star-sharp"></ion-icon>
                           </section>
                           <p> {comment.text} </p>
                           <h5> Posted {moment(comment.createdAt).startOf('second').fromNow()} </h5>
