@@ -44,17 +44,25 @@ const SingleGame = ({ savedItems, RenderComments, singleGame, singleGameComments
   }
 
   const HandleFavourite = (e) => {
-    e.target.style.color = 'red'
     const id = props.history.currentGame
     const t1 = new TimelineLite
-    t1
-      .to('.heart-message', 0.2, { opacity: 0.9 })
-      .to('.heart-message', 0.5, { opacity: 0 }, '+=1')
-
-    axios.post(`api/play/${id}`, {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-    setTimeout(() => {
-      RenderComments()
-    }, 1000)
+    if (e.target.style.color === 'white') {
+      e.target.style.color = 'red'
+      t1
+        .to('.heart-message', 0.2, { opacity: 0.9 })
+        .to('.heart-message', 0.5, { opacity: 0 }, '+=1')
+      axios.post(`api/play/${id}`, {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      setTimeout(() => {
+        RenderComments()
+      }, 500)
+    } else {
+      e.target.style.color = 'white'
+      axios.delete(`/api/user/${auth.getUserId()}/savedItems/play/${id}`
+        , { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      setTimeout(() => {
+        RenderComments()
+      }, 500)
+    }
   }
 
   return (
