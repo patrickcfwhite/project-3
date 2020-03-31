@@ -35,15 +35,14 @@ class SingleRecipe extends React.Component {
               <p> Serves: {recipe.serves} <span> Prep: {recipe.prepTime} </span> Cook: {recipe.cookTime} </p>
             </div>
             <div className="rec-media">
-              <h4> INGREDIENTS </h4>
+             
               <div className="media-left">
-
+                <h4> INGREDIENTS </h4>
                 {recipe.length === 0 ? null : <ul className='to-hide'>
                   {recipe.ingredients.map((el, i) => {
                     return <li key={i}> - {'\u00A0'} {el} </li>
                   })}
                 </ul>}
-
 
               </div>
               <div className="media-right">

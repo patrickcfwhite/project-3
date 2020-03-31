@@ -14,16 +14,24 @@ class Cook extends React.Component {
       recipes: [],
       singleRecipe: [],
       singleRecipeComments: [],
-      isCommentsActive: false
+      isCommentsActive: false,
+      savedItems: []
     }
   }
 
   componentDidMount() {
-
+    const savedItems = []
     axios.get('/api/cook')
       .then(response => {
         this.setState({ recipes: response.data })
         console.log(response.data)
+      })
+    axios.get(`/api/user/${auth.getUserId()}`)
+      .then(response => {
+        response.data.savedItems.map(el => {
+          savedItems.push(el[0])
+        })
+        this.setState({ savedItems })
       })
   }
 
@@ -85,15 +93,6 @@ class Cook extends React.Component {
       id = '.' + id.id.replace(/\W/g, '')
       const t1 = new TimelineLite
       t1
-        .to('.recipe-comment-row', 0.2, { opacity: 0, stagger: 0.1 })
-        .to('.user-recipe-comment', 0.1, { display: 'none' }, '-=0.65')
-        .to('.previous-recipe-comments', 0.1, { display: 'none' })
-        .to('.recipe-comments', 0.5, { height: '5%' })
-        .to('.recipe-top-section', 0.1, { height: '30%' })
-        .to('.recipe-mid-section', 0.1, { display: 'flex' })
-        .to('.to-hide', 0.1, { display: 'block' })
-        .to('.to-hide, .recipe-mid-section', 0.5, { opacity: 1 })
-        .to('.methods', 0.1, { color: 'black', textDecoration: 'none' })
         .to('.single-left, .single-middle', 1, { opacity: 0 })
         .to('.single', 0.2, { display: 'none' }, '+=0.5')
         .to(id, 0.1, { display: 'flex' })
@@ -181,16 +180,30 @@ class Cook extends React.Component {
       axios.get(`/api/cook/${id}`)
         .then(response => {
           this.setState({ singleRecipe: response.data, singleRecipeComments: response.data.comments })
-          // console.log(response.data)
         })
     }, 1000)
   }
 
+  HandleFavourite(e) {
+    const id = this.state.singleRecipe._id
+    const t1 = new TimelineLite
+    if (e.target.style.color === 'black') {
+      e.target.style.color = 'red'
+      t1
+        .to('.recipe-heart-message', 0.2, { opacity: 0.9 })
+        .to('.recipe-heart-message', 0.5, { opacity: 0 }, '+=1')
+      axios.post(`/api/cook/${id}`, {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    } else {
+      e.target.style.color = 'black'
+      axios.delete(`/api/user/${auth.getUserId()}/savedItems/cook/${id}`
+        , { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    }
+
+  }
+
 
   render() {
-
-    const { singleRecipe, singleRecipeComments, isCommentsActive } = this.state
-
+    const { singleRecipe, savedItems, singleRecipeComments, isCommentsActive } = this.state
     return (
 
       <main >
@@ -231,7 +244,16 @@ class Cook extends React.Component {
               <div className="single-left">
 
                 <div className='recipe-top-section'>
-                  <h1 style={{ textTransform: 'capitalize' }}> {singleRecipe.title} </h1>
+
+                  <h1 style={{ textTransform: 'capitalize' }}> {singleRecipe.title}
+                    <div className="recipe-heart-message"> <p>FAVOURITED!</p> </div>
+                    {auth.isLoggedIn() ? <ion-icon
+                      style={savedItems.includes(singleRecipe._id) ? { color: 'red' } : { color: 'black' }}
+                      onClick={(e) => this.HandleFavourite(e)}
+                      name="heart-sharp"></ion-icon> : null}
+                  </h1>
+
+
                   <h3 style={{ marginBottom: '10px', color: 'brown' }} className='to-hide'> {singleRecipe.description} </h3>
                   <p className='to-hide'> Serves: {singleRecipe.serves}  <span> Prep: {singleRecipe.prepTime} </span>  Cook: {singleRecipe.cookTime}</p>
                 </div>

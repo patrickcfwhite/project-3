@@ -98,6 +98,22 @@ class Profile extends React.Component {
       .catch(error => console.log(error))
   }
 
+  HandleRedirect(e) {
+    const { history } = this.props
+    const category = e.target.parentNode.id
+    const { id } = e.target
+
+    if (category === 'Watch' || category === 'Cook') {
+      history.push(`/${category}/${e.target.id}`)
+    } else if (category === 'Play'){
+      history.currentGame = id
+      history.push('/game')
+    } else if (category === 'Read') {
+      console.log('hello')
+    }
+  }
+
+
   render() {
     console.log(this.state.user)
     // console.log(this.props)
@@ -120,11 +136,11 @@ class Profile extends React.Component {
         {this.state.uploads.map(upload => {
           const userId = auth.getUserId()
           return (
-            <div key={upload._id}>
+            <div id={upload.category} key={upload._id}>
               {/* <img src={upload.image} /> */}
-              <a href={`/${upload.category.toLowerCase()}/${upload._id}`}>
-              <h3>{upload.title}</h3>
-              </a>
+              {/* <a href={`/${upload.category.toLowerCase()}/${upload._id}`}> */}
+              <h3 id={upload._id} onClick={(e) => this.HandleRedirect(e)} >{upload.title}</h3>
+              {/* </a> */}
               {/* <h3>{upload.category}</h3> */}
               {this.iconChoice(upload.category, upload.subcategory)}
               {isProfile && <Link to={`/user/${userId}/uploads/${upload.category}/${upload._id}`}>Edit</Link>}
@@ -135,11 +151,11 @@ class Profile extends React.Component {
         {this.state.savedItems.map(saved => {
           return (
   
-            <div key={saved._id}>
+            <div id={saved.category} key={saved._id}>
               {/* <img src={upload.image} /> */}
-              <a href={`/${saved.category}/${saved._id}`}>
-              <h3>{saved.title}</h3>
-              </a>
+              {/* <a href={`/${saved.category}/${saved._id}`}> */}
+              <h3 id={saved._id} onClick={(e) => this.HandleRedirect(e)}>{saved.title}</h3>
+              {/* </a> */}
               {/* <h3>{saved.category}</h3> */}
               {this.iconChoice(saved.category, saved.subcategory)}
               
