@@ -55,6 +55,11 @@ const NavBar = (props) => {
     setModal(!modalOpen) 
   }
 
+  function CloseNavBarandModal() {
+    ToggleModal()
+    HandleCloseFromLink()
+  }
+
   return (
     <>
       <aside className="aside">
@@ -85,7 +90,7 @@ const NavBar = (props) => {
             <li> 04. <span> WATCH / </span> on screen entertainment </li> 
           </Link>
 
-          <div className='options' style={linkStyle} onClick={ToggleModal}> 
+          <div className='options' style={linkStyle} onClick={CloseNavBarandModal}> 
             <li> 05. <span> LOGIN / </span> register </li> 
           </div>
 
@@ -94,7 +99,9 @@ const NavBar = (props) => {
       {modalOpen ? <LoginModal 
         ToggleModal = {ToggleModal}
         props = {props}
-        HandleCloseFromLink = {HandleCloseFromLink} /> : null}
+        HandleCloseFromLink = {HandleCloseFromLink} 
+        CloseNavBarandModal = {CloseNavBarandModal}
+        modalOpen = {modalOpen}/> : null}
     </>
   )
 }
