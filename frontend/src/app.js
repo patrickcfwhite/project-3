@@ -53,7 +53,6 @@ const App = () => (
       <Route exact path='/watch/:id' component={SingleFilm}></Route>
       <Route exact path='/cook/:id' component={SingleRecipe}></Route>
       <Route exact path='/test' component={test}></Route>
-
     </Switch>
   </Router>
 )

@@ -108,9 +108,10 @@ class Profile extends React.Component {
       history.push(`/${category}/${e.target.id}`)
     } else if (category === 'Play'){
       history.currentGame = id
-      history.push('/game')
+      history.push('/play')
     } else if (category === 'Read') {
-      console.log('hello')
+      history.currentBook = id
+      history.push('/read')
     }
   }
 

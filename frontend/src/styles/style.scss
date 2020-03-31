@@ -28,18 +28,6 @@ body {
     animation: bounce 1s linear reverse infinite;
   }
 
-  @-webkit-keyframes bounce {
-    0% {
-      transform: translate(0, 1px);
-    }
-    50% {
-      transform: translate(0, -4px);
-    }
-    100% {
-      transform: translate(0, 1px);
-    }
-  }
-
   // hamburger menu
   aside {
     height: 100vh;
@@ -276,7 +264,7 @@ body {
               position: absolute;
               animation: none;
               top: 25px;
-              right: 42%
+              right: 42%;
             }
             .recipe-heart-message {
               clip-path: polygon(0 24%, 100% 24%, 100% 75%, 75% 75%, 69% 99%, 50% 75%, 0% 75%);
@@ -1459,28 +1447,129 @@ body {
     background-color: rgba(173, 161, 161, 0.822);
     height: 80%;
     width: 90%;
-    display:flex;
+    display: flex;
+    font-family: "Montserrat";
+    color: black;
     .single-rec-left {
-      background-color: blue;
+      // background-color: blue;
       height: 100%;
       width: 60%;
       display: flex;
+      padding: 15px 23px;
       flex-direction: column;
+      justify-content: space-between;
       .left-top {
-        background-color: rgba(212, 209, 209, 0.6);
+        // background-color: rgba(212, 209, 209, 0.6);
         height: 25%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        h1 {
+          font-size: 27px;
+        }
+        h6 {
+          // display: none;
+        }
+        p {
+          font-size: 14px;
+          // display:none;
+          span {
+            margin: 0 70px;
+          }
+        }
       }
       .rec-media {
-        display:flex;
-        background-color: green;
+        display: flex;
         height: 65%;
+        // display:none;
         .media-left {
           display: flex;
+          padding: 20px 0px;
           flex-direction: column;
-        
+          // background-color: green;
+          width: 50%;
+          ul {
+            // background-color: red;
+            height: 90%;
+            overflow: scroll;
+            &::-webkit-scrollbar {
+              display: none;
+            }
+            li {
+              font-size: 14px;
+              margin: 20px 0;
+            }
+          }
+          h6 {
+            margin-bottom: 10px;
+            font-size: 14px;
+          }
         }
         .media-right {
-          
+          width: 50%;
+          img {
+            width: 95%;
+            height: 95%;
+            object-fit: contain;
+            transform: translate(-20px, 20px);
+          }
+        }
+      }
+      .single-rec-comments {
+        // 90
+        // background-color: green;
+        transform: translate();
+        height: 6%;
+        max-height: 90%;
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .single-previous-rec-comments {
+          display: none;
+          opacity: 0;
+          width: 88%;
+          height: 85%;
+          overflow: scroll;
+          margin: 15px 0;
+          &::-webkit-scrollbar {
+            display: none;
+          }
+        }
+        .rec-comment-row {
+          // background-color: rgb(245, 153, 169);
+          margin: 10px 0;
+          min-height: 26%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding-bottom: 5px;
+
+          border-bottom: black 1px solid;
+          h6 {
+            font-size: 12.5px;
+          }
+          section {
+            display: flex;
+            justify-content: space-between;
+            .rec-rating {
+              transform: translate(0, 2px);
+            }
+            h5 {
+              font-size: 15px;
+            }
+          }
+          p {
+            font-size: 15px;
+          }
+        }
+        button {
+          background-color: transparent;
+          border: none;
+          font-size: 13px;
+          margin-bottom: 12px;
         }
       }
     }
@@ -1489,6 +1578,54 @@ body {
       padding: 20px 45px;
       height: 100%;
       width: 40%;
+    }
+
+    .user-rec-comment {
+      display: none;
+      opacity: 0;
+      width: 90%;
+      height: 30%;
+      .star {
+        display: flex;
+        width: 85%;
+        // background-color: white;
+        h6 {
+          font-size: 15px;
+        }
+        .star-icons {
+          ion-icon {
+            animation: none;
+            font-size: 19px;
+            transform: translate(-50px, 7px);
+          }
+        }
+      }
+      .rec-comment-input {
+        height: 70%;
+        width: 100%;
+        // background-color: rgb(245, 153, 169);
+        form {
+          width: 100%;
+          display: flex;
+          margin-top: 5px;
+          justify-content: space-between;
+          button {
+            transform: translate(30px, 0);
+          }
+          input {
+            width: 85%;
+            background-color: transparent;
+            border: none;
+            border-bottom: black 1px solid;
+            border-top: black 1px solid;
+            color: black;
+            font-size: 13px;
+            &::placeholder {
+              color: rgba(0, 0, 0, 0.651);
+            }
+          }
+        }
+      }
     }
   }
 
