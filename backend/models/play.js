@@ -21,7 +21,9 @@ const playSchema = new mongoose.Schema({
   category: { type: String, required: true },
   link: { type: String, required: false },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  savedBy: { type: Array, required: true },
   comments: [ commentSchema ]
+  
 })
 
 

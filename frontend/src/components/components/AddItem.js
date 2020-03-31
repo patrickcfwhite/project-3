@@ -14,8 +14,7 @@ class AddItem extends React.Component {
     this.myRef = React.createRef()
     this.state = {
       isSelectActive: false,
-      submitObject: {
-      }
+      submitObject: {}
     }
   }
 
@@ -69,8 +68,6 @@ class AddItem extends React.Component {
 
   render() {
     const { current } = this.myRef
-    // console.log(this.state.submitObject)
-    // console.log(current)
 
     return (
       <main>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Axios from 'axios'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class test extends React.Component {
   constructor() {
@@ -11,7 +11,7 @@ class test extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('/api/play/5e7f45e3397bbd04b3bcc849')
+    Axios.get('/api/play')
       .then(response => {
         this.setState({ response: response.data })
       })
@@ -24,7 +24,18 @@ class test extends React.Component {
 
   render() {
     return (
-      <h1 onClick={(e) => this.test(e)} id={this.state.response._id}> { this.state.response.title } </h1>
+      <>
+        {this.state.response.map(el => {
+          return (
+            <div key={el._id}>
+              <h1 id={el._id}> {el.title} </h1>
+              <ion-icon onClick={(e) => this.onClick(e)} name="document-text-sharp"> </ion-icon>
+              <h4> {el.category}</h4>
+            </div>
+          )
+        })}
+
+      </>
     )
 
   }
