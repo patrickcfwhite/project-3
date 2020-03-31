@@ -62,6 +62,7 @@ class Profile extends React.Component {
         this.populateArray(following, 'following')
         this.populateArray(followedBy, 'followedBy')
         this.toggleFollow()
+       
       })
   }
 
@@ -98,6 +99,7 @@ class Profile extends React.Component {
   }
 
   render() {
+    console.log(this.state.user)
     // console.log(this.props)
     console.log(this.state.follow)
     const { username, firstname, createdAt } = this.state.user
