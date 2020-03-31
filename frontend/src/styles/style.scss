@@ -8,6 +8,7 @@
 
 body {
   background-color: #010911;
+  overflow: scroll;
 }
 
 #root {
@@ -15,6 +16,7 @@ body {
   height: 100vh;
   display: flex;
   align-items: center;
+  overflow: scroll;
   background-color: #010911;
   // background-color: white;
 
@@ -49,6 +51,26 @@ body {
     justify-content: space-between;
     align-items: center;
     z-index: 2;
+
+    .icons {
+      // background-color: red;
+      display: flex;
+      flex-direction: column;
+      height: 100px;
+      transform: translate(-6px, -125px);
+      justify-content: space-between;
+
+      ion-icon {
+        animation: none;
+        color: white;
+        font-size: 34px;
+        opacity: 0.85;
+        &:hover {
+          cursor: pointer;
+          color: rgb(245, 153, 169);
+        }
+      }
+    }
 
     h3 {
       color: white;
@@ -182,10 +204,11 @@ body {
 
   .recipe-container {
     width: 82vw;
-    height: 85vh;
-    padding-top: 90vh;
+    height: 100vh;
+    padding-top: 85vh;
     overflow: scroll;
     display: flex;
+    // flex-direction: column;
     align-items: center;
     justify-content: center;
     list-style: none;
@@ -208,9 +231,18 @@ body {
         background-color: rgba(173, 161, 161, 0.822);
         position: absolute;
         top: 8.3vh;
-        font-family: "Cormorant Garamond", serif;
-        font-weight: bold;
+        font-family: "Montserrat";
+        color: black;
+        font-size: smaller;
         display: none;
+
+        ion-icon {
+          font-size: 30px;
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+          }
+        }
 
         .single-left {
           width: 60%;
@@ -224,36 +256,34 @@ body {
 
           .recipe-top-section {
             // background-color: red;
-            height: 25%;
+            height: 30%;
             width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             margin-bottom: -10px;
+            h1 {
+              font-size: 28px;
+            }
+            h3 {
+              font-size: 15px;
+            }
           }
 
           h5 {
-            font-weight: bolder;
             font-size: 15px;
-            margin-bottom: -10px;
-            text-decoration: underline;
+            // background-color: green;
+            transform: translate(0, 20px);
           }
 
           .recipe-mid-section {
             // background-color: green;
+            margin-top: -20px;
             display: flex;
+            transform: translate(0, 20px);
             width: 100%;
             height: 50%;
             position: relative;
-
-            h5 {
-              position: absolute;
-              bottom: -10px;
-              left: 10px;
-              color: brown;
-              text-decoration: none;
-              font-size: 14px;
-            }
 
             ul {
               height: 95%;
@@ -269,6 +299,7 @@ body {
                 list-style: none;
                 line-height: 24px;
                 margin: 13px 0px;
+                font-size: 13px;
 
                 &:first-of-type {
                   margin: 0 0 13px 0px;
@@ -279,15 +310,15 @@ body {
             .food-pic {
               height: 93%;
               width: 48%;
-              opacity: 0.8;
+              opacity: 0.9;
               object-fit: contain;
 
               img {
                 height: 95%;
                 width: 100%;
                 border: none;
-                border-radius: 20px;
-                box-shadow: 1.5px 1.5px 1px 1px rgba(0, 0, 0, 0.616);
+                object-fit: cover;
+                box-shadow: 1px 1px 1px 1px rgba(128, 128, 128, 0.76);
               }
             }
           }
@@ -299,6 +330,10 @@ body {
           .recipe-comments {
             margin-left: 5px;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
             // animate to 75
             height: 5%;
             // background-color: blue;
@@ -307,7 +342,13 @@ body {
               background-color: transparent;
               border: none;
               font-weight: bolder;
-              margin-bottom: 10px;
+              margin-bottom: 13px;
+              font-size: 13px;
+
+              ion-icon {
+                transform: translate(0, -4px);
+                color: black;
+              }
 
               &:hover {
                 cursor: pointer;
@@ -316,7 +357,7 @@ body {
 
             .previous-recipe-comments {
               // background-color: red;
-              width: 100%;
+              width: 87%;
               height: 72%;
               margin-bottom: 3%;
               overflow: scroll;
@@ -329,22 +370,30 @@ body {
               .recipe-comment-row {
                 // background-color: rgb(35, 174, 255);
                 border-bottom: 1px solid black;
-                height: 31%;
-                margin-top: 10px;
-                padding: 10px 20px 0 0;
-                opacity: 0;
+                height: 25.2%;
+                margin-top: 12px;
+                padding-bottom: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                // background-color: green;
 
                 h5 {
                   text-decoration: none;
+                }
 
-                  &:last-of-type {
-                    margin-bottom: -10px;
-                  }
+                h3 {
+                  font-size: larger;
+                }
+
+                h6 {
+                  font-size: 12px;
                 }
 
                 section {
                   display: flex;
-                  vertical-align: middle;
+                  // background-color: greenyellow;
+                  align-items: center;
                   justify-content: space-between;
                 }
               }
@@ -355,6 +404,15 @@ body {
               width: 100%;
               height: 20%;
               display: none;
+              ion-icon {
+                animation: 0;
+                font-size: 18px;
+                transform: translate(-120px, 7px);
+              }
+              form {
+                display: flex;
+                justify-content: space-between;
+              }
 
               h6 {
                 font-size: 13px;
@@ -379,6 +437,7 @@ body {
                 input {
                   height: 65%;
                   width: 80%;
+                  font-size: 14px;
                   background-color: transparent;
                   border: none;
                   color: black;
@@ -422,51 +481,65 @@ body {
         margin: 2em 1em;
         width: 15.8vw;
         height: 36vh;
-        background-color: rgba(173, 161, 161, 0.822);
+        // background-color:white;
         opacity: 0.9;
-        // filter: grayscale(0.3);
         position: relative;
         display: flex;
         flex-direction: column;
         color: whitesmoke;
         transition: 0.6s;
 
+        ion-icon {
+          color: pink;
+          opacity: 0.9;
+          animation: none;
+          font-size: 25px;
+          margin: 3px 6px -5px 0;
+        }
+
         &:hover {
           cursor: pointer;
           transform: scale(1.12);
+          color: pink;
         }
 
         .card-info {
           height: 40%;
           width: 100%;
-          padding: 5px 10px;
+          padding: 0px 2px;
           display: flex;
           flex-direction: column;
           justify-content: space-around;
-          font-family: "Cormorant Garamond", serif;
+          font-family: "Montserrat";
+          .card-info-bottom {
+            display: flex;
+            flex-direction: column;
+            height: 50%;
+            // background-color: red;
+          }
           h1 {
-            font-size: 21px;
+            font-size: 17px;
             text-transform: capitalize;
           }
-          x h3 {
-            font-size: 18px;
+          h3 {
+            font-size: 17px;
           }
           h5 {
-            font-size: 17px;
+            font-size: 14px;
           }
         }
 
         .card-image {
-          background-color: rgb(35, 174, 255);
           width: 100%;
           height: 60%;
           position: relative;
-          object-fit: cover;
+          margin-bottom: 10px;
 
           img {
             height: 100%;
             width: 100%;
-            opacity: 0.95;
+            opacity: 0.9;
+            object-fit: cover;
           }
         }
 
@@ -481,7 +554,8 @@ body {
         li {
           list-style: none;
           color: black;
-          font-family: "Cormorant Garamond", serif;
+          font-size: 13px;
+          font-family: "Montserrat";
         }
       }
     }
@@ -491,11 +565,12 @@ body {
 
   .main-container {
     width: 80vw;
-    margin-top: 100vh;
+    margin-top: 95vh;
     display: flex;
     text-align: start;
     flex-direction: column;
     opacity: 0.85;
+    overflow: hidden;
     color: white;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 
@@ -519,7 +594,7 @@ body {
           font-family: Georgia, "Times New Roman", Times, serif;
         }
         &:hover {
-          height: 33%;
+          height: 38%;
         }
       }
     }
@@ -533,7 +608,7 @@ body {
       width: 80vw;
       height: 50%;
       display: flex;
-      margin-bottom: 10vh;
+      margin-bottom: 6vh;
       align-items: center;
       overflow-x: scroll;
       overflow-y: auto;
@@ -593,6 +668,8 @@ body {
       height: 30vh;
       margin: 0 10px;
       scroll-snap-align: center;
+      background-color: #010911;
+      box-shadow: none;
       &:hover {
         min-width: 45vh;
         cursor: pointer;
@@ -601,8 +678,8 @@ body {
   }
 
   .single-film-container {
-    width: 95%;
-    height: 85%;
+    width: 90%;
+    height: 90%;
     display: flex;
     align-items: center;
 
@@ -615,7 +692,7 @@ body {
       align-items: center;
       .film-comments {
         // background-color: red;
-        height: 95%;
+        height: 90%;
         width: 90%;
         color: white;
         font-family: "Montserrat";
@@ -624,17 +701,21 @@ body {
         .previous-film-comments {
           // background-color: rebeccapurple
           height: 72%;
-          margin: 6% 0px;
+          margin: 5% 0px 6% 0;
           overflow: scroll;
+          &::-webkit-scrollbar {
+            display: none;
+          }
 
           .film-comment-row {
-            margin: 15px 0px;
-            height: 21%;
+            margin: 18px 0px;
+            height: 25%;
             border-bottom: 1px solid grey;
-            padding: 0px 0 10px 0px;
+            padding: 0px 0 9px 0px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            // word-wrap: break-word;
 
             p {
               margin: 10px 0;
@@ -645,7 +726,14 @@ body {
             display: flex;
             vertical-align: middle;
             width: 100%;
-            justify-content: space-between;
+            h3 {
+              margin-right: 29%;
+            }
+            h5 {
+              transform: translate(0px, -2px);
+              width: 18%;
+            }
+            // justify-content: space-between;
           }
         }
 
@@ -696,8 +784,25 @@ body {
         justify-content: space-around;
         height: 40%;
         opacity: 0.85;
+        transform: translate(0, 20px);
         color: white;
         font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
+        .film-heart-message {
+          clip-path: polygon(0 24%, 100% 24%, 100% 75%, 75% 75%, 69% 99%, 50% 75%, 0% 75%);
+          background-color: whitesmoke;
+          width: 90px;
+          height: 50px;
+          color: red;
+          position: absolute;
+          right: 35%;
+          opacity: 0;
+          font-size: 12px;
+          transform: translate(185px, -46px);
+          p {
+            transform: translate(7px, 16px);
+          }
+        }
 
         h1 {
           text-transform: capitalize;
@@ -707,6 +812,7 @@ body {
         h3 {
           letter-spacing: 0.5px;
           line-height: 23px;
+          font-size: 19px;
           width: 90%;
         }
 
@@ -726,11 +832,12 @@ body {
       align-items: center;
 
       img {
-        height: 76%;
+        height: 69.6%;
         z-index: 0;
+        margin-right: 2%;
       }
       video {
-        min-height: 70%;
+        min-height: 71%;
         max-width: 71.5%;
         z-index: 0;
       }
@@ -791,6 +898,10 @@ body {
           color: pink;
         }
 
+        a {
+          transform: translate(0, 15px);
+        }
+
         button {
           background-color: transparent;
           text-transform: uppercase;
@@ -825,6 +936,35 @@ body {
       position: relative;
       overflow: hidden;
 
+      .game-favourite {
+        height: 10%;
+        width: 85%;
+        display: flex;
+        // background-color: yellow;
+
+        align-items: center;
+        .heart-message {
+          clip-path: polygon(0 24%, 100% 24%, 100% 75%, 75% 75%, 69% 99%, 50% 75%, 0% 75%);
+          background-color: whitesmoke;
+          width: 90px;
+          height: 50px;
+          color: red;
+          opacity: 0;
+          font-size: 12px;
+          transform: translate(45%, -88%);
+          p {
+            transform: translate(0.7%, 88%);
+          }
+        }
+        h1 {
+          margin-right: 100px;
+        }
+        ion-icon {
+          animation: none;
+          transform: translate(0, -7px);
+        }
+      }
+
       button {
         background-color: transparent;
         color: white;
@@ -851,7 +991,12 @@ body {
         padding: 30px 85px 30px 75px;
 
         p {
-          width: 34vw;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 7;
+          -webkit-box-orient: vertical;
+          width: 35vw;
         }
       }
 
@@ -882,7 +1027,6 @@ body {
           display: flex;
           flex-direction: column;
           justify-content: space-around;
-          opacity: 0;
 
           section {
             display: flex;
@@ -918,6 +1062,20 @@ body {
           font-family: "Montserrat", sans-serif;
           opacity: 0;
 
+          ion-icon {
+            color: white;
+            animation: none;
+            font-size: 19.5px;
+            opacity: 0.85;
+          }
+
+          form {
+            display: flex;
+            justify-content: space-between;
+            height: 100%;
+            width: 100%;
+          }
+
           h6 {
             font-size: 13px;
             margin-bottom: 10px;
@@ -946,7 +1104,6 @@ body {
     }
   }
 
-
   // add item page
   .add-container {
     // background-color: rgb(35, 174, 255);
@@ -958,7 +1115,7 @@ body {
     transform: translate(-5%, 0);
 
     .category-select {
-      height: 25%;
+      height: 26%;
       width: 83%;
       display: flex;
       flex-direction: column;
@@ -971,7 +1128,7 @@ body {
       z-index: 4;
 
       h1 {
-        font-size: 23px;
+        font-size: 26px;
         font-weight: lighter;
         margin-bottom: 25px;
       }
@@ -987,12 +1144,8 @@ body {
         font-size: larger;
 
         h4 {
-          font-weight: lighter;
-          margin-bottom: 13px;
           position: absolute;
-          // background-color: blue;
           opacity: 0;
-          color: rgb(198, 206, 211);
           pointer-events: none;
         }
 
@@ -1007,10 +1160,18 @@ body {
 
           li {
             list-style: none;
-            font-size: 16px;
+            font-size: 18px;
             height: 80%;
             width: 100%;
             font-weight: lighter;
+            transition: 0.3s;
+            &:nth-of-type(1),
+            &:nth-of-type(2),
+            &:nth-of-type(3) {
+              &:hover {
+                color: rgb(35, 174, 255);
+              }
+            }
 
             &:hover {
               cursor: pointer;
@@ -1024,9 +1185,6 @@ body {
               opacity: 0;
               text-align: start;
               margin: 6px 40px;
-              &:hover {
-                cursor: pointer;
-              }
             }
           }
         }
@@ -1094,8 +1252,6 @@ body {
       }
     }
   }
-
-
 
   // registeration Page
   .register-container {
@@ -1209,11 +1365,72 @@ body {
   }
 
   // Modal
+  .modal-background {
+    backdrop-filter: blur(4px);
+  }
+  .modal-content {
+    height: 400px;
+    width: 350px;
+    background-color: #1a1b1ff5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 
+    h1 {
+      color: white;
+      font-size: 18px;
+    }
 
+    p {
+      color: white;
+      font-size: smaller;
+      transform: translate(0, 10px);
+      &:hover {
+        color: rgb(35, 174, 255);
+      }
+    }
+    form {
+      // background-color: blue;
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      height: 60%;
+      align-items: center;
+      justify-content: space-evenly;
+      font-family: "Montserrat";
 
+      button {
+        background-color: transparent;
+        color: white;
+        font-size: 15px;
+        margin-top: 10px;
+        margin-bottom: -10px;
+        border: none;
+        transition: 0.3s;
+        &:hover {
+          color: rgb(35, 174, 255);
+          cursor: pointer;
+        }
+      }
 
-  // user profile 
+      input {
+        margin: 8px 0;
+        width: 85%;
+        height: 13%;
+        border: none;
+        border-bottom: 1px whitesmoke solid;
+        background-color: transparent;
+        font-size: 14.5px;
+        color: white;
+        &::placeholder {
+          color: rgba(212, 209, 209, 0.6);
+        }
+      }
+    }
+  }
+
+  // user profile
   .Profile {
     color: white;
   }

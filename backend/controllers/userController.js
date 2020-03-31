@@ -38,10 +38,10 @@ function login(req, res) {
       // secret is a string we know
       // expiresIn says how long the token will be valid for
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
-
       res.status(202).send({ message: `Welcome back ${user.username}`, token })
+      
     })
-
+    .catch(error => console.log(error))
 }
 
 function displayUsers(req, res) {
@@ -86,16 +86,13 @@ function deleteUser(req, res) {
 }
 
 function addToFolder(req, res, item, folder) {
-
   const info = folder === 'uploads' || folder === 'savedItems' ? [item._id, item.category] : [item._id]
   const userId = req.currentUser._id
+  console.log(`${req.currentUser.username}: ${userId}, ${item.username}: ${item._id}`)
   User
     .findById(userId)
     .then(user => {
-      user[folder].some(x => x['_id'] === item._id) ? user[folder] : user[folder].push(info)
-      // for (const existing of user[folder]) {
-      //   if (!item['_id'] === existing['_id']) {
-      //     user[folder].push(item)
+      user[folder].some(x => x[0].toString() === item._id.toString()) ? console.log('already added to your folder') : user[folder].push(info)
       return user.save()
     })
     .then(user => {

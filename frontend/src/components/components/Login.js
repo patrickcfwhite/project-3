@@ -30,30 +30,32 @@ const LoginModal = ({ ToggleModal, CloseNavBarandModal, props }) => {
 
   return <div className='modal is-active'>
     <div className='modal-background' onClick={ToggleModal}></div>
+
     <div className="modal-content">
-      <div className="register-container">
-        <h1>Login!</h1>
-        <Link to='/register' onClick={CloseNavBarandModal}>Create a New Account</Link>
-        <form onSubmit={handleSubmit}>
-          <input
-            onChange={handleChange}
-            type="email"
-            placeholder='Email Address'
-            name='email'>
-          </input>
-          <input
-            onChange={handleChange}
-            type="password"
-            placeholder='Password'
-            name='password'>
-          </input>
-          <div className='submit'>
-            <button>
-              Login</button>
-          </div>
-        </form>
-      </div>
+
+      <h1>LOG INTO YOUR ACCOUNT</h1>
+    
+      <form onSubmit={handleSubmit}>
+        <input
+          onChange={handleChange}
+          type="email"
+          placeholder='Email Address'
+          name='email'>
+        </input>
+        <input
+          onChange={handleChange}
+          type="password"
+          placeholder='Password'
+          name='password'>
+        </input>
+        <div className='submit'>
+          <button> LOGIN </button>
+        </div>
+      </form>
+      <Link to='/register' onClick={CloseNavBarandModal}> <p> Register for an account </p></Link>
     </div>
+
+
   </div>
 }
 

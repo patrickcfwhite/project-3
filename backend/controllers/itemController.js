@@ -15,6 +15,7 @@ function all(req, res) {
 
   mongoose.model(category)
     .find()
+    .populate('comments')
     .then(items => {
       res.send(items)
     })
@@ -37,6 +38,7 @@ function singleItemId(req, res) {
 }
 
 function addNewActivity(req, res) {
+  
   const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
   req.body.user = req.currentUser
   mongoose.model(category)
@@ -49,6 +51,7 @@ function addNewActivity(req, res) {
 }
 
 function addActivity(req, res) {
+  console.log(req.params)
   const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
   req.body.user = req.currentUser
   const folder = !req.params.id ? 'uploads' : req.params.category !== 'user' ? 'savedItems' : 'following'
@@ -66,13 +69,11 @@ function addActivity(req, res) {
         console.log('hello, ', item)
         const target = folder === 'savedItems' ? 'savedBy' : 'followedBy'
         userController.addToFolder(req, res, item, folder)
-        item[target].push([req.currentUser._id])
+        item[target].some(x => x.toString() === req.currentUser._id.toString()) ? console.log('already added') : item[target].push([req.currentUser._id])
         return item.save()
       })
       .catch(error => console.log(error))
   }
-
-
 }
 
 function editActivity(req, res) {
@@ -147,7 +148,7 @@ function deleteActivity2(req, res) {
       .then(item => {
         for (const userId of item.savedBy) {
           let index
-          if (userId === req.currentUser._id) {
+          if (userId.toString() === req.currentUser._id.toString()) {
             index = item.savedBy.indexOf(userId)
           }
           item.savedBy.splice(index, 1)

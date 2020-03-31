@@ -1,6 +1,8 @@
 import React from 'react'
 import moment from 'moment'
 import axios from 'axios'
+import auth from '../../../../backend/lib/auth'
+import { TimelineLite } from 'gsap'
 
 
 class SingleFilm extends React.Component {
@@ -8,15 +10,23 @@ class SingleFilm extends React.Component {
     super()
     this.state = {
       film: [],
-      comment: ''
+      savedItems: []
     }
   }
 
   componentDidMount() {
+    const savedItems = []
     const id = this.props.match.params.id
     axios.get(`/api/watch/${id}`)
       .then(response => {
         this.setState({ film: response.data })
+      })
+    axios.get(`/api/user/${auth.getUserId()}`)
+      .then(response => {
+        response.data.savedItems.map(el => {
+          savedItems.push(el[0])
+        })
+        this.setState({ savedItems })
       })
   }
 
@@ -25,23 +35,89 @@ class SingleFilm extends React.Component {
   }
 
   HandleCommentSubmit(e) {
+    e.preventDefault()
     const id = this.props.match.params.id
-    // e.preventDefault()
-    console.log('submitted')
-    axios.post(`/api/watch/${id}/comments`)
+    let rating = 0
+    const stars = Array.from(e.target.previousSibling.lastChild.childNodes)
+
+    stars.map(el => {
+      el.style.color === 'gold' ? rating = rating + 1 : null
+    })
+
+    stars.map(el => {
+      el.style.color = 'white'
+    })
+
+    const reqBody = {
+      text: e.target.firstChild.value,
+      rating: rating
+    }
+
+    axios.post(`/api/watch/${id}/comments`,
+      reqBody, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+
+    e.target.firstChild.value = ''
+
+    setTimeout(() => {
+      axios.get(`/api/watch/${id}`)
+        .then(response => {
+          this.setState({ film: response.data })
+          // console.log(response.data)
+        })
+    }, 1000)
+
   }
 
+  HandleStar(e) {
+    const style = e.target.style
+    style.color = 'gold'
+  }
+
+  HandleFavourite(e) {
+    e.target.style.color = 'red'
+    const id = this.props.match.params.id
+    const t1 = new TimelineLite
+    t1
+      .to('.film-heart-message', 0.2, { opacity: 0.9 })
+      .to('.film-heart-message', 0.5, { opacity: 0 }, '+=1')
+
+    axios.post(`/api/watch/${id}`, {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+  }
+
+
   render() {
-    console.log(this.state.comment)
-    const { film } = this.state
+    console.log(this.state.savedItems)
+    const { id } = this.props.match.params
+    const { film, savedItems } = this.state
+    const starStyle = {
+      color: 'white',
+      animation: 'none',
+      fontSize: '19.5px',
+      opacity: '0.85',
+      transform: 'translate(0, 6px)'
+    }
+
+    const titletop = {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
 
     return (
-      <main>
+      <main className='single-film'>
         <div className="single-film-container">
 
           <div className="single-film-left">
             <div className="single-film-title">
-              <h1> {film.title} </h1>
+              <div style={titletop} className="film-title-top">
+                <h1> {film.title} </h1>
+                <div className="film-heart-message"> <p>FAVOURITED!</p> </div>
+                {auth.isLoggedIn() ? <ion-icon 
+                  style={savedItems.includes(id) ? { color: 'red',animation: 'none',transform: 'translate(-50px, -5px)' }
+                    : { color: 'white',animation: 'none',transform: 'translate(-50px, -5px)' }}
+                  onClick={(e) => this.HandleFavourite(e)} name="heart-sharp"></ion-icon> : null}
+              </div>
+
               <h3>{film.description}</h3>
               <p> Certificate: {film.certification} <span> Director: {film.director} </span> Duration: {film.duration} </p>
             </div>
@@ -65,6 +141,7 @@ class SingleFilm extends React.Component {
                           <section>
                             <h3> {comment.user} </h3>
                             <h5 className='rating'> Rating: {comment.rating} </h5>
+                            <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -2px)' }} name="star-sharp"></ion-icon>
                           </section>
                           <p> {comment.text} </p>
                           <h5> Posted {moment(comment.createdAt).startOf('second').fromNow()} </h5>
@@ -74,13 +151,25 @@ class SingleFilm extends React.Component {
               </div>
 
               <div className="film-user-comment">
-                <h4> LEAVE A COMMENT </h4>
 
+                <div className='star' style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <h4> {auth.isLoggedIn() ? 'COMMENT' : 'PLEASE LOGIN/REGISTER TO COMMENT'} </h4>
+                  <div className="star-icons" style={{ transform: 'translate(-85px, -11.7px)' }}>
+                    <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                  </div>
+                </div>
 
-                <form onSubmit={(e) => this.HandleCommentSubmit(e)} onChange={(e) => this.HandleState(e)} style={{ width: '100%' }} action="">
-                  <input placeholder='Write here...'></input>
-                  <button style={{ marginBottom: '1px' }}> POST </button>
-                </form>
+                {!auth.isLoggedIn() ? null :
+                  <form onSubmit={(e) => this.HandleCommentSubmit(e)} onChange={(e) => this.HandleState(e)} style={{ width: '100%' }} action="">
+                    <input placeholder='Write here...'></input>
+                    <button style={{ marginBottom: '1px' }}> POST </button>
+                  </form>
+                }
+
 
               </div>
             </div>
