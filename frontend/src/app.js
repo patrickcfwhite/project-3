@@ -173,7 +173,10 @@ class Read extends React.Component {
             </div>
             <small className='book-uploader'> {this.state.singlebook.user}</small>
           </div>
+
           <div className='all-book-comments'>
+
+
             {/* previous comments */}
             <div className="previous-book-comments">
               {this.state.singlebook.comments ? this.state.singlebook.comments.map(comment => {
@@ -195,23 +198,35 @@ class Read extends React.Component {
             </div>
 
 
-
-
-
-
             {/* new comment */}
-            {auth.isLoggedIn() ? <div className="user-comment">
-              <h6>COMMENT</h6>
+            <div className="new-comment">
+              <div className='star' style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
+                {auth.isLoggedIn() ?
+                  <div className='comment-section'>
+                    <h6>COMMENT</h6>
+                  </div> : <h6>PLEASE LOGIN/REGISTER TO COMMENT</h6>}
 
-              <div className="comment-input">
-                <form onSubmit={(e) => this.handleNewComment(e)}>
-                  <input placeholder='Write here...'></input>
 
-                  <button id={this.state.singlebook.id} style={{ marginBottom: '1px' }}> POST </button>
-                </form>
+                <div className="star-icons" style={{ transform: 'translate(-65%, -20%)' }}>
+                  <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
+                  <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
+                  <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
+                  <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
+                  <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
+
+                </div>
               </div>
-            </div> 
-              : <h6>PLEASE LOGIN/REGISTER TO COMMENT</h6>}
+              {auth.isLoggedIn() ?
+                <div className="book-comment-input">
+                  <form action="">
+                    <input placeholder='Write here...'></input>
+                    <button style={{ marginBottom: '1px' }}> POST </button>
+                  </form>
+                </div> : null}
+            </div>
+
+
+
           </div>
         </div>
       </div>

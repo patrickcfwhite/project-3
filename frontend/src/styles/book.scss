@@ -21,20 +21,16 @@ main {
   .book-info {
     display: flex;
     height: 50%;
-    background-color: orange;
     .all-book-comments {
       width: 50%;
       height: 100%;
-      background-color: yellow;
       .previous-book-comments {
-        background-color: green;
         height: 70%;
         width: 100%;
         overflow-y: scroll;
       }
     }
-    .user-comment {
-      background-color: blue;
+    .new-comment {
       height: 30%;
       display: flex;
       flex-direction: column;
@@ -42,17 +38,59 @@ main {
       color: white;
       font-family: "Montserrat", sans-serif;
       width: 100%;
+      .book-comment-input {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: space-between;
+        form {
+          display: flex;
+          // background-color: lightblue;
+          width: 100%;
+          height: 100%;
+          input {
+            height: 95%;
+            padding: 5px;
+            width: 80%;
+            background-color: transparent;
+            color: white;
+            border: none;
+            border-top: 1px solid grey;
+            border-bottom: 1px solid grey;
+            font-size: 14px;
+          }
+          button {
+            background-color: transparent;
+            color: white;
+            font-family: "Montserrat", sans-serif;
+            font-size: 14px;
+            border: none;
+            margin-bottom: 20px;
+            transform: translate(80%, 0);
+            // background-color: green;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+    }
+      .star {
+        width: 100%;
+        margin-bottom: 4px;
+        .comment-section {
+          font-size: 13px;
+        }
+        ion-icon {
+          color: white;
+          animation: none;
+          font-size: 19.5px;
+          opacity: 0.85;
+        }
+      }
       h6 {
         font-size: 13px;
         margin-bottom: 10px;
       }
-      .comment-input {
-        display: flex;
-        height: 100%;
-        // background-color: yellow;
-        align-items: center;
-        justify-content: space-between;
-    }
   }
     .book-information {
       height: 100%;

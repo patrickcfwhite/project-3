@@ -3,7 +3,9 @@ import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import auth from '../../../../backend/lib/auth'
 
-const LoginModal = ({ ToggleModal, CloseNavBarandModal, props }) => {
+// being pased down from navbar
+
+const LoginModal = ({ ToggleModal, HandleCloseFromLink, props }) => {
 
 
   const [login, setLogin] = useState({ email: '', password: '' })
@@ -24,6 +26,11 @@ const LoginModal = ({ ToggleModal, CloseNavBarandModal, props }) => {
         props.history.push(`/user/${auth.getUserId()}`)
       })
       .catch(error => console.log(error))
+  }
+
+  function CloseNavBarandModal() {
+    ToggleModal()
+    HandleCloseFromLink()
   }
 
 
