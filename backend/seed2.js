@@ -53,15 +53,12 @@ mongoose.connect(
               followedBy: []
             }
           ])
+          .then((users) => {
+            seedFunction.createBooks(users)
+            seedFunction.createRecipes(users)
+            seedFunction.createWatch(users)
+            seedFunction.createPlay(users)
+          })
       })
-      .then((users) => {
-        seedFunction.createBooks(users)
-        seedFunction.createRecipes(users)
-        seedFunction.createWatch(users)
-        seedFunction.createPlay(users)
-          .then(() => console.log('Successfully seeded database'))
-          .catch(error => console.log(error))
-          .finally(() => mongoose.connection.close())
       })
-  })
-
+      

@@ -27,8 +27,10 @@ import SingleFilm from './components/components/SingleFilm'
 import SingleRecipe from './components/components/SingleRecipe'
 import AddItem from './components/components/AddItem'
 
+
 import axios from 'axios'
 import test from './components/components/test'
+import EditCookForm from './components/components/forms/EditCookForm'
 // import LoginModal from './components/components/Login'
 
 
@@ -43,6 +45,7 @@ const App = () => (
       <Route exact path='/read' component={Read}></Route>
       <Route exact path='/register' component={Register}></Route>
       {/* <Route exact path='/login' component={LoginModal}></Route> */}
+      <Route path='/user/:id/uploads/:category/:id' component={EditCookForm}></Route>
       <Route path='/user/:id' component={Profile}></Route>
       <Route exact path='/add' component={AddItem}></Route>
       <Route exact path='/watch/:id' component={SingleFilm}></Route>
