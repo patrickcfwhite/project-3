@@ -180,7 +180,7 @@ class Read extends React.Component {
             {/* previous comments */}
             <div className="previous-book-comments">
               {this.state.singlebook.comments ? this.state.singlebook.comments.map(comment => {
-                return <div key={comment._id} className="comment-row">
+                return <div key={comment._id} className="book-comment-row">
 
                   <section>
                     <h3> {comment.username} </h3>
