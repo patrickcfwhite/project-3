@@ -3,6 +3,7 @@ import axios from 'axios'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import auth from '../../../../backend/lib/auth'
+import '../../styles/profile.scss'
 
 class Profile extends React.Component {
   constructor() {

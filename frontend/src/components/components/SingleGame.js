@@ -12,6 +12,7 @@ const SingleGame = ({ savedItems, RenderComments, singleGame, singleGameComments
     console.log(id)
     let rating = 0
     const stars = Array.from(e.target.parentNode.previousSibling.lastChild.childNodes)
+    // stars gets the stars in the comment section
 
     stars.map(el => {
       el.style.color === 'gold' ? rating = rating + 1 : null
