@@ -118,11 +118,11 @@ class SingleFilm extends React.Component {
   }
 
   render() {
-
-    console.log(this.state.average)
-    console.log(this.state.film.comments)
+    if (!this.state.film.user) return null
+    
     const { id } = this.props.match.params
     const { film, savedItems, average } = this.state
+    const { user } = this.state.film
     const starStyle = {
       color: 'white',
       animation: 'none',
@@ -161,7 +161,7 @@ class SingleFilm extends React.Component {
               {!film.trailer ? null :
                 <video style={{ opacity: '0.9' }} controls onClick={e => e.target.play()} src={film.trailer + '#t=10'} />
               }
-              <small> Added By: {auth.isLoggedIn() ? <Link to={`/user/${film.user}`}> {film.user} </Link> :
+              <small> Added By: {auth.isLoggedIn() ? <Link to={`/user/${user._id}`}> {user.username} </Link> :
                 'Please login to view the uploader\'s profile'} </small>
             </div>
 
