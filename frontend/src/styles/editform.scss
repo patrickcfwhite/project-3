@@ -17,8 +17,8 @@
     // background-color: indigo;
     display: flex;
     flex-direction: column;
-    width: 40%;
-    height: 80%;
+    width: 50%;
+    height: 95%;
     align-items: center;
     justify-content: space-evenly;
     .short-inputs {
@@ -38,7 +38,7 @@
         }
       }
     }
-    input {
+    input, textarea {
       margin: 8px 0;
       width: 70%;
       height: 7%;

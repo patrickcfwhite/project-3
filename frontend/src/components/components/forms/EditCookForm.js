@@ -43,7 +43,7 @@ class EditCookForm extends React.Component {
         const { title, description, director, duration, rating, certification, image, subcategory } = this.state.data
         form = <>
           <input placeholder='Name' name='title' type="text" value={title} />
-          <input placeholder='Description' name='description' type="text" value={description} />
+          <textarea placeholder='Description' name='description' type="text" value={description} />
           <input placeholder='Director' name='director' type="text" value={director} />
           <div className="short-inputs">
             <input placeholder='Duration' name='duration' type="text" value={duration} />
@@ -59,7 +59,6 @@ class EditCookForm extends React.Component {
         form = <>
           <input placeholder='Name' name='name' type="text" value={title} />
           <input placeholder='Description' name='description' type="text" value={description} />
-          <input placeholder='Director' name='director' type="text" value={director}/>
           <div className="short-inputs">
             <input placeholder='Seasons' name='Seasons' type="text" value={seasons} />
             <input value={subcategory} readOnly name='subcategory' type="text" />
@@ -73,7 +72,7 @@ class EditCookForm extends React.Component {
       const { title, description, serves, prepTime, cookTime, rating, mealtype, dietary, ingredients, method, image } = this.state.data
       form = <>
         <input placeholder='Title' name='title' type="text" value={title} />
-        <input placeholder='Description' name='description' type="text" value={description} />
+        <textarea placeholder='Description' name='description' type="text" value={description} />
 
         <div className="short-inputs">
           <input placeholder='Serves' name='serves' type="text" value={serves} />
@@ -84,15 +83,15 @@ class EditCookForm extends React.Component {
           <input placeholder='Dietary' name='dietary' type="text" value={dietary} />
         </div>
 
-        <input placeholder='Ingredients, seperated by commas' name='ingredients' type="text" value={ingredients} />
-        <input placeholder='Method, seperated by commas' name='method' type="text" value={method} />
+        <textarea placeholder='Ingredients, seperated by commas' name='ingredients' type="text" value={ingredients} />
+        <textarea placeholder='Method, seperated by commas' name='method' type="text" value={method} />
         <input placeholder='Image (Link)' name='image' type="text" value={image} />
       </>
     } else if (cat === 'Read') {
       const { title, description, genre, bookType, author, rating, image } = this.state.data
       form = <>
         <input placeholder='Title' name='title' type="text" value={title} />
-        <input placeholder='Description' name='description' type="text" value={description} />
+        <textarea placeholder='Description' name='description' type="text" value={description} />
 
         <div className="short-inputs">
           <input placeholder='Genre' name='genre' type="text" value={genre} />
@@ -107,7 +106,7 @@ class EditCookForm extends React.Component {
       const { title, description, genre, subcategory, format, players, duration, rating, link } = this.state.data
       form = <>
         <input placeholder='Title' name='title' type="text" value={title} />
-        <input placeholder='Description' name='description' type="text" value={description} />
+        <textarea placeholder='Description' name='description' type="text" value={description} />
 
         <div className="short-inputs">
           <input placeholder='Genre' name='genre' type="text" value={genre} />
@@ -132,7 +131,7 @@ class EditCookForm extends React.Component {
       <div className="edit-form">
         <form onSubmit={(event) => this.handleSubmit(event)} onChange={(event) => this.handleChange(event)}>
           {this.formChooser(category, subcategory)}
-          <button>submit</button>
+          <button>Submit</button>
         </form>
       </div>
     )
