@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import auth from '../../../../backend/lib/auth'
-import {TimelineLite} from 'gsap'
+import { TimelineLite } from 'gsap'
 import moment from 'moment'
 import '../../styles/book.scss'
 
@@ -83,6 +83,7 @@ class Read extends React.Component {
   }
 
   HandleFavourite(e) {
+    const savedItems = []
     const id = this.state.singlebook._id
     const t1 = new TimelineLite
     if (e.target.style.color === 'white') {
@@ -91,10 +92,29 @@ class Read extends React.Component {
         .to('.book-heart', 0.2, { opacity: 0.95 })
         .to('.book-heart', 0.5, { opacity: 0 }, '+=1')
       axios.post(`api/read/${id}`, {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      setTimeout(() => {
+        axios.get(`/api/user/${auth.getUserId()}`)
+          .then(response => {
+            response.data.savedItems.map(el => {
+              savedItems.push(el[0])
+            })
+            this.setState({ savedItems })
+          })
+      }, 200)
+
     } else {
       e.target.style.color = 'white'
       axios.delete(`/api/user/${auth.getUserId()}/savedItems/read/${id}`
         , { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      setTimeout(() => {
+        axios.get(`/api/user/${auth.getUserId()}`)
+          .then(response => {
+            response.data.savedItems.map(el => {
+              savedItems.push(el[0])
+            })
+            this.setState({ savedItems })
+          })
+      }, 200)
     }
   }
 
@@ -164,7 +184,7 @@ class Read extends React.Component {
                     return <div key={comment._id} className="book-comment-row">
 
                       <section>
-                        <Link style={{color: 'white'}} to={`/user/${comment.user._id}`} ><h3> {comment.user.username} </h3> </Link> 
+                        <Link style={{ color: 'white' }} to={`/user/${comment.user._id}`} ><h3> {comment.user.username} </h3> </Link>
                         <h5 className='rating'> Rating: {comment.rating}
                           <ion-icon style={{ transform: 'translate(-5px, -7px)', fontSize: '16px', color: 'gold', animation: 'none' }}
                             name="star-sharp"></ion-icon> </h5>

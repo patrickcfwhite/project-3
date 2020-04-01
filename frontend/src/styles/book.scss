@@ -115,6 +115,9 @@
           margin: 5px 0;
           overflow: scroll;
           width: 95%;
+          &::-webkit-scrollbar{
+            display:none;
+          }
           
           .book-comment-row {
             min-height: 32%;

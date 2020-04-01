@@ -64,65 +64,64 @@ const Register = (props) => {
     <div className='register-container'>
       <div className='register-title'>
         <h1>Register An Account</h1>
-        <div className='already-registered'>
-          <div onClick={ToggleModal}>Already have an account? Login</div>
-        </div>
-        {!register.completeCheck && <p>Please Complete All Fields</p>}
+        
+
       </div>
       <div className='form-container'>
         <form
           onSubmit={(event) => handleSubmit(event)}>
-          <div className='field'>
-            <input
-              onChange={(event) => handleChange(event)}
-              type="text"
-              placeholder="Username"
-              name='username'>
-            </input>
-          </div>
-          <div className='field'>
-            <input
-              onChange={(event) => handleChange(event)}
-              type="text"
-              placeholder="First Name"
-              name='firstname'>
-            </input>
-          </div>
-          <div className='field'>
-            <input
-              onChange={(event) => handleChange(event)}
-              type="email"
-              placeholder='Email Address'
-              name='email'>
-            </input>
-            {!register.validEmail && <small>Email Address is not valid</small>}
-          </div>
-          <div className='field'>
-            <input
-              onChange={(event) => handleChange(event)}
-              type="password"
-              placeholder='Password'
-              name='password'>
-            </input>
-          </div>
-          <div className='field'>
-            <input
-              onChange={(event) => handleChange(event)}
-              type="password"
-              placeholder='Password Confirmation'
-              name='passwordConfirmation'></input>
-            {!register.passwordMatch && <small>Passwords must match</small>}
-          </div>
+
+          <input
+            onChange={(event) => handleChange(event)}
+            type="text"
+            placeholder="Username"
+            name='username'>
+          </input>
+
+
+          <input
+            onChange={(event) => handleChange(event)}
+            type="text"
+            placeholder="First Name"
+            name='firstname'>
+          </input>
+
+
+          <input
+            onChange={(event) => handleChange(event)}
+            type="email"
+            placeholder='Email Address'
+            name='email'>
+          </input>
+          {!register.validEmail && <small>Email Address is not valid</small>}
+
+
+          <input
+            onChange={(event) => handleChange(event)}
+            type="password"
+            placeholder='Password'
+            name='password'>
+          </input>
+
+          <input
+            onChange={(event) => handleChange(event)}
+            type="password"
+            placeholder='Password Confirmation'
+            name='passwordConfirmation'></input>
+          {!register.passwordMatch && <small>Passwords must match</small>}
           {/* <div className='field'>
               <label className='btn'> Click To Upload Image
                 <input type='file'/>
               </label>
             </div> */}
-          <div className='submit'>
-            <button>
-              Register!</button>
-          </div>
+        {!register.completeCheck && <small>Please Complete All Fields</small>}
+            <button> Register!</button>
+
+
         </form>
+        <button className='registered'onClick={ToggleModal}>Already have an account? Login</button>
+
+       
       </div>
     </div>
     {modalOpen ? <LoginModal

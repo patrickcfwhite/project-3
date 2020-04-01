@@ -1346,74 +1346,58 @@ body {
     height: 100%;
     width: 100%;
     align-items: center;
+    font-family: 'Montserrat';
+
+    small {
+      color:brown;
+      position: absolute;
+      bottom: 26%;
+      font-size: 14.5px;
+    }
     .register-title {
-      align-content: space-between;
-      font-family: "Raleway", sans-serif;
-      letter-spacing: 8px;
-      text-transform: uppercase;
+      text-transform: capitalize;
       color: white;
+      letter-spacing: 1px;
       text-align: center;
-      width: 80%;
+      width: 30%;
       margin-top: 60px;
+      transform: translate(0, 80%);
+      // background-color: rgb(245, 153, 169);
       h1 {
-        font-size: 3em;
-      }
-      .already-registered {
-        margin: 40px;
-        letter-spacing: 5px;
-        a {
-          color: white;
-          text-decoration: none;
-          &:hover {
-            color: lightgrey;
-          }
-        }
+        font-size: 1.3em;
       }
     }
     .form-container {
-      height: 100%;
-      width: 80%;
+      height: 70%;
+      width: 35%;
       display: flex;
-      padding: 10px;
-      border-radius: 20px;
-      align-self: center;
-      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      justify-content: space-around;
+      // background-color: lightskyblue;
+      transform: translate(0, 10%);
+
+      .registered {
+        background-color: transparent;
+        color:white;
+        font-size: 15px;
+        border: none;
+        height: 10%;
+      }
       form {
         display: flex;
+        height: 85%;
+        width: 75%;
+        // background-color: red;
         flex-direction: column;
+        align-items: center;
         justify-content: space-evenly;
-        .field {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-evenly;
-          .btn {
-            padding: 5px;
-            font-family: "Raleway", sans-serif;
-            padding-left: 20px;
-            height: 40px;
-            width: 400px;
-            border-bottom: 1px solid lightgrey;
-            color: white;
-            opacity: 0.7;
-            background-color: transparent;
-            font-size: 20px;
-            &:hover {
-              color: #010911;
-              font-weight: bolder;
-            }
-          }
-          input[type="file"] {
-            font-size: 100px;
-            opacity: 0;
-            border: 1px solid white;
-          }
-        }
+
         input {
           background-color: transparent;
           height: 40px;
-          width: 400px;
-          font-size: 20px;
-          padding: 20px;
+          width: 100%;
+          font-size: 14px;
           color: white;
           border: none;
           border-bottom: 1px solid lightgrey;
@@ -1423,28 +1407,15 @@ body {
             font-family: "Raleway", sans-serif;
           }
         }
-        .submit {
-          align-items: center;
           button {
-            width: 100%;
-            justify-self: center;
+            width: 30%;
+            height: 10%;
             background-color: transparent;
             color: white;
-            font-size: large;
-            padding: 20px 30px;
-            font-family: "Raleway", sans-serif;
-            border-radius: 5px;
-            &:hover {
-              background-color: white;
-              color: #010911;
-              font-weight: bolder;
-            }
-            &:active {
-              background-color: whitesmoke;
-              color: #010911;
-              font-weight: bolder;
-            }
-          }
+            transform: translate(0, 33%);
+            font-size: 15px;
+            border:none;
+            font-family: 'Montserrat';
         }
       }
     }
