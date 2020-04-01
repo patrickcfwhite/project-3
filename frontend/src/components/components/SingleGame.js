@@ -66,6 +66,8 @@ const SingleGame = ({ savedItems, RenderComments, singleGame, singleGameComments
     }
   }
 
+  
+
   return (
     <div className="gameinfo">
       {/* single game */}

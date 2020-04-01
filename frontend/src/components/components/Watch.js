@@ -19,12 +19,8 @@ class Watch extends React.Component {
       })
   }
 
-
-
-
   render() {
-
-
+    console.log(this.state.films)
     return (
       <main className='watch-main'>
 
@@ -43,12 +39,6 @@ class Watch extends React.Component {
             </div>
 
           </div>
-
-
-
-
-
-
 
           <h3 style={{ margin: ' 15px 5px' }}> TOP FILM RECOMMENDATIONS </h3>
 

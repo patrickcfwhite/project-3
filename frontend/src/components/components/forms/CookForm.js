@@ -17,7 +17,7 @@ const CookForm = (props) => {
       </div>
 
       <input placeholder='Ingredients, seperated by commas' name='ingredients' type="text" />
-      <input placeholder='Method, seperated by commas' name='ingredients' type="text" />
+      <input placeholder='Method, seperated by commas' name='method' type="text" />
       <input placeholder='Image (Link)' name='image' type="text" />
 
 

@@ -3,6 +3,7 @@ import axios from 'axios'
 import moment from 'moment'
 import auth from '../../../../backend/lib/auth'
 import { TimelineLite } from 'gsap'
+import { set } from 'mongoose'
 
 // import { SingleEntryPlugin } from 'webpack'
 
@@ -14,16 +15,25 @@ class SingleRecipe extends React.Component {
     this.state = {
       recipe: [],
       singleRecipeComments: [],
-      isCommentsActive: false
+      isCommentsActive: false,
+      savedItems: []
     }
   }
 
   componentDidMount() {
     const id = this.props.match.params.id
+    const savedItems = []
     axios.get(`/api/cook/${id}`)
       .then(response => {
         this.setState({ recipe: response.data, singleRecipeComments: response.data.comments })
 
+      })
+    axios.get(`/api/user/${auth.getUserId()}`)
+      .then(response => {
+        response.data.savedItems.map(el => {
+          savedItems.push(el[0])
+        })
+        this.setState({ savedItems })
       })
   }
 
@@ -32,37 +42,122 @@ class SingleRecipe extends React.Component {
     t1
       .to('.to-hide, .rec-media', 0.5, { opacity: 0 })
       .to('.to-hide, .rec-media', 0.1, { display: 'none' })
-      .to('.left-top', 0.1, {height: '10%'})
-      .to('.single-rec-comments', 1.5, {height: '90%'})
-      .to('.single-previous-rec-comments, .user-rec-comment', 0.1, {display: 'block'})
-      .to('.single-previous-rec-comments, .user-rec-comment', 0.5, {opacity: 1})
+      .to('.left-top', 0.1, { height: '10%' })
+      .to('.single-rec-comments', 1.5, { height: '90%' })
+      .to('.single-previous-rec-comments, .user-rec-comment', 0.1, { display: 'block' })
+      .to('.single-previous-rec-comments, .user-rec-comment', 0.5, { opacity: 1 })
+
+    this.setState({ isCommentsActive: true })
   }
 
   HandleCloseRecipeComments(e) {
-    console.log('hello')
+    const t1 = new TimelineLite
+    t1
+      .to('.single-previous-rec-comments, .user-rec-comment', 0.5, { opacity: 0 })
+      .to('.single-previous-rec-comments, .user-rec-comment', 0.1, { display: 'none' })
+      .to('.single-rec-comments', 1.5, { height: '5%' })
+      .to('.left-top', 0.1, { height: '30%' })
+      .to('.to-hide', 0.1, { display: 'block' })
+      .to('.rec-media', 0.1, { display: 'flex' })
+      .to('.to-hide, .rec-media', 0.5, { opacity: 1 })
+    this.setState({ isCommentsActive: false })
   }
 
   Rotate(e) {
-    console.log('hello')
+    this.state.isCommentsActive ? e.target.name = 'arrow-up-circle-outline' :
+      e.target.name = 'arrow-down-circle-outline'
+  }
+
+  HandleStar(e) {
+    e.target.style.color === 'black' ? e.target.style.color = 'gold' :
+      e.target.color.style = 'black'
+  }
+
+  HandleCross(e) {
+    if (e.target.style.color === 'black') {
+      e.target.style.color = 'brown'
+      e.target.style.textDecoration = 'line-through'
+    } else {
+      e.target.style.textDecoration = 'none'
+      e.target.style.color = 'black'
+    }
+  }
+
+  HandleFavourite(e) {
+    const id = this.state.recipe._id
+    const t1 = new TimelineLite
+    if (e.target.style.color === 'black') {
+      e.target.style.color = 'red'
+      t1
+        .to('.rec-heart', 0.2, { opacity: 0.9 })
+        .to('.rec-heart', 0.5, { opacity: 0 }, '+=1')
+      axios.post(`/api/cook/${id}`, {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    } else {
+      e.target.style.color = 'black'
+      axios.delete(`/api/user/${auth.getUserId()}/savedItems/cook/${id}`
+        , { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    }
+  }
+
+  HandleCommentSubmit(e) {
+    e.preventDefault()
+    const id = this.state.recipe._id
+    console.log(id)
+    let rating = 0
+    const stars = Array.from(e.target.parentNode.previousSibling.lastChild.childNodes)
+
+    stars.map(el => {
+      el.style.color === 'gold' ? rating = rating + 1 : null
+    })
+
+    stars.map(el => {
+      el.style.color = 'white'
+    })
+
+    const reqBody = {
+      text: e.target.firstChild.value,
+      rating: rating
+    }
+
+    axios.post(`/api/cook/${id}/comments`,
+      reqBody, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+
+    e.target.firstChild.value = ''
+
+    setTimeout(() => {
+      axios.get(`/api/cook/${id}`)
+        .then(response => {
+          this.setState({ recipe: response.data, singleRecipeComments: response.data.comments })
+        })
+    }, 750)
+
   }
 
   render() {
-    const { recipe, singleRecipeComments, isCommentsActive } = this.state
+    const { savedItems, recipe, singleRecipeComments, isCommentsActive } = this.state
     console.log(recipe.ingredients)
     return (
       <main>
         <div className="single-rec-container">
+          <ion-icon onClick={() => this.props.history.push('/cook')}
+            style={{color:'white',position: 'absolute', right: '3%', top: '7.5%'}}
+            name="close-circle-sharp"></ion-icon>
           <div className="single-rec-left">
 
             <div className="left-top">
               <h1> {recipe.title} </h1>
+              <div className="rec-heart"> <p>FAVOURITED!</p> </div>
+              {auth.isLoggedIn() ? <ion-icon style={savedItems.includes(recipe._id) ?
+                { color: 'red', position: 'absolute', right: '39%' } :
+                { color: 'black',position: 'absolute', right: '39%' }}
+              onClick={(e) => this.HandleFavourite(e)} name="heart-sharp"></ion-icon> : null}
               <h6 className='to-hide' style={{ color: 'brown' }}> {recipe.description} </h6>
               <p className='to-hide' > Serves: {recipe.serves} <span> Prep: {recipe.prepTime} </span> Cook: {recipe.cookTime} </p>
             </div>
             <div className="rec-media">
 
               <div className="media-left">
-                <h6> {recipe.ingredients ? recipe.ingredients.length : null} INGREDIENTS </h6>
+                <h6> {recipe.ingredients ? recipe.ingredients.length : null}  Ingredients: </h6>
                 {recipe.length === 0 ? null : <ul className='to-hide'>
                   {recipe.ingredients.map((el, i) => {
                     return <li key={i}> - {'\u00A0'} {el} </li>
@@ -86,7 +181,7 @@ class SingleRecipe extends React.Component {
                       <div key={comment.user} className="rec-comment-row">
 
                         <section>
-                          <h5> {comment._id} </h5>
+                          <h5> {comment.user.username} </h5>
                           <h6 className='rec-rating'> Rating: {comment.rating}
                             <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)' }} name="star-sharp"></ion-icon>
                           </h6>
@@ -106,11 +201,11 @@ class SingleRecipe extends React.Component {
                 <div className='star' style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
                   <h6> {auth.isLoggedIn() ? 'COMMENT' : 'PLEASE LOGIN/REGISTER TO COMMENT'} </h6>
                   <div className="star-icons" style={{ transform: 'translate(-85px, -11.7px)' }}>
-                    <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{ color: 'black' }} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{ color: 'black' }} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{ color: 'black' }} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{ color: 'black' }} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{ color: 'black' }} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
                   </div>
                 </div>
 
@@ -135,7 +230,7 @@ class SingleRecipe extends React.Component {
                 METHOD:
                 {recipe.method.map((el, i) => {
                   return (
-                    <li key={i}> {el} </li>
+                    <li style={{ color: 'black' }} onClick={(e) => this.HandleCross(e)} key={i}> {el} </li>
                   )
                 })}
               </ol>}
