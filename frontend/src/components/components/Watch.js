@@ -55,7 +55,7 @@ class Watch extends React.Component {
           <div className="inner-wrapper">
 
             {this.state.films.map(film => {
-              if (film.subcategory.toLowerCase() === 'film') {
+              if (film.subcategory === 'Film') {
                 return (
                   <div className="video-container">
                     <video id='video' className="box"
@@ -90,7 +90,7 @@ class Watch extends React.Component {
           <div className="inner-wrapper">
 
             {this.state.films.map(film => {
-              if (film.subcategory.toLowerCase() === 'tv series') {
+              if (film.subcategory === 'TV Series') {
                 return (
                   <div className="video-container">
                     <video id='video' className="box"

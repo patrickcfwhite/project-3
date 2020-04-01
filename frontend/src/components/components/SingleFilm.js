@@ -139,7 +139,7 @@ class SingleFilm extends React.Component {
                       return (
                         <div key={comment._id} className="film-comment-row">
                           <section>
-                            <h3> {comment.user} </h3>
+                            <h3> {comment.user.username} </h3>
                             <h5 className='rating'> Rating: {comment.rating} </h5>
                             <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -2px)' }} name="star-sharp"></ion-icon>
                           </section>
