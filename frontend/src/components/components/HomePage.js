@@ -1,6 +1,7 @@
 import React from 'react'
+import auth from '../../../../backend/lib/auth'
 const HomePage = () => {
-
+  auth.isLoggedIn()
   return (
 
     <main>

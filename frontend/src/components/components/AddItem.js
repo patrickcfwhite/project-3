@@ -51,12 +51,13 @@ class AddItem extends React.Component {
 
   HandleChange() {
     const { current } = this.myRef
-  
+    console.log(current.innerHTML)
     const submitObject = ({ ...this.state.submitObject, [event.target.name]: event.target.value,
       subcategory: current.innerHTML === 'film' ? 'Film' : current.innerHTML === 'tv series' ? 'TV Series' : '',
       category: current.innerHTML === 'film' || current.innerHTML === 'tv series' ? 'watch' : current.innerHTML })
   
     this.setState({ submitObject })
+    console.log(this.state.submitObject.category)
   }
 
   HandleItemPost(e) {
