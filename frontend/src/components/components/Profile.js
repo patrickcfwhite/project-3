@@ -50,8 +50,9 @@ class Profile extends React.Component {
     return auth.getUserId() === this.state.user._id
   }
 
-  componentDidMount() {
+  
 
+  getData() {
     const id = this.props.match.params.id
     console.log(this.props)
     axios.get(`/api/user/${id}`)
@@ -63,8 +64,11 @@ class Profile extends React.Component {
         this.populateArray(following, 'following')
         this.populateArray(followedBy, 'followedBy')
         this.toggleFollow()
-       
       })
+  }
+
+  componentDidMount() {
+    this.getData()
   }
 
   toggleFollow() {
@@ -115,6 +119,19 @@ class Profile extends React.Component {
     }
   }
 
+  handleDelete(cat, id) {
+    if (!this.isProfile()) return
+    const token = auth.getToken()
+    const user = auth.getUserId()
+
+    axios.delete(`/api/user/${user}/uploads/${cat}/${id}`, { headers: { authorization: `Bearer ${token}` } })
+      .then(res => {
+        console.log(res.data)
+        window.location.reload()
+      })
+      .catch(error => console.log(error))
+  }
+
 
   render() {
     console.log(this.state.user)
@@ -146,6 +163,7 @@ class Profile extends React.Component {
               {/* <h3>{upload.category}</h3> */}
               {this.iconChoice(upload.category, upload.subcategory)}
               {isProfile && <Link to={`/user/${userId}/uploads/${upload.category}/${upload._id}`}>Edit</Link>}
+              {isProfile && <button onClick={() => this.handleDelete(upload.category, upload._id)}>Delete</button>}
             </div>
           )
         })}

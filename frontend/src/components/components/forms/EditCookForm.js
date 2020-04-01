@@ -59,7 +59,7 @@ class EditCookForm extends React.Component {
         form = <>
           <input placeholder='Name' name='name' type="text" value={title} />
           <input placeholder='Description' name='description' type="text" value={description} />
-          <input placeholder='Director' name='director' type="text" />
+          <input placeholder='Director' name='director' type="text" value={director}/>
           <div className="short-inputs">
             <input placeholder='Seasons' name='Seasons' type="text" value={seasons} />
             <input value={subcategory} readOnly name='subcategory' type="text" />

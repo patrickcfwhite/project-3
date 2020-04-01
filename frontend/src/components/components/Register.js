@@ -2,10 +2,11 @@ import React, { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import LoginModal from './Login'
+import validator from 'email-validator'
 
-const Register = ( props ) => {
+const Register = (props) => {
 
-  const [register, setRegister] = useState({ username: '', firstname: '', email: '', password: '', passwordConfirmation: '' })
+  const [register, setRegister] = useState({ username: '', firstname: '', email: '', password: '', passwordConfirmation: '', validEmail: true, passwordMatch: true, completeCheck: true })
   const [modalOpen, setModal] = useState(false)
 
 
@@ -14,21 +15,47 @@ const Register = ( props ) => {
   }
 
   function handleChange(event) {
+
     const { name, value } = event.target
     const data = { ...register, [name]: value }
-    setRegister({ ...data })
+    const check = { ...data, validEmail: validateEmail(data.email), passwordMatch: validatePass(data.password, data.passwordConfirmation), completeCheck: true }
+    console.log(data, check)
+    setRegister({ ...check })
+    console.log(register)
   }
 
   function handleSubmit(event) {
     event.preventDefault()
-    axios.post('/api/register',
-      register)
-      .then(() => props.history.push('/'))
-      .catch(error => console.log(error))
+    if (submitCheck()) {
+      axios.post('/api/register',
+        register)
+        .then(() => props.history.push('/'))
+        .catch(error => console.log(error))
+    } else return
   }
 
   function HandleCloseFromLink() {
-    return 
+    return
+  }
+
+  function validateEmail(email) {
+    if (email.length === 0) return true
+    return validator.validate(email)
+  }
+
+  function validatePass(password, passwordConfirmation) {
+    if (password.length === 0 || passwordConfirmation.length === 0) return true
+    return ((password.length !== 0 && passwordConfirmation.length !== 0) && password === passwordConfirmation)
+  }
+
+  function submitCheck() {
+    for (const o in register) {
+      if (!register[o]) {
+        setRegister({ ...register, completeCheck: false })
+        return false
+      }
+    }
+    return true
   }
 
 
@@ -40,6 +67,7 @@ const Register = ( props ) => {
         <div className='already-registered'>
           <div onClick={ToggleModal}>Already have an account? Login</div>
         </div>
+        {!register.completeCheck && <p>Please Complete All Fields</p>}
       </div>
       <div className='form-container'>
         <form
@@ -67,6 +95,7 @@ const Register = ( props ) => {
               placeholder='Email Address'
               name='email'>
             </input>
+            {!register.validEmail && <small>Email Address is not valid</small>}
           </div>
           <div className='field'>
             <input
@@ -82,6 +111,7 @@ const Register = ( props ) => {
               type="password"
               placeholder='Password Confirmation'
               name='passwordConfirmation'></input>
+            {!register.passwordMatch && <small>Passwords must match</small>}
           </div>
           {/* <div className='field'>
               <label className='btn'> Click To Upload Image
@@ -95,10 +125,10 @@ const Register = ( props ) => {
         </form>
       </div>
     </div>
-    {modalOpen ? <LoginModal 
-      ToggleModal = {ToggleModal}
-      HandleCloseFromLink = {HandleCloseFromLink}
-      props = {props} /> : null}
+    {modalOpen ? <LoginModal
+      ToggleModal={ToggleModal}
+      HandleCloseFromLink={HandleCloseFromLink}
+      props={props} /> : null}
   </main>
 }
 
