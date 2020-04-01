@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
 
   .profile-header {
     width: 80%;
@@ -60,7 +61,7 @@
       display: flex;
       flex-direction: column;
       font-family: 'Montserrat';
-      overflow: scroll;
+      overflow-y: hidden;
 
       h2 { height: 2%; }
 
@@ -86,6 +87,25 @@
       overflow-y: scroll;
       display: flex;
       flex-direction: column;
+      /* width */
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background:#010911;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: rgb(255, 255, 255);
+      }
+
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: lightseagreen;
+      }
 
       .upload-category {
         display: flex;
@@ -153,6 +173,25 @@
       overflow-y: scroll;
       display: flex;
       flex-direction: column;
+            /* width */
+            &::-webkit-scrollbar {
+              width: 10px;
+            }
+      
+            /* Track */
+            &::-webkit-scrollbar-track {
+              background:#010911;
+            }
+      
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+              background: rgb(255, 255, 255);
+            }
+      
+            /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+              background: lightseagreen;
+            }
 
         h2 {
           // background-color: lightslategrey;
@@ -168,7 +207,7 @@
           align-items: center;
           height: 18%;
           border-bottom: 1px whitesmoke solid;
-          overflow: scroll;
+          overflow-x: none;
 
             .saved-item {
               display: flex;

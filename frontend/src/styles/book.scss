@@ -112,9 +112,12 @@
         .previous-book-comment{
           // background-color: green;
           height: 70%;
-          margin: 5px 0;
-          overflow: scroll;
+          // margin: 5px 0;
+          overflow-y: scroll;
           width: 95%;
+          &::-webkit-scrollbar{
+            color:white
+          }
           
           .book-comment-row {
             min-height: 32%;

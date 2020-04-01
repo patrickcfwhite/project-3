@@ -150,7 +150,7 @@ class Read extends React.Component {
                 </section>
                 <h2> Genre: {'\u00A0'}  {singlebook.genre}</h2>
                 <p> <span>Plot: </span> <br /> {singlebook.description}</p>
-                <small> Added By: {auth.isLoggedIn() ? <Link to={`/user/${singlebook.user}`}> {singlebook.user} </Link> :
+                <small> Added By: {auth.isLoggedIn() ? <Link to={`/user/${singlebook.user}`}> {singlebook.user.username} </Link> :
                   'Please login to view the uploader\'s profile'} </small>
               </div>
 
