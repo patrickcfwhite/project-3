@@ -49,14 +49,17 @@ class AddItem extends React.Component {
     this.setState({ isSelectActive: false })
   }
 
+  // TitleCase(input) {
+  //   return input[0].toUpperCase() + input.slice(1)
+  // }
+
   HandleChange() {
     const { current } = this.myRef
-    
-    const submitObject = ({ ...this.state.submitObject, [event.target.name]: event.target.value,
-      subcategory: current.innerHTML === 'film' ? 'Film' : current.innerHTML === 'tv series' ? 'TV Series' : '',
-      category: current.innerHTML === 'film' || current.innerHTML === 'tv series' ? 'Watch' : current.innerHTML })
+    console.log('current: ', current.innerHTML)
+    const categoryObject = ({ ...this.state.submitObject, subcategory: current.innerHTML === 'Film' || current.innerHTML === 'TV Series' ? current.innerHTML : this.state.subcategory, [event.target.name]: event.target.value })
+    const submitObject = ({ ...categoryObject, category: current.innerHTML === 'Film' || current.innerHTML === 'TV Series' ? 'Watch' : current.innerHTML })  
     this.setState({ submitObject })
-    // console.log(this.state.submitObject.category)
+    console.log('category: ', this.state.submitObject.category, 'subcategory: ', this.state.submitObject.subcategory)
   }
 
   HandleItemPost(e) {
@@ -95,8 +98,8 @@ class AddItem extends React.Component {
 
                 <li onClick={(e) => this.HandleOpen(e)} className="watch"> Watch 
                   <ion-icon style={{ animation: 'none', fontSize: '16px', transform: 'translate(-4px, -6px)' }} name="add-outline"></ion-icon>
-                  <li className='subcat' onClick={(e) => this.HandleOptions(e)} id='film'>Film</li>
-                  <li className='subcat' onClick={(e) => this.HandleOptions(e)} id='tv series'> TV Series</li>
+                  <li className='subcat' onClick={(e) => this.HandleOptions(e)} id='Film'>Film</li>
+                  <li className='subcat' onClick={(e) => this.HandleOptions(e)} id='TV Series'> TV Series</li>
                 </li>
               </ul>
             </div>
@@ -105,7 +108,7 @@ class AddItem extends React.Component {
 
           <div className="add-form">
             <form onSubmit={(e) => this.HandleItemPost(e)} onChange={(e) => this.HandleChange(e)} action="">
-              {current ? (current.innerHTML === 'film' || current.innerHTML === 'tv series') ?
+              {current ? (current.innerHTML === 'Film' || current.innerHTML === 'TV Series') ?
                 <WatchForm current={this.myRef} /> : current.innerHTML === 'Cook' ? <CookForm />
                   : current.innerHTML === 'Play' ? <GameForm />
                     : current.innerHTML === 'Read' ? <ReadForm /> : null : null}
