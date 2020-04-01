@@ -54,6 +54,14 @@
             top: 10%;
             right: 10%;
           }
+          small {
+            position: absolute;
+            bottom: -23px;
+            right:10%;
+            a {
+              color:lightseagreen;
+            }
+          }
           
           .book-heart {
             p {
@@ -92,9 +100,91 @@
           }}}
 
       .book-comments {
-        background-color: brown;
+        // background-color: brown;
         height: 100%;
-        width:47%
+        transform: translate(0, 15px);
+        width:47%;
+        padding: 0 20px;
+        color:white;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+        .previous-book-comment{
+          // background-color: green;
+          height: 70%;
+          margin: 5px 0;
+          overflow: scroll;
+          width: 95%;
+          .book-comment-row {
+            min-height: 32%;
+            word-wrap: break-word;
+            // background-color: cadetblue;
+            margin: 10px 0;
+            padding-bottom: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-bottom: 1px white solid;
+            h5 {
+              font-size: 12px;
+            }
+            p {
+              font-size: 14px;
+              margin: 5px 0;
+            }
+            section {
+              display: flex;
+              justify-content: space-between;
+              h3 {
+                text-transform: capitalize;
+              }
+              ion-icon {
+                font-size: 12px;
+              }
+            }
+          }
+        }
+
+        .new-comment {
+          // background-color: chartreuse;
+          height: 20%;
+          .star {
+            // background-color: chocolate;
+            display: flex;
+            justify-content: space-between;
+            .star-icons {
+              transform: translate(-110px, -7px);
+            }
+          }
+          .book-comment-input {
+            // background-color: cornflowerblue;
+            height: 80%;
+            form {
+              height: 100%;
+              // background-color: cornsilk;
+              button {
+                font-size: 13px;
+                background-color: transparent;
+                border: none;
+                margin-left: 8%;
+                color:white;
+              }
+              input {
+                height: 100%;
+                background-color: transparent;
+                color:white;
+                font-size: 13px;
+                border:none;
+                border-bottom: 1px white solid;
+                border-top: 1px solid white;
+                width: 80%;
+                &::placeholder {
+                  color:rgba(255, 255, 255, 0.63);
+                }
+              }
+            }
+          }
+        }
       }
 }
 

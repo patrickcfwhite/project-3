@@ -41,7 +41,7 @@ class Cook extends React.Component {
     let query = ''
     const others = []
     let id = ''
-
+    
     if (i.parentNode.id === 'recipe-card') {
       return
     } else if (i.parentNode.className === 'card-image' || i.parentNode.className === 'card-info') {
@@ -64,7 +64,6 @@ class Cook extends React.Component {
       .then(response => {
         this.setState({ singleRecipe: response.data, singleRecipeComments: response.data.comments })
       })
-
     const t1 = new TimelineLite
     t1
       .to('.card-image, .card-info', 0.5, { opacity: 0 })
@@ -93,13 +92,14 @@ class Cook extends React.Component {
       id = '.' + id.id.replace(/\W/g, '')
       const t1 = new TimelineLite
       t1
+        .to('li', 0.2, {color: 'black', textDecoration: 'none'})
         .to('.single-left, .single-middle', 1, { opacity: 0 })
         .to('.single', 0.2, { display: 'none' }, '+=0.5')
         .to(id, 0.1, { display: 'flex' })
         .to(id, 0.4, { width: '15.8vw' }, '+=0.2')
         .to(id, 0.2, { height: '36vh' }, '+=0.5')
         .to(id, 0.2, { opacity: 0 }, '+=0.4')
-        .to('.recipe-container', 0.1, { paddingTop: '86vh' }, '+=0.5')
+        .to('.recipe-container', 0.1, { paddingTop: '87vh' }, '+=0.5')
         .to(id, 0.1, { backgroundColor: '#010911' }, '+=0.1')
         .to(others, 0.4, { display: 'flex' }, '+=0.4')
         .to(id, 0.2, { opacity: 1 }, '-=0.3')
@@ -116,7 +116,7 @@ class Cook extends React.Component {
       .to('.to-hide, .recipe-mid-section', 0.5, { opacity: 0 })
       .to('.to-hide, .recipe-mid-section', 0.2, { display: 'none' })
       .to('.recipe-top-section', 0.1, { height: '10%' })
-      .to('.recipe-comments', 1, { height: '85%' })
+      .to('.recipe-comments', 1, { height: '90%' })
       .to('.previous-recipe-comments', 0.1, { display: 'block' })
       .to('.user-recipe-comment', 0.1, { display: 'block' }, '-=0.65')
     this.setState({ isCommentsActive: true })
@@ -286,7 +286,7 @@ class Cook extends React.Component {
                           <div key={comment.user} className="recipe-comment-row">
 
                             <section>
-                              <h3> {comment.user} </h3>
+                              <h3 style={{textTransform: 'capitalize'}}> {comment.user.username} </h3>
                               <h6 className='recipe-rating'> Rating: {comment.rating}
                                 <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)' }} name="star-sharp"></ion-icon>
                               </h6>

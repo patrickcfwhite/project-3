@@ -20,6 +20,12 @@ body {
   background-color: #010911;
   // background-color: white;
 
+  @-webkit-keyframes bounce{
+    0% {transform: translate(0, -4px);}
+    50% {transform: translate(0, 2px);}
+    100% {transform: translate(0, -4px);}
+  }
+
   ion-icon {
     font-size: 30px;
     margin-bottom: -9px;
@@ -193,7 +199,7 @@ body {
   .recipe-container {
     width: 82vw;
     height: 100vh;
-    padding-top: 85vh;
+    padding-top: 87vh;
     overflow: scroll;
     display: flex;
     // flex-direction: column;
@@ -379,9 +385,10 @@ body {
               .recipe-comment-row {
                 // background-color: rgb(35, 174, 255);
                 border-bottom: 1px solid black;
-                height: 25.2%;
+                min-height: 26.2%;
+                word-wrap: break-word;
                 margin-top: 12px;
-                padding-bottom: 5px;
+                padding-bottom: 8px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
@@ -490,9 +497,11 @@ body {
         margin: 2em 1em;
         width: 15.8vw;
         height: 36vh;
+        border-bottom: 1px white solid ;
         // background-color:white;
         opacity: 0.9;
         position: relative;
+        padding-bottom: 30px;
         display: flex;
         flex-direction: column;
         color: whitesmoke;
@@ -509,7 +518,7 @@ body {
         &:hover {
           cursor: pointer;
           transform: scale(1.12);
-          color: pink;
+          border-bottom: 1px rgb(35, 174, 255) solid ;
         }
 
         .card-info {
@@ -1460,8 +1469,25 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        .rec-heart {
+          clip-path: polygon(0 24%, 100% 24%, 100% 75%, 75% 75%, 69% 99%, 50% 75%, 0% 75%);
+          background-color: whitesmoke;
+          width: 90px;
+          height: 50px;
+          color: red;
+          position: absolute;
+          right: 39%;
+          top: 5%;
+          opacity: 0;
+          p {
+            transform: translate(4px, 16px);
+            font-size: 12px;
+          }
+        }
+        
         h1 {
           font-size: 27px;
+          text-transform: capitalize;
         }
         h6 {
           // display: none;
@@ -1499,6 +1525,7 @@ body {
           h6 {
             margin-bottom: 10px;
             font-size: 14px;
+            font-weight:550;
           }
         }
         .media-right {
@@ -1516,7 +1543,7 @@ body {
         // background-color: green;
         transform: translate();
         height: 6%;
-        max-height: 90%;
+        max-height: 87%;
         width: 95%;
         display: flex;
         flex-direction: column;
@@ -1555,6 +1582,7 @@ body {
             }
             h5 {
               font-size: 15px;
+              text-transform: capitalize;
             }
           }
           p {
@@ -1566,14 +1594,21 @@ body {
           border: none;
           font-size: 13px;
           margin-bottom: 12px;
+          font-weight: bold;
         }
       }
     }
     .single-rec-right {
-      background-color: red;
+      // background-color: red;
+      border-left: 1px solid rgba(0, 0, 0, 0.5);
       padding: 20px 45px;
       height: 100%;
       width: 40%;
+      overflow:scroll;
+      li {
+        margin: 25px 0;
+        font-size: 14px;
+      }
     }
 
     .user-rec-comment {
@@ -1586,7 +1621,8 @@ body {
         width: 85%;
         // background-color: white;
         h6 {
-          font-size: 15px;
+          font-size: 13px;
+
         }
         .star-icons {
           ion-icon {
@@ -1615,7 +1651,7 @@ body {
             border-bottom: black 1px solid;
             border-top: black 1px solid;
             color: black;
-            font-size: 13px;
+            font-size: 13.5px;
             &::placeholder {
               color: rgba(0, 0, 0, 0.651);
             }

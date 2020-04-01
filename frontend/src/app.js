@@ -55,7 +55,6 @@ const App = () => (
     </Switch>
   </Router>
 )
-<<<<<<< HEAD
 
 class Read extends React.Component {
   constructor() {
@@ -101,21 +100,35 @@ class Read extends React.Component {
   }
 
   // post new comment
-  handleNewComment(e) {
+  HandleNewComment(e) {
     e.preventDefault()
-    const rating = 2
-    const reqbody = {
-      rating: rating,
-      text: e.target.firstChild.value
+    const id = this.state.singlebook._id
+    let rating = 0
+    const stars = Array.from(e.target.parentNode.previousSibling.lastChild.childNodes)
+
+    stars.map(el => {
+      el.style.color === 'gold' ? rating = rating + 1 : null
+    })
+
+    stars.map(el => {
+      el.style.color = 'white'
+    })
+
+    const reqBody = {
+      text: e.target.firstChild.value,
+      rating: rating
     }
-    axios.post(`/api/read/${this.state.singlebook._id}/comments`, reqbody,
-      { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+
+    axios.post(`/api/read/${id}/comments`,
+      reqBody, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+
+    e.target.firstChild.value = ''
     setTimeout(() => {
-      axios.get(`/api/read/${this.state.singlebook._id}`)
-        .then(res => {
-          this.setState({ singlebook: res.data })
+      axios.get(`/api/read/${id}`)
+        .then(response => {
+          this.setState({ singlebook: response.data, singleBookComments: response.data.comments })
         })
-    }, 2000)
+    },750)
   }
 
   HandleFavourite(e) {
@@ -132,6 +145,11 @@ class Read extends React.Component {
       axios.delete(`/api/user/${auth.getUserId()}/savedItems/read/${id}`
         , { headers: { Authorization: `Bearer ${auth.getToken()}` } })
     }
+  }
+
+  handlegold(e) {
+    e.target.style.color === 'white' ? e.target.style.color = 'gold' 
+      : e.target.style.color = 'white'
   }
 
 
@@ -157,30 +175,35 @@ class Read extends React.Component {
           {/* single book */}
           <div className='single-book-container'>
             <div className="book-information">
-              <h1>{this.state.singlebook.title}</h1>
+              <h1>{singlebook.title}</h1>
               <ion-icon onClick={(e) => this.HandleFavourite(e)}
-                style={savedItems.includes(singlebook._id) ? { color: 'red' } : { color: 'white' }}
+                style={savedItems.includes(singlebook._id) ? { color: 'red',animation: 'none' } : { color: 'white',animation: 'none' }}
                 name="heart-sharp"></ion-icon>
               <div className="book-heart"> <p>FAVOURITED!</p> </div>
               <section>
-                <h2> Rating: {'\u00A0'} {this.state.singlebook.rating}</h2>
-                <h3> Book Type:{'\u00A0'} {this.state.singlebook.bookType}</h3>
+                <h2> Rating: {'\u00A0'} {singlebook.rating}</h2>
+                <h3> Book Type:{'\u00A0'} {singlebook.bookType}</h3>
               </section>
-              <h2> Genre: {'\u00A0'}  {this.state.singlebook.genre}</h2>
-              <p> <span>Plot: </span> <br /> {this.state.singlebook.description}</p>
+              <h2> Genre: {'\u00A0'}  {singlebook.genre}</h2>
+              <p> <span>Plot: </span> <br /> {singlebook.description}</p>
+              <small> Added By: {auth.isLoggedIn() ? <Link to={`/user/${singlebook.user}`}> {singlebook._id} </Link> : 
+                'Please login to view the uploader\'s profile'} </small>
             </div>
-
 
 
             {/* comments */}
             <div className='book-comments'>
-              <div className="previous-book-comments">
+              <h5 style={{ fontSize: '13.5px' }}> {singlebook.comments ? singleBookComments.length : '0'} COMMENT(S) </h5>
+              <div className="previous-book-comment">
                 {this.state.singlebook.comments ? this.state.singlebook.comments.map(comment => {
-                  return <div key={comment._id} className="comment-row">
+                  return <div key={comment._id} className="book-comment-row">
 
                     <section>
-                      <h3> {comment.username} </h3>
-                      <h5 className='rating'> Rating: {comment.rating} </h5>
+                      <h3> {comment.user.username} </h3>
+                      <h5 className='rating'> Rating: {comment.rating}
+                        <ion-icon style={{ transform: 'translate(-5px, -7px)', fontSize: '16px', color: 'gold',animation: 'none' }}
+                          name="star-sharp"></ion-icon> </h5>
+
                     </section>
 
                     <p> {comment.text} </p>
@@ -195,25 +218,25 @@ class Read extends React.Component {
 
               {/* new comment */}
               <div className="new-comment">
-                <div className='star' style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div className='star'>
                   {auth.isLoggedIn() ?
                     <div className='comment-section'>
-                      <h6>COMMENT</h6>
+                      <h6 style={{ fontSize: '13px', transform: 'translate(0, 3px)' }}>COMMENT</h6>
                     </div> : <h6>PLEASE LOGIN/REGISTER TO COMMENT</h6>}
 
 
-                  <div className="star-icons" style={{ transform: 'translate(-65%, -20%)' }}>
-                    <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
-                    <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
-                    <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
-                    <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
-                    <ion-icon style={{ animation: 'none' }} name="star-sharp"></ion-icon>
+                  <div className="star-icons">
+                    <ion-icon onClick={(e) => this.handlegold(e)}style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
+                    <ion-icon onClick={(e) => this.handlegold(e)}style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
+                    <ion-icon onClick={(e) => this.handlegold(e)}style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
+                    <ion-icon onClick={(e) => this.handlegold(e)}style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
+                    <ion-icon onClick={(e) => this.handlegold(e)}style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
 
                   </div>
                 </div>
                 {auth.isLoggedIn() ?
                   <div className="book-comment-input">
-                    <form action="">
+                    <form onSubmit={(e) => this.HandleNewComment(e)} action="">
                       <input placeholder='Write here...'></input>
                       <button style={{ marginBottom: '1px' }}> POST </button>
                     </form>
@@ -236,5 +259,3 @@ ReactDOM.render(
 
 
 
-=======
->>>>>>> development
