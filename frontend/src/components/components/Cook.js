@@ -82,13 +82,15 @@ class Cook extends React.Component {
 
   HandleCollapse(e) {
     const others = []
+ 
     let id = e.target.parentNode
 
     this.state.recipes.map(other => {
       other.title.replace(/\W/g, '') !== id.id.replace(/\W/g, '') ? others.push('.' + other.title.replace(/\W/g, '')) : null
     })
 
-    if (others.length === 14) {
+    if (others.length - 1 < others.length) {
+      console.log(others)
       id = '.' + id.id.replace(/\W/g, '')
       const t1 = new TimelineLite
       t1
@@ -106,7 +108,7 @@ class Cook extends React.Component {
         .to(others, 0.2, { opacity: 1 }, '-=0.3')
         .to('.card-image, .card-info', 0.5, { opacity: 1 })
       this.setState({ isCommentsActive: false })
-    }
+    } 
   }
 
   HandleOpenRecipeComments(e) {
@@ -198,9 +200,7 @@ class Cook extends React.Component {
       axios.delete(`/api/user/${auth.getUserId()}/savedItems/cook/${id}`
         , { headers: { Authorization: `Bearer ${auth.getToken()}` } })
     }
-
   }
-
 
   render() {
     const { singleRecipe, savedItems, singleRecipeComments, isCommentsActive } = this.state

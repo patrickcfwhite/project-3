@@ -14,7 +14,7 @@ const ReadForm = (props) => {
         <input placeholder='Rating' name='rating' type="text" />
       </div>
 
-      <input placeholder='Image (Link)' name='link' type="text" />
+      <input placeholder='Image (Link)' name='image' type="text" />
 
 
     </>
