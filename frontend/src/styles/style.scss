@@ -9,6 +9,10 @@
 body {
   background-color: #010911;
   overflow: scroll;
+  margin: 0;
+  &::-webkit-scrollbar {
+    display:none
+  }
 }
 
 #root {
@@ -16,7 +20,7 @@ body {
   height: 100vh;
   display: flex;
   align-items: center;
-  overflow: scroll;
+  // overflow: scroll;
   background-color: #010911;
   // background-color: white;
 

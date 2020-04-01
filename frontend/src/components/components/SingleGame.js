@@ -93,7 +93,7 @@ const SingleGame = ({ savedItems, RenderComments, singleGame, singleGameComments
           <h6 className='info'> {singleGame.subcategory} </h6>
           <h6> {singleGame.players} </h6>
           <p className='info'> Description: < br /> {singleGame.description} </p>
-          <small> Added By: {auth.isLoggedIn() ? <Link to={`/user/${singleGame.user}`}> {singleGame.user} </Link> :
+          <small> Added By: {auth.isLoggedIn() ? <Link to={`/user/${singleGame.user._id}`}> {singleGame.user.username} </Link> :
             'Please login to view the uploader\'s profile'} </small>
         </div>
         : null}

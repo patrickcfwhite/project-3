@@ -29,6 +29,7 @@ function singleItemId(req, res) {
   mongoose.model(category)
     .findById(id)
     .populate('comments.user')
+    .populate('user')
     .then(item => {
       console.log(item)
       res.send(item)
