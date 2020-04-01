@@ -51,13 +51,12 @@ class AddItem extends React.Component {
 
   HandleChange() {
     const { current } = this.myRef
-    console.log(current.innerHTML)
+    
     const submitObject = ({ ...this.state.submitObject, [event.target.name]: event.target.value,
       subcategory: current.innerHTML === 'film' ? 'Film' : current.innerHTML === 'tv series' ? 'TV Series' : '',
-      category: current.innerHTML === 'film' || current.innerHTML === 'tv series' ? 'watch' : current.innerHTML })
-  
+      category: current.innerHTML === 'film' || current.innerHTML === 'tv series' ? 'Watch' : current.innerHTML })
     this.setState({ submitObject })
-    console.log(this.state.submitObject.category)
+    // console.log(this.state.submitObject.category)
   }
 
   HandleItemPost(e) {
@@ -90,9 +89,9 @@ class AddItem extends React.Component {
             <div className='options'>
               <h4 ref={this.myRef} > Choose... </h4>
               <ul>
-                <li onClick={(e) => this.HandleOptions(e)} id='cook'> Cook </li>
-                <li onClick={(e) => this.HandleOptions(e)} id='play'> Game </li>
-                <li onClick={(e) => this.HandleOptions(e)} id='read'> Read </li>
+                <li onClick={(e) => this.HandleOptions(e)} id='Cook'> Cook </li>
+                <li onClick={(e) => this.HandleOptions(e)} id='Play'> Game </li>
+                <li onClick={(e) => this.HandleOptions(e)} id='Read'> Read </li>
 
                 <li onClick={(e) => this.HandleOpen(e)} className="watch"> Watch 
                   <ion-icon style={{ animation: 'none', fontSize: '16px', transform: 'translate(-4px, -6px)' }} name="add-outline"></ion-icon>
@@ -107,9 +106,9 @@ class AddItem extends React.Component {
           <div className="add-form">
             <form onSubmit={(e) => this.HandleItemPost(e)} onChange={(e) => this.HandleChange(e)} action="">
               {current ? (current.innerHTML === 'film' || current.innerHTML === 'tv series') ?
-                <WatchForm current={this.myRef} /> : current.innerHTML === 'cook' ? <CookForm />
-                  : current.innerHTML === 'play' ? <GameForm />
-                    : current.innerHTML === 'read' ? <ReadForm /> : null : null}
+                <WatchForm current={this.myRef} /> : current.innerHTML === 'Cook' ? <CookForm />
+                  : current.innerHTML === 'Play' ? <GameForm />
+                    : current.innerHTML === 'Read' ? <ReadForm /> : null : null}
               <button> SUBMIT </button>
             </form>
 

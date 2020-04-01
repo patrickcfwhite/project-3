@@ -8,6 +8,7 @@ const GameForm = (props) => {
       <input placeholder='Description' name='description' type="text" />
 
       <div className="short-inputs">
+      
         <input placeholder='Genre' name='genre' type="text" />
         <input placeholder='Subcategory' name='subcategory' type="text" />
         <input placeholder='Format' name='format' type="text" />

@@ -18,8 +18,8 @@ class SingleFilm extends React.Component {
 
   updateRating(input) {
     const ratingArray = Array.from(input)
-    console.log(input.length)
-    console.log(ratingArray)
+    // console.log(input.length)
+    // console.log(ratingArray)
     return (ratingArray.reduce((acc, cur) => acc + cur.rating, 0) / ratingArray.length).toFixed(2)
   }
 
@@ -80,24 +80,45 @@ class SingleFilm extends React.Component {
   }
 
   HandleStar(e) {
-    const style = e.target.style
-    style.color = 'gold'
+    if (e.target.style.color === 'white') {
+      e.target.style.color = 'gold'
+    } else {
+      e.target.style.color = 'white'
+    }
   }
 
   HandleFavourite(e) {
-    e.target.style.color = 'red'
+
     const id = this.props.match.params.id
     const t1 = new TimelineLite
-    t1
-      .to('.film-heart-message', 0.2, { opacity: 0.9 })
-      .to('.film-heart-message', 0.5, { opacity: 0 }, '+=1')
-
-    axios.post(`/api/watch/${id}`, {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    if (e.target.style.color === 'white') {
+      e.target.style.color = 'red'
+      t1
+        .to('.film-heart-message', 0.2, { opacity: 0.9 })
+        .to('.film-heart-message', 0.5, { opacity: 0 }, '+=1')
+      axios.post(`/api/watch/${id}`, {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    } else {
+      e.target.style.color = 'white'
+      axios.delete(`/api/user/${auth.getUserId()}/savedItems/watch/${id}`
+        , { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    }
   }
 
+  HandleDelete(e) {
+    const id = this.state.film._id
+    axios.delete(`/api/watch/${id}/comments/${e.target.previousSibling.id}`,
+      { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    setTimeout(() => {
+      axios.get(`/api/watch/${id}`)
+        .then(response => {
+          const avg = this.updateRating(response.data.comments)
+          this.setState({ film: response.data, average: avg })
+        })
+    }, 500)
+  }
 
   render() {
-    
+
     console.log(this.state.average)
     console.log(this.state.film.comments)
     const { id } = this.props.match.params
@@ -123,7 +144,7 @@ class SingleFilm extends React.Component {
           <div className="single-film-left">
             <div className="single-film-title">
               <div style={titletop} className="film-title-top">
-                <h1> {film.title} </h1><small> Average User Rating: {average}</small>
+                <h1> {film.title} {'\u00A0'} {average === 'NaN' ? null : <small style={{ color: 'lightseagreen', fontSize: '14.5px' }}> Average User Rating: {average}</small>}  </h1>
                 <div className="film-heart-message"> <p>FAVOURITED!</p> </div>
                 {auth.isLoggedIn() ? <ion-icon
                   style={savedItems.includes(id) ? { color: 'red', animation: 'none', transform: 'translate(-50px, -5px)' }
@@ -132,19 +153,23 @@ class SingleFilm extends React.Component {
               </div>
 
               <h3>{film.description}</h3>
-                <p> Certificate: {film.certification} <span> Director: {film.director} </span> Duration: {film.duration}</p>
+              <p> Certificate: {film.certification} <span> Director: {film.director} </span> Duration: {film.duration}</p>
             </div>
 
             <div className="single-film-media">
               <img src={film.image} alt="" />
-              <video style={{ opacity: '0.9' }} controls onClick={e => e.target.play()} src={film.trailer + '#t=10'} />
-
+              {!film.trailer ? null :
+                <video style={{ opacity: '0.9' }} controls onClick={e => e.target.play()} src={film.trailer + '#t=10'} />
+              }
+              <small> Added By: {auth.isLoggedIn() ? <Link to={`/user/${film.user}`}> {film.user} </Link> :
+                'Please login to view the uploader\'s profile'} </small>
             </div>
+
           </div>
 
           <div className="film-right">
             <div className="film-comments">
-              <h3> {film.comments ? film.comments.length : '0'} COMMENTS</h3>
+              <h3> {film.comments ? film.comments.length : '0'} COMMENT(S)</h3>
               <div className="previous-film-comments">
                 {
                   film.comments ?
@@ -154,10 +179,14 @@ class SingleFilm extends React.Component {
                           <section>
                             <h3><Link to={`/user/${comment.user._id}`}>{comment.user.username}</Link></h3>
                             <h5 className='rating'> Rating: {comment.rating} </h5>
-                            <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -2px)' }} name="star-sharp"></ion-icon>
+                            <ion-icon style={{ color: 'gold', fontSize: '16px', animation: 'none', transform: 'translate(0, -2px)' }} name="star-sharp"></ion-icon>
                           </section>
                           <p> {comment.text} </p>
-                          <h5> Posted {moment(comment.createdAt).startOf('second').fromNow()} </h5>
+                          <h5 id={comment._id}> Posted {moment(comment.createdAt).startOf('second').fromNow()} </h5>
+                          {auth.getUserId() === comment.user._id ? <ion-icon onClick={(e) => this.HandleDelete(e)} style={{
+                            position: 'absolute', right: 0, bottom: '21.5%',
+                            fontSize: '18px', animation: 'none'
+                          }} name="trash-bin"></ion-icon> : null}
                         </div>
                       )
                     }) : null}

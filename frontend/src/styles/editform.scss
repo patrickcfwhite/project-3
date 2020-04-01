@@ -8,16 +8,25 @@
 
 .edit-form {
   // background-color: honeydew;
-  height: 85%;
+  height: 90%;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: translate(-2.4%,0);
+  h1 {
+    color:white;
+    font-size: 35px;
+    font-family: 'Montserrat';
+    margin-bottom: 10px;
+  }
   form {
+    font-family: 'Montserrat';
     // background-color: indigo;
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 50%;
     height: 80%;
     align-items: center;
     justify-content: space-evenly;
@@ -27,11 +36,11 @@
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      height: 20%;
-      width: 75%;
+      height: 38%;
+      width: 77%;
       input {
         margin: 0 5%;
-        width: 30%;
+        width: 37%;
         height: 15%;
         &::placeholder {
           color: rgba(212, 209, 209, 0.6);
@@ -54,7 +63,8 @@
     button {
       background-color: transparent;
       color: white;
-      font-size: 15px;
+      text-transform: capitalize;
+      font-size: 16px;
       margin-top: 10px;
       margin-bottom: -10px;
       border: none;

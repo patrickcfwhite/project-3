@@ -10,7 +10,7 @@ const WatchForm = (props) => {
       <input placeholder='Director' name='director' type="text" />
       <div className="short-inputs">
         <input placeholder={current !== null ? current.innerHTML === 'film' ? 'Duration' : 'Seasons' : null}
-          name={current !== null ? current.innerHTML === 'film' ? 'Duration' : 'Seasons' : null} type="text" />
+          name={current !== null ? current.innerHTML === 'film' ? 'duration' : 'seasons' : null} type="text" />
         <input value={current !== null ? current.innerHTML === 'film' ? 'Film' : 'TV Series' : null}  name='subcategory' readOnly/>
         <input placeholder='Rating' name='rating' type="text" />
         <input placeholder='Certification' name='certification' type="text" />
