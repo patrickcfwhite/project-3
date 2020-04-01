@@ -151,6 +151,116 @@ function createBooks(users) {
       rating: 5,
       user: users[1],
       category: 'Read'
+    },
+    {
+      title: 'Looking for  Alaka',
+      author: 'John Green',
+      description: 'Looking for Alaska follows the novel\'s main character and narrator Miles Halter, or "Pudge," to boarding school where he goes to seek the "Great Perhaps," the famous last words of François Rabelais',
+      genre: ['Young Adult, Fiction'],
+      bookType: 'Novel',
+      image: 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3e/Looking_for_Alaska_original_cover.jpg/220px-Looking_for_Alaska_original_cover.jpg',
+      rating: 5,
+      user: users[1],
+      category: 'Read'
+    },
+    {
+      title: 'The Color Purple',
+      author: 'Alice Walker',
+      description: 'Set in the deep American South between the wars, The Color Purple is the classic tale of Celie, a young black girl born into poverty and segregation.',
+      genre: ['Contemporary Fiction, Fiction'],
+      bookType: 'Novel',
+      image: 'https://cdn.waterstones.com/bookjackets/large/9781/4746/9781474607254.jpg',
+      rating: 3,
+      user: users[1],
+      category: 'Read'
+    },
+    {
+      title: 'Anne Frank: The Diary of a Young Girl',
+      author: 'Anne Frank',
+      description: 'One of the most famous accounts of living under the Nazi regime of World War II comes from the diary of a thirteen-year-old Jewish girl, Anne Frank. Frank and her family fled the horrors of Nazi occupation by hiding in the back of a warehouse in Amsterdam for two years with another family and a German dentist. Aged thirteen when she went into the secret annexe, Anne kept a diary. She movingly revealed how the eight people living under these extraordinary conditions coped with hunger, the daily threat of discovery and death and being cut off from the outside world, as well as petty misunderstandings and the unbearable strain of living like prisoners.',
+      genre: ['Autobiography, True Stories, Diaries'],
+      bookType: 'Novel',
+      image: 'https://cdn.waterstones.com/bookjackets/large/9780/2419/9780241952443.jpg',
+      rating: 5,
+      user: users[0],
+      category: 'Read'
+    },
+    {
+      title: 'The Shining',
+      author: 'Stephen King',
+      description: 'Danny is only five years old, but in the words of old Mr Hallorann he is a "shiner", aglow with psychic voltage. When his father becomes caretaker of the Overlook Hotel, Danny\'s visions grow out of control.',
+      genre: ['Science Fiction, Fantasy, Horror, Ghost Stories'],
+      bookType: 'Novel',
+      image: 'https://cdn.waterstones.com/bookjackets/large/9781/4447/9781444720723.jpg',
+      rating: 4,
+      user: users[2],
+      category: 'Read'
+    },
+    {
+      title: 'Maura\'s Game',
+      author: 'Martina Cole',
+      description: 'Maura Ryan was the queen of the criminal underworld when she pulled off the most audacious gold bullion robbery of all time. Since then, she\'s retired from a life of crime to be with the only man she\'s ever loved. But enemies from her past are closing in and they\'re about to learn that they should never cross Maura Ryan. The dangerous lady is back and she\'s as lethal as ever...',
+      genre: ['Thriller, Crime, Mystery, Fiction'],
+      bookType: 'Novel',
+      image: 'https://cdn.waterstones.com/bookjackets/large/9780/7553/9780755374113.jpg',
+      rating: 4,
+      user: users[0],
+      category: 'Read'
+    },
+    {
+      title: 'How to Fail',
+      author: 'Elizabeth Day',
+      description: 'This is a book for anyone who has ever failed. Which means it\'s a book for everyone.',
+      genre: ['Self-help, Personal Development, True Stories, Autobiography'],
+      bookType: 'Non-fiction',
+      image: 'https://cdn.waterstones.com/bookjackets/large/9780/0083/9780008327354.jpg',
+      rating: 4,
+      user: users[2],
+      category: 'Read'
+    },
+    {
+      title: 'Harry Potter and the Chamber of Secrets',
+      author: 'J.K. Rowling',
+      description: 'In his second year at Hogwarts School, our beloved hero comes face to face with the surreptitious legend of the Chamber of Secrets and embarks on another dizzying adventure with his trusted companions Ron and Hermione. The second, spellbinding instalment of J.K. Rowling’s celebrated Harry Potter series is a true modern classic, full of enchantment and thrill.',
+      genre: ['Children\'s Book, Fiction, Fantasy'],
+      bookType: 'Fiction',
+      image: 'https://cdn.waterstones.com/bookjackets/large/9781/4088/9781408855669.jpg',
+      rating: 5,
+      user: users[1],
+      category: 'Read'
+    },
+    {
+      title: 'The Chain',
+      author: 'Adrian McKinty',
+      description: 'In his second year at Hogwarts School, our beloved hero comes face to face with the surreptitious legend of the Chamber of Secrets and embarks on another dizzying adventure with his trusted companions Ron and Hermione. The second, spellbinding instalment of J.K. Rowling’s celebrated Harry Potter series is a true modern classic, full of enchantment and thrill.',
+      genre: ['Crime', 'Fiction, Mystery, Thriller, Fiction'],
+      bookType: 'Fiction',
+      image: 'https://cdn.waterstones.com/bookjackets/large/9781/4091/9781409189602.jpg',
+      rating: 5,
+      user: users[1],
+      category: 'Read'
+    },
+    {
+      title: 'The Tattooist of Auschwitz',
+      author: 'Heather Morris',
+      description: 'A heartfelt tale of love born in darkness, inspired by the astonishing true story of Lale Sokolov, The Tattooist of Auschwitz is as remarkable as it is life-affirming. At times almost unbearably poignant, Morris’ deft approach to the most emotive subject matter is a triumph of empathetic storytelling.',
+      genre: ['Biography, True Stories'],
+      bookType: 'Fiction',
+      image: 'https://cdn.waterstones.com/bookjackets/large/9781/7857/9781785763670.jpg',
+      rating: 3,
+      user: users[0],
+      category: 'Read'
+    },
+    {
+      title: 'The Flatshare',
+      author: 'Beth O\'Leary',
+      description: 'Tiffy Moore needs a cheap flat, and fast. Leon Twomey works nights and needs cash. Their friends think they\'re crazy, but it\'s the perfect solution: Leon occupies the one-bed flat while Tiffy\'s at work in the day, and she has the run of the place the rest of the time. With obsessive ex-boyfriends, demanding clients at work, wrongly imprisoned brothers and, of course, the fact that they still haven\'t met yet, they\'re about to discover that if you want the perfect home you need to throw the rulebook out the window...',
+      genre: ['Young Adult, Fiction'],
+      bookType: 'Fiction',
+      image: 'https://cdn.waterstones.com/bookjackets/large/9781/7874/9781787474413.jpg',
+      rating: 5,
+      user: users[2],
+      category: 'Read'
     }]
   )
     .then(output => {
@@ -775,7 +885,139 @@ function createWatch(users) {
       user: users[2],
       category: 'Watch',
       subcategory: 'TV Series'
-    }
+    },
+    {
+      title: 'Captain America: Civil War',
+      image: 'https://upload.wikimedia.org/wikipedia/en/5/53/Captain_America_Civil_War_poster.jpg',
+      genre: 'Action, Drama,',
+      trailer: 'https://movietrailers.apple.com/movies/marvel/captainamericacivilwar/captainamericacivilwar-us-clp_justlikewepracticed_i320.m4v',
+      description: 'A disagreement over international oversight of the Avengers fractures them into opposing factions—one led by Steve Rogers and the other by Tony Stark.',
+      duration: '147 minutes',
+      director: 'The Russo Brothers',
+      rating: 4,
+      certification: '12A',
+      user: users[0],
+      category: 'Watch',
+      subcategory: 'Film'
+    },
+    {
+      title: 'Gilmore Girls',
+      image: 'https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_SY1000_CR0,0,734,1000_AL_.jpg',
+      genre: 'Comedy, Drama',
+      description: 'A dramedy centering around the relationship between a thirtysomething single mother and her teen daughter living in Stars Hollow, Connecticut.',
+      seasons: '7',
+      director: 'Amy Sherman-Palladino',
+      rating: 5,
+      certification: '18',
+      user: users[1],
+      category: 'Watch',
+      subcategory: 'TV Series'
+    },
+    {
+      title: 'Riverdale',
+      image: 'https://m.media-amazon.com/images/M/MV5BNDYxOTU0NDYtYzg2MC00YzgyLTg1YzctMDc1MGJmOGIzMTc3XkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_UX182_CR0,0,182,268_AL_.jpg',
+      genre: 'Crime, Drama, Mystery',
+      description: 'While navigating the troubled waters of romance, school and family, Archie and his gang become entangled in dark Riverdale mysteries.',
+      seasons: '4',
+      director: 'Roberto Aguiree-Sacasa',
+      rating: 5,
+      certification: '15',
+      user: users[2],
+      category: 'Watch',
+      subcategory: 'TV Series'
+    },
+    {
+      title: 'The Trials of Gabriel Fernandez',
+      image: 'https://m.media-amazon.com/images/M/MV5BM2JjMmIzOWUtNGM1Mi00MTVjLTllYzctZTJlNjBjZjZlNzhkXkEyXkFqcGdeQXVyMTkxMzMyMTI@._V1_UX182_CR0,0,182,268_AL_.jpg',
+      genre: 'Crime, Documentary',
+      description: 'Filmmaker Brian Knappenberger investigates the tragic death of an 8-year-old California boy who endured horrific abuse by his mother and her boyfriend, along with the fractured and complex systems that failed to protect him.',
+      seasons: '1',
+      director: 'Brian Knappenberger',
+      rating: 3,
+      certification: '18',
+      user: users[0],
+      category: 'Watch',
+      subcategory: 'TV Series'
+    },
+    {
+      title: 'Suits',
+      image: 'https://m.media-amazon.com/images/M/MV5BNmVmMmM5ZmItZDg0OC00NTFiLWIxNzctZjNmYTY5OTU3ZWU3XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UY268_CR0,0,182,268_AL_.jpg',
+      genre: 'Comedy, Drama',
+      description: 'On the run from a drug deal gone bad, brilliant college dropout Mike Ross, finds himself working with Harvey Specter, one of New York City\'s best lawyers.',
+      seasons: '9',
+      director: 'Aaron Korsh',
+      rating: 5,
+      certification: '15',
+      user: users[2],
+      category: 'Watch',
+      subcategory: 'TV Series'
+    },
+    {
+      title: 'Locke & Key',
+      image: 'https://m.media-amazon.com/images/M/MV5BNjZkNzY4M2ItOWY0Ni00Y2ViLWE1NjItOTIyYzZjMzg5M2E1XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_UX182_CR0,0,182,268_AL_.jpg',
+      genre: 'Fantasy, Drama, Horror',
+      description: 'After their father is murdered under mysterious circumstances, the three Locke siblings and their mother move into their ancestral home, Keyhouse, which they discover is full of magical keys that may be connected to their father\'s death.',
+      seasons: '1',
+      director: 'Merdith Averill',
+      rating: 2,
+      certification: '15',
+      user: users[1],
+      category: 'Watch',
+      subcategory: 'TV Series'
+    },
+    {
+      title: 'Friends',
+      image: 'https://m.media-amazon.com/images/M/MV5BNDVkYjU0MzctMWRmZi00NTkxLTgwZWEtOWVhYjZlYjllYmU4XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_UY268_CR0,0,182,268_AL_.jpg',
+      genre: 'Comedy, Romance',
+      description: 'Follows the personal and professional lives of six twenty to thirty-something-year-old friends living in Manhattan.',
+      seasons: '10',
+      director: 'David Crane',
+      rating: 5,
+      certification: '15',
+      user: users[0],
+      category: 'Watch',
+      subcategory: 'TV Series'
+    },
+    {
+      title: 'Joker',
+      image: 'https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_UX182_CR0,0,182,268_AL_.jpg',
+      genre: 'Crime, Drama, Thriller',
+      description: 'In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.',
+      duration: '2h 2minutes',
+      director: 'Todd Phillips',
+      rating: 5,
+      certification: '15',
+      user: users[1],
+      category: 'Watch',
+      subcategory: 'Film'
+    },
+    {
+      title: 'Avengers: Endgame',
+      image: 'https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_UX182_CR0,0,182,268_AL_.jpg',
+      genre: 'Action, Adventure, Drama',
+      description: 'After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos\' actions and restore balance to the universe.',
+      trailer: 'https://movietrailers.apple.com/movies/marvel/avengers-endgame/avengers-endgame-featurette-to-the-end-edit-usca_i320.m4v',
+      duration: '3h 1minutes',
+      director: 'The Russo Brothers',
+      rating: 5,
+      certification: '12A',
+      user: users[2],
+      category: 'Watch',
+      subcategory: 'Film'
+    },
+    {
+      title: 'Crazy Ex-Girlfriend',
+      image: 'https://m.media-amazon.com/images/M/MV5BYjQ0MjNiYjItMWFkNC00MTI5LTlhYTEtZWY3OGJhN2VhZjBmXkEyXkFqcGdeQXVyNzA5NjUyNjM@._V1_UX182_CR0,0,182,268_AL_.jpg',
+      genre: 'Comedy, Musical',
+      description: 'A young woman abandons a choice job at a law firm and her life in New York in an attempt to find happiness in the unlikely locale of West Covina, California.',
+      seasons: '4',
+      director: 'Rachel Bloom',
+      rating: 5,
+      certification: '12A',
+      user: users[0],
+      category: 'Watch',
+      subcategory: 'TV Series'
+    },
   ])
     .then(output => {
       for (const item of output) {
