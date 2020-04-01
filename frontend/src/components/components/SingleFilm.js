@@ -3,6 +3,7 @@ import moment from 'moment'
 import axios from 'axios'
 import auth from '../../../../backend/lib/auth'
 import { TimelineLite } from 'gsap'
+import { Link } from 'react-router-dom'
 
 
 class SingleFilm extends React.Component {
@@ -10,8 +11,16 @@ class SingleFilm extends React.Component {
     super()
     this.state = {
       film: [],
-      savedItems: []
+      savedItems: [],
+      average: 0
     }
+  }
+
+  updateRating(input) {
+    const ratingArray = Array.from(input)
+    console.log(input.length)
+    console.log(ratingArray)
+    return (ratingArray.reduce((acc, cur) => acc + cur.rating, 0) / ratingArray.length).toFixed(2)
   }
 
   componentDidMount() {
@@ -19,7 +28,8 @@ class SingleFilm extends React.Component {
     const id = this.props.match.params.id
     axios.get(`/api/watch/${id}`)
       .then(response => {
-        this.setState({ film: response.data })
+        const avg = this.updateRating(response.data.comments)
+        this.setState({ film: response.data, average: avg })
       })
     axios.get(`/api/user/${auth.getUserId()}`)
       .then(response => {
@@ -61,7 +71,8 @@ class SingleFilm extends React.Component {
     setTimeout(() => {
       axios.get(`/api/watch/${id}`)
         .then(response => {
-          this.setState({ film: response.data })
+          const avg = this.updateRating(response.data.comments)
+          this.setState({ film: response.data, average: avg })
           // console.log(response.data)
         })
     }, 1000)
@@ -86,9 +97,11 @@ class SingleFilm extends React.Component {
 
 
   render() {
-    console.log(this.state.savedItems)
+    
+    console.log(this.state.average)
+    console.log(this.state.film.comments)
     const { id } = this.props.match.params
-    const { film, savedItems } = this.state
+    const { film, savedItems, average } = this.state
     const starStyle = {
       color: 'white',
       animation: 'none',
@@ -110,16 +123,16 @@ class SingleFilm extends React.Component {
           <div className="single-film-left">
             <div className="single-film-title">
               <div style={titletop} className="film-title-top">
-                <h1> {film.title} </h1>
+                <h1> {film.title} </h1><small> Average User Rating: {average}</small>
                 <div className="film-heart-message"> <p>FAVOURITED!</p> </div>
-                {auth.isLoggedIn() ? <ion-icon 
-                  style={savedItems.includes(id) ? { color: 'red',animation: 'none',transform: 'translate(-50px, -5px)' }
-                    : { color: 'white',animation: 'none',transform: 'translate(-50px, -5px)' }}
+                {auth.isLoggedIn() ? <ion-icon
+                  style={savedItems.includes(id) ? { color: 'red', animation: 'none', transform: 'translate(-50px, -5px)' }
+                    : { color: 'white', animation: 'none', transform: 'translate(-50px, -5px)' }}
                   onClick={(e) => this.HandleFavourite(e)} name="heart-sharp"></ion-icon> : null}
               </div>
 
               <h3>{film.description}</h3>
-              <p> Certificate: {film.certification} <span> Director: {film.director} </span> Duration: {film.duration} </p>
+                <p> Certificate: {film.certification} <span> Director: {film.director} </span> Duration: {film.duration}</p>
             </div>
 
             <div className="single-film-media">
@@ -139,7 +152,7 @@ class SingleFilm extends React.Component {
                       return (
                         <div key={comment._id} className="film-comment-row">
                           <section>
-                            <h3> {comment.user} </h3>
+                            <h3><Link to={`/user/${comment.user._id}`}>{comment.user.username}</Link></h3>
                             <h5 className='rating'> Rating: {comment.rating} </h5>
                             <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -2px)' }} name="star-sharp"></ion-icon>
                           </section>

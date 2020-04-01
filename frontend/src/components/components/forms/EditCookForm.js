@@ -39,7 +39,7 @@ class EditCookForm extends React.Component {
     let form
     console.log(cat, subcat)
     if (cat === 'Watch') {
-      if (subcat === 'film') {
+      if (subcat === 'Film') {
         const { title, description, director, duration, rating, certification, image, subcategory } = this.state.data
         form = <>
           <input placeholder='Name' name='title' type="text" value={title} />

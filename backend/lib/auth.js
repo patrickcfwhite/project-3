@@ -1,10 +1,23 @@
+const jwt = require('jsonwebtoken')
+const { secret } = require('../../backend/config/environment')
+
 function setToken(token) {
   localStorage.setItem('token', token)
 }
 
 function isLoggedIn() {
-  return localStorage.token ? true : false
+
+  if (!localStorage.token) return false
+  const token = localStorage.token
+  jwt.verify( token, secret, function(err, decoded) {
+
+    if ( err ) {
+      localStorage.removeItem( 'token' )
+    }
+  })
+  return (localStorage.token)
 }
+
 
 function getToken() {
   return localStorage.getItem('token')
