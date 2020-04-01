@@ -1137,7 +1137,7 @@ function createWatch(users) {
     },
     {
       title: 'Gilmore Girls',
-      image: 'https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_SY1000_CR0,0,734,1000_AL_.jpg',
+      image: 'https://www.gstatic.com/tv/thumb/tvbanners/184655/p184655_b_v8_ab.jpg',
       genre: 'Comedy, Drama',
       description: 'A dramedy centering around the relationship between a thirtysomething single mother and her teen daughter living in Stars Hollow, Connecticut.',
       seasons: '7',
@@ -1217,6 +1217,7 @@ function createWatch(users) {
       title: 'Joker',
       image: 'https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_UX182_CR0,0,182,268_AL_.jpg',
       genre: 'Crime, Drama, Thriller',
+      trailer: 'https://movietrailers.apple.com/movies/wb/joker/joker-trailer-2_i320.m4v',
       description: 'In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.',
       duration: '2h 2minutes',
       director: 'Todd Phillips',
