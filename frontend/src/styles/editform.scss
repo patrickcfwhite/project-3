@@ -8,7 +8,7 @@
 
 .edit-form {
   // background-color: honeydew;
-  height: 90%;
+  height: 88%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -20,6 +20,7 @@
     font-size: 35px;
     font-family: 'Montserrat';
     margin-bottom: 10px;
+    
   }
   form {
     font-family: 'Montserrat';
@@ -27,11 +28,7 @@
     display: flex;
     flex-direction: column;
     width: 50%;
-<<<<<<< HEAD
-    height: 80%;
-=======
     height: 95%;
->>>>>>> development
     align-items: center;
     justify-content: space-evenly;
     .short-inputs {
@@ -40,7 +37,7 @@
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      height: 38%;
+      height: 26%;
       width: 77%;
       input {
         margin: 0 5%;
@@ -51,6 +48,7 @@
         }
       }
     }
+   
     input, textarea {
       margin: 8px 0;
       width: 70%;
@@ -64,6 +62,10 @@
         color: rgba(212, 209, 209, 0.6);
       }
     }
+    textarea {
+      min-height: 9%;
+    }
+  
     button {
       background-color: transparent;
       color: white;
