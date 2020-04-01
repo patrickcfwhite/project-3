@@ -52,14 +52,13 @@ class EditCookForm extends React.Component {
             <input placeholder='Certficatation' name='certficatation' type="text" value={certification} />
           </div>
           <input placeholder='Poster Link' name='poster' type="text" value={image} />
-        
+
         </>
       } else {
         const { title, description, director, seasons, rating, certification, image, subcategory } = this.state.data
         form = <>
           <input placeholder='Name' name='name' type="text" value={title} />
-          <textarea placeholder='Description' name='description' type="text" value={description} />
-          <input placeholder='Director' name='director' type="text" />
+          <input placeholder='Description' name='description' type="text" value={description} />
           <div className="short-inputs">
             <input placeholder='Seasons' name='Seasons' type="text" value={seasons} />
             <input value={subcategory} readOnly name='subcategory' type="text" />
@@ -129,12 +128,16 @@ class EditCookForm extends React.Component {
     const { category, subcategory } = this.state.data
     if (!this.state.data) return null
     return (
-      <div className="edit-form">
-        <form onSubmit={(event) => this.handleSubmit(event)} onChange={(event) => this.handleChange(event)}>
-          {this.formChooser(category, subcategory)}
-          <button>Submit</button>
-        </form>
-      </div>
+      <main>
+        <div className="edit-form">
+          <h1> Edit Item </h1>
+          <form onSubmit={(event) => this.handleSubmit(event)} onChange={(event) => this.handleChange(event)}>
+            {this.formChooser(category, subcategory)}
+            <button>submit</button>
+          </form>
+        </div>
+      </main>
+
     )
   }
 }

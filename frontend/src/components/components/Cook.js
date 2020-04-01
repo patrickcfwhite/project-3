@@ -4,6 +4,7 @@ import axios from 'axios'
 import { TimelineLite, Power4 } from 'gsap'
 import moment from 'moment'
 import auth from '../../../../backend/lib/auth'
+import { Link } from 'react-router-dom'
 
 class Cook extends React.Component {
 
@@ -41,7 +42,7 @@ class Cook extends React.Component {
     let query = ''
     const others = []
     let id = ''
-    
+
     if (i.parentNode.id === 'recipe-card') {
       return
     } else if (i.parentNode.className === 'card-image' || i.parentNode.className === 'card-info') {
@@ -82,7 +83,7 @@ class Cook extends React.Component {
 
   HandleCollapse(e) {
     const others = []
- 
+
     let id = e.target.parentNode
 
     this.state.recipes.map(other => {
@@ -94,7 +95,7 @@ class Cook extends React.Component {
       id = '.' + id.id.replace(/\W/g, '')
       const t1 = new TimelineLite
       t1
-        .to('li', 0.2, {color: 'black', textDecoration: 'none'})
+        .to('.methods', 0.2, { color: 'black', textDecoration: 'none' })
         .to('.single-left, .single-middle', 1, { opacity: 0 })
         .to('.single', 0.2, { display: 'none' }, '+=0.5')
         .to(id, 0.1, { display: 'flex' })
@@ -108,7 +109,7 @@ class Cook extends React.Component {
         .to(others, 0.2, { opacity: 1 }, '-=0.3')
         .to('.card-image, .card-info', 0.5, { opacity: 1 })
       this.setState({ isCommentsActive: false })
-    } 
+    }
   }
 
   HandleOpenRecipeComments(e) {
@@ -118,7 +119,7 @@ class Cook extends React.Component {
       .to('.to-hide, .recipe-mid-section', 0.5, { opacity: 0 })
       .to('.to-hide, .recipe-mid-section', 0.2, { display: 'none' })
       .to('.recipe-top-section', 0.1, { height: '10%' })
-      .to('.recipe-comments', 1, { height: '90%' })
+      .to('.recipe-comments', 1, { height: '85%' })
       .to('.previous-recipe-comments', 0.1, { display: 'block' })
       .to('.user-recipe-comment', 0.1, { display: 'block' }, '-=0.65')
     this.setState({ isCommentsActive: true })
@@ -154,8 +155,11 @@ class Cook extends React.Component {
   }
 
   HandleStar(e) {
-    const style = e.target.style
-    style.color = 'gold'
+    if (e.target.style.color === 'black') {
+      e.target.style.color = 'gold'
+    } else {
+      e.target.style.color = 'black'
+    }
   }
 
   HandleCommentSubmit(e) {
@@ -202,6 +206,18 @@ class Cook extends React.Component {
     }
   }
 
+  HandleDelete(e) {
+    const id = this.state.singleRecipe._id
+    axios.delete(`/api/cook/${id}/comments/${e.target.parentNode.id}`,
+      { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    setTimeout(() => {
+      axios.get(`/api/cook/${id}`)
+        .then(response => {
+          this.setState({ singleRecipe: response.data, singleRecipeComments: response.data.comments })
+        })
+    }, 500)
+  }
+
   render() {
     const { singleRecipe, savedItems, singleRecipeComments, isCommentsActive } = this.state
     return (
@@ -239,6 +255,8 @@ class Cook extends React.Component {
 
             {/* single recipe */}
             <div id={this.state.singleRecipe.title} className="single" >
+              <small className='to-hide'> Added By: {auth.isLoggedIn() ? <Link to={`/user/${singleRecipe.user}`}> {singleRecipe.user} </Link> :
+                'Please login to view the uploader\'s profile'} </small>
               <ion-icon name="close-circle-sharp" onClick={(e) => this.HandleCollapse(e)}
                 style={{ animation: 'none', color: 'white', position: 'absolute', right: '-20px', top: '-20px' }}></ion-icon>
               <div className="single-left">
@@ -271,6 +289,7 @@ class Cook extends React.Component {
 
                   <div className="food-pic">
                     <img src={singleRecipe.image}></img>
+
                   </div>
 
                 </div>
@@ -286,7 +305,7 @@ class Cook extends React.Component {
                           <div key={comment.user} className="recipe-comment-row">
 
                             <section>
-                              <h3 style={{textTransform: 'capitalize'}}> {comment.user.username} </h3>
+                              <Link style={{color:'black'}} to={`/user/${comment.user._id}`}> <h3 style={{ textTransform: 'capitalize' }}> {comment.user.username} </h3> </Link>
                               <h6 className='recipe-rating'> Rating: {comment.rating}
                                 <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)' }} name="star-sharp"></ion-icon>
                               </h6>
@@ -294,7 +313,12 @@ class Cook extends React.Component {
 
                             <p> {comment.text} </p>
 
-                            <h6> Posted {moment(comment.createdAt).startOf('second').fromNow()} </h6>
+                            <h6 id={comment._id}> Posted {moment(comment.createdAt).startOf('second').fromNow()}
+                              {auth.getUserId() === comment.user._id ? <ion-icon onClick={(e) => this.HandleDelete(e)} style={{
+                                position: 'absolute', right: 0, bottom: '15%',
+                                fontSize: '18px', animation: 'none'
+                              }} name="trash-bin"></ion-icon> : null }
+                            </h6>
 
                           </div>
                         )

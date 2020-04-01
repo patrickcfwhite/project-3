@@ -15,12 +15,13 @@ const NavBar = (props) => {
   const t1 = new TimelineLite()
 
   // console.log(props)
-  const HandleOpen = () => {
+  const HandleOpen = (e) => {
+  
     t1
       // (selector, duration, {css properties}, animationDelay) 
       .to('main', 0.5, { opacity: 0, ease: Power1.easeOut })
       .to('main', 0.1, { display: 'none', ease: Power1.easeOut })
-      .to('.navbar', 1, { width: '34vw', ease: Power1.easeOut }, '-=1.5')
+      .to('.navbar', 1, { width: '34vw', ease: Power1.easeOut },'-=0.2')
       .fromTo('.items', 0.7, { display: 'none', opacity: 0, x: -50, ease: Power1.easeOut },
         { display: 'flex', opacity: 1, x: 0 })
       .fromTo('.options', { opacity: 0, x: -30, ease: Power1.easeOut },

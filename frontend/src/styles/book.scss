@@ -115,16 +115,23 @@
           margin: 5px 0;
           overflow: scroll;
           width: 95%;
+          
           .book-comment-row {
             min-height: 32%;
             word-wrap: break-word;
             // background-color: cadetblue;
             margin: 10px 0;
+            position: relative;
             padding-bottom: 4px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             border-bottom: 1px white solid;
+            ion-icon {
+              &:hover {
+                cursor: pointer;
+              }
+            }
             h5 {
               font-size: 12px;
             }
@@ -168,6 +175,9 @@
                 border: none;
                 margin-left: 8%;
                 color:white;
+                &:hover {
+                  cursor: pointer;
+                }
               }
               input {
                 height: 100%;

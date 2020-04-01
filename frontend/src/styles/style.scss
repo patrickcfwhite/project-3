@@ -32,7 +32,16 @@ body {
     margin-left: 10px;
     transform: translate(0, 1px);
     animation: bounce 1s linear reverse infinite;
-  }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    button {
+      &:hover {
+        cursor: pointer;
+      }
+    }
 
   // hamburger menu
   aside {
@@ -204,7 +213,7 @@ body {
     width: 82vw;
     height: 100vh;
     padding-top: 87vh;
-    overflow: scroll;
+    // overflow: scroll;
     display: flex;
     // flex-direction: column;
     align-items: center;
@@ -233,6 +242,16 @@ body {
         color: black;
         font-size: smaller;
         display: none;
+        // position: relative;
+        small {
+          position: absolute;
+          bottom: 4%;
+          font-size: 13px;
+          right: 45%;
+          a {
+            color:brown;
+          }
+        }
 
         ion-icon {
           font-size: 30px;
@@ -392,12 +411,15 @@ body {
                 min-height: 26.2%;
                 word-wrap: break-word;
                 margin-top: 12px;
-                padding-bottom: 8px;
+                padding-bottom: 3px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
+                position: relative;
                 // background-color: green;
-
+                p {
+                  margin: 10px, 0;
+                }
                 h5 {
                   text-decoration: none;
                 }
@@ -613,7 +635,7 @@ body {
         p {
           letter-spacing: 0.7px;
           margin-left: 10px;
-          font-family: Georgia, "Times New Roman", Times, serif;
+          font-family: 'Montserrat'
         }
         &:hover {
           height: 38%;
@@ -640,6 +662,7 @@ body {
       .video-container {
         // background-color: green;
         // border: 1px red solid;
+        text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -658,9 +681,13 @@ body {
           // background-color: blue;
           width: 73%;
           display: flex;
+          padding-left: 6%;
           flex-direction: column;
           align-items: flex-start;
           justify-content: space-between;
+          h3 {
+            font-size: 18px;
+          }
 
           button {
             color: white;
@@ -707,7 +734,8 @@ body {
 
     .film-right {
       // background-color: blue;
-      height: 90%;
+      height: 97%;
+      transform: translate(0, 3%);
       width: 38%;
       display: flex;
       justify-content: center;
@@ -731,14 +759,15 @@ body {
 
           .film-comment-row {
             margin: 18px 0px;
-            height: 25%;
+            min-height: 23%;
+            word-wrap: break-word;
             border-bottom: 1px solid grey;
             padding: 0px 0 9px 0px;
             display: flex;
             flex-direction: column;
+            position: relative;
             justify-content: space-between;
-            // word-wrap: break-word;
-
+            
             p {
               margin: 10px 0;
             }
@@ -749,10 +778,21 @@ body {
             vertical-align: middle;
             width: 100%;
             h3 {
-              margin-right: 29%;
+              margin-right: 65%;
+              text-transform: capitalize;
+       
+              a {
+                color:white;
+                font-size: 16.5px;
+                transition: 0.3s;
+                &:hover {
+                  color:lightseagreen;
+                  cursor:pointer
+                }
+              }
             }
             h5 {
-              transform: translate(0px, -2px);
+              transform: translate(15px, -2px);
               width: 18%;
             }
             // justify-content: space-between;
@@ -798,7 +838,9 @@ body {
       height: 100%;
       width: 58.8%;
       margin-right: 3%;
-      overflow: hidden;
+      // overflow: hidden;
+      position: relative;
+     
 
       .single-film-title {
         display: flex;
@@ -852,6 +894,15 @@ body {
       height: 60%;
       display: flex;
       align-items: center;
+      transform: translate(0, -5%);
+      small {
+        color:white;
+        position: absolute;
+        bottom: 1.5%;
+        a {
+          color:lightseagreen
+        }
+      }
 
       img {
         height: 69.6%;
@@ -979,7 +1030,10 @@ body {
           }
         }
         h1 {
-          margin-right: 100px;
+          // margin-right: 100px;
+          font-size: 30px;
+
+          color: lightseagreen;
         }
         ion-icon {
           animation: none;
@@ -1011,12 +1065,14 @@ body {
         flex-direction: column;
         justify-content: space-evenly;
         padding: 30px 85px 30px 75px;
-
+        a {
+          color: lightseagreen
+        }
         p {
           overflow: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;
-          -webkit-line-clamp: 7;
+          -webkit-line-clamp: 9;
           -webkit-box-orient: vertical;
           width: 35vw;
         }
@@ -1041,19 +1097,26 @@ body {
 
         .comment-row {
           // background-color: yellow;
-          padding: 0 0 15px 0;
-          height: 23%;
+          padding: 0 0 22px 0;
+          min-height: 26%;
           margin: 20px 0;
           color: white;
           border-bottom: 1px solid grey;
           display: flex;
+          word-wrap: break-word;
           flex-direction: column;
           justify-content: space-around;
+          position: relative;
+
 
           section {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            // background-color: lightseagreen;
+            h3 {
+              text-transform: capitalize;
+            }
           }
 
           h5 {
@@ -1066,6 +1129,7 @@ body {
 
           p {
             font-size: 14px;
+            margin: 10px 0;
           }
 
           h3 {
@@ -1087,7 +1151,7 @@ body {
           ion-icon {
             color: white;
             animation: none;
-            font-size: 19.5px;
+            font-size: 21px;
             opacity: 0.85;
           }
 
@@ -1459,6 +1523,15 @@ body {
     display: flex;
     font-family: "Montserrat";
     color: black;
+    // position: relative;
+    small {
+      position: absolute;
+      bottom: 13.2%; 
+      left: 42%;
+      a {
+        color:brown
+      }
+    }
     .single-rec-left {
       // background-color: blue;
       height: 100%;
@@ -1573,6 +1646,14 @@ body {
           flex-direction: column;
           justify-content: space-between;
           padding-bottom: 5px;
+          word-wrap: break-word;
+          position: relative;
+
+          ion-icon {
+            &:hover {
+              cursor: pointer;
+            }
+          }
 
           border-bottom: black 1px solid;
           h6 {
@@ -1590,7 +1671,8 @@ body {
             }
           }
           p {
-            font-size: 15px;
+            font-size: 14px;
+            margin: 10px 0;
           }
         }
         button {
@@ -1620,6 +1702,7 @@ body {
       opacity: 0;
       width: 90%;
       height: 30%;
+   
       .star {
         display: flex;
         width: 85%;
@@ -1633,6 +1716,7 @@ body {
             animation: none;
             font-size: 19px;
             transform: translate(-50px, 7px);
+            color:black;
           }
         }
       }
@@ -1647,6 +1731,8 @@ body {
           justify-content: space-between;
           button {
             transform: translate(30px, 0);
+            // font-weight: lighter;
+            font-size: 14px;
           }
           input {
             width: 85%;

@@ -3,7 +3,8 @@ import axios from 'axios'
 import moment from 'moment'
 import auth from '../../../../backend/lib/auth'
 import { TimelineLite } from 'gsap'
-import { set } from 'mongoose'
+import {Link} from 'react-router-dom'
+// import { set } from 'mongoose'
 
 // import { SingleEntryPlugin } from 'webpack'
 
@@ -69,8 +70,11 @@ class SingleRecipe extends React.Component {
   }
 
   HandleStar(e) {
-    e.target.style.color === 'black' ? e.target.style.color = 'gold' :
-      e.target.color.style = 'black'
+    if (e.target.style.color === 'black') {
+      e.target.style.color = 'gold'
+    } else {
+      e.target.style.color = 'black'
+    }
   }
 
   HandleCross(e) {
@@ -130,7 +134,21 @@ class SingleRecipe extends React.Component {
           this.setState({ recipe: response.data, singleRecipeComments: response.data.comments })
         })
     }, 750)
+  }
 
+  HandleDelete(e) {
+    const id = this.state.recipe._id
+    axios.delete(`/api/cook/${id}/comments/${e.target.previousSibling.id}`,
+      { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    setTimeout(() => {
+      axios.get(`/api/cook/${id}`)
+        .then(response => {
+          this.setState({
+            recipe: response.data,
+            singleRecipeComments: response.data.comments
+          })
+        })
+    }, 500)
   }
 
   render() {
@@ -139,17 +157,19 @@ class SingleRecipe extends React.Component {
     return (
       <main>
         <div className="single-rec-container">
+          <small className='to-hide'> Added By: {auth.isLoggedIn() ? <Link to={`/user/${recipe.user}`}> {recipe.user} </Link> :
+            'Please login to view the uploader\'s profile'} </small>
           <ion-icon onClick={() => this.props.history.push('/cook')}
-            style={{color:'white',position: 'absolute', right: '3%', top: '7.5%'}}
+            style={{ color: 'white', position: 'absolute', right: '3%', top: '7.5%', animation: 'none' }}
             name="close-circle-sharp"></ion-icon>
           <div className="single-rec-left">
 
             <div className="left-top">
-              <h1> {recipe.title} </h1>
+              <h1 style={{width: '83%'}}> {recipe.title} </h1>
               <div className="rec-heart"> <p>FAVOURITED!</p> </div>
               {auth.isLoggedIn() ? <ion-icon style={savedItems.includes(recipe._id) ?
-                { color: 'red', position: 'absolute', right: '39%' } :
-                { color: 'black',position: 'absolute', right: '39%' }}
+                { color: 'red', position: 'absolute', right: '39%', animation: 'none' } :
+                { color: 'black', position: 'absolute', right: '39%', animation: 'none' }}
               onClick={(e) => this.HandleFavourite(e)} name="heart-sharp"></ion-icon> : null}
               <h6 className='to-hide' style={{ color: 'brown' }}> {recipe.description} </h6>
               <p className='to-hide' > Serves: {recipe.serves} <span> Prep: {recipe.prepTime} </span> Cook: {recipe.cookTime} </p>
@@ -181,7 +201,7 @@ class SingleRecipe extends React.Component {
                       <div key={comment.user} className="rec-comment-row">
 
                         <section>
-                          <h5> {comment.user.username} </h5>
+                          <Link style={{color:'black'}} to={`/user/${comment.user._id}`}> <h5> {comment.user.username} </h5> </Link>
                           <h6 className='rec-rating'> Rating: {comment.rating}
                             <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)' }} name="star-sharp"></ion-icon>
                           </h6>
@@ -189,8 +209,11 @@ class SingleRecipe extends React.Component {
 
                         <p> {comment.text} </p>
 
-                        <h6> Posted {moment(comment.createdAt).startOf('second').fromNow()} </h6>
-
+                        <h6 id={comment._id}> Posted {moment(comment.createdAt).startOf('second').fromNow()} </h6>
+                        {auth.getUserId() === comment.user._id ? <ion-icon onClick={(e) => this.HandleDelete(e)} style={{
+                          position: 'absolute', right: '3%', bottom: '13.5%',
+                          fontSize: '18px', animation: 'none'
+                        }} name="trash-bin"></ion-icon> : null}
                       </div>
                     )
                   }))
@@ -201,11 +224,11 @@ class SingleRecipe extends React.Component {
                 <div className='star' style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
                   <h6> {auth.isLoggedIn() ? 'COMMENT' : 'PLEASE LOGIN/REGISTER TO COMMENT'} </h6>
                   <div className="star-icons" style={{ transform: 'translate(-85px, -11.7px)' }}>
-                    <ion-icon style={{ color: 'black' }} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon style={{ color: 'black' }} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon style={{ color: 'black' }} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon style={{ color: 'black' }} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon style={{ color: 'black' }} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{fontSize: '21px'}}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{fontSize: '21px'}}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{fontSize: '21px'}}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{fontSize: '21px'}}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{fontSize: '21px'}}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
                   </div>
                 </div>
 
