@@ -34,13 +34,13 @@ class Profile extends React.Component {
     let icon
     // console.log(cat, subcat)
     if (cat === 'Watch') {
-      icon = subcat === 'Film' ? <ion-icon name="film-sharp"></ion-icon> : <ion-icon name="tv-sharp"></ion-icon>
+      icon = subcat === 'Film' ? <ion-icon style={{ animation: 'none' }} name="film-sharp"></ion-icon> : <ion-icon style={{ animation: 'none' }} name="tv-sharp"></ion-icon>
     } else if (cat === 'Cook') {
-      icon = <ion-icon name="fast-food-sharp"></ion-icon>
+      icon = <ion-icon style={{ animation: 'none' }} name="fast-food-sharp"></ion-icon>
     } else if (cat === 'Read') {
-      icon = <ion-icon name="book-sharp"></ion-icon>
+      icon = <ion-icon style={{ animation: 'none' }} name="book-sharp"></ion-icon>
     } else if (cat === 'Play') {
-      icon = <ion-icon name="game-controller-sharp"></ion-icon>
+      icon = <ion-icon style={{ animation: 'none' }} name="game-controller-sharp"></ion-icon>
     }
     // console.log(icon)
     return icon

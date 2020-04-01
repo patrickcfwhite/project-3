@@ -5,7 +5,7 @@ const GameForm = (props) => {
   return (
     <>
       <input placeholder='Title' name='title' type="text" />
-      <input placeholder='Description' name='description' type="text" />
+      <textarea placeholder='Description' name='description' type="text" />
 
       <div className="short-inputs">
         <input placeholder='Genre' name='genre' type="text" />

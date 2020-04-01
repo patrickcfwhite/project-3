@@ -5,7 +5,7 @@ const CookForm = (props) => {
   return (
     <>
       <input placeholder='Title' name='title' type="text" />
-      <input placeholder='Description' name='description' type="text" />
+      <textarea className='box-input' placeholder='Description' name='description' type="text" />
 
       <div className="short-inputs">
         <input placeholder='Serves' name='serves' type="text" />
@@ -16,8 +16,8 @@ const CookForm = (props) => {
         <input placeholder='Dietary' name='dietary' type="text" />
       </div>
 
-      <input placeholder='Ingredients, seperated by commas' name='ingredients' type="text" />
-      <input placeholder='Method, seperated by commas' name='method' type="text" />
+      <textarea placeholder='Ingredients, seperated by commas' name='ingredients' type="text" />
+      <textarea placeholder='Method, seperated by commas' name='method' type="text" />
       <input placeholder='Image (Link)' name='image' type="text" />
 
 

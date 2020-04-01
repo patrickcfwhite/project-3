@@ -6,7 +6,7 @@ const WatchForm = (props) => {
   return (
     <>
       <input placeholder='Name' name='title' type="text" />
-      <input placeholder='Description' name='description' type="text" />
+      <textarea placeholder='Description' name='description' type="text" />
       <input placeholder='Director' name='director' type="text" />
       <div className="short-inputs">
         <input placeholder={current !== null ? current.innerHTML === 'film' ? 'Duration' : 'Seasons' : null}
