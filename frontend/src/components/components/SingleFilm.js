@@ -16,11 +16,9 @@ class SingleFilm extends React.Component {
     }
   }
 
-  updateRating(input) {
+  updateRating(input, userRating) {
     const ratingArray = Array.from(input)
-    console.log(input.length)
-    console.log(ratingArray)
-    return (ratingArray.reduce((acc, cur) => acc + cur.rating, 0) / ratingArray.length).toFixed(2)
+    return ratingArray.length === 0 ? userRating.toPrecision(2) : (ratingArray.reduce((acc, cur) => acc + cur.rating, userRating) / (ratingArray.length + 1)).toPrecision(2)
   }
 
   componentDidMount() {
@@ -28,7 +26,9 @@ class SingleFilm extends React.Component {
     const id = this.props.match.params.id
     axios.get(`/api/watch/${id}`)
       .then(response => {
-        const avg = this.updateRating(response.data.comments)
+        console.log(response.data.rating)
+        const avg = this.updateRating(response.data.comments, response.data.rating)
+        console.log(avg)
         this.setState({ film: response.data, average: avg })
       })
     axios.get(`/api/user/${auth.getUserId()}`)
@@ -71,7 +71,7 @@ class SingleFilm extends React.Component {
     setTimeout(() => {
       axios.get(`/api/watch/${id}`)
         .then(response => {
-          const avg = this.updateRating(response.data.comments)
+          const avg = this.updateRating(response.data.comments, response.data.rating)
           this.setState({ film: response.data, average: avg })
           // console.log(response.data)
         })
