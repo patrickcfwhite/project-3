@@ -53,6 +53,7 @@ class AddItem extends React.Component {
     const { current } = this.myRef
     console.log(current.innerHTML)
     const submitObject = ({ ...this.state.submitObject, [event.target.name]: event.target.value,
+      subcategory: current.innerHTML === 'film' ? 'Film' : current.innerHTML === 'tv series' ? 'TV Series' : '',
       category: current.innerHTML === 'film' || current.innerHTML === 'tv series' ? 'watch' : current.innerHTML })
     this.setState({ submitObject })
     console.log(this.state.submitObject.category)
@@ -60,10 +61,13 @@ class AddItem extends React.Component {
 
   HandleItemPost(e) {
     // e.preventDefault()
-    console.log(this.state.submitObject)
+ 
     const category = this.state.submitObject.category
+    
     axios.post(`/api/${category}`, this.state.submitObject, 
       { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+
+    console.log(this.state.submitObject)
   }
 
 

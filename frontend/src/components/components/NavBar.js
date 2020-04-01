@@ -18,9 +18,9 @@ const NavBar = (props) => {
   const HandleOpen = () => {
     t1
       // (selector, duration, {css properties}, animationDelay) 
-      .to('main', 1.5, { width: '52vw', ease: Power1.easeOut })
-      .to('.navbar', 1.5, { width: '34vw', ease: Power1.easeOut }, '-=1.5')
-      .to('.game-description, .rating', 0.1, { opacity: 0, ease: Power1.easeOut }, '-=1.5')
+      .to('main', 0.5, { opacity: 0, ease: Power1.easeOut })
+      .to('main', 0.1, { display: 'none', ease: Power1.easeOut })
+      .to('.navbar', 1, { width: '34vw', ease: Power1.easeOut }, '-=1.5')
       .fromTo('.items', 0.7, { display: 'none', opacity: 0, x: -50, ease: Power1.easeOut },
         { display: 'flex', opacity: 1, x: 0 })
       .fromTo('.options', { opacity: 0, x: -30, ease: Power1.easeOut },
@@ -33,9 +33,9 @@ const NavBar = (props) => {
     t1
       .fromTo('.items', 0.5, { dislay: 'flex', opacity: 1, x: 0, ease: Power1.easeOut },
         { display: 'none', opacity: 0, x: -50 })
-      .to('.navbar', 1.3, { width: 0, ease: Power1.easeOut })
-      .to('main', 1.3, { width: '88vw', ease: Power1.easeOut }, '-=1.3')
-      .to('.game-description, .rating', 0.1, { opacity: 1, ease: Power1.easeOut })
+      .to('.navbar', 0.7, { width: 0, ease: Power1.easeOut })
+      .to('main', 0.1, { display: 'flex', ease: Power1.easeOut })
+      .to('main', 0.3, { opacity: 1, ease: Power1.easeIn })
     setState(false)
   }
 
