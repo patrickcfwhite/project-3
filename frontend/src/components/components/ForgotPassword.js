@@ -9,8 +9,13 @@ class ForgotPassword extends Component {
     this.state = {
       email: '',
       showError: false,
-      emailError: false
+      emailError: false,
+      sent: false
     }
+  }
+
+  componentDidUpdate(prevState) {
+    prevState.sent !== this.state.sent
   }
 
   handleChange(event) {
@@ -39,9 +44,10 @@ class ForgotPassword extends Component {
               returnError: true,
               messageFromServer: ''
             })
-          } else if (res.data === 'recovery eail sent') {
+          } else if (res.data === 'recovery email sent') {
             this.setState({
               returnError: false,
+              sent: true,
               messageFromServer: res.data
             })
           }
@@ -50,13 +56,15 @@ class ForgotPassword extends Component {
     }
   }
 
+
+
   validateEmail(email) {
     if (email.length === 0) return false
     return !validator.validate(email)
   }
 
   render() {
-    const { email, emailError, returnError } = this.state
+    const { email, emailError, returnError, sent } = this.state
     return (
 
       <div className='modal is-active'>
@@ -67,13 +75,16 @@ class ForgotPassword extends Component {
           <h1>Reset Your Password Here</h1>
 
           <form onSubmit={(event) => this.handleSubmit(event)}>
-            <input
+            {!sent ? <input
               onChange={(event) => this.handleChange(event)}
               type="email"
               placeholder='Email Address'
               name='email'
               value={email}>
             </input>
+              :
+              <h2>Success. Please check your email for recovery information.</h2>
+            }
             {emailError && <p>Email Address is not valid.</p>}
             {returnError && <p>This email is not recognized. Please try again or register for new account</p>}
             <div className='submit'>

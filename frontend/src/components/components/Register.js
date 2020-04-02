@@ -64,7 +64,7 @@ const Register = (props) => {
     <div className='register-container'>
       <div className='register-title'>
         <h1>Register An Account</h1>
-        
+
 
       </div>
       <div className='form-container'>
@@ -114,14 +114,14 @@ const Register = (props) => {
                 <input type='file'/>
               </label>
             </div> */}
-        {!register.completeCheck && <small>Please Complete All Fields</small>}
-            <button> Register!</button>
+          {!register.completeCheck && <small>Please Complete All Fields</small>}
+          <button> Register!</button>
 
 
         </form>
-        <button className='registered'onClick={ToggleModal}>Already have an account? Login</button>
+        <button className='registered' onClick={ToggleModal}>Already have an account? Login</button>
 
-       
+
       </div>
     </div>
     {modalOpen ? <LoginModal

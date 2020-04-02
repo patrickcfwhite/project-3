@@ -28,6 +28,7 @@ import test from './components/components/test'
 import EditCookForm from './components/components/forms/EditCookForm'
 import ForgotPassword from './components/components/ForgotPassword'
 import ResetPassword from './components/components/ResetPassword'
+import NotFound from './components/components/NotFound'
 // import LoginModal from './components/components/Login'
 
 
@@ -50,6 +51,7 @@ const App = () => (
       <Route exact path='/cook/:id' component={SingleRecipe}></Route>
       <Route exact path='/test' component={test}></Route>
       <Route exact path='/forgotPassword' component={ForgotPassword}></Route>
+      <Route component={NotFound}></Route>
     </Switch>
   </Router>
 )
