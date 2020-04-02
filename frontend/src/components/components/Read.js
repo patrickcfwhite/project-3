@@ -160,9 +160,10 @@ class Read extends React.Component {
             <div className='single-book-container'>
               <div className="book-information">
                 <h1>{singlebook.title}</h1>
-                <ion-icon onClick={(e) => this.HandleFavourite(e)}
+                {auth.isLoggedIn() ? <ion-icon onClick={(e) => this.HandleFavourite(e)}
                   style={savedItems.includes(singlebook._id) ? { color: 'red', animation: 'none' } : { color: 'white', animation: 'none' }}
                   name="heart-sharp"></ion-icon>
+                  : null}
                 <div className="book-heart"> <p>FAVOURITED!</p> </div>
                 <section>
                   <h2> Rating: {'\u00A0'} {singlebook.rating}</h2>

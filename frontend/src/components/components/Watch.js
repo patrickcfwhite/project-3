@@ -83,7 +83,7 @@ class Watch extends React.Component {
               if (film.subcategory === 'TV Series') {
                 return (
                   <div className="video-container">
-                    <video id='video' className="box"
+                    <video id='video' className="tv-box"
                       poster={film.image}
                       onMouseOver={(e) => {
                         e.target.setAttribute('src', film.trailer + '#t=10')

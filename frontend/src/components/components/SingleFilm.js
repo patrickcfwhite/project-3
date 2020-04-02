@@ -161,7 +161,7 @@ class SingleFilm extends React.Component {
               {!film.trailer ? null :
                 <video style={{ opacity: '0.9' }} controls onClick={e => e.target.play()} src={film.trailer + '#t=10'} />
               }
-              <small> Added By: {auth.isLoggedIn() ? <Link to={`/user/${user._id}`}> {user.username} </Link> :
+              <small> Added By: {auth.isLoggedIn() ? <Link style={{textTransform: 'capitalize'}}to={`/user/${user._id}`}> {user.username} </Link> :
                 'Please login to view the uploader\'s profile'} </small>
             </div>
 

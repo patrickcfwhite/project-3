@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -99,73 +99,71 @@ export default class ResetPassword extends Component {
     console.log(this.state)
     return (
       <main>
-        <div className='register-container'>
-          <div className='register-title'>
+        <div className='reset-container'>
+          <div className='reset-title'>
             <h1>Reset Your Password Below</h1>
-            {expired && !error && !used &&
-              <>
-
-                <div className='already-registered'>
-                  <div>The reset link has expired.</div><div> Please request another link below.</div>
-                  <Link to={'/forgotPassword'}>Try again</Link>
-                </div>
-              </>
-            }
-            {used &&
-              <>
-
-                <div className='already-registered'>
-                  <div>This link has been used and is no longer valid.</div><div> Please request another link below.</div>
-                  <Link to={'/forgotPassword'}>Try again</Link>
-                </div>
-              </>
-            }
-            {error &&
-              <>
-
-                <div className='already-registered'>
-                  <div>Updating has not been possible at this time.</div><div> Please request another link below or try again later.</div>
-                  <Link to={'/forgotPassword'}>Try again</Link>
-                </div>
-              </>
-            }
-            {!error && !expired && !used &&
-              <>
-                <div className='form-container'>
-                  <form
-                    onSubmit={(event) => this.updatePassword(event)}>
-                    <div className='field'>
-                      <input
-                        onChange={(event) => this.handleChange(event)}
-                        type="password"
-                        placeholder='Password'
-                        name='password'>
-                      </input>
-                    </div>
-                    <div className='field'>
-                      <input
-                        onChange={(event) => this.handleChange(event)}
-                        type="password"
-                        placeholder='Password Confirmation'
-                        name='passwordConfirmation'></input>
-                      {!passwordMatch && <small>Passwords must match</small>}
-                    </div>
-                    <div className='submit'>
-                      <button>Update Password</button>
-                    </div>
-                  </form>
-                </div>
-              </>
-            }
-            {updated &&
-              <>
-                <div>
-                  <p>Your password has been successfully reset! Please try logging in again.</p>
-                </div>
-                <Link to={'/'}>Head to Homepage</Link>
-              </>
-            }
           </div>
+          {expired && !error && !used &&
+            <>
+
+
+              <div style={{color: 'white',width: '70%', textAlign: 'center'}}>The reset link has expired. Please request another via the link below.</div>
+              <Link style={{color: 'lightskyblue'}} to={'/forgotPassword'}>Try again</Link>
+
+            </>
+          }
+          {used &&
+            <>
+              <div style={{color: 'white', width: '70%', textAlign: 'center'}}>This link is no longer valid. Please request another below.</div>
+              <Link style={{color: 'lightskyblue'}} to={'/forgotPassword'}>Try again</Link>
+
+            </>
+          }
+          {error &&
+            <>
+
+
+              <div style={{color: 'white', width: '70%', textAlign: 'center'}}>Updating has not been possible at this time. Please request another link below or try again later.</div>
+              <Link style={{color: 'lightskyblue'}} to={'/forgotPassword'}>Try again</Link>
+            </>
+          }
+          {!error && !expired && !used &&
+            <>
+              <div className='reset-container'>
+                <form
+                  onSubmit={(event) => this.updatePassword(event)}>
+
+                  <input
+                    onChange={(event) => this.handleChange(event)}
+                    type="password"
+                    placeholder='Password'
+                    name='password'>
+                  </input>
+
+
+                  <input
+                    onChange={(event) => this.handleChange(event)}
+                    type="password"
+                    placeholder='Password Confirmation'
+                    name='passwordConfirmation'></input>
+                  {!passwordMatch && <small style={{color: 'brown'}}>Passwords must match</small>}
+
+
+                  <button>Update Password</button>
+
+                </form>
+              </div>
+            </>
+          }
+          {updated &&
+            <>
+              <div>
+                <p style={{color:'white', textAlign: 'center', fontSize: '14px'}}>Your password has been successfully reset! Please try logging in again.</p>
+              </div>
+              <Link style={{color:'lightskyblue'}}to={'/'}>Head to Homepage</Link>
+            </>
+          }
+
         </div>
       </main>
     )

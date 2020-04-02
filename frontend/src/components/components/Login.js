@@ -59,8 +59,9 @@ const LoginModal = ({ ToggleModal, HandleCloseFromLink, props }) => {
           <button> LOGIN </button>
         </div>
       </form>
+      <Link style={{transform: 'translate(0, -40px', color: 'brown'}}to='/forgotPassword' onClick={CloseNavBarandModal}> <p>Forgotten Your Password? </p></Link>
       <Link to='/register' onClick={CloseNavBarandModal}> <p> Register For An Account </p></Link>
-      <Link to='/forgotPassword' onClick={CloseNavBarandModal}> <p>Forgotten Your Password? </p></Link>
+
     </div>
 
 
