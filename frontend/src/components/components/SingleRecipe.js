@@ -154,12 +154,12 @@ class SingleRecipe extends React.Component {
   render() {
 
     const { user, savedItems, recipe, singleRecipeComments, isCommentsActive } = this.state
-    console.log(recipe)
+    console.log(user)
     return (
       <main>
         <div className="single-rec-container">
-          <small className='to-hide'> Added By: {auth.isLoggedIn() && user ? <Link to={`/user/${user._id}`}> {user.username} </Link> :
-            'Please login to view the uploader\'s profile'} </small>
+          <small className='to-hide'> Added By: {auth.isLoggedIn() && recipe.user ? <Link style={{textTransform: 'capitalize'}}to={`/user/${recipe.user._id}`}> {recipe.user.username} </Link> :
+            null } </small>
           <ion-icon onClick={() => this.props.history.push('/cook')}
             style={{ color: 'white', position: 'absolute', right: '3%', top: '7.5%', animation: 'none' }}
             name="close-circle-sharp"></ion-icon>

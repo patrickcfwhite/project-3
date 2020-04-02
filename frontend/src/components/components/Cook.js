@@ -78,7 +78,7 @@ class Cook extends React.Component {
       .to(id, 0.4, { width: '100%' }, '+=0.3')
       .to(id, 0.3, { display: 'none' }, '+=0.3')
       .to('.single', 0.1, { display: 'flex' })
-      .to('.single-left, .single-middle', 1, { opacity: 1, stagger: 0.3 })
+      .to('.to-hide, .single-left, .single-middle', 1, { opacity: 1, stagger: 0.3 })
   }
 
   HandleCollapse(e) {
@@ -96,13 +96,13 @@ class Cook extends React.Component {
       const t1 = new TimelineLite
       t1
         .to('.methods', 0.2, { color: 'black', textDecoration: 'none' })
-        .to('.single-left, .single-middle', 1, { opacity: 0 })
+        .to('.to-hide, .single-left, .single-middle', 1, { opacity: 0 })
         .to('.single', 0.2, { display: 'none' }, '+=0.5')
         .to(id, 0.1, { display: 'flex' })
         .to(id, 0.4, { width: '15.8vw' }, '+=0.2')
         .to(id, 0.2, { height: '36vh' }, '+=0.5')
         .to(id, 0.2, { opacity: 0 }, '+=0.4')
-        .to('.recipe-container', 0.1, { paddingTop: '87vh' }, '+=0.5')
+        .to('.recipe-container', 0.1, { paddingTop: '174vh' }, '+=0.5')
         .to(id, 0.1, { backgroundColor: '#010911' }, '+=0.1')
         .to(others, 0.4, { display: 'flex' }, '+=0.4')
         .to(id, 0.2, { opacity: 1 }, '-=0.3')

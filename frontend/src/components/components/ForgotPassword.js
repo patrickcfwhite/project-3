@@ -74,8 +74,8 @@ class ForgotPassword extends Component {
               name='email'
               value={email}>
             </input>
-            {emailError && <p>Email Address is not valid.</p>}
-            {returnError && <p>This email is not recognized. Please try again or register for new account</p>}
+            {emailError && <small style={{color:'brown', position: 'absolute'}}>Email Address is not valid.</small>}
+            {returnError && <small style={{color:'brown', position: 'absolute'}}>This email is not recognized. Please try again or register for new account</small>}
             <div className='submit'>
               <button> Reset Password </button>
             </div>
