@@ -191,9 +191,8 @@ function resetPassword(req, res) {
       } else {
         const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '1h' })
         console.log(token)
-        user.update({
-          resetPasswordToken: token
-        })
+        user.resetPasswordToken = token
+
 
         const transporter = nodemailer.createTransport({
           service: 'gmail',
@@ -221,9 +220,11 @@ function resetPassword(req, res) {
             console.error('there was an error: ', err)
           } else {
             console.log('here is the response:', response)
-            res.status(200).send({ message: 'recovery email sent' })
+            res.status(200).send('recovery email sent')
           }
         })
+        console.log(user)
+        return user.save()
       }
     })
 }
