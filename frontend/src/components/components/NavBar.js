@@ -21,7 +21,7 @@ const NavBar = (props) => {
       // (selector, duration, {css properties}, animationDelay) 
       .to('main', 0.5, { opacity: 0, ease: Power1.easeOut })
       .to('main', 0.1, { display: 'none', ease: Power1.easeOut })
-      .to('.navbar', 1, { width: '34vw', ease: Power1.easeOut },'-=0.2')
+      .to('.navbar', 0.3, { width: '34vw', ease: Power1.easeOut },'-=0.2')
       .fromTo('.items', 0.7, { display: 'none', opacity: 0, x: -50, ease: Power1.easeOut },
         { display: 'flex', opacity: 1, x: 0 })
       .fromTo('.options', { opacity: 0, x: -30, ease: Power1.easeOut },
@@ -34,7 +34,7 @@ const NavBar = (props) => {
     t1
       .fromTo('.items', 0.5, { dislay: 'flex', opacity: 1, x: 0, ease: Power1.easeOut },
         { display: 'none', opacity: 0, x: -50 })
-      .to('.navbar', 0.7, { width: 0, ease: Power1.easeOut })
+      .to('.navbar', 0.3, { width: 0, ease: Power1.easeOut })
       .to('main', 0.1, { display: 'flex', ease: Power1.easeOut })
       .to('main', 0.3, { opacity: 1, ease: Power1.easeIn })
     setState(false)
@@ -73,8 +73,10 @@ const NavBar = (props) => {
   const IconRedirect = (e) => {
     let path
     const name = e.target.name
-    name === 'person-outline' ? path = '/user/' + auth.getUserId() : path = '/add'
-    props.history.push(path)
+    name === 'person-outline' ? props.history.push(`/user/${auth.getUserId()}`) 
+      : props.history.push('/add')
+    location.reload()
+    // console.log(path)
   }
   return (
     <>

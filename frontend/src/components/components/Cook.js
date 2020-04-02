@@ -255,7 +255,7 @@ class Cook extends React.Component {
 
             {/* single recipe */}
             <div id={this.state.singleRecipe.title} className="single" >
-              <small className='to-hide'> Added By: {auth.isLoggedIn() ? <Link to={`/user/${singleRecipe.user._id}`}> {singleRecipe.user.username} </Link> :
+              <small className='to-hide'> Added By: {auth.isLoggedIn() && singleRecipe.user ? <Link style={{ textTransform: 'capitalize' }} to={`/user/${singleRecipe.user._id}`}> {singleRecipe.user.username} </Link> :
                 'Please login to view the uploader\'s profile'} </small>
               <ion-icon name="close-circle-sharp" onClick={(e) => this.HandleCollapse(e)}
                 style={{ animation: 'none', color: 'white', position: 'absolute', right: '-20px', top: '-20px' }}></ion-icon>
@@ -302,10 +302,10 @@ class Cook extends React.Component {
 
                       singleRecipeComments.map((comment => {
                         return (
-                          <div key={comment.user} className="recipe-comment-row">
+                          <div key={comment.user._id} className="recipe-comment-row">
 
                             <section>
-                              <Link style={{color:'black'}} to={`/user/${comment.user._id}`}> <h3 style={{ textTransform: 'capitalize' }}> {comment.user.username} </h3> </Link>
+                              <Link style={{ color: 'black' }} to={`/user/${comment.user._id}`}> <h3 style={{ textTransform: 'capitalize' }}> {comment.user.username} </h3> </Link>
                               <h6 className='recipe-rating'> Rating: {comment.rating}
                                 <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)' }} name="star-sharp"></ion-icon>
                               </h6>
@@ -317,7 +317,7 @@ class Cook extends React.Component {
                               {auth.getUserId() === comment.user._id ? <ion-icon onClick={(e) => this.HandleDelete(e)} style={{
                                 position: 'absolute', right: 0, bottom: '15%',
                                 fontSize: '18px', animation: 'none'
-                              }} name="trash-bin"></ion-icon> : null }
+                              }} name="trash-bin"></ion-icon> : null}
                             </h6>
 
                           </div>
@@ -330,13 +330,15 @@ class Cook extends React.Component {
                   <div className="user-recipe-comment">
                     <div className='star' style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
                       <h6> {auth.isLoggedIn() ? 'COMMENT' : 'PLEASE LOGIN/REGISTER TO COMMENT'} </h6>
-                      <div className="star-icons" style={{ transform: 'translate(-85px, -11.7px)' }}>
-                        <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                        <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                        <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                        <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                        <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                      </div>
+                      {!auth.isLoggedIn() ? null :
+                        <div className="star-icons" style={{ transform: 'translate(-85px, -11.7px)' }}>
+                          <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                          <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                          <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                          <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                          <ion-icon onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                        </div>
+                      }
                     </div>
 
                     {!auth.isLoggedIn() ? null :
