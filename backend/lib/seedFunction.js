@@ -6,7 +6,7 @@ const Play = require('../models/play')
 const User = require('../models/user')
 
 function updateUpload(item) {
-  
+
   const id = item.user._id
   const info = [item._id, item.category]
   User
@@ -791,6 +791,241 @@ function createRecipes(users) {
       dietary: 'Vegan',
       user: users[0],
       category: 'Cook'
+    },
+    {
+      title: 'Chicken Pasta Bake',
+      image: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2020/01/chicken_pasta_bake.jpg?itok=3u5ZUexj',
+      ingredients: [
+        '4 tbsp olive oil',
+        '1 onion finely chopped',
+        '2 garlic cloves, crushed',
+        '¼ tsp chilli flakes',
+        '2 x 400g cans chopped tomatoes',
+        '1 tsp caster sugar',
+        '6 tbsp mascarpone',
+        '4 skinless chicken breasts, sliced into strips',
+        '300g penne',
+        '70g mature cheddar, grated',
+        '50g grated mozzarella',
+        '½ small bunch of parsley , finely chopped'
+      ],
+      method: [
+        'Heat 2 tbsp of the oil in a pan over a medium heat and fry the onion gently for 10-12 mins. Add the garlic and chilli flakes and cook for 1 min. Tip in the tomatoes and sugar and season to taste. Simmer uncovered for 20 mins or until thickened, then stir through the mascarpone.',
+        'Heat 1 tbsp of oil in a non-stick frying pan. Season the chicken and fry for 5-7 mins or until the chicken is cooked through. ',
+        'Heat the oven to 220C/200C fan/gas 7. Cook the penne following pack instructions. Drain and toss with the remaining oil. Tip the pasta into a medium sized ovenproof dish. Stir in the chicken and pour over the sauce. Top with the cheddar, mozzarella and parsley. Bake for 20 mins or until golden brown and bubbling.'
+      ],
+      prepTime: '30 minutes',
+      cookTime: '40 minutes',
+      serves: '6',
+      rating: 3,
+      description: 'Enjoy this gooey cheese and chicken pasta bake for the ultimate weekday family dinner. Serve straight from the dish with a dressed green salad ',
+      mealtype: 'Main Course',
+      dietary: 'none',
+      user: users[2],
+      category: 'Cook'
+    },
+    {
+      title: 'Coffee walnut millionaire\'s shortbread',
+      image: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2020/02/cake-tin.jpg?itok=FsWDvuGT',
+      ingredients: [
+        '200g cold unsalted butter, chopped, plus extra for the tin',
+        '40g walnut halves',
+        '250g plain flour',
+        '75g golden caster sugar',
+        'For the caramel',
+        '4 tbsp espresso powder',
+        '100g light muscovado sugar',
+        '2 x 397g cans condensed milk',
+        'For the chocolate topping',
+        '300g dark chocolate, chopped',
+        '50g butter        ',
+        '30g white chocolate, chopped',
+        '1 tsp espresso powder',
+        '30g chocolate-coated coffee beans',
+        '20 walnut halves (about 50g)'
+      ],
+      method: [
+        'Heat the oven to 180C/160C fan/ gas 4. Butter and line the base and sides of a rectangular 20 x 30cm tin with baking parchment.',
+        'To make the base, blitz the walnuts in a food processor until finely chopped. Add the flour, sugar, butter and ½ tsp salt and blitz until the mixture is combined. Tip onto a work surface and bring together into a dough. Press the dough into the base of the tin and bake for 25 mins until lightly golden. Leave to cool.',
+        'To make the caramel, mix the espresso powder in a small bowl with 1 tbsp boiling water to dissolve. Tip the sugar, condensed milk and espresso into a heavy-based saucepan. Bring to a simmer, stirring to dissolve the sugar. Once the sugar has dissolved, boil vigorously for 3 mins, whisking continuously until the colour has darkened slightly and the caramel has thickened. Leave to cool for 20 mins, then pour the caramel over the biscuit layer and chill in the fridge for 2 hrs.',
+        'To make the topping, heat the dark chocolate and butter in a heatproof bowl in the microwave in 30 second bursts until evenly melted. Pour over the caramel layer. Melt the white chocolate in the same way and mix with the espresso powder. Swirl and drizzle the white chocolate over the dark chocolate layer. Scatter over the coffee beans and walnuts. Chill for a further 2 hrs or overnight to set before slicing into squares.'
+      ],
+      prepTime: '40 minutes',
+      cookTime: '40 minutes',
+      serves: '18',
+      rating: 5,
+      description: 'Combine millionaire\'s shortbread with classic coffee and walnut flavours in this delicious bake. It\'s the perfect partner to a cup of tea for elevenses, or for a special occasion like Mother\'s Day',
+      mealtype: 'Dessert',
+      dietary: 'Vegetarian',
+      user: users[1],
+      category: 'Cook'
+    },
+    {
+      title: 'Classic Lasagna',
+      image: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1273579_7.jpg?itok=SD4k34fj',
+      ingredients: [
+        '2 tbsp olive oil, plus a little for the dish',
+        '750g lean beef mince',
+        '90g pack prosciutto',
+        'half quantity of our tomato sauce (see the recipe), or 800g passata',
+        '200ml hot beef stock',
+        'a little grated nutmeg',
+        '300g pack fresh lasagne sheets',
+        '520g ready-made white sauce',
+        '125g ball mozzarella, torn into thin strips'
+      ],
+      method: [
+        'To make the meat sauce, heat 2 tbsp olive oil in a frying pan and cook 750g lean beef mince in two batches for about 10 mins until browned all over.',
+        'Finely chop 4 slices of prosciutto from a 90g pack, then stir through the meat mixture.',
+        'Pour over 800g passata or half our basic tomato sauce recipe and 200ml hot beef stock. Add a little grated nutmeg, then season.',
+        'Bring up to the boil, then simmer for 30 mins until the sauce looks rich.',
+        'Heat oven to 180C/fan/160C/gas 4 and lightly oil an ovenproof dish (about 30 x 20cm).',
+        'Spoon one third of the meat sauce into the dish, then cover with some fresh lasagne sheets from a 300g pack. Drizzle over roughly 130g ready-made or homemade white sauce.',
+        'Repeat until you have 3 layers of pasta. Cover with the remaining 390g white sauce, making sure you can’t see any pasta poking through.',
+        'Scatter 125g torn mozzarella over the top.',
+        'Arrange the rest of the prosciutto on top. Bake for 45 mins until the top is bubbling and lightly browned.'
+      ],
+      prepTime: '20 minutes',
+      cookTime: '1hr 40 minutes',
+      serves: '6',
+      rating: 3,
+      description: 'Prepare this easy lasagne ahead of time and save in the freezer, uncooked, for when you need it during a busy week. Then just bake for an extra 45 mins',
+      mealtype: 'Main Course',
+      dietary: 'none',
+      user: users[2],
+      category: 'Cook'
+    },
+    {
+      title: 'Prawn Chow Mein',
+      image: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--653626_11.jpg?itok=TmevwLV7',
+      ingredients: [
+        '3 nests medium egg noodles',
+        '140g broccoli, chopped into small florets',
+        '140g baby corn, halved',
+        '1 tbsp olive oil',
+        '1 red pepper, sliced',
+        '300g prawns',
+        '3 tbsp tomato ketchup, for the sauce',
+        '2 tbsp oyster sauce, for the sauce'
+      ],
+      method: [
+        'Cook the noodles, broccoli and corn in boiling water for 3-4 mins, or until tender. Drain and set aside. Heat the oil in a large frying pan or wok and fry the pepper for 3 mins, until starting to soften.',
+        'Tip in the noodles and vegetables along with the prawns and toss together. Add the sauce ingredients and heat everything through for 2-3 mins, until piping hot.'
+      ],
+      prepTime: '5 minutes',
+      cookTime: '20 minutes',
+      serves: '4',
+      rating: 2,
+      description: 'This low-fat stir-fry recipe is packed with crunchy vegetables and tangy oyster sauce',
+      mealtype: 'Main Course',
+      dietary: 'none',
+      user: users[0],
+      category: 'Cook'
+    },
+    {
+      title: 'Oriental Egg Fried Rice',
+      image: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--4836_12.jpg?itok=8ewSULD7',
+      ingredients: [
+        'a mugful of American long grain rice',
+        'a cupful of frozen peas',
+        '2 tbsp sunflower oil',
+        '2 back bacon rashers, roughly chopped',
+        '1 small red pepper, chopped',
+        '2 garlic cloves, thinly sliced',
+        '2 large eggs',
+        '1 heaped tsp Chinese five-spice powder'
+      ],
+      method: [
+        'Fill a roomy saucepan with water, bring to the boil and tip in a heaped teaspoon of salt - the water will bubble furiously. Pour in the rice, stir once and return to the boil, then turn the heat down a little so that the water is boiling steadily, but not vigorously.',
+        'Boil uncovered, without stirring (this makes for sticky rice) for 10 minutes. After 8 minutes, throw in the frozen peas, boil for 2 minutes and drain (don’t rinse).',
+        'Heat the sunflower oil in a wok and stir fry the bacon for 3-4 minutes until crisp. Tip in the red pepper and the garlic cloves and stir fry for 2 minutes.'
+      ],
+      prepTime: '20-30 minutes',
+      cookTime: '20 minutes',
+      serves: '4',
+      rating: 2,
+      description: 'Sara Buenfeld’s fast and easy fried rice makes for a delicious Chinese supper',
+      mealtype: 'Side Dish',
+      dietary: 'none',
+      user: users[1],
+      category: 'Cook'
+    },
+    {
+      title: 'Best ever chocolate brownies recipe',
+      image: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1001464_11.jpg?itok=Va_PfXJj',
+      ingredients: [
+        '185g unsalted butter',
+        '185g best dark chocolate ',
+        '85g plain flour',
+        '40g cocoa powder',
+        '50g white chocolate',
+        '50g milk chocolate',
+        '3 large eggs',
+        '275g golden caster sugar'
+      ],
+      method: [
+        'Cut 185g unsalted butter into small cubes and tip into a medium bowl. Break 185g dark chocolate into small pieces and drop into the bowl.',
+        'Fill a small saucepan about a quarter full with hot water, then sit the bowl on top so it rests on the rim of the pan, not touching the water. Put over a low heat until the butter and chocolate have melted, stirring occasionally to mix them. ',
+        'Remove the bowl from the pan. Alternatively, cover the bowl loosely with cling film and put in the microwave for 2 minutes on High. Leave the melted mixture to cool to room temperature. ',
+        'While you wait for the chocolate to cool, position a shelf in the middle of your oven and turn the oven on to 180C/ 160C fan/ gas 4.',
+        'Using a shallow 20cm square tin, cut out a square of non-stick baking parchment to line the base. Tip 85g plain flour and 40g cocoa powder into a sieve held over a medium bowl. Tap and shake the sieve so they run through together and you get rid of any lumps.',
+        'Chop 50g white chocolate and 50g milk chocolate into chunks on a board.',
+        'Break 3 large eggs into a large bowl and tip in 275g golden caster sugar. With an electric mixer on maximum speed, whisk the eggs and sugar. They will look thick and creamy, like a milk shake. This can take 3-8 minutes, depending on how powerful your mixer is. You’ll know it’s ready when the mixture becomes really pale and about double its original volume. Another check is to turn off the mixer, lift out the beaters and wiggle them from side to side. If the mixture that runs off the beaters leaves a trail on the surface of the mixture in the bowl for a second or two, you’re there.',
+        'Pour the cooled chocolate mixture over the eggy mousse, then gently fold together with a rubber spatula. Plunge the spatula in at one side, take it underneath and bring it up the opposite side and in again at the middle. Continue going under and over in a figure of eight, moving the bowl round after each folding so you can get at it from all sides, until the two mixtures are one and the colour is a mottled dark brown. The idea is to marry them without knocking out the air, so be as gentle and slow as you like.',
+        'Hold the sieve over the bowl of eggy chocolate mixture and resift the cocoa and flour mixture, shaking the sieve from side to side, to cover the top evenly.',
+        'Gently fold in this powder using the same figure of eight action as before. The mixture will look dry and dusty at first, and a bit unpromising, but if you keep going very gently and patiently, it will end up looking gungy and fudgy. Stop just before you feel you should, as you don’t want to overdo this mixing.',
+        'Finally, stir in the white and milk chocolate chunks until they’re dotted throughout.',
+        'Pour the mixture into the prepared tin, scraping every bit out of the bowl with the spatula. Gently ease the mixture into the corners of the tin and paddle the spatula from side to side across the top to level it.',
+        'Put in the oven and set your timer for 25 mins. When the buzzer goes, open the oven, pull the shelf out a bit and gently shake the tin. If the brownie wobbles in the middle, it’s not quite done, so slide it back in and bake for another 5 minutes until the top has a shiny, papery crust and the sides are just beginning to come away from the tin. Take out of the oven.',
+        'Leave the whole thing in the tin until completely cold, then, if you’re using the brownie tin, lift up the protruding rim slightly and slide the uncut brownie out on its base. If you’re using a normal tin, lift out the brownie with the foil. Cut into quarters, then cut each quarter into four squares and finally into triangles.',
+        'They’ll keep in an airtight container for a good two weeks and in the freezer for up to a month.'
+      ],
+      prepTime: '25 minutes',
+      cookTime: '25-25 minutes',
+      serves: 'Cuts Into 16 Squares',
+      rating: 5,
+      description: 'A foolproof brownie recipe for a squidgy chocolate bake. Watch our recipe video to help you get a perfect traybake every time.',
+      mealtype: 'Baking',
+      dietary: 'none',
+      user: users[1],
+      category: 'Cook'
+    },
+    {
+      title: 'Simnel Cake',
+      image: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2020/03/simnel-cake.jpg?itok=Q7JTC76Z',
+      ingredients: [
+        '225g sultanas',
+        '100g currants',
+        '50g mixed peel',
+        '2 lemons, 1 juiced and 2 zested',
+        '50ml orange juice',
+        '50ml brandy(optional)',
+        '225g butter, softened',
+        '225g light muscovado sugar',
+        '4 medium eggs',
+        '225g self-raising flour',
+        '100g glacé cherries, quartered',
+        '2 tsp mixed spice',
+        '500g yellow marzipan (For the topping)',
+        '1 tbsp apricot jam(For the topping)'
+      ],
+      method: [
+        'Put the sultanas, currants and mixed peel in a bowl with the lemon juice, orange juice, and brandy, if using. Mix well, cover and leave to soak overnight. ',
+        'Heat the oven to 150C/130C fan/gas 2. Line the base and sides of a 20cm round cake tin with baking parchment. ',
+        'Add the rest of the cake ingredients to the soaked fruit and stir until well combined. Spoon half of this mixture into the bottom of the cake tin and level it off so it\'s as flat as possible. Roll a third of the marzipan into a circle 20cm diameter and put it on the top. Gently add the rest of the mixture, levelling the surface again. ',
+        'Bake for approximately 2½ hours until brown, well-risen and firm to the touch. A metal skewer should come out clean when inserted. Allow to cool for 20 mins in the tin and then turn out to cool on a wire rack.',
+        'Warm the apricot jam in a small saucepan and brush on the top of the cake. Roll out half of the remaining marzipan to the size of the top of the cake. Press it down firmly and push the edges down with your thumb to crimp it round the sides.',
+        'Roll the rest of the marzipan into 11 balls (these represent the Apostles). Place the balls evenly on top of the cake in a circle, sticking them down with a little dab of the jam. Gently blow torch the top of the cake until the balls are a light golden brown, alternatively put the whole cake under a hot grill until the marzipan turns a light golden colour.'
+      ],
+      prepTime: '30 minutes',
+      cookTime: '2hr 30 minutes',
+      serves: '10-12',
+      rating: 5,
+      description: 'Celebrate Easter with a springtime seasonal bake. This classic simnel cake is packed with dried fruit and spices and topped with marzipan',
+      mealtype: 'Baking',
+      dietary: 'Vegetarian',
+      user: users[2],
+      category: 'Cook'
     }
   ])
     .then(output => {
@@ -902,7 +1137,7 @@ function createWatch(users) {
     },
     {
       title: 'Gilmore Girls',
-      image: 'https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_SY1000_CR0,0,734,1000_AL_.jpg',
+      image: 'https://www.gstatic.com/tv/thumb/tvbanners/184655/p184655_b_v8_ab.jpg',
       genre: 'Comedy, Drama',
       description: 'A dramedy centering around the relationship between a thirtysomething single mother and her teen daughter living in Stars Hollow, Connecticut.',
       seasons: '7',
@@ -982,6 +1217,7 @@ function createWatch(users) {
       title: 'Joker',
       image: 'https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_UX182_CR0,0,182,268_AL_.jpg',
       genre: 'Crime, Drama, Thriller',
+      trailer: 'https://movietrailers.apple.com/movies/wb/joker/joker-trailer-2_i320.m4v',
       description: 'In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.',
       duration: '2h 2minutes',
       director: 'Todd Phillips',
@@ -1182,6 +1418,68 @@ function createPlay(users) {
       rating: 4,
       subcategory: 'Card Game',
       duration: '2+ Hours',
+      user: users[0],
+      category: 'Play'
+    },
+    {
+      title: 'Monopoly',
+      image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com%2FHasbro-00009-482-Monopoly-Board%2Fdp%2FB00CV5PN2W&psig=AOvVaw1JFl028Env02Dig1r3eiRc&ust=1585863015209000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDLiaCWyOgCFQAAAAAdAAAAABAD',
+      players: 'Multiplayer',
+      description: 'Players roll two six-sided dice to move around the game board, buying and trading properties, and developing them with houses and hotels. Players collect rent from their opponents, with the goal being to drive them into bankruptcy. Money can also be gained or lost through Chance and Community Chest cards, and tax squares; players can end up in jail, which they cannot move from until they have met one of several conditions.',
+      genre: 'Family Game',
+      rating: 5,
+      subcategory: 'Board Game',
+      duration: '2+ Hours',
+      user: users[1],
+      category: 'Play'
+    },
+    {
+      title: 'Twister',
+      image: 'https://images-eu.ssl-images-amazon.com/images/I/819aRXm6CAL.png',
+      players: 'Multiplayer',
+      description: 'layed on a large plastic mat that is spread on the floor or ground. The mat has six rows of large colored circles on it with a different color in each row: red, yellow, green, and blue. A spinner is attached to a square board and is used to determine where the player has to put their hand or foot.',
+      genre: 'Family Game',
+      rating: 3,
+      subcategory: 'Physical Game',
+      duration: '20-45 minutes',
+      user: users[0],
+      category: 'Play'
+    },
+    {
+      title: 'Exploding Kittens',
+      image: 'https://explodingkittens.com/img/social/Twitter-Card_EK-Home_v3.png',
+      players: 'Multiplayer',
+      description: 'Exploding Kittens is passphrased as a “strategic card game about cats and destruction” which follows the gameplay which is to collect kittens while at the same time demoting the other players’ amount of kittens.',
+      genre: 'Family Game',
+      rating: 3,
+      subcategory: 'Card Game',
+      duration: '15 minutes',
+      user: users[2],
+      category: 'Play'
+    },
+    {
+      title: 'Portal 2',
+      image: 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Portal2cover.jpg/220px-Portal2cover.jpg',
+      players: 'Single Player',
+      description: 'players solve puzzles by placing portals and teleporting between them. Portal 2 adds features including tractor beams, lasers, light bridges, and paint-like gels that alter player movement or allow portals to be placed on any surface.',
+      genre: 'Video Game',
+      rating: 3,
+      subcategory: 'PC Game',
+      format: 'PC, Mac OS X, Playstation 3, Xbox One',
+      duration: '2+ hours',
+      user: users[1],
+      category: 'Play'
+    },
+    {
+      title: 'Final Fantasy XV',
+      image: 'https://upload.wikimedia.org/wikipedia/en/5/5a/FF_XV_cover_art.jpg',
+      players: 'Single Player & Multiplayer',
+      description: 'Final Fantasy XV takes place on the fictional world of Eos; aside from the capital of Lucis, all the world is dominated by the empire of Niflheim, who seek control of the magical Crystal protected by Lucis\'s royal family.',
+      genre: 'Video Game',
+      rating: 5,
+      subcategory: 'Video Game',
+      format: 'PC, Playstation 4, Xbox One, Stadia',
+      duration: '2+ hours',
       user: users[0],
       category: 'Play'
     }

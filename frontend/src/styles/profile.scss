@@ -1,221 +1,165 @@
 .Profile {
   height: 80%;
-  width: 100%;
-  font-family: 'Montserrat';
+  width: 92%;
+  font-family: "Montserrat";
   padding: 10px;
+  // background-color: red;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   
-
   .profile-header {
     width: 80%;
     display: flex;
+    transform: translate(0, -30%);
 
-    .follow-button {
-      display: flex;
-      align-items: flex-end;
-      button {
-        width: 100%;
-        height: 30%;
-        font-size: 15px;
-        padding: 5px;
-        background-color: #1c6115;
-        border: 1px solid white;
-        color: white;
-        font-family: 'Montserrat';
-        font-weight: bold;
+    button {
+      height: 40%;
+      font-size: 15px;
+      padding: 5px 15px;
+      border: 1px solid rgba(245, 245, 245, 0.685);
+      color: white;
+      background-color: transparent;
+      text-transform: uppercase;
+      font-family: "Montserrat";
+      transform: translate(70%, 77%);
+      &:hover {
+        color: brown;
       }
-
     }
-
+    h1 {
+      font-size: 300%;
+      text-transform: capitalize;
+      letter-spacing: -2px;
+      justify-self: flex-start;
+      margin: 0;
+    }
+    small {
+      transform: translate(8%, 74%);
+      color: lightseagreen;
+    }
   }
-
-  h1 {
-    font-size: 300%;
-    letter-spacing: -2px;
-    justify-self: flex-start;
-    margin: 0;
-  }
-}
-
-
 
   .user-information {
     display: flex;
-    height: 80%;
-    width: 85%;
-    justify-content: center;
+    height: 82%;
+    width: 100%;
+    .profile-row-container {
+      // background-color: skyblue;
+      padding: 3px 7px 3px -2px;
+      height: 92%;
 
+    }
+    .item-icon {
+      // background-color: slategrey;
+      opacity: 0.95;
+      min-width: 15%;
+      margin-right: 10px;
+      transform: translate(-10%, -25%);
+    }
+    span {
+      color:pink;
+    }
+    .profile-rows {
+      // background-color: slateblue;
+      display: flex;
+      width: 88%;
+      margin: 5px 0;
+      min-height: 20%;
+      align-items: center;
+      border-bottom: 1px solid white;
+      &:hover {
+        transform: scale(1.05);
+        border-bottom: 1px solid lightskyblue;
+      }
+      .item-display {
+        width: 85%;;
+      }
+      .item-displayed {
+        min-width: 82%;
+        .upload-buttons {
+          min-width: 100%;
+          margin-top: 13px;
+          // background-color: #010911;
+          display: flex;
+          align-items: center;
+          a {
+            color:white;
+            font-size: 14px;
+            &:hover {
+              color:lightskyblue;
+            }
+          }
+          button {
+            background-color: transparent;
+            color:white;
+            border: none;
+            font-size: 14px;
+            transform: translate(0, -1px);
+            margin-left: 20%;
+            &:hover {
+              color:lightskyblue;
+            }
+          }
+        }
+      }
+    }
+    .buffer {
+      height: 8%;
+    }
     h2 {
-      font-size: 120%;
-      height: 10%;
-      margin-bottom: 10%;
-      font-weight: bold;
-      align-self: center;
+      position: fixed;
+      z-index: 4;
+      width: 24%;
+      height: 5%;
+      background-color: #010911;
     }
-
-
-    .followed-by-container {
-      width: 25%;
+    .following-container {
+      width: 20%;
       display: flex;
       flex-direction: column;
-      font-family: 'Montserrat';
-      overflow-y: hidden;
-
-      h2 { height: 2%; }
-
-        
-        .following-users {
-          border-top: 1px whitesmoke solid;
-          border-bottom: 1px whitesmoke solid;
-          width: 90%;
-          height: 90%;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-around;
-          margin: 0 5%;
-        }
+      .profile-rows {
+        width: 77%;
+        min-height: 16%;
+        text-transform: capitalize;
         a {
-          font-family: 'Montserrat';
-          color: white;
+          color:white;
         }
+      }
     }
-
+    .followers-container {
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      .profile-rows {
+        width: 77%;
+        min-height: 16%;
+        text-transform: capitalize;
+        a {
+          color:white;
+        }
+      }
+    }
     .uploads-container {
-      width: 25%;
-      overflow-y: scroll;
+      overflow: hidden;
+      width: 30%;
       display: flex;
       flex-direction: column;
-      /* width */
-      &::-webkit-scrollbar {
-        width: 10px;
-      }
-
-      /* Track */
-      &::-webkit-scrollbar-track {
-        background:#010911;
-      }
-
-      /* Handle */
-      &::-webkit-scrollbar-thumb {
-        background: rgb(255, 255, 255);
-      }
-
-      /* Handle on hover */
-      &::-webkit-scrollbar-thumb:hover {
-        background: lightseagreen;
-      }
-
-      .upload-category {
-        display: flex;
-        width: 90%;
-        align-items: center;
-        border-bottom: 1px whitesmoke solid;
-        margin: 14px;
-        padding-bottom: 5%;
-
-        .upload-icon {
-          display: flex;
-          width: 25%;
-          height: 100%;
-          justify-content: center;
-          align-items: center;
-          position: relative;
-          right: 7%;
-          bottom: 3%;
-
-          ion-icon {
-            position: absolute;
-            animation: none;
-          }
-
-        }
-        
-          .upload-item {
-            display: flex;
-            flex-direction: column;
-            text-align: start;
-            width: 65%;    
-
-              .upload-buttons {
-                width: 50%;
-                display: flex;
-                justify-content: space-between;
-
-                button {
-                  font-size: 90%;
-                  background-color: transparent;
-                  color: white;
-                  font-family: 'Montserrat';
-                  font-weight: bold;
-                  border: none;
-                }
-              }
-          }
-  
-        p {
-          font-size: 17px;
-        }
-  
-        a {
-        font-size: 90%;
-        color: white;
-        font-family: 'Montserrat';
-        font-weight: bold;
-        }
-      }
+      overflow-y: scroll;
     }
-
     .saved-container {
-      // background-color: lightcoral;
-      width: 25%;
-      overflow-y: scroll;
+      width: 30%;
       display: flex;
       flex-direction: column;
-            /* width */
-            &::-webkit-scrollbar {
-              width: 10px;
-            }
-      
-            /* Track */
-            &::-webkit-scrollbar-track {
-              background:#010911;
-            }
-      
-            /* Handle */
-            &::-webkit-scrollbar-thumb {
-              background: rgb(255, 255, 255);
-            }
-      
-            /* Handle on hover */
-            &::-webkit-scrollbar-thumb:hover {
-              background: lightseagreen;
-            }
-
-        h2 {
-          // background-color: lightslategrey;
-          height: 4%;
+      overflow-y: scroll;
+      .profile-rows {
+        .item-displayed {
+          transform: translate(0%, -15%);
         }
-
-        .saved-category {
-          // background-color: green;
-          width: 80%;
-          display: flex;
-          align-self: center;
-          justify-content: space-around;
-          align-items: center;
-          height: 18%;
-          border-bottom: 1px whitesmoke solid;
-          overflow-x: none;
-
-            .saved-item {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-            }
+        .item-icon {
+          transform: translate(-10%, -17%);
         }
+      }
     }
-
-
   }
+}

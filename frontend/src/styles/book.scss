@@ -115,8 +115,10 @@
           // margin: 5px 0;
           overflow-y: scroll;
           width: 95%;
+          color:white
           &::-webkit-scrollbar{
-            color:white
+            display:none;
+           
           }
           
           .book-comment-row {
