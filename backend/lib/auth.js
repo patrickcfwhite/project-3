@@ -10,7 +10,6 @@ function isLoggedIn() {
   if (!localStorage.token) return false
   const token = localStorage.token
   jwt.verify( token, secret, function(err, decoded) {
-
     if ( err ) {
       localStorage.removeItem( 'token' )
     }

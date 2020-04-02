@@ -9,6 +9,15 @@ router.route('/register')
 router.route('/login')
   .post(userController.login)
 
+router.route('/forgotPassword')
+  .post(userController.resetPassword)
+
+router.route('/reset/')
+  .get(userController.checkResetToken)
+  
+router.route('/updatePassword')
+  .put(userController.updatePassword)
+
 router.route('/user')
   .get(userController.displayUsers)
 
@@ -38,6 +47,9 @@ router.route('/:category/:id/comments')
 router.route('/:category/:id/comments/:commentid')
   .put(secureRoute, itemController.editComment)
   .delete(secureRoute, itemController.deleteComment)
+
+
+
 
 
 

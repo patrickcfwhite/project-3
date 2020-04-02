@@ -3,7 +3,7 @@ import axios from 'axios'
 import moment from 'moment'
 import auth from '../../../../backend/lib/auth'
 import { TimelineLite } from 'gsap'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import { set } from 'mongoose'
 
 // import { SingleEntryPlugin } from 'webpack'
@@ -153,11 +153,12 @@ class SingleRecipe extends React.Component {
 
   render() {
     const { savedItems, recipe, singleRecipeComments, isCommentsActive } = this.state
+    const { user } = this.state.recipe
     console.log(recipe.ingredients)
     return (
       <main>
         <div className="single-rec-container">
-          <small className='to-hide'> Added By: {auth.isLoggedIn() ? <Link to={`/user/${recipe.user}`}> {recipe.user} </Link> :
+          <small className='to-hide'> Added By: {auth.isLoggedIn() ? <Link to={`/user/${user._id}`}> {user.username} </Link> :
             'Please login to view the uploader\'s profile'} </small>
           <ion-icon onClick={() => this.props.history.push('/cook')}
             style={{ color: 'white', position: 'absolute', right: '3%', top: '7.5%', animation: 'none' }}
@@ -165,7 +166,7 @@ class SingleRecipe extends React.Component {
           <div className="single-rec-left">
 
             <div className="left-top">
-              <h1 style={{width: '83%'}}> {recipe.title} </h1>
+              <h1 style={{ width: '83%' }}> {recipe.title} </h1>
               <div className="rec-heart"> <p>FAVOURITED!</p> </div>
               {auth.isLoggedIn() ? <ion-icon style={savedItems.includes(recipe._id) ?
                 { color: 'red', position: 'absolute', right: '39%', animation: 'none' } :
@@ -201,7 +202,7 @@ class SingleRecipe extends React.Component {
                       <div key={comment.user} className="rec-comment-row">
 
                         <section>
-                          <Link style={{color:'black'}} to={`/user/${comment.user._id}`}> <h5> {comment.user.username} </h5> </Link>
+                          <Link style={{ color: 'black' }} to={`/user/${comment.user._id}`}> <h5> {comment.user.username} </h5> </Link>
                           <h6 className='rec-rating'> Rating: {comment.rating}
                             <ion-icon style={{ color: 'gold', fontSize: '17px', animation: 'none', transform: 'translate(0, -6.5px)' }} name="star-sharp"></ion-icon>
                           </h6>
@@ -224,11 +225,11 @@ class SingleRecipe extends React.Component {
                 <div className='star' style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
                   <h6> {auth.isLoggedIn() ? 'COMMENT' : 'PLEASE LOGIN/REGISTER TO COMMENT'} </h6>
                   <div className="star-icons" style={{ transform: 'translate(-85px, -11.7px)' }}>
-                    <ion-icon style={{fontSize: '21px'}}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon style={{fontSize: '21px'}}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon style={{fontSize: '21px'}}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon style={{fontSize: '21px'}}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon style={{fontSize: '21px'}}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{ fontSize: '21px' }}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{ fontSize: '21px' }}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{ fontSize: '21px' }}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{ fontSize: '21px' }}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    <ion-icon style={{ fontSize: '21px' }}onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
                   </div>
                 </div>
 

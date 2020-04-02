@@ -2,6 +2,8 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 const mongoose = require('mongoose')
+const nodemailer = require('nodemailer')
+const bcrypt = require('bcrypt')
 
 
 
@@ -39,7 +41,7 @@ function login(req, res) {
       // expiresIn says how long the token will be valid for
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
       res.status(202).send({ message: `Welcome back ${user.username}`, token })
-      
+
     })
     .catch(error => console.log(error))
 }
@@ -175,9 +177,113 @@ function deleteFromFolder(req, user, folder) {
     .catch(error => console.log(error))
 }
 
-// function editUpload(req, res) {
 
-// }
+function resetPassword(req, res) {
+  console.log(req.body)
+  if (req.body.email === '') {
+    res.status(400).send('email required')
+  }
+  User.findOne({ email: req.body.email })
+    .then(user => {
+      if (!user) {
+        console.error('email not in database')
+        res.status(403).send('email not in db')
+      } else {
+        const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '1h' })
+        console.log(token)
+        user.update({
+          resetPasswordToken: token
+        })
+
+        const transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'patrickwhiteprojectthree@gmail.com',
+            pass: 'Pr0ject3T3st'
+          }
+        })
+
+        const mailOptions = {
+          from: 'patrickwhiteprojectthree@gmail.com',
+          to: `${user.email}`,
+          subject: 'Link To Reset Password',
+          text:
+            `Dear ${user.firstname}, \n\n`
+            + 'Please use the following link to reset your password for our website. \n\n'
+            + `http://localhost:8000/reset/${token}/ \n\n`
+            + 'If you did not request this, please ignore this email and your password will remain unchanged. \n'
+        }
+
+        console.log('sending mail')
+
+        transporter.sendMail(mailOptions, (err, response) => {
+          if (err) {
+            console.error('there was an error: ', err)
+          } else {
+            console.log('here is the response:', response)
+            res.status(200).send({ message: 'recovery email sent' })
+          }
+        })
+      }
+    })
+}
+
+function checkResetToken(req, res) {
+  console.log(req)
+  const token = req.query.resetPasswordToken
+  const decoded = jwt.verify(token, secret, (err, decoded) => {
+    if (err) {
+      return err.message
+    }
+    return decoded
+  })
+  console.log(decoded, req.params)
+  User.findById(decoded.sub)
+    .then(user => {
+      if (decoded === 'jwt expired') {
+        console.log('link has expired.')
+        res.send({ message: 'link has expired.' })
+      } else if (user === null) {
+        console.log('user cannot be found')
+      } else if (user.resetPasswordToken === 'x') {
+        console.log('Link already used')
+        console.log(user.resetPasswordToken)
+        res.send({ message: 'link already used.' })
+      } else {
+        res.status(200).send({
+          username: user.username,
+          message: 'password reset link verified'
+        })
+      }
+    })
+    .catch(error => console.log(error))
+}
+
+function updatePassword(req, res) {
+  //console.log(req)
+  console.log(req.body)
+  User.findOne({
+    username: req.body.username
+  })
+    .then(user => {
+      if (user === null) {
+        console.log('no user exists in database')
+        res.status(404).send({ message: 'no user exists in database' })
+      } else {
+        const hashedPassword = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync())
+        user.update({
+          password: hashedPassword,
+          resetPasswordToken: 'x'
+        })
+          .then(() => {
+            console.log('password updated')
+            res.status(200).send({ message: 'password updated' })
+          })
+      }
+    })
+}
+
+
 
 module.exports = {
   registerUser,
@@ -188,5 +294,8 @@ module.exports = {
   addToFolder,
   // deleteFromUploads,
   deleteFromFolder,
-  followUser
+  followUser,
+  resetPassword,
+  checkResetToken,
+  updatePassword
 }

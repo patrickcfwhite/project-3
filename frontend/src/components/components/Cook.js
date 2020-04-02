@@ -255,7 +255,7 @@ class Cook extends React.Component {
 
             {/* single recipe */}
             <div id={this.state.singleRecipe.title} className="single" >
-              <small className='to-hide'> Added By: {auth.isLoggedIn() ? <Link to={`/user/${singleRecipe.user}`}> {singleRecipe.user} </Link> :
+              <small className='to-hide'> Added By: {auth.isLoggedIn() ? <Link to={`/user/${singleRecipe.user._id}`}> {singleRecipe.user.username} </Link> :
                 'Please login to view the uploader\'s profile'} </small>
               <ion-icon name="close-circle-sharp" onClick={(e) => this.HandleCollapse(e)}
                 style={{ animation: 'none', color: 'white', position: 'absolute', right: '-20px', top: '-20px' }}></ion-icon>

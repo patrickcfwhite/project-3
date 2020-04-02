@@ -26,6 +26,8 @@ import Read from './components/components/Read'
 
 import test from './components/components/test'
 import EditCookForm from './components/components/forms/EditCookForm'
+import ForgotPassword from './components/components/ForgotPassword'
+import ResetPassword from './components/components/ResetPassword'
 // import LoginModal from './components/components/Login'
 
 
@@ -34,18 +36,20 @@ const App = () => (
     <NavBar />
     <Switch>
       <Route exact path='/' component={HomePage}></Route>
+      <Route path='/reset/:resetPasswordToken' component={ResetPassword}></Route>
       <Route exact path='/cook' component={Cook}></Route>
       <Route exact path='/watch' component={Watch}></Route>
       <Route exact path='/play' component={Game}></Route>
       <Route exact path='/read' component={Read}></Route>
       <Route exact path='/register' component={Register}></Route>
-      {/* <Route exact path='/login' component={LoginModal}></Route> */}
+      {/* <Route exact path='/login' component={LoginModal}></Route>  */}
       <Route path='/user/:id/uploads/:category/:id' component={EditCookForm}></Route>
       <Route path='/user/:id' component={Profile}></Route>
       <Route exact path='/add' component={AddItem}></Route>
       <Route exact path='/watch/:id' component={SingleFilm}></Route>
       <Route exact path='/cook/:id' component={SingleRecipe}></Route>
       <Route exact path='/test' component={test}></Route>
+      <Route exact path='/forgotPassword' component={ForgotPassword}></Route>
     </Switch>
   </Router>
 )
