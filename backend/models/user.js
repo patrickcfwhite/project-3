@@ -15,7 +15,8 @@ const schema = new mongoose.Schema({
   savedItems: { type: Array, required: true },
   //following: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false }
   following: { type: Array, required: true },
-  followedBy: { type: Array, required: true }
+  followedBy: { type: Array, required: true },
+  resetPasswordToken: { type: String, required: false }
 }, {
   timestamps: true // provide a createdAt field and an updatedAt field
 })

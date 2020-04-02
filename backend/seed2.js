@@ -28,7 +28,9 @@ mongoose.connect(
               uploads: [],
               savedItems: [],
               following: [],
-              followedBy: []
+              followedBy: [],
+              resetPasswordToken: ''
+
             },
             {
               username: 'annie',
@@ -39,7 +41,9 @@ mongoose.connect(
               uploads: [],
               savedItems: [],
               following: [],
-              followedBy: []
+              followedBy: [],
+              resetPasswordToken: ''
+
             },
             {
               username: 'kenn',
@@ -50,7 +54,9 @@ mongoose.connect(
               uploads: [],
               savedItems: [],
               following: [],
-              followedBy: []
+              followedBy: [],
+              resetPasswordToken: ''
+
             }
           ])
           .then((users) => {

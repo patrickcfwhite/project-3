@@ -6,7 +6,7 @@ import validator from 'email-validator'
 
 const Register = (props) => {
 
-  const [register, setRegister] = useState({ username: '', firstname: '', email: '', password: '', passwordConfirmation: '', validEmail: true, passwordMatch: true, completeCheck: true })
+  const [register, setRegister] = useState({ username: '', firstname: '', email: '', password: '', passwordConfirmation: '', resetPasswordToken: 'x', validEmail: true, passwordMatch: true, completeCheck: true })
   const [modalOpen, setModal] = useState(false)
 
 

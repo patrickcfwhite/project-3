@@ -38,6 +38,7 @@
     "mongoose": "^5.7.12",
     "mongoose-hidden": "^1.8.1",
     "mongoose-unique-validator": "^2.0.3",
+    "nodemailer": "^6.4.6",
     "panzoom": "^9.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

@@ -758,7 +758,7 @@ function createRecipes(users) {
       mealtype: 'Dessert',
       dietary: 'Vegetarian',
       user: users[1],
-      category: 'Cook'
+      category: 'Cook',
     },
     {
       title: 'Vegan jerk jackfruit burger',
