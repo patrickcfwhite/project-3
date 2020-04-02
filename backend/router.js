@@ -32,7 +32,7 @@ router.route('/:category/:id')
   .get(itemController.singleItemId)
   .put(secureRoute, itemController.editActivity)
   .post(secureRoute, itemController.addActivity)
-  .delete(secureRoute, itemController.deleteActivity)
+  // .delete(secureRoute, itemController.deleteActivity)
 
 
 router.route('/:category')

@@ -96,23 +96,6 @@ function editActivity(req, res) {
 
 }
 
-function deleteActivity(req, res) {
-  const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
-  const id = req.params.id
-  req.body.user = req.currentUser
-  mongoose.model(category)
-    .findById(id)
-    .then(item => {
-      return item.remove()
-    })
-    .then(() => {
-      const folder = 'uploads'
-      userController.deleteFromFolder(req, folder)
-    })
-    .then(() => res.send({ message: 'Item deleted' }))
-    .catch(error => console.log(error))
-}
-
 function deleteActivity2(req, res) {
   const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
   const activityId = req.params.activityId
@@ -242,10 +225,29 @@ module.exports = {
   singleItemId,
   addNewActivity,
   editActivity,
-  deleteActivity,
+  // deleteActivity,
   deleteActivity2,
   addNewComment,
   editComment,
   deleteComment,
   addActivity
 }
+
+
+
+// function deleteActivity(req, res) {
+//   const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
+//   const id = req.params.id
+//   req.body.user = req.currentUser
+//   mongoose.model(category)
+//     .findById(id)
+//     .then(item => {
+//       return item.remove()
+//     })
+//     .then(() => {
+//       const folder = 'uploads'
+//       userController.deleteFromFolder(req, folder)
+//     })
+//     .then(() => res.send({ message: 'Item deleted' }))
+//     .catch(error => console.log(error))
+// }

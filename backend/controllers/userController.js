@@ -116,42 +116,6 @@ function followUser(req, res) {
     .catch(error => console.log(error))
 }
 
-// function unfollowUser(req, res) {
-
-//   const userId = req.params.id
-//   const currentUser = req.currentUser._id
-//   if (userId.toString() === currentUser.toString()) return
-//   User
-//     .findById(userId)
-//     .then(user => {
-//       deleteFromFolder(req, res, user, 'following')
-//       user.followedBy.push([req.currentUser._id])
-//     })
-//     .catch(error => console.log(error))
-// }
-
-// function deleteFromUploads(req) {
-//   const userId = req.currentUser._id
-//   const idToDelete = req.params.id
-//   User
-//     .findById(userId)
-//     .then(user => {
-//       console.log(user.uploads)
-//       console.log(userId)
-//       console.log(idToDelete)
-//       let index
-//       for (const upload of user.uploads) {
-//         if (upload['_id'] === idToDelete) {
-//           index = user.uploads.indexOf(upload)
-//         }
-//         user.uploads.splice(index, 1)
-//       }
-//       return user.save()
-//       // activityToDelete.remove()
-//       // return user.save()
-//     })
-// }
-
 function deleteFromFolder(req, user, folder) {
   //console.log(user, folder)
   const userId = user
@@ -300,3 +264,40 @@ module.exports = {
   checkResetToken,
   updatePassword
 }
+
+
+// function unfollowUser(req, res) {
+
+//   const userId = req.params.id
+//   const currentUser = req.currentUser._id
+//   if (userId.toString() === currentUser.toString()) return
+//   User
+//     .findById(userId)
+//     .then(user => {
+//       deleteFromFolder(req, res, user, 'following')
+//       user.followedBy.push([req.currentUser._id])
+//     })
+//     .catch(error => console.log(error))
+// }
+
+// function deleteFromUploads(req) {
+//   const userId = req.currentUser._id
+//   const idToDelete = req.params.id
+//   User
+//     .findById(userId)
+//     .then(user => {
+//       console.log(user.uploads)
+//       console.log(userId)
+//       console.log(idToDelete)
+//       let index
+//       for (const upload of user.uploads) {
+//         if (upload['_id'] === idToDelete) {
+//           index = user.uploads.indexOf(upload)
+//         }
+//         user.uploads.splice(index, 1)
+//       }
+//       return user.save()
+//       // activityToDelete.remove()
+//       // return user.save()
+//     })
+// }
