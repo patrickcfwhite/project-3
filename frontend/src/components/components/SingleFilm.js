@@ -119,7 +119,7 @@ class SingleFilm extends React.Component {
 
   render() {
     if (!this.state.film.user) return null
-    
+
     const { id } = this.props.match.params
     const { film, savedItems, average } = this.state
     const { user } = this.state.film
@@ -196,13 +196,15 @@ class SingleFilm extends React.Component {
 
                 <div className='star' style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
                   <h4> {auth.isLoggedIn() ? 'COMMENT' : 'PLEASE LOGIN/REGISTER TO COMMENT'} </h4>
-                  <div className="star-icons" style={{ transform: 'translate(-85px, -11.7px)' }}>
-                    <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                    <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
-                  </div>
+                  {!auth.isLoggedIn() ? null :
+                    <div className="star-icons" style={{ transform: 'translate(-85px, -11.7px)' }}>
+                      <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                      <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                      <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                      <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                      <ion-icon style={starStyle} onClick={(e) => this.HandleStar(e)} name="star-sharp"></ion-icon>
+                    </div>
+                  }
                 </div>
 
                 {!auth.isLoggedIn() ? null :

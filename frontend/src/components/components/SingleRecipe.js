@@ -152,12 +152,13 @@ class SingleRecipe extends React.Component {
   }
 
   render() {
-    const { savedItems, recipe, singleRecipeComments, isCommentsActive } = this.state
-    console.log(recipe.ingredients)
+
+    const { user, savedItems, recipe, singleRecipeComments, isCommentsActive } = this.state
+    console.log(recipe)
     return (
       <main>
         <div className="single-rec-container">
-          <small className='to-hide'> Added By: {auth.isLoggedIn() ? <Link to={`/user/${recipe.user}`}> {recipe.user} </Link> :
+          <small className='to-hide'> Added By: {auth.isLoggedIn() && user ? <Link to={`/user/${user._id}`}> {user.username} </Link> :
             'Please login to view the uploader\'s profile'} </small>
           <ion-icon onClick={() => this.props.history.push('/cook')}
             style={{ color: 'white', position: 'absolute', right: '3%', top: '7.5%', animation: 'none' }}
@@ -198,7 +199,7 @@ class SingleRecipe extends React.Component {
 
                   singleRecipeComments.map((comment => {
                     return (
-                      <div key={comment.user} className="rec-comment-row">
+                      <div key={comment.user.username} className="rec-comment-row">
 
                         <section>
                           <Link style={{color:'black'}} to={`/user/${comment.user._id}`}> <h5> {comment.user.username} </h5> </Link>

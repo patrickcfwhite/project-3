@@ -170,7 +170,7 @@ class Read extends React.Component {
                 </section>
                 <h2> Genre: {'\u00A0'}  {singlebook.genre}</h2>
                 <p> <span>Plot: </span> <br /> {singlebook.description}</p>
-                <small> Added By: {auth.isLoggedIn() ? <Link to={`/user/${singlebook.user._id}`}> {singlebook.user.username} </Link> :
+                <small > Added By: {auth.isLoggedIn() ? <Link style={{ textTransform: 'capitalize' }} to={`/user/${singlebook.user._id}`}> {singlebook.user.username} </Link> :
                   'Please login to view the uploader\'s profile'} </small>
               </div>
 
@@ -213,15 +213,16 @@ class Read extends React.Component {
                         <h6 style={{ fontSize: '13px', transform: 'translate(0, 3px)' }}>COMMENT</h6>
                       </div> : <h6>PLEASE LOGIN/REGISTER TO COMMENT</h6>}
 
+                    {!auth.isLoggedIn() ? null :
+                      <div className="star-icons">
+                        <ion-icon onClick={(e) => this.handlegold(e)} style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
+                        <ion-icon onClick={(e) => this.handlegold(e)} style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
+                        <ion-icon onClick={(e) => this.handlegold(e)} style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
+                        <ion-icon onClick={(e) => this.handlegold(e)} style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
+                        <ion-icon onClick={(e) => this.handlegold(e)} style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
 
-                    <div className="star-icons">
-                      <ion-icon onClick={(e) => this.handlegold(e)} style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
-                      <ion-icon onClick={(e) => this.handlegold(e)} style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
-                      <ion-icon onClick={(e) => this.handlegold(e)} style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
-                      <ion-icon onClick={(e) => this.handlegold(e)} style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
-                      <ion-icon onClick={(e) => this.handlegold(e)} style={{ fontSize: '21px', animation: 'none' }} name="star-sharp"></ion-icon>
-
-                    </div>
+                      </div>
+                    }
                   </div>
                   {auth.isLoggedIn() ?
                     <div className="book-comment-input">
