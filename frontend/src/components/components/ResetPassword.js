@@ -158,9 +158,9 @@ export default class ResetPassword extends Component {
           {updated &&
             <>
               <div>
-                <p>Your password has been successfully reset! Please try logging in again.</p>
+                <p style={{color:'white', textAlign: 'center', fontSize: '14px'}}>Your password has been successfully reset! Please try logging in again.</p>
               </div>
-              <Link to={'/'}>Head to Homepage</Link>
+              <Link style={{color:'lightskyblue'}}to={'/'}>Head to Homepage</Link>
             </>
           }
 

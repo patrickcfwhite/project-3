@@ -1451,7 +1451,11 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    
+    h3 {
+      color:pink;
+      font-size: 15px;
+      text-align: center;
+    }
 
     h1 {
       color: white;
