@@ -1,14 +1,12 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
-const mongoose = require('mongoose')
 const nodemailer = require('nodemailer')
 const bcrypt = require('bcrypt')
 
 
 
 function registerUser(req, res) {
-  // Create our new user
   if (req.body.password === req.body.passwordConfirmation) {
     User
       .create(req.body)
@@ -22,23 +20,12 @@ function registerUser(req, res) {
 }
 
 function login(req, res) {
-  //we try ro login with the email and the password
   User
-    //find the user by using the email they've tried logging in with
     .findOne({ email: req.body.email })
     .then(user => {
       if (!user.validatePassword(req.body.password)) {
         return res.status(401).send({ message: 'unauthorized' })
       }
-      // at this point, we know the user is valid, we have their email,
-      // and the password they're loggin in with matches the password
-      // we've stored for them
-
-      // Using jwt to create a token for me
-      // ---
-      // sub contains the user id
-      // secret is a string we know
-      // expiresIn says how long the token will be valid for
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
       res.status(202).send({ message: `Welcome back ${user.username}`, token })
 
@@ -90,7 +77,7 @@ function deleteUser(req, res) {
 function addToFolder(req, res, item, folder) {
   const info = folder === 'uploads' || folder === 'savedItems' ? [item._id, item.category] : [item._id]
   const userId = req.currentUser._id
-  console.log(`${req.currentUser.username}: ${userId}, ${item.username}: ${item._id}`)
+  // console.log(`${req.currentUser.username}: ${userId}, ${item.username}: ${item._id}`)
   User
     .findById(userId)
     .then(user => {
@@ -257,12 +244,12 @@ module.exports = {
   singleUserId,
   deleteUser,
   addToFolder,
-  // deleteFromUploads,
   deleteFromFolder,
   followUser,
   resetPassword,
   checkResetToken,
   updatePassword
+  // deleteFromUploads,
 }
 
 
