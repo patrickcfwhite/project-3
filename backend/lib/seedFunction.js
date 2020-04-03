@@ -13,7 +13,8 @@ function updateUpload(item) {
     .findById(id)
     .then(user => {
       user.uploads.push(info)
-      user.save()
+      console.log(user.uploads)
+      return user.save()
     })
     .catch(error => console.log(error))
 }
@@ -267,6 +268,7 @@ function createBooks(users) {
       for (const item of output) {
         updateUpload(item)
       }
+      console.log('Book check')
     })
 }
 
@@ -1033,6 +1035,7 @@ function createRecipes(users) {
         updateUpload(item)
       }
     })
+    .then(() => console.log('recipe done'))
 }
 
 function createWatch(users) {
@@ -1260,6 +1263,7 @@ function createWatch(users) {
         updateUpload(item)
       }
     })
+    .then(() => console.log('recipe done'))
 }
 
 function createPlay(users) {
@@ -1489,6 +1493,7 @@ function createPlay(users) {
         updateUpload(item)
       }
     })
+    .then(() => console.log('recipe done'))
 }
 
 module.exports = {
@@ -1497,3 +1502,4 @@ module.exports = {
   createWatch,
   createPlay
 }
+

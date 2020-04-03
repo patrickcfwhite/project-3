@@ -6,7 +6,9 @@
   "scripts": {
     "seed": "node backend/seed2.js",
     "serve:back": "nodemon backend/app.js",
-    "serve:front": "webpack-dev-server --mode-development"
+    "serve:front": "webpack-dev-server --mode-development",
+    "build": "npm run seed; webpack -p",
+    "start": "node backend/app.js"
   },
   "author": "",
   "license": "ISC",
