@@ -4,11 +4,11 @@ const Cook = require('./models/cook')
 const Watch = require('./models/watch')
 const Play = require('./models/play')
 const User = require('./models/user')
-const dbURI = 'mongodb://localhost/activity-db'
+const { dbURI } = require('./config/environment')
 const seedFunction = require('./lib/seedFunction')
 
 mongoose.connect(
-  dbURI,
+  `${dbURI}`,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   (error, db) => {
     if (error) {
@@ -59,12 +59,35 @@ mongoose.connect(
 
             }
           ])
-          .then((users) => {
-            seedFunction.createBooks(users)
-            seedFunction.createRecipes(users)
-            seedFunction.createWatch(users)
-            seedFunction.createPlay(users)
-          })
+
       })
+      .then((users) => {
+        console.log(users)
+        seedFunction.createBooks(users)
+        return users
+      }).then(users => {
+        console.log('recipes', users)
+        seedFunction.createRecipes(users)
+        return users
+      }).then(users => {
+        console.log('watch', users)
+        seedFunction.createWatch(users)
+        return users
+      }).then(users => {
+        console.log('play', users)
+        seedFunction.createPlay(users)
+        return users
+        // Promise.all([p1, p2, p3, p4]).then(() => {
+
+        // })
+
       })
-      
+      .finally((users) => {
+        console.log(users)
+        setTimeout(() => {
+          mongoose.connection.close()
+        }, 5000)
+        
+      })
+  })
+

@@ -3,11 +3,14 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const router = require('./router')
+const path = require('path')
+const dist = path.join(__dirname, 'dist')
+const { port, dbURI } = require('./config/environment')
 
 const expressServer = express()
 
 mongoose.connect(
-  'mongodb://localhost/activity-db',
+  dbURI,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   (error) => {
     if (error) console.log(error)
@@ -24,4 +27,12 @@ expressServer.use((req, res, next) => {
 
 expressServer.use('/api', router )
 
-expressServer.listen(8001)
+expressServer.use('/', express.static(dist))
+
+expressServer.get('*', function(req, res) {
+  res.sendFile(path.join(dist, 'index.html'))
+})
+
+expressServer.listen(port)
+
+module.exports = expressServer

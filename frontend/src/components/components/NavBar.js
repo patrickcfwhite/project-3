@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
-import { TimelineLite, Power1 } from 'gsap'
+import { TimelineLite, Power1, gsap } from 'gsap'
+import { CSSPlugin } from 'gsap/CSSPlugin'
+gsap.registerPlugin(CSSPlugin)
+
 import { Link, withRouter } from 'react-router-dom'
 import LoginModal from './Login'
 import auth from '../../../../backend/lib/auth'
