@@ -11,6 +11,7 @@ const userController = require('./userController')
 //ACTIVITY
 
 function all(req, res) {
+  console.log(req.params)
   const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
 
   mongoose.model(category)

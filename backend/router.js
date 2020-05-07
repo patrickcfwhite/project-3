@@ -36,7 +36,6 @@ router.route('/:category/:id')
 
 
 router.route('/:category')
-  // get all books, add new book
   .get(itemController.all)
   .post(secureRoute, itemController.addActivity)
 
