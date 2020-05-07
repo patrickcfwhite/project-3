@@ -39,18 +39,6 @@ function singleItemId(req, res) {
 
 }
 
-function addNewActivity(req, res) {
-  
-  const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
-  req.body.user = req.currentUser
-  mongoose.model(category)
-    .create(req.body)
-    .then(item => {
-      const folder = 'uploads'
-      userController.addToFolder(req, res, item, folder)
-    })
-    .catch(error => console.log(error))
-}
 
 function addActivity(req, res) {
   console.log(req.params)
@@ -68,7 +56,7 @@ function addActivity(req, res) {
   } else {
     mongoose.model(category).findById(req.params.id)
       .then(item => {
-        console.log('hello, ', item)
+        console.log(item)
         const target = folder === 'savedItems' ? 'savedBy' : 'followedBy'
         userController.addToFolder(req, res, item, folder)
         item[target].some(x => x.toString() === req.currentUser._id.toString()) ? console.log('already added') : item[target].push([req.currentUser._id])
@@ -224,14 +212,14 @@ function deleteComment(req, res) {
 module.exports = {
   all,
   singleItemId,
-  addNewActivity,
   editActivity,
-  // deleteActivity,
   deleteActivity2,
   addNewComment,
   editComment,
   deleteComment,
   addActivity
+  // addNewActivity,
+  // deleteActivity,
 }
 
 
@@ -250,5 +238,18 @@ module.exports = {
 //       userController.deleteFromFolder(req, folder)
 //     })
 //     .then(() => res.send({ message: 'Item deleted' }))
+//     .catch(error => console.log(error))
+// }
+
+// function addNewActivity(req, res) {
+  
+//   const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
+//   req.body.user = req.currentUser
+//   mongoose.model(category)
+//     .create(req.body)
+//     .then(item => {
+//       const folder = 'uploads'
+//       userController.addToFolder(req, res, item, folder)
+//     })
 //     .catch(error => console.log(error))
 // }
