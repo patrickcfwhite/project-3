@@ -161,8 +161,6 @@ const watchSchema = new mongoose.Schema({
 
   - savedBy: This field is to identify which users saved that activity 
 
-- Having decided our models, we could now move on to create the data for our app. This was implemented using a **seed file**. This file is hard-coded Recipies, Games, TV Series, Films and Books which was planted into our MongoDB. After completing this, we could look at building the end points for this API.
-
 <h4>Router</h4>
 
 We then procceded to create a `router.js` file to determine our API endpoints to how each of collections would be called on. Due to our Mongo database holding more than one collection, we specified 'category' as being as end point per collection which will be explained when discussing the controller. 
@@ -242,7 +240,7 @@ Mongoose itself has some incredibly powerful inbuilt methods which we also used 
 
 - The final function checks the credentials of a user at login. The function checks the password currently stored in the database and ensures this matches the user input.  
 
-<h4>Secure Route & Router </h4>
+<h4> Router </h4>
 
 Having built our model for the user, we could now build routes and endpoints specifically for users. Some of these endpoints are specifically designed for users who are in the database and some which are available for users without an account. 
 
@@ -331,9 +329,75 @@ router.route('/:category/:id/comments/:commentid')
 - The final bit of functionality decided for registered users is to be able to comment on activities. This required having a POST endpoint per activity and to edit or delete a comment would be a PUT or DELETE request to that comment using its unique id. 
 ---
 
+<h4>Secure Route</h4>
 
+For every route which is only accessible by users stored into the database, we have specified another function to run beforehand. The `secureRoute`. This was an entirely separate file created to identify if a user was truly logged in. 
 
+This function is a conditional statement to identify if a token has been issued. As mentioned beforehand, once a user is able to successfully log in, a JWT is returned as a response which is valid for six hours. 
 
+  - Firstly, an identification if the correct type of token is available. We have chosen to use a Bearer token. At this stage, if a token has been issued but **IS NOT** a Bearer token, the user is invalid. 
+
+```js
+  if (!authToken || !authToken.startsWith('Bearer')) {
+    return res.status(401).send({ message: 'Unauthorized no token' })
+```
+
+  - Once passed, the token itself still has the word ‘Bearer’ attached to it and is removed, leaving us with a pure JWT. Using the JWT method to verify the token, a user in the database is located and the request they are attempted to make can be accepted using `next()`.
+
+<h4>Seeding the database</h4>
+
+Having decided our models and created our endpoints, we could now focus on creating initial data for our app. This was implemented using a **seed file**. This file contained hard-coded Recipies, Games, TV Series, Films and Books which was planted into our MongoDB.
+
+For every model in our collection, we assigned a user using a referenced relationship. Ultimately this would mean when feeding data into the database, a user needed to be attached to every activity we create.
+
+To achieve this, once connecting to Mongo itself, a selection of users were pre-made and seeded to the database. 
+
+After doing so, we could go on to make the four collections we designed using our models and assign a user to every activity by selecting one of users from the User array we just created. 
+
+```js
+      title: '1984',
+      image: 'https://upload.wikimedia.org/wikipedia/en/c/c3/1984first.jpg',
+      author: 'George Orwell',
+      description: 'Winston Smith wrestles with oppression in Oceania, a place where the Party scrutinizes human actions with ever-watchful Big Brother. Defying a ban on individuality, Winston dares to express his thoughts in a diary and pursues a relationship with Julia. These criminal deeds bring Winston into the eye of the opposition, who then must reform the nonconformist',
+      genre: ['Dystopian, Political fiction, Social Science'],
+      bookType: 'Novel',
+      rating: 4,
+      user: users[0],
+      category: 'Read'
+```
+
+Due to our database having multiple collections, we chose to separate seeding per collection into functions, which were called upon when seeding occured. This was also neccessary to be able to pass users through into every collection.
+
+```js
+      .then((users) => {
+        console.log(users)
+        seedFunction.createBooks(users)
+```
+
+A final aspect was also necessary at this stage, which was ensuring the activities associated to every user were also planted into their `uploads` array, which subsequently also runs when a user creates an activity in the app. Once a collection has seeded all the activities, it iterates through the collection and pushes the activities into the correct users `upload` array and saves the user back into the User collection.
+
+**Run after every collection is seeded**
+```js
+      for (const item of output) {
+        updateUpload(item)
+      }
+```
+**Update User collection**
+```js
+function updateUpload(item) {
+
+  const id = item.user._id
+  const info = [item._id, item.category]
+  User
+    .findById(id)
+    .then(user => {
+      user.uploads.push(info)
+      console.log(user.uploads)
+      return user.save()
+    })
+    .catch(error => console.log(error))
+}
+```
 
 
 
