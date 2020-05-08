@@ -250,25 +250,12 @@ The functionality associated per endpoint is defined in our **userController.js*
 
 Shown below are the endpoints accessible for ALL users and what functionality they allow 
 
-<table>
-<tr>
-<th>
-Code
-</th>
-<th>
-Functionality Overview.
-<p> For full functionality, please refer to the userController.js file in the backend folder. </p> 
-</th>
-</tr>
-
-<tr>
-<td>
-<pre>
-
-```js
+```js  
 router.route('/register')
   .post(userController.registerUser)
 ```
+- A single POST request where the request must match the fields of the User model which are listed as `required`. If these are not met, registeration will respond with unsuccessful.
+---
 ```js
 router.route('/login')
   .post(userController.login)
@@ -294,10 +281,7 @@ router.route('/:category')
   .get(itemController.all)
 ```
 
-</pre>
-</td>
-<td>
-<pre>
+
 
   - /register: 
     - A single POST request where the request must match the fields of the User model which are listed as `required`. If these are not met, registeration will respond with unsuccessful.
@@ -310,10 +294,7 @@ router.route('/:category')
   - /updatePassword: 
     - This PUT request is used to allow a user to reset their password. Once the /reset/ endpoint has succeeded, users would be taken to a page and once submitted would check if a user with their username exists in the database. If found, their new password is encrypted using bcrypt and stored into the database. 
 
-</pre>
-</td>
-</tr>
-</table>
+
 
 
 And the ones which are strictly for those with an account: 
