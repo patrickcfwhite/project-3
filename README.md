@@ -248,7 +248,7 @@ Having built our model for the user, we could now build routes and endpoints spe
 
 The functionality associated per endpoint is defined in our **userController.js**. In this file, we defined functions to how requests were made to the API and what responses would be given if they were accepted or not. 
 
-Shown below are the endpoints accessible for ALL users and what functionality they allow 
+<h4>Shown below are the endpoints accessible for ALL users and what functionality they allow</h4>
 
 ```js  
 router.route('/register')
@@ -260,47 +260,76 @@ router.route('/register')
 router.route('/login')
   .post(userController.login)
 ```
+- A single POST request to find a user by the given email address given at registration and validate the password. If successful, the user is provided with a token using JWT. This token is stored into localStorage in the frontend. 
+---
 ```js
 router.route('/reset/')
   .get(userController.checkResetToken)
 ```
+- In the instance a user may have forgotten their password and would link it to be reset, this GET endpoint would be used. Here, an email would’ve been sent to the user with the email address they originally registered with and provided a new token. This endpoint validates if the token is still valid in order for the password to be reset.  
+---
 ```js
 router.route('/updatePassword')
   .put(userController.updatePassword)
 ```
-```js
-router.route('/user/:id')
-  .get(userController.singleUserId)
-```
-```js
-router.route('/:category/:id')
-  .get(itemController.singleItemId)
-```
+- This PUT request is used to allow a user to reset their password. Once the /reset/ endpoint has succeeded, users would be taken to a page and once submitted would check if a user with their username exists in the database. If found, their new password is encrypted using bcrypt and stored into the database. 
+---
 ```js
 router.route('/:category')
   .get(itemController.all)
+router.route('/:category/:id')
+  .get(itemController.singleItemId)
 ```
+- All Users can access all full collections and singular activities using a GET request. 
+---
+
+<h4>All these endpoints are also available for users who create an account on the app. However, they also have additional endpoints: </h4>
 
 
+```js
+router.route('/user/:id')
+  .delete(secureRoute, userController.deleteUser)
+  .get(userController.singleUserId)
+```
+- This endpoint allows logged in users to follow other users and has a GET and a DELETE endpoint. Within these functions, the GET would find a user in the database and push this user into the `following` array of another user. However, if later a user decides they no longer want to follow this user's content, they would simply change the request to be DELETE.
+---
 
-  - /register: 
-    - A single POST request where the request must match the fields of the User model which are listed as `required`. If these are not met, registeration will respond with unsuccessful.
-  - /login: 
-    - A single POST request to find a user by the given email address given at registration and validate the password. If successful, the user is provided with a token using JWT. 
+**ADD TO COLLECTION**
+```js
+router.route('/:category')
+  .post(secureRoute, itemController.addActivity)
+```
+**FAVOURITE ACTIVITY**
+```js
+router.route('/:category/:id')
+  .post(secureRoute, itemController.addActivity)
+```
+- Once users have registered successfully, they can contribute to any of the collections using this endpoint. 
+- This endpoint is also used for users to favourite activities and save them into their savedItems array by using a **seperate endpoint**. To determine this, a conditional statement is used to determine which array the item would be stored in. This is followed by finding a user by their id in the database and pushing the activity into either the `savedBy` or the `uploads` array and saves the user back into the database once completed. 
+```js
+router.route('/:category/:id')
+  .put(secureRoute, itemController.editActivity)
+```
+- Another available endpoint using the id of an activity is being able to edit the item **by the user who created it**. The function allows the user to edit the item and this is saved directly back into MongoDB. 
+---
+```js
+router.route('/user/:id/:folder/:category/:activityId')
+  .delete(secureRoute, itemController.deleteActivity2)
+```
+- This endpoint also offers two available outputs for users. The ability to delete an activity they’ve created or to delete an activity they have favouritised. The endpoint’s designated function operates using a conditional statement on which folder is given in the request and can therefore either remove the item from the users `savedItems` array or will delete the activity from the collection as well as remove it from the other users who may have saved it. 
+---
 
-  - /reset/: 
-    - In the instance a user may have forgotten their password and would link it to be reset, this GET endpoint would be used. Here, an email would’ve been sent to the user with the email address they originally registered with and provided a new token. This endpoint validates if the token is still valid in order for the password to be reset.  
+```js
+router.route('/:category/:id/comments')
+  .post(secureRoute, itemController.addNewComment)
 
-  - /updatePassword: 
-    - This PUT request is used to allow a user to reset their password. Once the /reset/ endpoint has succeeded, users would be taken to a page and once submitted would check if a user with their username exists in the database. If found, their new password is encrypted using bcrypt and stored into the database. 
+router.route('/:category/:id/comments/:commentid')
+  .put(secureRoute, itemController.editComment)
+  .delete(secureRoute, itemController.deleteComment)
 
-
-
-
-And the ones which are strictly for those with an account: 
-
-
-
+```
+- The final bit of functionality decided for registered users is to be able to comment on activities. This required having a POST endpoint per activity and to edit or delete a comment would be a PUT or DELETE request to that comment using its unique id. 
+---
 
 
 
