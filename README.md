@@ -42,8 +42,8 @@ When users do make an account, they are given their own profile page and have a 
 - Express
 - Node.js
 - Mongo and Mongoose
+- Nodemailer
 - Email Validator
-- Mongoose
 - JSON Web Token 
 - Axios
 - Git and GitHub
@@ -281,6 +281,13 @@ router.route('/:category/:id')
 - All Users can access all full collections and singular activities using a GET request. 
 ---
 
+```js
+router.route('/forgotPassword')
+  .post(userController.resetPassword)
+```
+
+- This function utilises the nodemailer library and allows users to have a link sent to their designated email address with a link to reset their password in the database. The function attempts to find the email located in the database, and if found will generate a new JWT token that is attached to the link in order to reset their password. We have set this token with a validation time of one hour. If not clicked through in this time, the POST request will be invalid and another email must be generated. 
+
 <h4>All these endpoints are also available for users who create an account on the app. However, they also have additional endpoints: </h4>
 
 
@@ -399,8 +406,379 @@ function updateUpload(item) {
 }
 ```
 
+## Frontend
+
+Having successfully built our API and tested through Insomnia, we could now focus on designing our webpage which utilises our built API. Our frontend used the external library GSAP to create some of the animations on various pages. 
+
+In total, we had a total of 21 components for our frontend, with four as a homepage for each of our collections and another four for individual activity rendering. 
+
+### The NavBar 
+
+This component utilised React Hooks and as a result meant that some of the components connected to it also used Hooks rather than classical or functional components and also enabled a cleaner code. 
+
+1. The navigation bar held a number of functions which were determined to be run using turnaries. For instance, two functions handle the opening and closing of the navbar dependent on the onClick handler on the hamburger icon. These two functions also sets state of if the component is open or not. 
+
+    ```js
+    <div onClick={isOpen !== true ? HandleOpen : HandleClose} className="hamburger-container">
+    ```
+
+2. As shown below both the `HandleOpen` and `HandleClose` functions uses GSAP to manipulate the Navigation bar width and opacity and as a result we have a Navigation bar which renders differently depending on which function is run.  
+
+    ```js
+
+          const HandleOpen = (e) => {
+          
+            t1
+              // (selector, duration, {css properties}, animationDelay) 
+              .to('main', 0.5, { opacity: 0, ease: Power1.easeOut })
+              .to('main', 0.1, { display: 'none', ease: Power1.easeOut })
+              .to('.navbar', 0.3, { width: '34vw', ease: Power1.easeOut },'-=0.2')
+              .fromTo('.items', 0.7, { display: 'none', opacity: 0, x: -50, ease: Power1.easeOut },
+                { display: 'flex', opacity: 1, x: 0 })
+              .fromTo('.options', { opacity: 0, x: -30, ease: Power1.easeOut },
+                { opacity: 1, x: 0, stagger: 0.1, ease: Power1.easeIn }, '-=0.5')
+
+            setState(true)
+          }
+
+          const HandleClose = () => {
+            t1
+              .fromTo('.items', 0.5, { dislay: 'flex', opacity: 1, x: 0, ease: Power1.easeOut },
+                { display: 'none', opacity: 0, x: -50 })
+              .to('.navbar', 0.3, { width: 0, ease: Power1.easeOut })
+              .to('main', 0.1, { display: 'flex', ease: Power1.easeOut })
+              .to('main', 0.3, { opacity: 1, ease: Power1.easeIn })
+            setState(false)
+          }
+    ```
+
+3. The navigation bar and a number of other components also renders different information for authorised and unauthorised users. For this component, the final link displays a logout rather than login for authorised users using a ternary operator on if a token is found in local storage: 
+
+    ```js
+              {!auth.isLoggedIn() ?
+                <div className='options' onClick={ToggleModal}>
+                  <li> 05. <span> LOGIN / </span> register </li>
+                </div> :
+                <div className='options' onClick={() => HandleLogout()} >
+                  <li> 05. <span> LOGOUT </span>  </li>
+                </div>}
+    ```
+
+4. We also decided to use a modal for users to login into the webpage and if they have not, they would be able to link through onto a page to register. This also utilised a turnerary operator depending on if a piece of state was true or false. A useState was defined for our model which originally is set to false, once the LOGIN element is clicked, the toggles the state to either be true or false. If true, the login modal will appear: 
+
+    ```js
+          {modalOpen ? <LoginModal
+            ToggleModal={ToggleModal}
+            props={props}
+            HandleCloseFromLink={HandleCloseFromLink} /> : null}
+    ```
+
+### Forgotten Password
+
+From the login modal, we have also implemented users who have registered to reset their password using a link. This link renders a new modal by where we use state to determine the content on the modal. The state `sent` is originally set to be false, meaning this would render: 
+
+<img src='https://i.imgur.com/OKE3zqK.png' width='200'>
+
+Once the submit button has been pressed after the user enters their email address, this triggers a function to the API endpoint `/api/forgotPassword` with the user's email. One of two things can now happen, the email is recognised into the database and the response is sent in email format to the user email. Or, if the email is not recognised, another piece of state named `returnError` is set to true and the following message would appear: 
+
+```js
+{returnError && <small style={{color: 'brown', position: 'absolute'}}>This email is not recognized. Please try again or register for new account</small>}
+```
+
+The email sent to the user contains a link to `/reset/THEIRPASSOWRDRESETTOKEN`.
+
+From this page, the user is able to reset their password. However before doing so, as the page renders, a GET request is made to the reset endpoint on the api to ensure the link sent to the user is valid and if not, would turn a number of booleans true and prevent the user from updating their password and would be rendered with messages advising the user on the steps to take: 
+
+```js
+  componentDidMount() {
+    console.log(this.props)
+    axios
+      .get('/api/reset', {
+        params: {
+          resetPasswordToken: this.props.match.params.resetPasswordToken
+        }
+      })
+      .then(res => {
+        console.log(res)
+        if (res.data.message === 'password reset link verified') {
+          this.setState({
+            username: res.data.username,
+            updated: false,
+            error: false,
+            expired: false,
+            used: false
+
+          })
+        } else if (res.data.message === 'link has expired.') {
+          this.setState({
+            updated: false,
+            error: false,
+            expired: true,
+            used: false
+          })
+        } else if (res.data.message === 'link already used.') {
+          this.setState({
+            updated: false,
+            error: false,
+            used: true
+          })
+        }
+      })
+      .catch(error => console.log(error))
+  }
+
+          {expired && !error && !used &&
+            <>
 
 
+              <div style={{color: 'white',width: '70%', textAlign: 'center'}}>The reset link has expired. Please request another via the link below.</div>
+              <Link style={{color: 'lightskyblue'}} to={'/forgotPassword'}>Try again</Link>
+
+            </>
+          }
+          {used &&
+            <>
+              <div style={{color: 'white', width: '70%', textAlign: 'center'}}>This link is no longer valid. Please request another below.</div>
+              <Link style={{color: 'lightskyblue'}} to={'/forgotPassword'}>Try again</Link>
+
+            </>
+          }
+          {error &&
+            <>
+
+
+              <div style={{color: 'white', width: '70%', textAlign: 'center'}}>Updating has not been possible at this time. Please request another link below or try again later.</div>
+              <Link style={{color: 'lightskyblue'}} to={'/forgotPassword'}>Try again</Link>
+            </>
+          }
+```
+
+If these are passed, the page will prompt the user to enter a new password and check the password and the password confirmation fields match. Once this is passed and the form submitted successfully the user will be notified their password has changed and prompted to login. 
+
+
+
+### Collection Homepages 
+
+Per collection has its own page which can be accessed from the navbar and each has an individual layout. We decided as this would be a nice display for our users that each activity collection is unique. To do this, each collection has two components, the main homepage and a Single version, whereby a single activity would be rendered. 
+
+For the purpose of explaining pages going forward, a focus will be made on the GAMES activities to explain some the functionalities available for authorised and unauthorised users. 
+
+The Games homepage and for every homepage per collection, an axios request is made for the whole collection to be set into state. The whole collection can then be rendered on the page as the page loads. For every collection homepage, we also do an API request to the user that is currently logged in to access their savedItems array to determine which items they have already saved to render certain aspects differently:
+
+```js
+    axios.get('/api/play')
+      .then(response => {
+        this.setState({ games: response.data })
+        // console.log(response.data)
+      })
+    axios.get(`/api/user/${userId}`)
+      .then(response => {
+        response.data.savedItems.map(el => {
+          savedItems.push(el[0])
+        })
+        this.setState({ savedItems })
+      })
+```
+
+### Single Activity 
+
+Once one of the activities is clicked, this renders that particular activity. On the GAMES page, a call for an individual game is made on the page rendering using this.props and then passed down as props to the SingleGame component as well as additional functionality for authorised users. Because this page renders a single game  next to the full list of games, we simply rendered the SingleGame component on the collection page.
+
+A similar approach is also taken for the other collections, except for the WATCH page which takes you to a new page and for the COOK page which uses GSAP to manipulate the card display to be shown and a request is made once the card is displayed. 
+
+In terms of available functionality - a few ternary operators were issued to allow users who were logged in with more functionality when viewing single activities: 
+
+-  Adding comments with a rating
+-  Favoriting the Activity
+-  Showing the user who uploaded the activity and a link to their profile. 
+
+1. <p style='text-decoration: underline'>Adding comments with a rating<p>
+
+In order to add any comments, a user needed to be authorised otherwise they would be asked to login or register to comment. However, all users are able to view the comments per activity For every comment, we also decided that users would be commenting on a particular activity with their own opinions. Because of this, we also added a rating functionality out of five which is only viewable with authorisation: 
+  
+  ```js
+
+    <h6> {auth.isLoggedIn() ? 'COMMENT' : 'PLEASE LOGIN/REGISTER TO COMMENT'} </h6>
+
+    {auth.isLoggedIn() ?
+              <div className="comment-input">
+                <form action="" onSubmit={(e) => HandleCommentSubmit(e)}>
+                  <input placeholder='Write here...'></input>
+                  <button style={{ marginBottom: '1px' }}> POST </button>
+                </form>
+              </div> : null}
+
+  ```
+  -  In order to add any comments, a user needed to be authorised otherwise they would be asked to login or register to comment. For every comment, we also decided that users would be commenting on a particular activity with their own opinions. Because of this, we also added a rating functionality out of five which is only viewable with authorisation: 
+
+```js
+<ion-icon onClick={(e) => HandleStar(e)} name="star-sharp"></ion-icon>
+
+  const HandleStar = (e) => {
+    if (e.target.style.color === 'white') {
+      e.target.style.color = 'gold'
+    } else {
+      e.target.style.color = 'white'
+    }
+
+  }
+
+  const HandleCommentSubmit = (e) => {
+    e.preventDefault()
+    const id = props.history.currentGame
+    console.log(id)
+    let rating = 0
+    const stars = Array.from(e.target.parentNode.previousSibling.lastChild.childNodes)
+    // stars gets the stars in the comment section
+
+    stars.map(el => {
+      el.style.color === 'gold' ? rating = rating + 1 : null
+    })
+
+    stars.map(el => {
+      el.style.color = 'white'
+    })
+
+    const reqBody = {
+      text: e.target.firstChild.value,
+      rating: rating
+    }
+
+    axios.post(`/api/play/${id}/comments`,
+      reqBody, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+
+    e.target.firstChild.value = ''
+
+    setTimeout(() => {
+      RenderComments()
+    }, 500)
+
+  }
+
+```
+2. <p style='text-decoration: underline'>Favoriting the Activity<p>
+
+- Authorised users also have the functionality to be able to favourite all the activities that are on the webpage. To enable this, a white heart is available per activity and if pressed will turn red, indicating it is favorited. The heart would only be visible if a user is authorised and is deployed using a ternary operator. Once this heart has been clicked, the `handleFavourite` function runs by which a POST request is made to the single activity endpoint which stores what users have favourited the activity. If this pressed again, a DELETE request would be made to be user who is logged in and removes the activity from their saved items folder: 
+
+```js
+{auth.isLoggedIn() ? <ion-icon style={savedItems.includes(props.history.currentGame) ? { color: 'red' } : { color: 'white' }}
+onClick={(e) => HandleFavourite(e)} name="heart-sharp"></ion-icon> : null}
+
+  const HandleFavourite = (e) => {
+    const id = props.history.currentGame
+    const t1 = new TimelineLite
+    if (e.target.style.color === 'white') {
+      e.target.style.color = 'red'
+      t1
+        .to('.heart-message', 0.2, { opacity: 0.9 })
+        .to('.heart-message', 0.5, { opacity: 0 }, '+=1')
+      axios.post(`api/play/${id}`, {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      setTimeout(() => {
+        RenderComments()
+      }, 500)
+    } else {
+      e.target.style.color = 'white'
+      axios.delete(`/api/user/${auth.getUserId()}/savedItems/play/${id}`
+        , { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      setTimeout(() => {
+        RenderComments()
+      }, 500)
+    }
+  }
+```
+
+3. <p style='text-decoration: underline'>Showing the user who uploaded the activity and a link to their profile<p>
+
+- We also decided that unless you were an authorised user, the creator of activities would remain hidden and subsequently a link wouldn’t be provided to view their profile:
+
+```js
+
+<small> Added By: {auth.isLoggedIn() ? <Link style={{textTransform:'capitalize'}}to={`/user/${singleGame.user._id}`}> {singleGame.user.username} </Link> :
+'Please login to view the uploader\'s profile'} </small>
+```
+
+
+### Add Items
+
+An additional piece of functionality available for authorised users is contributing activities to the current database. This would mean creating forms per collection and filling the form out to be accepted inline with the Schemas we created in the backend. In total, there were four forms. By using a ternary operator, we were able to use a single component to render the correct form by users choosing the correct option: 
+
+```js
+            <form onSubmit={(e) => this.HandleItemPost(e)} onChange={(e) => this.HandleChange(e)} action="">
+              {current ? (current.innerHTML === 'Film' || current.innerHTML === 'TV Series') ?
+                <WatchForm current={this.myRef} /> : current.innerHTML === 'Cook' ? <CookForm />
+                  : current.innerHTML === 'Play' ? <GameForm />
+                    : current.innerHTML === 'Read' ? <ReadForm /> : null : null}
+              <button> SUBMIT </button>
+            </form>
+```
+
+### Profile 
+
+Every authorised user is automatically given a profile once they have created an account, here users are shown what items they have uploaded and favourited. They also showed what users they follow and are following them. 
+
+1. <p style='text-decoration: underline'>Uploads<p>
+
+  If a user has created an item, from this endpoint they also have the power to edit or delete that activity. The edit functionality redirects the user to the appropriate form with the pre-loaded data where they can edit the item and send a POST request to the activity endpoint. A similar action also occurs on the DELETE button, whereby a DELETE request is made to the current user's uploads folder to delete that particular id. 
+
+
+
+    {isProfile && <Link to={`/user/${userId}/uploads/${upload.category}/${upload._id}`}> Edit</Link>}
+    {isProfile && <button id={upload.category} onClick={(e) => this.handleDeleteItem(e)} >Delete</button>}
+
+      handleDeleteItem(e) {
+        e.preventDefault()
+        const token = auth.getToken()
+        const id = auth.getUserId()
+        const userId = this.props.match.url
+        const category = e.target.id
+        const itemId = e.target.parentNode.parentNode.firstChild.id
+
+        axios.delete(`/api${userId}/uploads/${category}/${itemId}`, { headers: { authorization: `Bearer ${token}` } })
+          .then(res => {
+            location.reload()
+          })
+          .catch(error => console.log(error))
+      }
+
+2. <p style='text-decoration: underline'>Following Users<p>
+
+  Now that users have been authorised, they have the ability to view other users profiles when browsing through the webpage and to also follow a user if they want to. 
+
+  This is implemented through first disguishing if the profile being viewed is the current user. If not, the following buttons are rendered prompting either a POST or DELETE request to the current users following folder: 
+
+    {!isProfile && !follow && <button onClick={() => this.followUser()}>Follow</button>}
+    {!isProfile && follow && <button onClick={() => this.unfollowUser()}>Unfollow</button>}
+
+
+## Screenshots
+
+<div style=text-align:center>
+<img src='https://i.imgur.com/sa5lNFf.jpg' width='200' height='100'>
+<img src='https://i.imgur.com/VOn1gZv.png' width='200' height='100'>
+<img src='https://i.imgur.com/mJyb9g6.png' width='200' height='100'>
+<img src='https://i.imgur.com/1wSRzNP.png' width='200' height='100'>
+<img src='https://i.imgur.com/GPYt1om.png' width='200' height='100'>
+<img src='https://i.imgur.com/MbsBT5H.png' width='200' height='100'>
+<img src='https://i.imgur.com/aFdS7Qd.png' width='200' height='100'>
+<img src='https://i.imgur.com/LbqdTWq.png' width='200' height='100'>
+<img src='https://i.imgur.com/1oYSsOD.png' width='200' height='100'>
+<img src='https://i.imgur.com/emsFL2V.png' width='200' height='100'>
+<img src='https://i.imgur.com/eqyMApE.png' width='200' height='100'>
+<img src='https://i.imgur.com/rb1V5xo.png' width='200' height='100'>
+
+</div>
+
+## Potential Future Features 
+
+- At the moment the webpage is not mobile friendly due to time restraints. We would hope to apply this in the future to give users the ability to access the app on a tablet or a phone.
+
+- User deleting an account. Althought users are able to create an account on the database, we do not have a feature if they would like to be removed. 
+
+## Lessons Learned
+
+- Plan all functions early. Although the backend was one of the first things we decided to do, we implemented a lot of additional features that we hadn't originally thought of during development. This would mean we could've allocated time more accordingly. 
+
+- Seed your database early. We were lucky that we created a seed file early on. Doing so meant that we could plant the default information with two commands making it very easy to test and visually see how the data was being displayed. 
 
 
 
