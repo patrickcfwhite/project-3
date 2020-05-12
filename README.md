@@ -189,7 +189,7 @@ router.route('/:category/:id/comments/:commentid')
 
 <h4>Item Controller</h4>
 
-To be able to access all of our collections easily, and keep the code DRY, we implemented our functions to be able to find on of collections through this method: 
+To be able to access all of our collections easily, and keep the code DRY, we implemented our functions to be able to find any of the collections through this method: 
 
 ```js
 const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
@@ -197,7 +197,63 @@ const category = req.params.category[0].toUpperCase() + req.params.category.slic
 
  - In retriving our data, we noticed when we made requests that the collections we wanted access to had been assigned the names we chose in our seed file. However, in our requests, these names had been changed to all be lowercase and in order to access them, we needed to call the exact name, where the first letter was uppercase. Through the method outlined about, we took the request and changed the first letter to uppercase allowing us access to any of our collections. 
 
- - Having accomplished this, we were able to detail specific functions to access all of the data in our database or to find a specific activity by the id assigned to it. 
+ - Having accomplished this, we were able to detail specific functions to access all of the data in our database or to find a specific activity by the id assigned to it.
+
+ - The Item Controller holds functionality to add new items or users and delete them, however we also built this function to handle existing data e.g. adding an item to a user's saved folder.
+
+ - The example below shows the process of uploading a new item to the database. The first check is to see if this is existing data, i.e. if `req.params.id` doesn't exist, we know the item is new, and will need to added to the user's `uploads` folder. We then use our `const category` to create a new item and then this information is passed to to the 'User Controller' to handle adding it to the user's uploads folder.
+
+```js
+
+function addActivity(req, res) {
+  console.log(req.params)
+  const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
+  req.body.user = req.currentUser
+  const folder = !req.params.id ? 'uploads' : req.params.category !== 'user' ? 'savedItems' : 'following'
+  console.log(req.params, folder)
+  if (folder === 'uploads') {
+    mongoose.model(category)
+      .create(req.body)
+      .then(item => {
+        userController.addToFolder(req, res, item, folder)
+      })
+      .catch(error => console.log(error))
+  } else {
+    ...
+  }
+}
+
+```
+
+- This function also handles updating exisiting items in the database and their relation to users. For example, adding a recipe to a user's `savedItems` array, we must add the user's id to the item's `savedBy` array. Another example, if a user follows another user we update their respective folders `following`, and `followedBy`. Once we have updated the item in question, the information is passed to the 'User Controller' to update the user who is making the request.
+
+
+```js
+
+function addActivity(req, res) {
+  console.log(req.params)
+  const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
+  req.body.user = req.currentUser
+  const folder = !req.params.id ? 'uploads' : req.params.category !== 'user' ? 'savedItems' : 'following'
+  console.log(req.params, folder)
+  if (folder === 'uploads') {
+    ...
+  } else {
+    mongoose.model(category).findById(req.params.id)
+      .then(item => {
+        console.log(item)
+        const target = folder === 'savedItems' ? 'savedBy' : 'followedBy'
+        userController.addToFolder(req, res, item, folder)
+        item[target].some(x => x.toString() === req.currentUser._id.toString()) ? console.log('already added') : item[target].push([req.currentUser._id])
+        return item.save()
+      })
+      .catch(error => console.log(error))
+  }
+}
+
+```
+
+
 
 <h3 style='text-decoration: underline'> User </h3>
 
@@ -335,6 +391,32 @@ router.route('/:category/:id/comments/:commentid')
 ```
 - The final bit of functionality decided for registered users is to be able to comment on activities. This required having a POST endpoint per activity and to edit or delete a comment would be a PUT or DELETE request to that comment using its unique id. 
 ---
+
+<h4>User Controller</h4>
+
+ - The User Controller holds functionality to update the logged-in user. Whether it is adding a newitem to their `uploads` array, or an exisiting item to their `savedItems` array, or if they want to update who they are following. The information will first be updated by the 'Item Controller' and then passed to the the function below, which determines how the user should be amended.
+
+```js
+
+function addToFolder(req, res, item, folder) {
+  const info = folder === 'uploads' || folder === 'savedItems' ? [item._id, item.category] : [item._id]
+  const userId = req.currentUser._id
+  
+  User
+    .findById(userId)
+    .then(user => {
+      user[folder].some(x => x[0].toString() === item._id.toString()) ? console.log('already added to your folder') : user[folder].push(info)
+      return user.save()
+    })
+    .then(user => {
+      res.send({ user: user, item: item })
+    })
+}
+
+```
+
+The function first determines if the item is an activity or a user. If it is an acivity, we store the `item.category` and it's individual `item._id`, if a user we simply store `item._id`. We then update the correct user folder, and in the process check if it is already in that folder, as not to create duplicates.
+
 
 <h4>Secure Route</h4>
 

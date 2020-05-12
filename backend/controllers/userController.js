@@ -77,7 +77,7 @@ function deleteUser(req, res) {
 function addToFolder(req, res, item, folder) {
   const info = folder === 'uploads' || folder === 'savedItems' ? [item._id, item.category] : [item._id]
   const userId = req.currentUser._id
-  // console.log(`${req.currentUser.username}: ${userId}, ${item.username}: ${item._id}`)
+  
   User
     .findById(userId)
     .then(user => {
