@@ -10,7 +10,7 @@ The app includes a RESTful API, built using Express, MongoDB, NodeJS and uses a 
 
 This was a **group project** to be completed in **nine days**.
 
-Inspired by the Covid-19 lockdown, the app provides four collections of activities which users can browse through and take on whilst kept indoors. This includes books to read, recipies to cook, games to play and things to watch. 
+Inspired by the Covid-19 lockdown, the app provides four collections of activities which users can browse through and take on whilst kept indoors. This includes books to read, recipes to cook, games to play and things to watch. 
 
 Browsing through the app can be done freely by anybody who lands on the app, however more functionality is available to users who create an account. 
 
@@ -54,7 +54,7 @@ When users do make an account, they are given their own profile page and access 
 
 ### Planning
 
-- One of the first discussions which took place was the concept of our app. Between us all, we thought a topic that held relevacy was important to consider and with the lockdown having been fully implemented only a few weeks prior, it seemed like a good place to start. Another key deciding factor was if we wanted our app to limited to just one collection. Again, because lockdown limited how much could be accomplished for the public, we decided to challenge ourselves by having a range of collections available. Following this, we wanted to make our content as rich as possible for users and we quickly started working on our models and collections. 
+- One of the first discussions which took place was the concept of our app. Between us all, we thought of a topic that held relevancy was important to consider and with the lockdown having been fully implemented only a few weeks prior, it seemed like a good place to start. Another key deciding factor was if we wanted our app to limited to just one collection. Again, because lockdown limited how much could be accomplished for the public, we decided to challenge ourselves by having a range of collections available. Following this, we wanted to make our content as rich as possible for users and we quickly started working on our models and collections. 
 
 ## Backend
 
@@ -153,7 +153,7 @@ const watchSchema = new mongoose.Schema({
 })
 ```
 
-- All of these Schemas have a few feilds which are repeated:
+- All of these Schemas have a few fields swhich are repeated:
 
   - User: This assigns a user to every activity and uses a **referenced** relationship. 
 
@@ -185,7 +185,7 @@ router.route('/:category/:id/comments/:commentid')
   .delete(secureRoute, itemController.deleteComment)
 ```
 
-- These were the endpoints we created for our collections. As shown, each of these endpoints replies on a seperate function in our `itemController` file to retrive information from the database. 
+- These were the endpoints we created for our collections. As shown, each of these endpoints relies on a separate function in our `itemController` file to retrive information from the database. 
 
 <h4>Item Controller</h4>
 
@@ -195,11 +195,11 @@ To be able to access all of our collections easily, and keep the code DRY, we im
 const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
 ```
 
- - In retriving our data, we noticed when we making requests that the collections we wanted access to had been assigned the names we chose in our seed file. However, in our requests, these names had been changed to all be lowercase and in order to access them, we needed to call the exact name, where the first letter was uppercase. Through the method outlined above, we took the request and changed the first letter to uppercase allowing us access to any of our collections. 
+ - In retrieving our data, we noticed when we making requests that the collections we wanted access to had been assigned the names we chose in our seed file. However, in our requests, these names had been changed to be all lowercase and in order to access them, we needed to call the exact name, where the first letter was uppercase. Through the method outlined above, we took the request and changed the first letter to uppercase allowing us access to any of our collections. 
 
  - Having accomplished this, we were able to detail specific functions to access all of the data in our database or to find a specific activity by the ID assigned to it.
 
- - The Item Controller holds functionality to add new items and delete them, however we also built this function to handle existing data e.g. adding an item to a user's saved folder.
+ - The Item Controller holds functionality to add new items and delete them; however, we also built this function to handle existing data e.g. adding an item to a user's saved folder.
 
  - The example below shows the process of uploading a new item to the database. The first check is to see if this is existing data, i.e. if `req.params.id` doesn't exist, we know the item is new, and will need to added to the user's `uploads` folder. We then use our `const category` to create a new item and then this information is passed to to the 'User Controller' to handle adding it to the user's uploads folder.
 
@@ -282,9 +282,9 @@ const schema = new mongoose.Schema({
 })
 ```
 
-Our goal was to be able to make the User as personal as possible. This was so users were able make their individual profile pages as rich as possible without giving too much away about them. However, certain areas about the User need to be protected, including to us as the developers who had direct access to the database. In order to implement this, additional features were added to the model itself to protect Users: 
+Our goal was to be able to make the User as personal as possible. This was so users would be able make their individual profile pages as rich as possible without giving too much away about them. However, certain areas about the User need to be protected, including to us as the developers who had direct access to the database. In order to implement this, additional features were added to the model itself to protect Users: 
 
-  1. Shown in the model above, the `username` and `email` fields have been distinguished as being `unique=True`. This was implemented using the Mongoose Unique Validator plugin whereby Users would be unable to register with the same email address or with an existing username. 
+  1. Shown in the model above, the `username` and `email` fields have been distinguished as being `unique=True`. This was implemented using the Mongoose Unique Validator plugin, whereby Users would be unable to register with the same email address or with an existing username. 
 
   2. We also used the Mongoose Hidden plugin for protecting the passwords of our users. Retrieving any user from the developer perspective reduces credibility to protecting data. Using this plugin, although we as the developers can access the users who are stored into the database, the password field would not be available. 
 
@@ -302,7 +302,7 @@ Having built our model for the user, we could now build routes and endpoints spe
 
 The functionality associated per endpoint is defined in our **userController.js**. In this file, we defined functions to how requests were made to the API and what responses would be given if they were accepted or not. 
 
-<h4>Shown below are the endpoints accessible for ALL users and what functionality they allow</h4>
+<h4>Shown below are the endpoints accessible for ALL users and what functionality they allow:</h4>
 
 ```js  
 router.route('/register')
@@ -366,7 +366,7 @@ router.route('/:category/:id')
   .post(secureRoute, itemController.addActivity)
 ```
 - Once users have registered successfully, they can contribute to any of the collections using this endpoint. 
-- This function is also used for users to favourite activities and save them into their savedItems array by using a **seperate endpoint**. To determine this, a conditional statement is used to determine which array the item would be stored in. This is followed by finding a user by their ID in the database and pushing the activity into either the `savedBy` or the `uploads` array and saves the user back into the database once completed. 
+- This function is also used for users to favourite activities and save them into their savedItems array by using a **separate endpoint**. To determine this, a conditional statement is used to determine which array the item would be stored in. This is followed by finding a user by their ID in the database and pushing the activity into either the `savedBy` or the `uploads` array and saves the user back into the database once completed. 
 ```js
 router.route('/:category/:id')
   .put(secureRoute, itemController.editActivity)
@@ -377,7 +377,7 @@ router.route('/:category/:id')
 router.route('/user/:id/:folder/:category/:activityId')
   .delete(secureRoute, itemController.deleteActivity2)
 ```
-- This endpoint also offers two available outputs for users. The ability to delete an activity they’ve created or to delete an activity they have favouritised. The endpoint’s function operates using a conditional statement on which folder is given in the request and can either remove the item from the users `savedItems` array or will delete the activity from the main collection as well as remove it from `savedItems` array of users who have saved it. 
+- This endpoint also offers two available outputs for users. The ability to delete an activity they’ve created or to delete an activity they have favouritised. The endpoint’s function operates using a conditional statement on which folder is given in the request and can either remove the item from the users `savedItems` array or will delete the activity from the main collection, as well as remove it from `savedItems` array of users who have saved it. 
 ---
 
 ```js
@@ -394,7 +394,7 @@ router.route('/:category/:id/comments/:commentid')
 
 <h4>User Controller</h4>
 
- - The User Controller holds functionality to update the logged-in user. Whether it is adding a newitem to their `uploads` array, or an exisiting item to their `savedItems` array, or if they want to update who they are following. The information will first be updated by the 'Item Controller' and then passed to the the function below, which determines how the user should be amended.
+ - The User Controller holds functionality to update the logged-in user. Whether it is adding a new item to their `uploads` array, or an exisiting item to their `savedItems` array, or if they want to update who they are following. The information will first be updated by the 'Item Controller' and then passed to the function below, which determines how the user should be amended.
 
 ```js
 
@@ -415,7 +415,7 @@ function addToFolder(req, res, item, folder) {
 
 ```
 
-The function first determines if the item is an activity or a user. If an acivity, we store the `item.category` and it's individual `item._id`, if a user we simply store `item._id`. We then update the correct user folder, and in the process, check if it is already in that folder to avoid creating duplicates.
+The function first determines if the item is an activity or a user. If an activity, we store the `item.category` and it's individual `item._id`; if a user we simply store `item._id`. We then update the correct user folder, and in the process, check if it is already in that folder to avoid creating duplicates.
 
 
 <h4>Secure Route</h4>
@@ -435,9 +435,9 @@ The function is a conditional statement to identify if a token has been issued. 
 
 <h4>Seeding the database</h4>
 
-Having decided our models and created our endpoints, we could now focus on creating initial data for our app. This was implemented using a **seed file**. This file contained hard-coded Recipies, Games, TV Series, Films and Books which were planted into our MongoDB.
+Having decided our models and created our endpoints, we could now focus on creating initial data for our app. This was implemented using a **seed file**. This file contained hard-coded Recipes, Games, TV Series, Films and Books which were planted into our MongoDB.
 
-For every model in our collection, we assigned a user using a referenced relationship. Ultimately this would mean when feeding data into the database, a user needed to be attached to every activity we create.
+For every model in our collection, we assigned a user using a referenced relationship. Ultimately this would mean when feeding data into the database, a user needed to be attached to every activity we created.
 
 To achieve this, once connecting to Mongo itself, a selection of users were pre-made and seeded to the database. 
 
@@ -455,7 +455,7 @@ After doing so, we could make the four collections we designed using our models 
       category: 'Read'
 ```
 
-Due to our database having multiple collections, we chose to separate seeding our collection into functions, which were called upon when seeding occured. This was also neccessary to be able to pass users through into every activity.
+Due to our database having multiple collections, we chose to separate seeding our collection into functions, which were called upon when seeding occured. This was also necessary to be able to pass users through into every activity.
 
 ```js
       .then((users) => {
@@ -498,7 +498,7 @@ In total, we had a total of 21 components for our front-end, with four as a home
 
 This component utilised React Hooks and as a result meant that some of the components connected to it also used Hooks rather than classical or functional components. This also enabled the app to have cleaner code overall. 
 
-1. The navigation bar held a number of functions which were determined to be run using turnaries. For instance, two functions handle the opening and closing of the navbar dependent on the onClick handler on the hamburger icon. These two functions also sets a piece state to identify if the component is open or not. 
+1. The navigation bar held a number of functions which were determined to be run using ternaries. For instance, two functions handle the opening and closing of the navbar dependent on the onClick handler on the hamburger icon. These two functions also sets a piece state to identify if the component is open or not. 
 
     ```js
     <div onClick={isOpen !== true ? HandleOpen : HandleClose} className="hamburger-container">
@@ -534,7 +534,7 @@ This component utilised React Hooks and as a result meant that some of the compo
           }
     ```
 
-3. The navigation bar and a number of other components also renders different information for authorised and unauthorised users. For this component, the final link displays a logout rather than login for authorised users using a ternary operator on if a token is found in local storage: 
+3. The navigation bar and a number of other components also render different information for authorised and unauthorised users. For this component, the final link displays a logout rather than login for authorised users using a ternary operator on if a token is found in local storage: 
 
     ```js
               {!auth.isLoggedIn() ?
@@ -546,7 +546,7 @@ This component utilised React Hooks and as a result meant that some of the compo
                 </div>}
     ```
 
-4. We also decided to use a modal for users to login into the app with and if they have not registered, a link through to the register component is available for redirection. This also utilised a ternary operator depending on if a piece of state was true or false. A useState was defined for our modal which originally is set to false, once the LOGIN element is clicked, this toggles the state to either be true or false. If true, the login modal will appear: 
+4. We also decided to use a modal for users to login into the app. However, if they have not registered, a link through to the register component is available for redirection. This also utilised a ternary operator depending on if a piece of state was true or false. A useState was defined for our modal which originally is set to false, once the LOGIN element is clicked, this toggles the state to either be true or false. If true, the login modal will appear: 
 
     ```js
           {modalOpen ? <LoginModal
@@ -635,7 +635,7 @@ From this page, the user is able to reset their password. However before doing s
           }
 ```
 
-If the correct conditions are passed, the page will prompt the user to enter a new password and check the password and the password confirmation fields match again. Once this is passed and the form submits successfully the user will be notified their password has changed and be prompted to login. 
+If the correct conditions are passed, the page will prompt the user to enter a new password and check the password and the password confirmation fields match again. Once this is passed and the form submits successfully, the user will be notified their password has changed and be prompted to login. 
 
 
 
@@ -671,7 +671,7 @@ A similar approach is also taken for the other collections, except for the WATCH
 In terms of available functionality - a few ternary operators were issued to allow users who were logged in with more functionality when viewing single activities: 
 
 -  Adding comments with a rating
--  Favoriting the activity
+-  Favouriting the activity
 -  Showing the user who uploaded the activity and a link to their profile. 
 
 1. <p style='text-decoration: underline'>Adding comments with a rating<p>
@@ -737,9 +737,9 @@ In order to add any comments, a user needed to be authorised otherwise they woul
   }
 
 ```
-2. <p style='text-decoration: underline'>Favoriting the Activity<p>
+2. <p style='text-decoration: underline'>Favouriting the Activity<p>
 
-- Authorised users also have the functionality to be able to favourite all the activities that are on the webpage. To enable this, a white heart is available per activity and if pressed will turn red, indicating it is favorited. The heart would only be visible if a user is authorised and is deployed using a ternary operator. Once this heart has been clicked, the `handleFavourite` function runs by which a POST request is made to the single activity endpoint which stores what users have favourited the activity using their unique ID. If this pressed again, a DELETE request would be made to be user who is logged in and removes the activity from their saved items folder: 
+- Authorised users also have the functionality to be able to favourite all the activities that are on the webpage. To enable this, a white heart is available per activity and if pressed will turn red, indicating it is a favourite. The heart would only be visible if a user is authorised and is deployed using a ternary operator. Once this heart has been clicked, the `handleFavourite` function runs by which a POST request is made to the single activity endpoint which stores what users have favourited the activity using their unique ID. If this pressed again, a DELETE request would be made to be user who is logged in and removes the activity from their saved items folder: 
 
 ```js
 {auth.isLoggedIn() ? <ion-icon style={savedItems.includes(props.history.currentGame) ? { color: 'red' } : { color: 'white' }}
@@ -851,9 +851,9 @@ Every authorised user is automatically given a profile once they have created an
 
 ## Potential Future Features 
 
-- At the moment the webpage is not mobile friendly due to time restraints. We would hope to apply this in the future to give users the ability to access the app on a tablet or a phone.
+- At the moment, the webpage is not mobile friendly due to time restraints. We would hope to apply this in the future to give users the ability to access the app on a tablet or a phone.
 
-- To be able to allow exisiting users to delete their account. Althought users are able to create an account on the database, we do not have a feature if they would like to be removed. 
+- To be able to allow exisiting users to delete their account. Although users are able to create an account on the database, we do not have a feature if they would like to be removed. 
 
 ## Lessons Learned
 
