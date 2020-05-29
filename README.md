@@ -739,7 +739,7 @@ In order to add any comments, a user needed to be authorised otherwise they woul
 ```
 2. <p style='text-decoration: underline'>Favouriting the Activity<p>
 
-- Authorised users also have the functionality to be able to favourite all the activities that are on the webpage. To enable this, a white heart is available per activity and if pressed will turn red, indicating it is a favourite. The heart would only be visible if a user is authorised and is deployed using a ternary operator. Once this heart has been clicked, the `handleFavourite` function runs by which a POST request is made to the single activity endpoint which stores what users have favourited the activity using their unique ID. If this pressed again, a DELETE request would be made to be user who is logged in and removes the activity from their saved items folder: 
+Authorised users also have the functionality to be able to favourite all the activities that are on the webpage. To enable this, a white heart is available per activity and if pressed will turn red, indicating it is a favourite. The heart would only be visible if a user is authorised and is deployed using a ternary operator. Once this heart has been clicked, the `handleFavourite` function runs by which a POST request is made to the single activity endpoint which stores what users have favourited the activity using their unique ID. If this pressed again, a DELETE request would be made to be user who is logged in and removes the activity from their saved items folder: 
 
 ```js
 {auth.isLoggedIn() ? <ion-icon style={savedItems.includes(props.history.currentGame) ? { color: 'red' } : { color: 'white' }}
