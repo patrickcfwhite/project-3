@@ -4,23 +4,23 @@
 
 ## Overview 
 
-KAP is the first full-stack app created during my time on GA's Software Engineering Immersive course, but was the third project overall. 
+KAP was the first full-stack app created during my time on GA's Software Engineering Immersive course, but was the third project overall. 
 
 The app includes a RESTful API, built using Express, MongoDB, NodeJS and uses a React front-end. 
 
-This was a **group project** which was to be completed in **nine days**.
+This was a **group project** to be completed in **nine days**.
 
-Inspired by the Covid-19 lockdown, the app provides collections of activities which users can browse through whilst they are kept indoors. This includes books to read, recipies to cook, games to play and series or movies to watch. 
+Inspired by the Covid-19 lockdown, the app provides four collections of activities which users can browse through and take on whilst kept indoors. This includes books to read, recipes to cook, games to play and things to watch. 
 
-Browsing through the app can be done so by anybody who lands on the app, however more is available to users who create an account. 
+Browsing through the app can be done freely by anybody who lands on the app, however more functionality is available to users who create an account. 
 
-When users do make an account, they are given their own profile page and have a variety of new functionality available to them: 
+When users do make an account, they are given their own profile page and access to the following: 
 
 - Upload new activities to any of the collections
 
 - Follow other users on the website
 
-- Comment and rate on any of the activities to provide opinion and remove them if necessary
+- Comment and rate any of the activities to provide opinion and remove them if desired
 
 - Favourtise activities which can then be viewed on their profile page.
 
@@ -28,9 +28,9 @@ When users do make an account, they are given their own profile page and have a 
 ## The Brief 
 
 * Work in a team, using **git to code collaboratively**.
-* **Build a full-stack application** by building your own backend and your own front-end
-* **Use an Express API** to serve your data from a Mongo database
-* **Consume your API with a separate front-end** using React
+* **Build a full-stack application** by building a own backend and front-end
+* **Use an Express API** to serve data from a Mongo database
+* **Consume the API with a separate front-end** using React
 * **Be a complete product** have CRUD functionality implemented and a few models that have relationships. 
 
 ## Technologies Used 
@@ -54,17 +54,17 @@ When users do make an account, they are given their own profile page and have a 
 
 ### Planning
 
-- One of the first discussions which took place was the concept of our app. Between us all, we thought a topic that held relevacy was important to consider and with the lockdown having been implented fully only a few weeks before, it seemed like a good place to start. Another key deciding factor was if we wanted our app to limited to just one collection. Again, because lockdown limited how much could be accomplished for the public, we thought we would challenge ourselves by having a range of collections. Following this, we realised we wanted to make our content as rich as possible for users and we quickly started working on our models and collections. 
+- One of the first discussions which took place was the concept of our app. Between us all, we thought of a topic that held relevancy was important to consider and with the lockdown having been fully implemented only a few weeks prior, it seemed like a good place to start. Another key deciding factor was if we wanted our app to limited to just one collection. Again, because lockdown limited how much could be accomplished for the public, we decided to challenge ourselves by having a range of collections available. Following this, we wanted to make our content as rich as possible for users and we quickly started working on our models and collections. 
 
-## Back-end
+## Backend
 
-<h4>The app contained multiple collections and for the purpose of understanding the approach to building the content in the app, I have split this section into two. How the content was approached and the functionality for users who visit the page.</h4>
+<h4>The app contained multiple collections and for the purpose of understanding the approach to how the app was built, I have split this section into two. How the collections were approached and the functionality for users who visit the page.</h4>
 
 <h3 style='text-decoration: underline'> Collections </h3>
 
 <h4>Models </h4>
 
-- For our collections, we specified four models which utilises Mongoose which provides a built in Schema class. Each of these models are very detailed. This was so users could get a high level of detail from the app and so they knew it would suit their individual tastes.  
+- For our collections, we specified four models whereby Mongoose was used as it provides a built in Schema class. Each of these models are very detailed. This was so users recieved a high level of detail from the app and so they could decide if it would suit their individual tastes.  
 
 A Cook Schema for our recipes: 
 
@@ -153,17 +153,17 @@ const watchSchema = new mongoose.Schema({
 })
 ```
 
-- All of these Schemas have a few feilds which are repeated:
+- All of these Schemas have a few fields swhich are repeated:
 
-  - User: This assigns a user to every activity and uses a **referenced** relationship 
+  - User: This assigns a user to every activity and uses a **referenced** relationship. 
 
-  - Comments: Every activity has an array of comments, which is a **embedded**  relationship 
+  - Comments: Every activity has an array of comments, which is a **embedded**  relationship.
 
-  - savedBy: This field is to identify which users saved that activity 
+  - savedBy: This field is to identify which users saved that activity.
 
 <h4>Router</h4>
 
-We then procceded to create a `router.js` file to determine our API endpoints to how each of collections would be called on. Due to our Mongo database holding more than one collection, we specified 'category' as being as end point per collection which will be explained when discussing the controller. 
+We procceded to create a `router.js` file to determine our API endpoints to how each of collections would be called on. Due to our Mongo database holding more than one collection, we specified 'category' as being as end point per collection which will be explained when discussing the controller. 
 
 ```js
 router.route('/:category/:id')
@@ -185,7 +185,7 @@ router.route('/:category/:id/comments/:commentid')
   .delete(secureRoute, itemController.deleteComment)
 ```
 
-- These were the endpoints we created for our collections. As shown, each of these endpoints replies on a seperate function in our `itemController` file to retrive information from the database. 
+- These were the endpoints we created for our collections. As shown, each of these endpoints relies on a separate function in our `itemController` file to retrive information from the database. 
 
 <h4>Item Controller</h4>
 
@@ -195,11 +195,11 @@ To be able to access all of our collections easily, and keep the code DRY, we im
 const category = req.params.category[0].toUpperCase() + req.params.category.slice(1)
 ```
 
- - In retriving our data, we noticed when we made requests that the collections we wanted access to had been assigned the names we chose in our seed file. However, in our requests, these names had been changed to all be lowercase and in order to access them, we needed to call the exact name, where the first letter was uppercase. Through the method outlined about, we took the request and changed the first letter to uppercase allowing us access to any of our collections. 
+ - In retrieving our data, we noticed when we making requests that the collections we wanted access to had been assigned the names we chose in our seed file. However, in our requests, these names had been changed to be all lowercase and in order to access them, we needed to call the exact name, where the first letter was uppercase. Through the method outlined above, we took the request and changed the first letter to uppercase allowing us access to any of our collections. 
 
- - Having accomplished this, we were able to detail specific functions to access all of the data in our database or to find a specific activity by the id assigned to it.
+ - Having accomplished this, we were able to detail specific functions to access all of the data in our database or to find a specific activity by the ID assigned to it.
 
- - The Item Controller holds functionality to add new items or users and delete them, however we also built this function to handle existing data e.g. adding an item to a user's saved folder.
+ - The Item Controller holds functionality to add new items and delete them; however, we also built this function to handle existing data e.g. adding an item to a user's saved folder.
 
  - The example below shows the process of uploading a new item to the database. The first check is to see if this is existing data, i.e. if `req.params.id` doesn't exist, we know the item is new, and will need to added to the user's `uploads` folder. We then use our `const category` to create a new item and then this information is passed to to the 'User Controller' to handle adding it to the user's uploads folder.
 
@@ -225,7 +225,7 @@ function addActivity(req, res) {
 
 ```
 
-- This function also handles updating exisiting items in the database and their relation to users. For example, adding a recipe to a user's `savedItems` array, we must add the user's id to the item's `savedBy` array. Another example, if a user follows another user we update their respective folders `following`, and `followedBy`. Once we have updated the item in question, the information is passed to the 'User Controller' to update the user who is making the request.
+- This function also handles updating exisiting items in the database and their relation to users. For example, adding a recipe to a user's `savedItems` array, we must add the user ID to the item's `savedBy` array. Another example, if a user follows another user we update their respective folders `following`, and `followedBy`. Once we have updated the item in question, the information is passed to the 'User Controller' to update the user who is making the request.
 
 
 ```js
@@ -261,7 +261,7 @@ Our approach to the User model was to allow more functionality in the app once a
 
 <h4>Models </h4>
 
-As we did with the content for our app, the User required a model of its own for our MongoDB to store individuals successfully. While we were able to achieve many of our stretch goals during the project, we consistently made changes to the model throughout. Realistically speaking, this was not ideal and whilst building the model, all fields should've been added even if we did not accomplish them: 
+As we did with the content for our app, the User required a model of its own for our MongoDB to store individuals successfully. While we were able to achieve many of our stretch goals during the project, we consistently made changes to this model throughout. Realistically speaking, this was not ideal and whilst building the model, all fields should've been added even if we did not accomplish them: 
 
 ```js
 const schema = new mongoose.Schema({
@@ -282,17 +282,17 @@ const schema = new mongoose.Schema({
 })
 ```
 
-Our goal was to be able to make the User as personal as possible. This was due to being able to make their individual profile pages as rich as possible without giving too much away about them. However, certain areas about the User need to be protected, including to us as the developers who had direct access to the database. In order to implement this, additional features were added to the model itself to protect Users: 
+Our goal was to be able to make the User as personal as possible. This was so users would be able make their individual profile pages as rich as possible without giving too much away about them. However, certain areas about the User need to be protected, including to us as the developers who had direct access to the database. In order to implement this, additional features were added to the model itself to protect Users: 
 
-  1. Shown in the model above, the `username` and `email` fields have been distinguished as being `unique=True`. This was implemented using the Mongoose Unique Validator plugin whereby Users would be unable to register with the same email address or have an existing username. 
+  1. Shown in the model above, the `username` and `email` fields have been distinguished as being `unique=True`. This was implemented using the Mongoose Unique Validator plugin, whereby Users would be unable to register with the same email address or with an existing username. 
 
-  2. We also used the Mongoose Hidden plugin for protecting the passwords of our users. Retrieving any user from the developer perspective reduces credibility to protecting data. Using this plugin, although we as the developers can access the users who are stored into the database, the password field would not be available to us. 
+  2. We also used the Mongoose Hidden plugin for protecting the passwords of our users. Retrieving any user from the developer perspective reduces credibility to protecting data. Using this plugin, although we as the developers can access the users who are stored into the database, the password field would not be available. 
 
-Mongoose itself has some incredibly powerful inbuilt methods which we also used in conjunction with Bcrypt for passwords. Using `pre`, we were able to access Mongoose Schema’s lifecycle methods and run functions when users register or login: 
+Mongoose itself has some incredibly powerful in-built methods which we also used in conjunction with Bcrypt for passwords hashing. Using `pre`, we were able to access Mongoose Schema’s lifecycle methods and run functions when users either register or login: 
 
-- The first function we built was for checking the password and passwordConfirmation field match from the user input during registration. If these were not to match, it would invalid and halts the user would be prompted. 
+- The first function we built was to check the password and passwordConfirmation field match from the user input during registration. If these were not to match, it would be invalid and halts the user from registering and prompts them why. 
 
-- If during registration the first function is passed and accepted, the password entered would use bcrypt to encrypt the password before being stored into the database. If under any circumstance the database were to be hacked, this would make it difficult for hackers to decrypt the passwords for users. 
+- If during registration the first function is passed and accepted, the password entered uses bcrypt to encrypt the password before being stored into the database. If under any circumstance the database were to be hacked, this would make it difficult for hackers to decrypt the passwords of any users. 
 
 - The final function checks the credentials of a user at login. The function checks the password currently stored in the database and ensures this matches the user input.  
 
@@ -302,7 +302,7 @@ Having built our model for the user, we could now build routes and endpoints spe
 
 The functionality associated per endpoint is defined in our **userController.js**. In this file, we defined functions to how requests were made to the API and what responses would be given if they were accepted or not. 
 
-<h4>Shown below are the endpoints accessible for ALL users and what functionality they allow</h4>
+<h4>Shown below are the endpoints accessible for ALL users and what functionality they allow:</h4>
 
 ```js  
 router.route('/register')
@@ -314,19 +314,19 @@ router.route('/register')
 router.route('/login')
   .post(userController.login)
 ```
-- A single POST request to find a user by the given email address given at registration and validate the password. If successful, the user is provided with a token using JWT. This token is stored into localStorage in the frontend. 
+- A single POST request to find a user by the given email address given at registration and validate the password. If successful, the user is provided with a token using JWT. This token is stored into localStorage in the front-end. 
 ---
 ```js
 router.route('/reset/')
   .get(userController.checkResetToken)
 ```
-- In the instance a user may have forgotten their password and would link it to be reset, this GET endpoint would be used. Here, an email would’ve been sent to the user with the email address they originally registered with and provided a new token. This endpoint validates if the token is still valid in order for the password to be reset.  
+- In the instance a user may have forgotten their password, they are able to request a link for this to be reset using this GET endpoint. Here, an email would be been sent to the user with the email address they originally registered with and provided a new token. This endpoint validates if the token is still valid in order for the password to be reset.  
 ---
 ```js
 router.route('/updatePassword')
   .put(userController.updatePassword)
 ```
-- This PUT request is used to allow a user to reset their password. Once the /reset/ endpoint has succeeded, users would be taken to a page and once submitted would check if a user with their username exists in the database. If found, their new password is encrypted using bcrypt and stored into the database. 
+- This PUT request is used to allow a user to reset their password. Once the /reset/ endpoint has succeeded, a check is made to identify if a username is in the database. If found, their new password is encrypted using bcrypt and stored into the database. 
 ---
 ```js
 router.route('/:category')
@@ -334,7 +334,7 @@ router.route('/:category')
 router.route('/:category/:id')
   .get(itemController.singleItemId)
 ```
-- All Users can access all full collections and singular activities using a GET request. 
+- All Users can access all the collections and singular activities using a GET request. 
 ---
 
 ```js
@@ -342,7 +342,7 @@ router.route('/forgotPassword')
   .post(userController.resetPassword)
 ```
 
-- This function utilises the nodemailer library and allows users to have a link sent to their designated email address with a link to reset their password in the database. The function attempts to find the email located in the database, and if found will generate a new JWT token that is attached to the link in order to reset their password. We have set this token with a validation time of one hour. If not clicked through in this time, the POST request will be invalid and another email must be generated. 
+- This function utilises the nodemailer library and allows users to have a link sent to their designated email address with a link to reset their password in the database. The function attempts to find the user inputted email located in the database. If found, a new JWT token will be generated and is attached to the link for users to reset their password. We have set this token with a validation time of one hour. If not clicked through in this time, the POST request will be invalid and another email must be requested. 
 
 <h4>All these endpoints are also available for users who create an account on the app. However, they also have additional endpoints: </h4>
 
@@ -366,18 +366,18 @@ router.route('/:category/:id')
   .post(secureRoute, itemController.addActivity)
 ```
 - Once users have registered successfully, they can contribute to any of the collections using this endpoint. 
-- This endpoint is also used for users to favourite activities and save them into their savedItems array by using a **seperate endpoint**. To determine this, a conditional statement is used to determine which array the item would be stored in. This is followed by finding a user by their id in the database and pushing the activity into either the `savedBy` or the `uploads` array and saves the user back into the database once completed. 
+- This function is also used for users to favourite activities and save them into their savedItems array by using a **separate endpoint**. To determine this, a conditional statement is used to determine which array the item would be stored in. This is followed by finding a user by their ID in the database and pushing the activity into either the `savedBy` or the `uploads` array and saves the user back into the database once completed. 
 ```js
 router.route('/:category/:id')
   .put(secureRoute, itemController.editActivity)
 ```
-- Another available endpoint using the id of an activity is being able to edit the item **by the user who created it**. The function allows the user to edit the item and this is saved directly back into MongoDB. 
+- Another available endpoint using the ID of an activity is being able to edit the item **by the user who created it**. The function allows the user to edit the item and this is saved directly back into MongoDB. 
 ---
 ```js
 router.route('/user/:id/:folder/:category/:activityId')
   .delete(secureRoute, itemController.deleteActivity2)
 ```
-- This endpoint also offers two available outputs for users. The ability to delete an activity they’ve created or to delete an activity they have favouritised. The endpoint’s designated function operates using a conditional statement on which folder is given in the request and can therefore either remove the item from the users `savedItems` array or will delete the activity from the collection as well as remove it from the other users who may have saved it. 
+- This endpoint also offers two available outputs for users. The ability to delete an activity they’ve created or to delete an activity they have favouritised. The endpoint’s function operates using a conditional statement on which folder is given in the request and can either remove the item from the users `savedItems` array or will delete the activity from the main collection, as well as remove it from `savedItems` array of users who have saved it. 
 ---
 
 ```js
@@ -389,12 +389,12 @@ router.route('/:category/:id/comments/:commentid')
   .delete(secureRoute, itemController.deleteComment)
 
 ```
-- The final bit of functionality decided for registered users is to be able to comment on activities. This required having a POST endpoint per activity and to edit or delete a comment would be a PUT or DELETE request to that comment using its unique id. 
+- The final bit of functionality for registered users is to be able to comment on activities. This is a POST endpoint per activity and to edit or delete a comment would be a PUT or DELETE request to that comment using its unique ID. 
 ---
 
 <h4>User Controller</h4>
 
- - The User Controller holds functionality to update the logged-in user. Whether it is adding a newitem to their `uploads` array, or an exisiting item to their `savedItems` array, or if they want to update who they are following. The information will first be updated by the 'Item Controller' and then passed to the the function below, which determines how the user should be amended.
+ - The User Controller holds functionality to update the logged-in user. Whether it is adding a new item to their `uploads` array, or an exisiting item to their `savedItems` array, or if they want to update who they are following. The information will first be updated by the 'Item Controller' and then passed to the function below, which determines how the user should be amended.
 
 ```js
 
@@ -415,14 +415,14 @@ function addToFolder(req, res, item, folder) {
 
 ```
 
-The function first determines if the item is an activity or a user. If it is an acivity, we store the `item.category` and it's individual `item._id`, if a user we simply store `item._id`. We then update the correct user folder, and in the process check if it is already in that folder, as not to create duplicates.
+The function first determines if the item is an activity or a user. If an activity, we store the `item.category` and it's individual `item._id`; if a user we simply store `item._id`. We then update the correct user folder, and in the process, check if it is already in that folder to avoid creating duplicates.
 
 
 <h4>Secure Route</h4>
 
-For every route which is only accessible by users stored into the database, we have specified another function to run beforehand. The `secureRoute`. This was an entirely separate file created to identify if a user was truly logged in. 
+For every route which is only accessible for users stored in the database, we have specified another function to run beforehand. The `secureRoute`. This is an entirely separate file created with middleware to identify if a user is truly logged in. 
 
-This function is a conditional statement to identify if a token has been issued. As mentioned beforehand, once a user is able to successfully log in, a JWT is returned as a response which is valid for six hours. 
+The function is a conditional statement to identify if a token has been issued. As mentioned beforehand, once a user is able to successfully log in, a JWT is returned as a response which is valid for six hours. 
 
   - Firstly, an identification if the correct type of token is available. We have chosen to use a Bearer token. At this stage, if a token has been issued but **IS NOT** a Bearer token, the user is invalid. 
 
@@ -431,17 +431,17 @@ This function is a conditional statement to identify if a token has been issued.
     return res.status(401).send({ message: 'Unauthorized no token' })
 ```
 
-  - Once passed, the token itself still has the word ‘Bearer’ attached to it and is removed, leaving us with a pure JWT. Using the JWT method to verify the token, a user in the database is located and the request they are attempted to make can be accepted using `next()`.
+  - Once passed, the token itself still has the word ‘Bearer’ attached to it and is removed, leaving us with a pure JWT. Using the JWT method to verify the token, a user in the database is located and the request they are attempted to make can be accepted using `next()` method.
 
 <h4>Seeding the database</h4>
 
-Having decided our models and created our endpoints, we could now focus on creating initial data for our app. This was implemented using a **seed file**. This file contained hard-coded Recipies, Games, TV Series, Films and Books which was planted into our MongoDB.
+Having decided our models and created our endpoints, we could now focus on creating initial data for our app. This was implemented using a **seed file**. This file contained hard-coded Recipes, Games, TV Series, Films and Books which were planted into our MongoDB.
 
-For every model in our collection, we assigned a user using a referenced relationship. Ultimately this would mean when feeding data into the database, a user needed to be attached to every activity we create.
+For every model in our collection, we assigned a user using a referenced relationship. Ultimately this would mean when feeding data into the database, a user needed to be attached to every activity we created.
 
 To achieve this, once connecting to Mongo itself, a selection of users were pre-made and seeded to the database. 
 
-After doing so, we could go on to make the four collections we designed using our models and assign a user to every activity by selecting one of users from the User array we just created. 
+After doing so, we could make the four collections we designed using our models and assign a user to every activity by selecting one of users from the User array we just created. 
 
 ```js
       title: '1984',
@@ -455,7 +455,7 @@ After doing so, we could go on to make the four collections we designed using ou
       category: 'Read'
 ```
 
-Due to our database having multiple collections, we chose to separate seeding per collection into functions, which were called upon when seeding occured. This was also neccessary to be able to pass users through into every collection.
+Due to our database having multiple collections, we chose to separate seeding our collection into functions, which were called upon when seeding occured. This was also necessary to be able to pass users through into every activity.
 
 ```js
       .then((users) => {
@@ -463,7 +463,7 @@ Due to our database having multiple collections, we chose to separate seeding pe
         seedFunction.createBooks(users)
 ```
 
-A final aspect was also necessary at this stage, which was ensuring the activities associated to every user were also planted into their `uploads` array, which subsequently also runs when a user creates an activity in the app. Once a collection has seeded all the activities, it iterates through the collection and pushes the activities into the correct users `upload` array and saves the user back into the User collection.
+A final aspect was also necessary at this stage, which was ensuring the activities associated to every user were also planted into their `uploads` array, which subsequently also runs when a user creates an activity in the app. Once a collection has seeded all the activities, the function iterates through the recently seeded collection and pushes the activities into the correct users `upload` array and saves the user back into the User collection.
 
 **Run after every collection is seeded**
 ```js
@@ -490,15 +490,15 @@ function updateUpload(item) {
 
 ## Frontend
 
-Having successfully built our API and tested through Insomnia, we could now focus on designing our webpage which utilises our built API. Our frontend used the external library GSAP to create some of the animations on various pages. 
+Having successfully built our API and tested it through Insomnia, focus could be made on designing the webpage which utilises the built API. Our front-end used the external library GSAP to create some of the animations on various pages. 
 
-In total, we had a total of 21 components for our frontend, with four as a homepage for each of our collections and another four for individual activity rendering. 
+In total, we had a total of 21 components for our front-end, with four as a homepage for each of our collections and another four for individual activity rendering. 
 
 ### The NavBar 
 
-This component utilised React Hooks and as a result meant that some of the components connected to it also used Hooks rather than classical or functional components and also enabled a cleaner code. 
+This component utilised React Hooks and as a result meant that some of the components connected to it also used Hooks rather than classical or functional components. This also enabled the app to have cleaner code overall. 
 
-1. The navigation bar held a number of functions which were determined to be run using turnaries. For instance, two functions handle the opening and closing of the navbar dependent on the onClick handler on the hamburger icon. These two functions also sets state of if the component is open or not. 
+1. The navigation bar held a number of functions which were determined to be run using ternaries. For instance, two functions handle the opening and closing of the navbar dependent on the onClick handler on the hamburger icon. These two functions also sets a piece state to identify if the component is open or not. 
 
     ```js
     <div onClick={isOpen !== true ? HandleOpen : HandleClose} className="hamburger-container">
@@ -534,7 +534,7 @@ This component utilised React Hooks and as a result meant that some of the compo
           }
     ```
 
-3. The navigation bar and a number of other components also renders different information for authorised and unauthorised users. For this component, the final link displays a logout rather than login for authorised users using a ternary operator on if a token is found in local storage: 
+3. The navigation bar and a number of other components also render different information for authorised and unauthorised users. For this component, the final link displays a logout rather than login for authorised users using a ternary operator on if a token is found in local storage: 
 
     ```js
               {!auth.isLoggedIn() ?
@@ -546,7 +546,7 @@ This component utilised React Hooks and as a result meant that some of the compo
                 </div>}
     ```
 
-4. We also decided to use a modal for users to login into the webpage and if they have not, they would be able to link through onto a page to register. This also utilised a turnerary operator depending on if a piece of state was true or false. A useState was defined for our model which originally is set to false, once the LOGIN element is clicked, the toggles the state to either be true or false. If true, the login modal will appear: 
+4. We also decided to use a modal for users to login into the app. However, if they have not registered, a link through to the register component is available for redirection. This also utilised a ternary operator depending on if a piece of state was true or false. A useState was defined for our modal which originally is set to false, once the LOGIN element is clicked, this toggles the state to either be true or false. If true, the login modal will appear: 
 
     ```js
           {modalOpen ? <LoginModal
@@ -557,11 +557,11 @@ This component utilised React Hooks and as a result meant that some of the compo
 
 ### Forgotten Password
 
-From the login modal, we have also implemented users who have registered to reset their password using a link. This link renders a new modal by where we use state to determine the content on the modal. The state `sent` is originally set to be false, meaning this would render: 
+From the login modal, we have also implemented users who have registered to reset their password using a link. This link renders a new modal where we use state to determine the content on the modal. The state `sent` is originally set to be false, meaning this would render: 
 
 <img src='https://i.imgur.com/OKE3zqK.png' width='200'>
 
-Once the submit button has been pressed after the user enters their email address, this triggers a function to the API endpoint `/api/forgotPassword` with the user's email. One of two things can now happen, the email is recognised into the database and the response is sent in email format to the user email. Or, if the email is not recognised, another piece of state named `returnError` is set to true and the following message would appear: 
+Once the submit button has been pressed after the user enters their email address, this triggers a function to the API endpoint `/api/forgotPassword` with the user's email as the request. One of two things can now happen, the email is recognised into the database and the response is sent as an email to the user email address. Or, if the email is not recognised, another piece of state named `returnError` is set to true and the following message would appear: 
 
 ```js
 {returnError && <small style={{color: 'brown', position: 'absolute'}}>This email is not recognized. Please try again or register for new account</small>}
@@ -569,7 +569,7 @@ Once the submit button has been pressed after the user enters their email addres
 
 The email sent to the user contains a link to `/reset/THEIRPASSOWRDRESETTOKEN`.
 
-From this page, the user is able to reset their password. However before doing so, as the page renders, a GET request is made to the reset endpoint on the api to ensure the link sent to the user is valid and if not, would turn a number of booleans true and prevent the user from updating their password and would be rendered with messages advising the user on the steps to take: 
+From this page, the user is able to reset their password. However before doing so, as the page renders, a GET request is made to the reset endpoint on the API to ensure the link clicked on by the user is valid. If not, a number of booleans are set as true and prevent the user from updating their password and the approriate error messages are rendered advising the user on the steps to take: 
 
 ```js
   componentDidMount() {
@@ -635,15 +635,15 @@ From this page, the user is able to reset their password. However before doing s
           }
 ```
 
-If these are passed, the page will prompt the user to enter a new password and check the password and the password confirmation fields match. Once this is passed and the form submitted successfully the user will be notified their password has changed and prompted to login. 
+If the correct conditions are passed, the page will prompt the user to enter a new password and check the password and the password confirmation fields match again. Once this is passed and the form submits successfully, the user will be notified their password has changed and be prompted to login. 
 
 
 
 ### Collection Homepages 
 
-Per collection has its own page which can be accessed from the navbar and each has an individual layout. We decided as this would be a nice display for our users that each activity collection is unique. To do this, each collection has two components, the main homepage and a Single version, whereby a single activity would be rendered. 
+Per collection has its own page which can be accessed from the navbar with an individual layout. We decided this would be a nice display for our users that each activity collection is unique. To do this, each collection has two components, the main homepage and a Single version, whereby a single activity would be rendered. 
 
-For the purpose of explaining pages going forward, a focus will be made on the GAMES activities to explain some the functionalities available for authorised and unauthorised users. 
+**For the purpose of explaining pages going forward, a focus will be made on the GAMES activities to explain some the functionalities available for authorised and unauthorised users.**
 
 The Games homepage and for every homepage per collection, an axios request is made for the whole collection to be set into state. The whole collection can then be rendered on the page as the page loads. For every collection homepage, we also do an API request to the user that is currently logged in to access their savedItems array to determine which items they have already saved to render certain aspects differently:
 
@@ -664,19 +664,19 @@ The Games homepage and for every homepage per collection, an axios request is ma
 
 ### Single Activity 
 
-Once one of the activities is clicked, this renders that particular activity. On the GAMES page, a call for an individual game is made on the page rendering using this.props and then passed down as props to the SingleGame component as well as additional functionality for authorised users. Because this page renders a single game  next to the full list of games, we simply rendered the SingleGame component on the collection page.
+Once one of the activities is clicked, this renders a detailed version. On the GAMES page, a call for an individual game is made on the page rendering using `this.props`. This is then passed down as props to the SingleGame component as well as additional functionality for authorised users. Because this page renders a single game next to the full list of games, we simply rendered the SingleGame component on the collection page.
 
-A similar approach is also taken for the other collections, except for the WATCH page which takes you to a new page and for the COOK page which uses GSAP to manipulate the card display to be shown and a request is made once the card is displayed. 
+A similar approach is also taken for the other collections, except for the WATCH page which takes you to a new page and for the COOK page which uses GSAP to manipulate the display of the card to be shown once a request to an individual recipe. 
 
 In terms of available functionality - a few ternary operators were issued to allow users who were logged in with more functionality when viewing single activities: 
 
 -  Adding comments with a rating
--  Favoriting the Activity
+-  Favouriting the activity
 -  Showing the user who uploaded the activity and a link to their profile. 
 
 1. <p style='text-decoration: underline'>Adding comments with a rating<p>
 
-In order to add any comments, a user needed to be authorised otherwise they would be asked to login or register to comment. However, all users are able to view the comments per activity For every comment, we also decided that users would be commenting on a particular activity with their own opinions. Because of this, we also added a rating functionality out of five which is only viewable with authorisation: 
+In order to add any comments, a user needed to be authorised otherwise they would be asked to login or register to comment. However, all users are able to view the comments per activity. For every comment, we also decided that users would be commenting on a particular activity with their own opinions. Because of this, we also added a rating functionality out of five which is only viewed with authorisation: 
   
   ```js
 
@@ -691,7 +691,6 @@ In order to add any comments, a user needed to be authorised otherwise they woul
               </div> : null}
 
   ```
-  -  In order to add any comments, a user needed to be authorised otherwise they would be asked to login or register to comment. For every comment, we also decided that users would be commenting on a particular activity with their own opinions. Because of this, we also added a rating functionality out of five which is only viewable with authorisation: 
 
 ```js
 <ion-icon onClick={(e) => HandleStar(e)} name="star-sharp"></ion-icon>
@@ -738,9 +737,9 @@ In order to add any comments, a user needed to be authorised otherwise they woul
   }
 
 ```
-2. <p style='text-decoration: underline'>Favoriting the Activity<p>
+2. <p style='text-decoration: underline'>Favouriting the Activity<p>
 
-- Authorised users also have the functionality to be able to favourite all the activities that are on the webpage. To enable this, a white heart is available per activity and if pressed will turn red, indicating it is favorited. The heart would only be visible if a user is authorised and is deployed using a ternary operator. Once this heart has been clicked, the `handleFavourite` function runs by which a POST request is made to the single activity endpoint which stores what users have favourited the activity. If this pressed again, a DELETE request would be made to be user who is logged in and removes the activity from their saved items folder: 
+Authorised users also have the functionality to be able to favourite all the activities that are on the webpage. To enable this, a white heart is available per activity and if pressed will turn red, indicating it is a favourite. The heart would only be visible if a user is authorised and is deployed using a ternary operator. Once this heart has been clicked, the `handleFavourite` function runs by which a POST request is made to the single activity endpoint which stores what users have favourited the activity using their unique ID. If this pressed again, a DELETE request would be made to be user who is logged in and removes the activity from their saved items folder: 
 
 ```js
 {auth.isLoggedIn() ? <ion-icon style={savedItems.includes(props.history.currentGame) ? { color: 'red' } : { color: 'white' }}
@@ -800,7 +799,7 @@ Every authorised user is automatically given a profile once they have created an
 
 1. <p style='text-decoration: underline'>Uploads<p>
 
-  If a user has created an item, from this endpoint they also have the power to edit or delete that activity. The edit functionality redirects the user to the appropriate form with the pre-loaded data where they can edit the item and send a POST request to the activity endpoint. A similar action also occurs on the DELETE button, whereby a DELETE request is made to the current user's uploads folder to delete that particular id. 
+  If a user has created an item, from this endpoint they also have the power to edit or delete that activity. The edit functionality redirects the user to the appropriate form with the pre-loaded data where they can edit the item and send a POST request to the activity endpoint. A similar action also occurs on the DELETE button, whereby a DELETE request is made to the current user's uploads folder to delete that particular ID. 
 
 
 
@@ -852,15 +851,15 @@ Every authorised user is automatically given a profile once they have created an
 
 ## Potential Future Features 
 
-- At the moment the webpage is not mobile friendly due to time restraints. We would hope to apply this in the future to give users the ability to access the app on a tablet or a phone.
+- At the moment, the webpage is not mobile friendly due to time restraints. We would hope to apply this in the future to give users the ability to access the app on a tablet or a phone.
 
-- User deleting an account. Althought users are able to create an account on the database, we do not have a feature if they would like to be removed. 
+- To be able to allow exisiting users to delete their account. Although users are able to create an account on the database, we do not have a feature if they would like to be removed. 
 
 ## Lessons Learned
 
-- Plan all functions early. Although the backend was one of the first things we decided to do, we implemented a lot of additional features that we hadn't originally thought of during development. This would mean we could've allocated time more accordingly. 
+- Plan all functionality early on. Although the backend was one of the first things we tackled, we implemented a lot of additional features that we hadn't originally thought of during development. This would mean we could've allocated time more accordingly.
 
-- Seed your database early. We were lucky that we created a seed file early on. Doing so meant that we could plant the default information with two commands making it very easy to test and visually see how the data was being displayed. 
+- Seed the database early in their process. We were lucky that we created a seed file early on. Doing so meant that we could plant the default information with two commands making it very easy to test and visually see how the data was being displayed. 
 
 
 
