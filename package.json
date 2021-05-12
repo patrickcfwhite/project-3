@@ -40,7 +40,7 @@
     "mongoose": "^5.9.29",
     "mongoose-hidden": "^1.9.0",
     "mongoose-unique-validator": "^2.0.3",
-    "nodemailer": "^6.4.11",
+    "nodemailer": "^6.4.16",
     "panzoom": "^9.2.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
